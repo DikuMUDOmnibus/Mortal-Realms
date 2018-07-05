@@ -1,0 +1,102 @@
+Mortal Realms (MrMUD) - Install ReadMe	|
+					|
+Written by Emperor 1999			|
+________________________________________|
+
+  The Mortal Realms package includes source code, and several basic areas.
+These basic areas are provided for reference, as several utilize the
+advanced features of MR.  The basic package provided does not immediately
+boot up, and requires some work as to setting up area files, and
+compilation.  The following describes a quick overview as to how this is
+accomplished.
+  Enjoy, Dave.
+
+
+MRTRMSRC.ZIP - The source code for MrTerm v1.61 in Borland C v5 format.
+               Written in ANSI C compatible mode, so readily convertable.
+               Zipped using MS compatible ZIP format.
+
+MRMUDSRC14.TAR.GZ - The source code and basic areas for MR.
+                    Last compilation was ported to RedHat Unix.
+                    Has been ported to Solaris, SunOS, Linux, FreeBSD, and RedHat.
+
+
+
+	HOW DO I COMPILE MORTAL REALMS?
+	-------------------------------
+
+To compile Mortal Realms, cd to the src directory and type:
+
+	make
+
+Then cd to the mrmud/bin directory and type:
+
+	cp md current_md
+
+and
+	cp md next_md
+
+
+	HOW DO I RUN MORTAL REALMS?
+	---------------------------
+
+To run Mortal Realms, cd back to the src directory and type:
+
+	./startup &
+
+Make sure that you have edited the startup file and supplied the
+appropriate port number.
+
+
+	THE STARTUP FAILED. HOW DO I FIX IT?
+	------------------------------------
+
+If the startup fails (aborts), it may be because of bugs in the
+standard area files. Try the following:
+
+	* cd to the mrmud/area_current directory
+
+	* In the file called area.lst, remove gahld.are and chakkor2.are.
+	Also, change the position of the area files such that midgaard.are 
+	is referenced before chakkor.are. 
+
+Remember that you can view problems with the startup by accessing
+the log files stored in the mrmud/log directory.
+
+
+	HOW DO I GET RID OF THAT TEST GAME MESSAGE?
+	--------------------------------------------
+
+In the comm.c file, there is a block of code that looks like this:
+
+   if (port == 4321 )
+     {
+     REAL_GAME = TRUE;
+     TEST_GAME = FALSE;
+     }
+   else
+     {
+     REAL_GAME = FALSE;
+     TEST_GAME = TRUE;
+     }
+
+Simply change the port number to whatever will be the port number for 
+your real game.
+
+
+	WHO DO I LOGIN AS?
+	------------------
+
+You can login for the first time as Chaos (level 99 God). His password is 
+initially blank.
+
+
+	HOW DO I USE EXTERNAL FILES?
+	----------------------------
+
+External files are BMPs, JPGs, WAVs, and MIDs that can be referenced and
+used by players with MrTerm capability.  Place these files in the 
+./area_current/data directory.  The builder.doc file describes how to
+include these files into areas, along with the other advanced features
+of areas with MR.
+

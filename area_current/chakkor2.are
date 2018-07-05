@@ -1,0 +1,4346 @@
+#AREA Chakkor~
+
+#AUTHORS MrMud~
+#RANGES
+0 99 0 99
+#FLAGS AFLAG_NODEBUG|AFLAG_FREEQUIT
+
+#TEMPERATURE 20 80 15 5
+
+
+
+
+#HELPS
+-1 CHAKKOR~
+CHAKKOR
+This is the central city of Mortal Realms. You might call it the capitol
+city of the game, since it is the location of the Entrance Tower (where
+all new players start). Chakkor has all the amenities of any major city:
+from a blacksmith, to a Griffin bank and travel center, temples to the
+Gods, guildhalls, shops (some hidden) as well as practice centers for
+every major occupation. The fountain in Chakkor (located off of
+Patrokles) is often a place of informal gathering for denizens of the
+Realms. 
+~
+0 $~
+
+
+
+
+#MOBILES
+#9700
+street sweeper~
+a lonely street sweeper~
+The street sweeper is tidying up this section of Chakkor.~
+The street sweeper appears to be content with his job, but is lonely none-the-
+less.  Perhaps you could uplift his spirits with an act of kindness.~
+ACT_SCAVENGER|16|ACT_SMART
+AFF_DETECT_INVIS|AFF_INFRARED|AFF_SNEAK
+0 S
+5 0 0 2d6+100 2d2+3
+100 631
+POS_STANDING POS_STANDING SEX_MALE
+>bribe_prog 1001~
+mpoload 9720 1
+say Here $n, here's something I found while cleaning up...I have no use for it.
+give key $n
+mpat 6499 drop gold
+~
+>bribe_prog 500~
+smile $n
+say Could you slick my palm a bit more?
+mpat 6499 drop gold
+~
+>bribe_prog 100~
+thank $n
+say It takes quite a bit of HARD work to clean these streets...
+mpat 6499 drop gold
+~
+>bribe_prog 1~
+thank $n
+say If you want it...you'll have to pay...
+mpat 6499 drop gold
+~
+|
+#9701
+brawler drunk~
+a brawling drunk~
+A drunk is here, joining in with the brawl that's constantly happening.~
+The drunk looks to be enjoying himself, as if the brawl is a good-natured
+event.~
+ACT_SENTINEL|ACT_SCAVENGER|16
+0
+100 S
+4 0 0 2d6+80 2d2+2
+75 459
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 10~
+if rand(10)
+  mpecho A brawling drunk slugs the bartender in the face playfully.
+else
+  mpecho A brawling drunk misses a swing at the bartender's face.
+endif
+~
+|
+#9702
+beggar~
+a beggar~
+A shaggy-looking beggar stands here, begging for a coin.~
+The beggar looks like he hasn't had a bath in decades.~
+ACT_SCAVENGER|16
+0
+100 S
+3 0 0 2d6+60 2d1+2
+5 300
+POS_STANDING POS_STANDING SEX_FEMALE
+#9703
+pedestrian~
+a pedestrian~
+A pedestrian walks by without noticing you.~
+The pedestrian looks preoccupied.~
+16
+0
+-100 S
+7 0 0 2d6+140 2d3+4
+250 1037
+POS_STANDING POS_STANDING SEX_FEMALE
+#9704
+monk~
+a monk~
+A pias monk stands here, worshipping Order.~
+The monk ignores you as you represent a distraction from the most excellent
+worship of The God of Reason.~
+ACT_SENTINEL|16|ACT_PRACTICE|ACT_SMART
+AFF_SANCTUARY
+1000 S
+10 0 0 2d6+200 2d9+5
+500 1934
+POS_STANDING POS_STANDING SEX_FEMALE
+#9705
+foreigner~
+a foreigner~
+A funny looking foreigner stands here, gawking at the buildings.~
+The foreigner smiles strangely as he notices you noticing him.  He looks like
+he wants to ask you something.~
+16
+AFF_CLEAR
+500 S
+12 0 0 2d6+240 2d6+6
+1000 2918
+POS_STANDING POS_STANDING SEX_MALE
+#9706
+mercenary~
+a mercenary~
+A battle-scarred mercenary stands here, looking for employment.~
+The mercenary smiles, because he knows you're going to propose a worth-while
+job...and he knows he's going to get paid VERY well for it.~
+16|ACT_PRACTICE|ACT_ONE_FIGHT
+AFF_SNEAK|AFF_HIDE|AFF_PASS_DOOR|AFF_STEALTH|AFF_CLEAR
+0 S
+15 0 0 2d6+350 2d7+8
+1250 5687
+POS_STANDING POS_STANDING SEX_MALE
+>bribe_prog 150000~
+mpmset mercenary name mercenary ready
+mposet coins name coins beenpaid
+mpecho The mercenary stands ready, waiting for orders.
+mpgorand 9700 9799 0 10
+~
+>speech_prog ~
+mpecho Huh?
+~
+>speech_prog p please kill~
+if hasobj(hasjob)
+  mpecho The mercenary says 'Sorry, I'm currently on a job.'
+else
+endif
+if hasobj(beenpaid)
+  mpecho The mercenary says 'Ok, sure thing boss.  I'll kill $5.'
+  mposet coins name $5 coins hasjob
+else
+endif
+~
+>greet_prog 75~
+if hasobj(hasjob)
+  if name($n) == $c
+    mpkill $c
+    mpat 6499 drop hasjob
+    mpat 6499 get hasjob
+  else
+  endif
+else
+endif
+~
+|
+#9707
+cutthroat~
+a cutthroat~
+A wicked looking cutthroat stands here, eyeing your possessions.~
+The cutthroat notices your gaze and shifts backward, touching the hilt of his
+dagger.~
+ACT_SCAVENGER|16|ACT_AGGRESSIVE
+AFF_SNEAK|AFF_HIDE|AFF_PASS_DOOR
+-500 S
+13 0 0 2d6+260 2d6+7
+1495 3616
+POS_STANDING POS_STANDING SEX_MALE
+#9708
+elf xmas small green~
+a small elf~
+A small elf wearing a green robe wanders here.~
+The elf catches you looking at him and gives you a wry smile.~
+ACT_STAY_AREA|ACT_SMART
+AFF_DETECT_INVIS|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+13 0 0 2d6+260 2d6+7
+1495 3616
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 2~
+if quest(80,1,$r) == 0
+  recho Jingle Jingle Jingle!
+  mpechoat $r The elf looks at you conspiratorially.
+  tell $r For a small donation (10gps), I can get you in to 
+  tell $r see the big man himself.  You know, the North Pole.
+endif
+~
+>rand_prog 40~
+if quest(80,1,$r)==1
+  mpmset $r quest 80 1 0
+  mpecho The elf glows brightly!
+  mpechoat $r You feel yourself flying through the air.
+  mpechoaround $r $r disappears suddenly!
+  mptransfer $r 4400
+  mpat 4400 mpforce $r look
+  wake 
+else
+  if level($r) < 31
+    recho Jingle Jingle Jingle!
+    mpechoat $r The elf looks at you conspiratorially.
+    tell $r For a small donation (10gps), I can get you in to
+    tell $r see the big man himself.  You know, the North Pole.
+  endif
+endif
+~
+>rand_prog 80~
+if quest(80,1,$r) == 0
+  if level($r) < 11
+    recho Jingle Jingle Jingle!
+    mpechoat $r The elf looks at you conspiratorially.
+    tell $r For a small donation (10gps), I can get you in to
+    tell $r see the big man himself.  You know, the North Pole.
+  endif
+endif
+~
+>bribe_prog 10~
+if quest(80,1,$n) == 0
+  if level($n) < 11
+    mpmload 9775
+    give i9775 $n
+    tell $n Take this recall scroll.  If you wish to recall to
+    tell $n Chakkor later, type 'set recall' now.
+  endif
+  rest 
+  mpmset $n quest 80 1 1
+  mpecho The elf tightens his face in concentration...
+else
+  growl $n
+  tell $n Hold your horses, I'm working on it!
+endif
+~
+|
+#9750
+marlyle~
+Marlyle~
+Marlyle walks around behind the counter, talking to himself.~
+Marlyle looks old and senile, and yet, he looks like a very powerful wizard.
+He is equipped with fine clothing, and is wearing many fine rings and
+bracelets.  He eyes you warily as you gawk at his items.~
+ACT_SENTINEL
+0
+-400 S
+95 0 0 1d1+19322 1d8+92
+100000 780605
+POS_STANDING POS_STANDING SEX_MALE
+#9751
+weaponsmith riparemon~
+the weaponsmith~
+A weaponsmith named Riparemon stands here.~
+A young, bored weaponsmith.  He looks like his side-lines weapon repair 
+business isn't doing very well.~
+ACT_SENTINEL
+0
+900 S
+95 0 0 1d1+18888 1d8+92
+100000 780605
+POS_STANDING POS_STANDING SEX_MALE
+#9752
+psif armorer armourer~
+Psif~
+Psif the armorer stands here, munching on sun-flower seeds.~
+Psif is an aging man, he wants to make his first million before age 50.  He
+used to want to make it before 45, 40, 35, 30, 25, and 20...but that was years
+ago.  He smiles as you show an interest in his wares.~
+ACT_SENTINEL
+0
+900 S
+95 0 0 1d1+20603 1d8+92
+150000 780605
+POS_STANDING POS_STANDING SEX_MALE
+#9753
+prita~
+Prita~
+Prita prances around the premises, playing with her potions.~
+Prita looks perky.  Her prettiness is primarily produced by her pleasant
+personality.~
+ACT_SENTINEL
+0
+900 S
+95 0 0 1d1+17788 1d8+92
+100000 780605
+POS_STANDING POS_STANDING SEX_FEMALE
+#9754
+bartender~
+the bartender~
+A bartender watches you calmly, while he skillfully mixes a drink.~
+A tired looking Bartender who loves trouble in his bar.~
+ACT_SENTINEL
+0
+900 S
+95 0 0 1d1+18530 1d1+96
+2000 780605
+POS_STANDING POS_STANDING SEX_MALE
+#9755
+lottie~
+Lottie~
+Lottie stands here, behind the serving counter.~
+She is very beautiful with golden hair, and deep blue eyes. A good reason
+for coming here more often.~
+ACT_SENTINEL
+0
+1000 S
+30 0 0 1d1+1792 1d1+68
+9000 106194
+POS_STANDING POS_STANDING SEX_FEMALE
+#9756
+jalil~
+Jalil~
+Jalil the Pet Trainer stands here, looking at how bored you are.~
+Jalil looks like he could put up with a lot of nonsense.~
+ACT_SENTINEL
+0
+900 S
+95 0 0 1d1+19835 1d1+98
+2000 780605
+POS_STANDING POS_STANDING SEX_MALE
+#9758
+healer~
+the healer~
+A healer is here.~
+Although retired from adventuring, the healer still lends a hand.~
+ACT_SENTINEL
+AFF_DETECT_INVIS|AFF_SANCTUARY
+1000 S
+95 0 0 1d1+18462 2d47+96
+0 780605
+POS_STANDING POS_STANDING SEX_FEMALE
+#9759
+healer~
+the healer of Order~
+The Order of Reason's personal healer is here.~
+Although retired from adventuring, the healer still lends a hand to followers
+of the Order of Reason.~
+ACT_SENTINEL
+AFF_DETECT_INVIS|AFF_SANCTUARY
+1000 S
+95 0 0 1d1+21187 2d47+48
+0 780605
+POS_STANDING POS_STANDING SEX_FEMALE
+#9760
+guildmaster master~
+the guildmaster~
+Your guildmaster is standing here.~
+The guildmaster looks so much more experienced than you that you wonder why
+you can't just learn everything from him.  However, he always asserts that
+nothing can replace personal experience in physical training.~
+ACT_SENTINEL|ACT_PRACTICE
+0
+1000 S
+96 0 0 2d6+15000 2d48+48
+8794 794749
+POS_STANDING POS_STANDING SEX_MALE
+#9761
+guildmaster master~
+the guildmaster~
+Your guildmaster is standing here.~
+His robe flows from his body, creating a stream of burlap that cascades across
+the floor below him.  His face gives the appearance of constant communication
+with God.~
+ACT_SENTINEL|ACT_PRACTICE
+0
+1000 S
+96 0 0 2d6+15000 2d48+48
+8794 794749
+POS_STANDING POS_STANDING SEX_MALE
+#9762
+guildmaster master~
+the guildmaster~
+Your guildmaster is standing here.~
+Even though your guildmaster looks old and tired, you can clearly see the
+vast amount of knowledge she possesses. She is wearing fine magic clothing,
+and you notice that she is surrounded by a blue shimmering aura.~
+ACT_SENTINEL|ACT_PRACTICE
+0
+1000 S
+96 0 0 2d6+15000 2d48+48
+8794 794749
+POS_STANDING POS_STANDING SEX_FEMALE
+#9775
+blacksmith~
+The blacksmith~
+A blacksmith carefully works on a sword.~
+The blacksmith is a large burly man that easily moves anvils around whenever
+he wants too.  The blacksmith waits to help you with your rusty, chipped up
+armor and weapons.~
+ACT_SENTINEL|ACT_SMART
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 0 0 1d1+17948 10d10+50
+100000 780605
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 10~
+say I can engrave your name into your equipment.
+~
+>rand_prog 10~
+say Engraving an item will also make it stonger.
+~
+>speech_prog engrave~
+say Engrave it yourself, but here are my tools...    (type ENGRAVE)
+~
+|
+#9776
+magician~
+the magician~
+A magician stands here sorting out scrolls.~
+The magician looks like an elderly man, with a slight loss of hair, and a large
+wart growing out of his left cheek.  Although you realize that his power in
+magic is much greater than most.~
+ACT_SENTINEL
+AFF_TONGUES
+900 S
+95 0 0 1d1+18177 10d10+50
+100000 780605
+POS_STANDING POS_STANDING SEX_MALE
+#9777
+priest~
+the priest of Chaos~
+A priest of Chaos stands here devoutely, asking for offerings.~
+The priest of Chaos is wearing a black clothes that make it look nearly
+indistiguishible from the acolytes of Chaos.~
+ACT_SCAVENGER
+AFF_TONGUES
+900 S
+25 0 0 1d1+450 2d2+20
+2000 70135
+POS_STANDING POS_STANDING SEX_MALE
+#9778
+student~
+the student of Chaos~
+A student of Chaos wanders around looking for things to do.~
+The student of Chaos appears that he has just started down the path of Chaos,
+and does not know what he is doing.  He seems to be asking the priests of Chaos
+quite alot of questions.~
+0
+AFF_SNEAK|AFF_HUNT|AFF_TONGUES
+900 S
+10 0 0 5d5+120 2d2+10
+500 1934
+POS_STANDING POS_STANDING SEX_MALE
+#9779
+guard~
+the guard~
+The guardian of Illusionists stands here.~
+The guardian of illusion is ogre, with a massive war axe, and drool dripping
+down from his chin.  He has a pet imp on his shoulder.~
+ACT_SENTINEL
+AFF_TONGUES
+900 S
+95 0 0 1d1+19235 10d10+50
+100000 780605
+POS_STANDING POS_STANDING SEX_MALE
+#9780
+master~
+the master of illusion~
+The Master of Illusion rests in a small chair.~
+The Master of Illusion is wearing a grey cloak that makes him blend in almost
+imperceptibly with the background of fog.  The Master is a drow.~
+ACT_SENTINEL|ACT_PET|ACT_PRACTICE
+AFF_TONGUES
+900 S
+95 0 0 1d1+19804 10d10+50
+100000 780605
+POS_STANDING POS_STANDING SEX_MALE
+#9781
+lar~
+Lar the Master Tanner~
+Lar the Master Tanner is here showing his wares.~
+Lar is a large man, with extremely tanned skin.  He looks like he was born in
+a desert.  Lar does not seem to be as intelligent as most people.~
+ACT_SENTINEL
+AFF_TONGUES
+900 S
+95 0 0 1d1+19177 10d10+50
+100000 780605
+POS_STANDING POS_STANDING SEX_MALE
+#9782
+tsi~
+Tsi the High Priest of Chaos~
+Tsi the High Priest of Chaos rests here casually casting spells~
+Tsi has a very feline set of features, with pointed ears, and slit eyes.
+No one seems to know which of the races Tsi was born to.~
+ACT_SENTINEL
+AFF_TONGUES
+900 S
+95 0 0 1d1+20289 10d10+50
+100000 780605
+POS_STANDING POS_STANDING SEX_MALE
+#9783
+hosehed~
+the chess piece~
+There are several large chess pieces here.~
+I have no fucking idea how you were able to look at the pieces!~
+ACT_SENTINEL
+AFF_TONGUES
+900 S
+95 0 0 1d1+17763 10d10+50
+100000 780605
+POS_STANDING POS_STANDING SEX_MALE
+#9784
+master~
+the master of necromancy~
+The Master of Necromancy sits playing with a miniature demon.~
+The Master of Necromancy is wearing a black robe with a hood, and swirling
+patterns on the sleeves and collar.  The Master is a small man, but is wearing
+a black glowing chain with a 4 pointed arrows eminating from the center.~
+ACT_SENTINEL|ACT_PET|ACT_PRACTICE
+AFF_TONGUES
+900 S
+95 0 0 1d1+20445 10d10+50
+100000 780605
+POS_STANDING POS_STANDING SEX_MALE
+#9785
+guard~
+the guard~
+The guardian of Necromancy stands here wondering is you're worthy to enter.~
+The guardian is a VERY large ogre, with a massive club, and a vicious grin.~
+ACT_SENTINEL
+AFF_TONGUES
+900 S
+95 0 0 1d1+19529 10d10+50
+100000 780605
+POS_STANDING POS_STANDING SEX_MALE
+#9786
+guard halfling~
+the guard~
+There is a small halfling here sitting at a table.~
+The halfling is sitting drinking a frosty mug of ale.
+the halfling says, 'Are you here to see the Man?'~
+ACT_SENTINEL
+AFF_TONGUES
+900 S
+95 0 0 1d1+21279 10d10+50
+100000 780605
+POS_STANDING POS_STANDING SEX_MALE
+#9787
+man~
+the man~
+The master of the underworld sits back here.~
+The master of the underworld, better known simply as 'The Man', is kicked
+back throwing knives at a dart board.  He hits it perfect at least 9 out of
+10 times, and when he misses, it's only because he noticed a fly or rat wander
+in from the sewer.  you can tell he has more fun with the rats than he does
+with the dart board.~
+ACT_SENTINEL|ACT_PET|ACT_PRACTICE
+AFF_TONGUES
+900 S
+95 0 0 1d1+19105 10d10+50
+100000 780605
+POS_STANDING POS_STANDING SEX_MALE
+#9788
+guard~
+the guard~
+There is a large burly man guarding the entrance to Dinum's office.~
+The man has a large sword, and buck teeth, but seems to know his job very well.~
+ACT_SENTINEL
+AFF_TONGUES
+900 S
+95 0 0 1d1+18460 10d10+50
+100000 780605
+POS_STANDING POS_STANDING SEX_MALE
+#9789
+dinum~
+Dinum~
+Dinum sits behind his desk, working up profit margins on his last trade
+caravan to some far away city.~
+Dinum looks like an ordinary man.  He's smoking a large cigar, and writing
+on a large ledger.  Dinum is well know to be one of the most financially
+successful people in the city of Chakkor.  Some wonder where he got all his
+wealth.~
+ACT_SENTINEL|ACT_PET|ACT_PRACTICE
+AFF_TONGUES
+900 S
+95 0 0 1d1+20318 10d10+50
+100000 780605
+POS_STANDING POS_STANDING SEX_MALE
+#9790
+sam waldon~
+Sam Waldon~
+Sam Waldon quickly runs up and asks, 'May I help you?'~
+Sam Waldon is wearing bright red cloak over white trousers.  Sam Waldon seems
+to be reeking, and smelling like rotting flesh.  You realize that he is not
+quite alive.~
+ACT_SENTINEL
+0
+-1000 S
+95 0 0 1d1+21171 10d10+50
+9000 780605
+POS_STANDING POS_STANDING SEX_MALE
+#9791
+borlon jeweler~
+Borlon the Jeweler~
+Borlon the Jeweler stands in front of his merchandise.~
+Borlon the Jeweler is a rather ugly orc, but he is wearing many beautiful
+rings and bands, so that makes up most of the differences.~
+ACT_SENTINEL
+0
+-1000 S
+95 0 0 1d1+19785 10d10+50
+9000 780605
+POS_STANDING POS_STANDING SEX_MALE
+#9792
+boy~
+the young boy~
+There is a young boy here running some sort of errand.~
+The young boy is wearing a brown cloak.  He seems to be looking for something.~
+0
+AFF_TONGUES
+0 S
+3 0 0 2d10+25 1d6+4
+100 300
+POS_STANDING POS_STANDING SEX_MALE
+#9793
+girl~
+the young girl~
+There is a sweet innocent young girl here.~
+The young girl is wearing a white cloak, and playfully babbles the local
+gossip.~
+0
+AFF_TONGUES
+0 S
+4 0 0 2d10+30 1d6+6
+150 459
+POS_STANDING POS_STANDING SEX_FEMALE
+#9794
+citizen~
+the citizen of Chakkor~
+There is a citizen of the city of Chakkor here.~
+The citizen is a middle-aged man that's running an errand for one of the
+guild masters.~
+0
+AFF_TONGUES
+0 S
+5 0 0 2d11+75 2d4+6
+200 631
+POS_STANDING POS_STANDING SEX_MALE
+#9795
+student~
+the student of necromancy~
+The student of necromancy is reading a scroll here.~
+The student looks to have little or no money, but seems to be quite smart.~
+0
+AFF_TONGUES
+0 S
+6 0 0 2d11+40 1d7+7
+10 822
+POS_STANDING POS_STANDING SEX_MALE
+#9796
+student~
+the student of illusion~
+The student of illusion is here playing with an imaginary friend.
+An illusion floats around the room.~
+The student looks to have little or no money, but seems to be quite smart.~
+0
+AFF_TONGUES
+0 S
+7 0 0 2d12+45 1d8+8
+10 1037
+POS_STANDING POS_STANDING SEX_MALE
+#9797
+student~
+the student~
+The student of the elements is here pondering the weather.~
+The student looks to have little or no money, but seems to be quite smart.~
+0
+AFF_TONGUES
+0 S
+8 0 0 3d12+50 3d4+8
+10 1286
+POS_STANDING POS_STANDING SEX_MALE
+#9798
+trainer~
+Dar the Master Trainer~
+Dar the Master Trainer is here working out.~
+Dar seems to be skilled in everything, and wants to show you how to train
+yourself.~
+ACT_SENTINEL|ACT_TRAIN
+AFF_TONGUES
+900 S
+95 0 0 1d1+18015 10d10+50
+100000 780605
+POS_STANDING POS_STANDING SEX_MALE
+#9799
+arctum mortician~
+Arctum~
+Arctum the friendly mortician stands here dissecting corpses.~
+Arctum seems to be very skilled with a blade, and a paint brush.~
+ACT_SENTINEL
+AFF_TONGUES
+900 S
+95 0 0 1d1+17782 10d10+50
+100000 780605
+POS_STANDING POS_STANDING SEX_MALE
+#9800
+statue~
+the statue~
+There is a small statue here.~
+Doylee, the master of all that he lost, says 'Kiss your bonny butt goodbye!'
+
+Doylee hits you VERY HARD!
+You miss Doylee.
+Doylee hits you INCREDIBLY HARD!
+You miss Doylee.
+Doylee hits you SORTOF HARD!
+You miss Doylee.
+Doylee hits you MILDLY HARD!
+You miss Doylee.
+Doylee hits you NOT REALLY HARD!
+You miss Doylee.
+Doylee hits you with a pillow type of HARD!
+You miss Doylee.
+Doylee hits you Absolutely NOT HARD!
+You miss Doylee.
+Doylee hits you as if he wasn't trying VERY HARD!
+You miss Doylee.
+Doylee hits you even though his head is RATHER HARD!
+You miss Doylee.
+Doylee hits you HARD!
+You miss Doylee.
+Doylee fixes you up real fast, and then tells you a bit about himself:
+I am a beautiful ogre warrior.  (He's a 4" tall UNGLY little thing)~
+ACT_SENTINEL|ACT_SMART
+AFF_TONGUES
+0 S
+1 0 0 1d1+35 2d2+2
+0 10
+POS_STANDING POS_STANDING SEX_MALE
+#9801
+kine~
+Kine~
+Kine the judge of changes asks you to have a seat.~
+Kine is an older man, but seems to know everything about the game, and how to
+correctly judge how things work.  He seems to think he has power over the gods,
+and some say he does.~
+ACT_SENTINEL
+AFF_TONGUES
+1000 S
+95 0 0 1d1+18189 10d10+50
+100000 780605
+POS_STANDING POS_STANDING SEX_MALE
+#9802
+degar~
+Degar~
+Degar sits drinking his warm lager.~
+Degar has very short hair, and a very short temper.
+He is wearing dark leggings, and a green cloak.
+Degar does not seem to care that you exist.~
+ACT_SENTINEL|ACT_SCAVENGER|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+10 BODY_LEG|BODY_ARM|BODY_FOOT BODY_HEAD|BODY_HAND|BODY_FOOT 10d10+100 4d4+4
+700 RACE_GNOME
+POS_RESTING POS_RESTING SEX_MALE
+>rand_prog 15~
+say You punk.  Get lost, $r
+~
+>rand_prog 15~
+say Hey, babe.   You look like someone I used to know, but better
+mpecho The serving maid says, 'Keep your hands to yourself, Mac'
+~
+>rand_prog 15~
+emote tops his lager off, and orders another.
+mpecho After a few minutes, the maid brings another.
+~
+>rand_prog 15~
+emote stumbles off for some relief and accidentally bumps into a bar patron.
+mpecho Marcus says, 'Unless you have tobac, get the demise out of my way'.
+~
+|
+#9803
+jahred minstrel~
+Jahred the minstrel~
+Jahred the minstrel is here playing his instruments.~
+Jahred's cloak is worn to tatters, yet colorful.  He smiles cheerfully and
+offers you a song.~
+ACT_STAY_AREA|ACT_WIMPY|ACT_SMART|ACT_NO_ORDER|ACT_BODY|ACT_RACE
+AFF_DETECT_INVIS|AFF_TONGUES
+1000 S
+30 BODY_HEAD|BODY_LEG|BODY_ARM BODY_HAND|BODY_FOOT 10d10+750 4d8+30
+10000 RACE_ELF
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if rand(20)
+  mpforce $n external SALTARE2.MID
+  break
+endif
+if rand(25)
+  mpforce $n external SALTARE3.MID
+  break
+endif
+if rand(30)
+  mpforce $n external SONG-ASS.MID
+  break
+endif
+if rand(35)
+  mpforce $n external NOTA41.MID
+  break
+endif
+if rand(40)
+  mpforce $n external NOTA40.MID
+  break
+endif
+mpforce $n external NOTA39.MID
+~
+|
+#9804
+lady stephanie~
+The Lady Stephanie~
+The Lady Stephanie flashes her eyes in anger that you are in her way.
+Terah, a lady in waiting, faithfully follows her mistress.~
+The Lady Stephanie's flaming hair is as red as her anger and her eyes 
+are a cold blue.  She is dressed in a sapphire gown adorned with pearls.
+She carries herself with an elegant grace as she looks coldly in your
+direction.~
+ACT_SCAVENGER|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_HUNT|AFF_TONGUES
+-400 S
+45 0 BODY_MOUTH|BODY_HAND 1d200+2400 1d70+80
+63889 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+>rand_prog 20~
+say $r, get out of my way, you imbecil!
+~
+>rand_prog 20~
+say Here's a coin wretch, carry my bags.
+~
+>rand_prog 15~
+emote slaps Terah for stepping on her gown.
+~
+|
+#9805
+alley cat~
+The alley cat~
+The alley cat is looking around for something to eat.~
+The alley cat is black with various white patches.  He looks like an
+ordinary tom cat.  You think he has probably befriended some of the 
+shop owners since he does not look like he has gone hungry often.~
+ACT_SMART|ACT_BODY|ACT_RACE
+AFF_HUNT|AFF_TONGUES
+0 S
+12 0 BODY_MOUTH|BODY_CLAW 1d100+200 1d10+7
+50 RACE_HALFLING
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 20~
+emote purrs happily rubbing against your leg.
+~
+>rand_prog 15~
+emote hisses at you angrily.
+~
+>rand_prog 10~
+emote stretches lazily and looks around for a nice place to nap.
+~
+|
+#9806
+homeless boy~
+A homeless boy~
+A homeless boy looks up at you as you walk by.~
+The boy's face and hands are covered in dirt and his clothes are
+worn out and faded.  He is street smart and you get the feeling that
+you need to watch your pockets around him.~
+ACT_SCAVENGER|ACT_WIMPY|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_SNEAK|AFF_TONGUES
+-150 S
+16 0 BODY_HAND|BODY_FOOT 1d50+300 1d15+8
+0 RACE_DROW
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 10~
+say What are you looking at?
+~
+|
+#9807
+shoe shiner~
+A shoe shiner~
+A shoe shiner is here offering to clean your boots.~
+The shoe shiner is an older fellow with a shiny bald head.  He is 
+carrying around a folding chair, rags and shoe wax.  You think it
+might be a good time to get the dirt and grime from your boots.~
+ACT_WIMPY|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_TONGUES
+200 S
+20 0 BODY_LEG|BODY_ARM 1d60+350 1d20+10
+35 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 25~
+say Shoe shine! Shoe shine! Step right up, it's only five gold pieces!
+~
+>rand_prog 20~
+emote unfolds his chair and waits for someone's shoes to shine.
+~
+>rand_prog 1~
+shout Shoe Shine! Come and see me for a shoe shine!
+~
+|
+#9808
+vegetable vendor~
+A vegetable vendor~
+A vendor is offering to sell you vegetables from his cart.~
+The vendor looks like a peasant who has walked a long ways.  His vegetables
+look fresh and delicious though.  The tomatoes are especially ripe and you 
+think they may be fun to throw at people.~
+ACT_SMART|ACT_BODY|ACT_RACE
+AFF_TONGUES
+100 S
+20 0 BODY_HAND|BODY_FOOT 1d50+350 1d25+10
+50 RACE_GNOME
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 15~
+say Apples! Oranges! Buy them here!
+~
+>rand_prog 15~
+say Corn and Squash for sell!
+~
+>rand_prog 10~
+emote doesn't understand why people don't eat their vegetables.
+~
+>rand_prog 20~
+say Fine ripe tomatoes for sale. They are fun to throw at people.  
+~
+|
+#9809
+peasant~
+A peasant~
+A peasant is here visiting the city.~
+She is dressed in a loosely woven course cloth cut at her knees.  Her hair 
+is a shoulder length dark-brown and her eyes are a grey-green. She is 
+clutching several packages closely to her.  She must have come to town to 
+go shopping.~
+ACT_SMART|ACT_BODY|ACT_RACE
+AFF_TONGUES
+400 S
+35 0 BODY_LEG|BODY_ARM 1d100+500 1d25+40
+1 RACE_HALFLING
+POS_STANDING POS_STANDING SEX_FEMALE
+>rand_prog 15~
+say Oh my! I need to get home before dark.
+~
+>rand_prog 10~
+say Isn't is such a lovely day for shopping?
+~
+>rand_prog 5~
+say Next time I'll have to bring my children with me. They would enjoy coming to town.
+~
+|
+#9810
+bird parrot~
+The parrot~
+The parrot squawks loudly as it flys by.~
+The parrot is a beautiful multi-colored bird. You watch it land on a rooftop and begin
+preening it's feathers.  It must have belonged to a noble man and flew away one day.  
+It seems as if it has been hanging around fishing villages too long lately because it 
+has picked up some of the sailor's speech.~
+ACT_WIMPY|ACT_SMART|ACT_BODY|ACT_RACE
+AFF_FLYING|AFF_TONGUES
+0 S
+5 0 BODY_WING|BODY_CLAW 1d10+50 1d5+5
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>rand_prog 10~
+say Polly wanna cracker.
+~
+>rand_prog 10~
+say Wanna cracker, damn it.
+~
+>rand_prog 5~
+emote flys over your head and a dropping lands on your shoulder.
+~
+|
+#9811
+donationpit~
+pit~
+pit~
+~
+ACT_SENTINEL|ACT_SMART
+AFF_UNDERSTAND|AFF_TONGUES|AFF_ETHEREAL
+0 S
+95 0 0 1d1+19999 1d1+199
+0 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>rand_prog 75~
+mpquiet on
+get all
+put all i9779
+put all pit
+drop all
+mpquiet off
+~
+>rand_prog 5~
+mpquiet on
+cast 'heal' $r
+endif
+mpquiet off
+~
+|
+#9812
+ethereal obelisk guy~
+The ethereal obelisk guy~
+The ethereal obelisk guy is here.~
+This mob should be invisible to you.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY|ACT_RACE|ACT_UNDEAD
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_TONGUES|AFF_ETHEREAL
+0 S
+90 BODY_HEAD BODY_LEG 1d10+10000 1d10+100
+292510 RACE_DWARF
+POS_STANDING POS_STANDING SEX_MALE
+>speech_prog dangerous neighborhood~
+if level($n) < 18
+  mpecho The obelisk glows with energy.
+  mpechoaround $n $n fades out of existence.
+  mpechoat $n You disappear suddenly!
+  mptransfer $n 2101
+else
+  mptransfer $n 2101
+else
+  mpechoat $n You are too big to call on the aid of the obelisk.
+endif
+~
+>speech_prog deeve~
+if level($n) < 18
+  mpecho The obelisk glows with energy.
+  mpechoaround $n $n fades out of existence.
+  mpechoat $n You disappear suddenly!
+  mptransfer $n 4005
+else
+  mpechoat $n You are too big to call on the aid of the obelisk.
+endif
+~
+>speech_prog dwarven day care~
+if level($n) < 18
+  mpecho The obelisk glows with energy.
+  mpechoaround $n $n fades out of existence. 
+  mpechoat $n You disappear suddenly!
+  mptransfer $n 6601
+else
+  mpechoat $n You are too big to call on the aid of the obelisk.
+endif
+~
+>speech_prog gnome village~
+if level($n) < 18
+  mpecho The obelisk glows with energy.
+  mpechoaround $n $n fades out of existence.
+  mpechoat $n You disappear suddenly!
+  mptransfer $n 1501
+else
+  mpechoat $n You are too big to call on the aid of the obelisk. 
+endif
+~
+>speech_prog holy grove~
+if level($n) < 18
+  mpecho The obelisk glows with energy.
+  mpechoaround $n $n fades out of existence.
+  mpechoat $n You disappear suddenly!
+  mptransfer $n 8927
+else
+  mpechoat $n You are too big to call on the aid of the obelisk.
+endif
+~
+>speech_prog monster pit~
+if level($n) < 18
+  mpecho The obelisk glows with energy.
+  mpechoaround $n $n fades out of existence.
+  mpechoat $n You disappear suddenly!
+  mptransfer $n 9400
+else
+  mpechoat $n You are too big to call on the aid of the obelisk.
+endif
+~
+>speech_prog kytar~
+if level($n) < 18
+  mpecho The obelisk glows with energy.
+  mpechoaround $n $n fades out of existence.
+  mpechoat $n You disappear suddenly!
+  mptransfer $n 19245
+else
+  mpechoat $n You are too big to call on the aid of the obelisk.
+endif
+~
+>speech_prog shire~
+if level($n) < 18
+  mpecho The obelisk glows with energy.
+  mpechoaround $n $n fades out of existence.
+  mpechoat $n You disappear suddenly!
+  mptransfer $n 1103
+else
+  mpechoat $n You are too big to call on the aid of the obelisk.
+endif
+~
+>speech_prog university~
+if level($n) < 18
+  mpecho The obelisk glows with energy.
+  mpechoaround $n $n fades out of existence.
+  mpechoat $n You disappear suddenly!
+  mptransfer $n 19812
+else
+  mpechoat $n You are too big to call on the aid of the obelisk.
+endif
+~
+>speech_prog wyvern~
+if level($n) < 18
+  mpecho The obelisk glows with energy.
+  mpechoaround $n $n fades out of existence.
+  mpechoat $n You disappear suddenly!
+  mptransfer $n 1656
+else
+  mpechoat $n You are too big to call on the aid of the obelisk.
+endif
+~
+>speech_prog antarctica~
+if level($n) < 18
+  mpecho The obelisk glows with energy.
+  mpechoaround $n $n fades out of existence.
+  mpechoat $n You disappear suddenly!
+  mptransfer $n 2710
+else
+  mpechoat $n You are too big to call on the aid of the obelisk.
+endif
+~
+|
+#0
+
+
+
+
+#OBJECTS
+#9700
+refresh potion~
+a potion of refresh with a bit amiss~
+A potion of refresh is suspended in mid-air here.~
+~
+ITEM_TYPE_POTION
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+15 SPELL_REFRESH SPELL_CHANGE_SEX SPELL_NONE
+30 500 17
+#9701
+pass potion~
+a potion of pass door and something more~
+A potion of refresh hangs suspended by air here.~
+~
+ITEM_TYPE_POTION
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+15 SPELL_PASS_DOOR SPELL_FLAMESTRIKE SPELL_NONE
+5 1500 17
+#9702
+infravision potion~
+a potion of infravision plus worse~
+A potion of infravision rests here.~
+~
+ITEM_TYPE_POTION
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+30 SPELL_INFRAVISION SPELL_CURSE SPELL_NONE
+1 1000 33
+#9703
+sanctuary potion~
+a potion of weak sanctuary~
+A potion of sanctuary rests here.~
+~
+ITEM_TYPE_POTION
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+30 SPELL_SANCTUARY SPELL_ARMOR SPELL_SHIELD
+1 2000 25
+#9704
+healing potion~
+a potion of displaced healing~
+A potion of healing rests here.~
+~
+ITEM_TYPE_POTION
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+95 SPELL_HEAL SPELL_TELEPORT SPELL_BLINDNESS
+1 20000 85
+#9710
+potion enhanced sight~
+a potion of enhanced sight~
+A potion of enhanced sight rests here.~
+~
+ITEM_TYPE_POTION
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+35 SPELL_CURE_BLINDNESS SPELL_DETECT_INVIS SPELL_HASTE
+3 2000 11
+#9711
+potion cure poison~
+a potion of cure poison~
+A potion of cure poison rests here.~
+~
+ITEM_TYPE_POTION
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+15 SPELL_CURE_POISON SPELL_NONE SPELL_NONE
+3 2000 17
+#9712
+remove curse scroll~
+a scroll of remove curse~
+A scroll of remove curse lies furled here.~
+~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+30 SPELL_REMOVE_CURSE SPELL_HASTE SPELL_STONE_SKIN
+30 2000 17
+#9713
+wand armor~
+a wand of armor~
+A wand of armor rests here, invitingly.~
+~
+ITEM_TYPE_WAND
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+30 2 2 SPELL_ARMOR
+1 2500 12
+#9714
+scroll understand tongues~
+a scroll of understand and tongues~
+A scroll of understand and tongues lies here.~
+~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+13 SPELL_TONGUES SPELL_UNDERSTAND SPELL_NONE
+1 2500 9
+#9720
+key sparkling~
+a sparkling key~
+A sparkling key lies here.~
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+24 0 0 0
+1 10 1
+#9740
+bow small~
+a small bow~
+A small bow lies here.~
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+1 1 3 WEAPON_WHIP
+1 500 1
+#9741
+bow long~
+a long bow~
+A long bow lies here.~
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+1 1 5 WEAPON_WHIP
+1 2000 1
+#9742
+crossbow~
+a crossbow~
+A wooden crossbow lies here.~
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+2 1 5 WEAPON_CRUSH
+1 5000 1
+#9743
+quiver~
+a quiver~
+A quiver and strap lies here, seemingly abandoned.~
+~
+ITEM_TYPE_CONTAINER
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+50 CONT_CLOSEABLE -1 0
+2 65 1
+#9744
+dagger~
+a dagger~
+A plain, simple dagger is stuck in the ground here.~
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 1 6 WEAPON_PIERCE
+1 100 1
+#9745
+broadsword sword broad~
+a broadsword~
+A broadsword of the normal heftiness lies here.~
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 1 10 WEAPON_SLICE
+20 2000 4
+#9746
+knife throwing~
+a throwing knife~
+A knife with a simple, two-toned handle is here.~
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 1 4 WEAPON_STAB
+0 50 1
+#9747
+club~
+a club~
+A long, wicked-looking club lies here.~
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 2 3 WEAPON_CRUSH
+15 50 1
+#9749
+seats bleachers~
+the seats~
+Many rows of bleachers rise along the walls.~
+They are seats in which one would sit.~
+ITEM_TYPE_FURNITURE
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+0
+0 0 0 0
+32000 1 1
+#9750
+bolt~
+a crossbow bolt~
+A crossbow bolt lies here.~
+~
+ITEM_TYPE_AMMO
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+2 5 10 5
+1 25 8
+E
+bolt~
+The bolt appears to be usefull for shooting at creatures.~
+#9751
+arrow~
+a small arrow~
+A small arrow lies here.~
+~
+ITEM_TYPE_AMMO
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+1 6 10 3
+1 25 10
+#9752
+arrow flaming~
+a flaming arrow~
+An arrow with flames flickering across it's length lies here.~
+~
+ITEM_TYPE_AMMO
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+1 10 12 4
+1 4000 21
+#9760
+sign magic~
+a sign behind the counter~
+A sign stands prominantly behind the counter.~
+~
+ITEM_TYPE_FURNITURE
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+0
+0 0 0 0
+32000 1 1
+E
+sign magic~
+Hey YOU, don't touch anything you can't afford!  Use LIST to see what you
+could possibly buy, VALUE to get me to give you an appraisal of a magical
+item, BUY to buy one of my valuable items, or SELL to sell me one of your
+worthless ones.~
+#9761
+sign pub~
+a sign behind the counter~
+A sign stands prominantly behind the counter.~
+~
+ITEM_TYPE_FURNITURE
+ITEM_FLAG_GLOW|ITEM_FLAG_LEVEL
+0
+0 0 0 0
+32000 1 1
+E
+sign pub~
+The bartender notices you straining to see the sign and comments 'You must
+be new here.  Just type "HELP BUY" and it'll tell you all you wish to
+know about buying and selling.  Now, make yourself comfortable and don't
+be a stranger.'~
+#9762
+sign cafe~
+a sign behind the counter~
+A sign stands prominantly behind the counter.~
+~
+ITEM_TYPE_FURNITURE
+ITEM_FLAG_GLOW|ITEM_FLAG_LEVEL
+0
+0 0 0 0
+32000 1 1
+E
+sign cafe~
+The sign is written in a simple, elegant hand-writing.
+  Please, use LIST to see what we offer you today.  Thank you for picking
+our cafe to frequent.
+                                      - Lottie~
+#9763
+sign armory~
+a sign behind the counter~
+A sign stands prominantly behind the counter.~
+~
+ITEM_TYPE_FURNITURE
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+0
+0 0 0 0
+32000 1 1
+E
+sign armory~
+Use: LIST to get a list of items you can buy here
+     BUY to buy what you want (and can afford)
+     VALUE to get me to appraise an item for you
+     SELL to sell me one of your valuable items~
+#9764
+sign weaponshop~
+a sign behind the counter~
+A sign stands prominantly behind the counter.~
+~
+ITEM_TYPE_FURNITURE
+ITEM_FLAG_GLOW|ITEM_FLAG_LEVEL
+0
+0 0 0 0
+32000 1 1
+E
+sign weaponshop~
+To buy one of my marvelous weapons, use the BUY command.  If you want to
+know what all of the marvelous weapons I sell are, use the LIST command.
+Then, if you want to know what items I want to buy, you can VALUE them.
+To get me to buy one, use the SELL command.~
+#9765
+sign petstore~
+a sign behind the counter~
+A sign stands prominantly behind the counter.~
+~
+ITEM_TYPE_FURNITURE
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+0
+0 0 0 0
+32000 1 1
+E
+sign magic~
+Dah ahnimahlsh here ahr dah besht een dah wirld!  Ya musht bah mah 
+ahnimahlsh, dey weel makeh ya ah berry besht fahrend.  Use LIST and BUY.~
+#9766
+statue basher~
+a statue of Basher~
+A statue of Basher, the great warrior, stands here.~
+~
+ITEM_TYPE_FURNITURE
+ITEM_FLAG_HUM|ITEM_FLAG_LEVEL
+0
+0 0 0 0
+32000 1 1
+E
+statue basher~
+The statue captures Basher in a fairly embarassing position.  He appears to be
+fleeing, looking over his shoulder with eyes flashing wildly, from a fido and a
+termite that follow close behind him.  However, he seems to be larger than
+life, as if he could never die.  I guess you would have to know the story to
+understand this portrayal of the great warrior.~
+#9767
+statue patrokles~
+a statue of Patrokles~
+A statue of Patrokles, the great hero, stands here.~
+~
+ITEM_TYPE_FURNITURE
+ITEM_FLAG_HUM|ITEM_FLAG_LEVEL
+0
+0 0 0 0
+32000 1 1
+E
+statue patrokles~
+Patrokles stands proud and tall in this statue.  You somehow feel that 
+challenging him would bring the wrath of a god down on you.~
+#9768
+statue sr~
+a statue of Sr~
+Sr stands here, looking very familiar.~
+~
+ITEM_TYPE_FURNITURE
+ITEM_FLAG_HUM|ITEM_FLAG_LEVEL
+0
+0 0 0 0
+32000 1 1
+E
+statue sr~
+The statue depicts a mighty adventurer.  You feel very small in its
+presence.  Sr is portrayed as a God, but somehow, the setting of the
+statue tells you that his story unfolded in a land beyond all distance.
+In his left hand, you see that he holds a set of statuettes.~
+E
+statuettes~
+They appear to be intricately carved figures depicting a dog and a large
+bug.  The dog looks very familiar.~
+#9769
+statue order~
+order, the god of Reason~
+Order stands here, in all of his majesty.~
+~
+ITEM_TYPE_FURNITURE
+ITEM_FLAG_GLOW|ITEM_FLAG_HUM|ITEM_FLAG_LEVEL
+0
+0 0 0 0
+32000 1 1
+E
+statue order~
+On closer look, you see that it is really a statue, not Order himself.
+You were fooled because the image was so life-like.  Only the best 
+of the immortal artists could have done such a detailed work.~
+#9770
+painting ystroth~
+a painting of Ystroth~
+A painting of Ystroth graces the wall here.~
+~
+ITEM_TYPE_FURNITURE
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+32000 1 1
+E
+painting ystroth~
+The painting depicts a regal being standing amidst the ruins of a great
+battlefield.  The being is large, verging on the obese.  You cannot figure
+out if it had arrived too late for the battle, or was merely unscathed by
+the forray.~
+#9775
+recall scroll~
+a scroll of recall~
+A scroll of recall lies on the ground.~
+The recall scroll will teleport you to a preset destination.~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+12 SPELL_WORD_OF_RECALL SPELL_NONE SPELL_NONE
+1 1500 11
+#9776
+chunk gold~
+a chunk of gold~
+A chunk of gold catches your eye.~
+The chunk of gold glimmers in your eye.~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 200 1
+#9777
+grenade~
+the holy hand grenade~
+The holy hand grenade is laying on the floor.~
+The holy hand grenade has some writing on it.~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 200 1
+E
+writing~
+To use the grenade type the command: THREE~
+P 0
+TRIG_UNKNOWN 100 three
+OPROG_GOD_COMMAND
+spit~
+P 1
+TRIG_TICK 100
+OPROG_JUNK
+#9778
+boots~
+the chaos boots~
+The Chaos boots are walking around on the floor.~
+The Chaos boots seem to have a will of their own.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_NODROP|ITEM_FLAG_NOREMOVE|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FEET
+10 0 0 0
+1 1 25
+P 0
+TRIG_COMMAND 20 north
+OPROG_GOD_COMMAND
+east~
+P 1
+TRIG_COMMAND 20 east
+OPROG_GOD_COMMAND
+south~
+P 2
+TRIG_COMMAND 20 south
+OPROG_GOD_COMMAND
+west~
+P 3
+TRIG_COMMAND 20 west
+OPROG_GOD_COMMAND
+north~
+P 4
+TRIG_COMMAND 20 up
+OPROG_GOD_COMMAND
+down~
+P 5
+TRIG_COMMAND 20 down
+OPROG_GOD_COMMAND
+up~
+P 6
+TRIG_TICK 20
+OPROG_GOD_COMMAND
+north~
+P 7
+TRIG_TICK 20
+OPROG_GOD_COMMAND
+south~
+P 8
+TRIG_TICK 20
+OPROG_GOD_COMMAND
+east~
+P 9
+TRIG_TICK 20
+OPROG_GOD_COMMAND
+west~
+P 10
+TRIG_COMMAND 100 kill
+OPROG_ECHO
+Try being friendly more often!~
+#9779
+donation pit~
+the donation pit~
+A large pit is filled with items for the needy.~
+You smile as you see the huge shimmering pit before you.  You can't wait
+to examine pit or look in pit and grab free items which were left here by
+kind hearted adventurers.~
+ITEM_TYPE_CONTAINER
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+0
+5000 0 0 0
+1 10 217
+#9780
+book commands one brown~
+A brown book on commands: volume I~
+A brown book lies here.~
+To read the book, simply type 'look pages'. The cover indicates that this 
+book was written by "Emperor".~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+1 250 1
+E
+pages~
+Experience will expose you to a number of potentially useful commands on
+Mortal Realms. But to offset the need for such experience, a listing and
+explanation of many of these commands are within the pages of this book.
+
+The "Area" command. This command can be used to see how many players are
+currently visiting an area, or how many rooms are there, or how many
+mobiles (monsters) exist there. It is a useful way to get info on an area
+without wading through the voluminous area list.
+
+EXAMPLE OF USING THE "AREA" COMMAND:
+area savant village
+
+This would show you a quick view of the statistics on the area known as
+Savant Village.
+
+For more information type: HELP AREA.
+
+The "Buffer" command. This command lets you scroll back and see what took
+place on your screen in the not-too-distant past. It is extremely useful
+to see who told you what while you were AFK, or to go back and see what it
+was that a particular quest mob told you.
+
+EXAMPLE OF USING THE "BUFFER" COMMAND:
+buffer 1
+
+This would show you everything that scrolled across your screen one (1)
+page ago.
+
+For more information type: HELP BUFFER.
+
+The "Grep" command. This keyword can be just as useful as the Buffer
+command, and it is commonly used for the same reasons. Grep allows me to
+search my not-too-distant past for a specific word.
+
+EXAMPLE OF USING THE "GREP" COMMAND:
+grep talk
+
+This would show you all lines that appeared on my screen that contained
+the word "talk" in the not-too-distant past.
+ 
+For more information type: HELP GREP.
+~
+#9781
+book commands two purple~
+A purple book on commands: volume II~
+A purple book lies here.~
+{150}This book includes writing on topics pertaining to the tactical display.
+These commands are everything you need to make your screen both pretty and
+practical.  All of these commands require that you use the VT102 interface.
+To read the book, simply type 'look <number>'.  Number being one of the
+following topics:{170}
+
+     1. Tactical
+     2. Tactical Index
+     3. {110}C{120}o{130}l{140}o{150}r{170}
+     4. VT102
+
+{150}The cover indicates that this book was written by {170}Jaxom{150}.{300}~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+1 250 1
+E
+1 tactical~
+{070}Tactical Display
+
+The tactical display is what gives you a heads up view of what is
+taking place on the mud around you.  It is configurable to any size for
+the preferance of the user.  Typing "tactical 4" will bring up the smallest
+map size available.  Larger or smaller numbers will change the size
+accordingly.  
+
+Once you have brought up a tactical display it will show you several
+things.  One of which is a map in the top right side of the screen.  This
+map includes a short name of the rooms leading from the one you are in, with
+the room you are in centered in the right side of the display.
+
+The left side of the display will list the names of the characters and
+mobiles(monsters) in the room with you.  Next to each name there will be
+three letters or numbers.  The first is the health of that character ranging
+from {120}F{300} {070}to{300} {110}0{070}, F being Full hit points, and 0 being 0% of hit points remaining.
+
+The next two letters or numbers are the tactical index which is explained
+in topic "2".  More information can be found by typing "help tactical"{300}
+~
+E
+2 index~
+{070}Tactical Index
+
+{070}The tactical index is the two numbers, letters or symbols between a mobile
+or characters health and its name.  These letters and numbers do more than
+create cool words and patterns.  They are used to denote who a mob or
+character is fighting.  When a mob is fighting it will include a ">" after
+its name which points to the index of what it is fighting.  Because of this
+it is important to set your index to something unique and recognizable.  For
+instance I would set my index to Ja by typing "tactical index Ja".  I would
+thereafter see myself on the tactical display as:{300}
+
+  {120}F{300}Ja{150}Jaxom{300}{070}
+
+If I were fighting a mob named Bad Guy it would show the following on my
+tactical display:
+
+  {120}F{300}Ja{150}Jaxom{300}>Bg{070}
+  {010}2{300}Bg{170}Bad Guy{300}>Ja{070}
+
+In this way you can determine who is fighting what in a room.
+More information can be found by typing "help tactical"
+~
+E
+3 color~
+{110}C{120}o{130}l{140}o{150}r{070}
+
+The color command includes more than just a simple on and off although that
+is where it all starts.  Typing "color on" will turn on your color display
+just as "color off" will turn it off.  Remember you must be in VT102 mode
+in order to use color.
+
+Typing "color" on its own will give you a list of all the colors used in
+your tactical display.  With the defaults it will create quite a rainbow on
+your screen.  Any of the colors on your tactical display can be changed at
+any time using the color command.  The format for the command is:
+
+color <text type to change> <foreground color> <background color>
+
+For instance typing "color 1 0 7" will change a part of your tactical display
+to a{300} {107}white text with a black background.{300}
+{070}More information can be found by typing "help color"{300}
+~
+E
+4 vt102~
+{070}VT102
+
+This is the interface that makes the whole tactical display and color
+possible.  Typing "vt102 on" turns it on just as "vt102 off" turns it off.
+While in VT102 mode you may need to configure the number of lines used by
+your screen.  A standard size would be 24 lines so you would type "vt24"
+to set your tactical to that.  The number of lines will of course be
+dependant on your telnet client and monitor etc.
+
+More information can be found by typing "help vt102"{300}
+~
+#9782
+book commands three green~
+A green book on commands: volume III~
+A green book lies here.~
+{120}This book includes writing on topics pertaining to the spam in fights.
+To read the book, simply type 'look spam' and 'look fight'.  
+
+{120}The cover indicates that this book was written by {170}Jaxom{150}.{300}~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+1 250 1
+E
+spam~
+{070}SPAM
+
+Spam is text that fills the screen making things scroll off of it.
+A minimum amount of spam is legal, but when a person fills others screens
+with too much text, it is called Spamming someone.  This is considered
+illegal when it involves 4 or more lines of text.  So try not to be too
+much of an annoyance.
+
+For a greater list of MR policies type "help mrpd".{300}
+~
+E
+fight~
+{070}Fight Spam
+
+Spam is text that fills the screen making things scroll off of it.  Fights
+tend to cause a lot of this unless you know how to set things otherwise.
+In order to look at the spam settings you would type "spam".  From there
+you may choose which if any spam settings you wish to change.  To do so
+you would type "spam <letter>" where letter denotes the letter associated
+with a specific spam.  For instance, if you typed "spam b", you would no
+longer be told when you miss an attack.  "spam k" is an important one to set
+when you are grouped with others, as this will give you a report each round
+on the hit points of others in your group.  Those with at least average
+internet links can handle "spam a", "spam c", and "spam k" on even in the
+largest fights.{300}
+~
+#9783
+book commands four blue~
+A blue book on commands: volume IV~
+A blue book lies here.~
+{140}This book includes writing on topics pertaining to the config commands.
+These commands are everything you need to make your life easier.  All
+of these config commands can be toggled with either a + or a -.  More help
+on configs can be found by typing "help config". To read the book, simply
+type "look <topic>".  Topic being one of the following:{170}
+
+     1. Split
+     2. Exp
+     3. Brief
+     4. Castles
+     5. Peek
+     6. Autoloot
+     7. Quiet
+     8. Chat
+
+{140}The cover indicates that this book was written by {170}Jaxom{140}.{300}~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+1 250 1
+E
+split~
+{070}Split
+
+The split config is one of the first settings you should change when you
+create a new character.  By typing "config +split" you will have your
+character automatically pick up all gold dropped by a corpse and split it
+between all members of the group.  This saves a lot of time over manually
+picking up gold all the time.{300} 
+~
+E
+exp~
+{070}Exp
+
+Exp is a config that saves you from using the level command to figure out
+how much your character has to level.  By typing "configb +exp" your
+display at the bottom of the screen will now show experience need to level
+rather than total experience gained.{300}
+~
+E
+brief~
+{070}Brief
+
+Brief is a config that most players eventually use.  The brief toggle
+determines whether or not you see room descriptions.  So that an experienced
+player may type "config +brief" when walking through rooms they are familiar
+with.  This save much time and spam and is great for those who are charged
+for the internet by the byte.{300}~
+E
+castles~
+{070}Castles
+
+The castles config is one that can save on a lot of confusion when exploring
+a new area.  If you type "configb -castles" you will no longer see the
+entrances to player's castles.  This can be very handy when you are lost in
+a place you have never been or when you are trying to go somewhere given
+directions.{300}
+~
+E
+peek~
+{070}Peek
+
+This is a config used only by rogues.  When a rogue with the peek skill
+looks at a player he will find a huge list of equipment that shoots off his
+screen making things difficult to see when you are trying to figure out
+what equipment a player is wearing.  By typing "configb -peek" you will
+not see the equipment a player has in inventory any more.{300}
+~
+E
+autoloot~
+{070}Autoloot
+
+This config is often used by new players but later turned off as a
+character gains in level.  If you type "config +autoloot" you will
+automatically pick up all equipment that drops from a corpse you have just
+killed.  This saves on time and is excellent for the lower levels when you
+need all the gold and equipment you can find.  At the higher levels, however,
+it tends to just clutter your inventory.{300}
+~
+E
+quiet~
+{070}Quiet
+
+The quiet config is a command that comes in useful when killing mobs that
+drop lots of equipment.  By typing "config +quiet" you will no longer see
+any equipment that drops out of a corpse.  This is nice when ten things drop
+out of a mob each kill but remember to turn it back off when you go to kill
+a mob for its equipment.  Otherwise you may find it a bit confusing as to
+why you didn't see a mob drop its equipment.{300}
+~
+E
+chat~
+{070}Chat
+
+This config is one of the most used configs in both directions.  The racial
+chat channel is turned on and off in this way.  The default setting is on,
+so type "config -chat" to turn it off.  Most new players tend to keep the
+chat open as it is a good way to gather information.  More experienced
+players either turn the chat off if they are busy leveling and not wanting
+to be spammed by chat, or they turn it on if they feel like talking.{300}
+~
+#9784
+magical black obelisk monolith~
+a black obelisk~
+A magical black obelisk stands here.~
+The obelisk has the power to take you to far away lands so that you can
+gain experience killing mobs a bit tougher than in the Entrance Tower.
+A plaque on the obelisk reads:
+{170}    ________________________________________________________________
+{170}   /                                                                \
+{170}   |  INSTRUCTIONS FOR USING THE OBELISK                            |
+{170}   |  Simply say the name of the location to which you would like   |   
+{170}   |  to travel and the obelisk will magically transport you.       |
+{170}   |                                                                |
+{170}   |   Available locations include:       Recommended levels:       |
+{170}   |                                                                |
+{170}   |   Antarctica                         Levels 10-25              |
+{170}   |   Dangerous Neighborhood             Levels 5-15               |
+{170}   |   Deeve                              Levels 5-15               |
+{170}   |   Dwarven Day Care                   Levels 1-10               |
+{170}   |   Gnome Village                      Levels 5-15               |
+{170}   |   Holy Grove                         Levels 5-20               |
+{170}   |   Kytar                              Levels 5-30               |
+{170}   |   Monster Pit                        Levels 5-10               |
+{170}   |   Shire                              Levels 5-35               |
+{170}   |   University of MR                   Levels 10-25              |
+{170}   |   Wyvern's Tower                     Levels 5-20               |
+{170}   \________________________________________________________________/
+~ 
+ITEM_TYPE_FURNITURE
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+100 0 1
+#0
+
+
+
+
+#ROOMS
+#9700
+A chaotic corner of the city.~
+There are several by-standers watching you as you try to work your way through
+this darkened corner of the road.  Above you seems to be stairs that spiral up
+into a tower of some kind.~
+97 ROOM_DARK|ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 9701
+DDIR_SOUTH
+~
+~
+0 -1 9710
+S
+#9701
+North Chaos road.~
+You are on a road that wanders through many empty and abandoned tents and
+stalls.  Above you the many spiralling towers salute to the greatness of their
+previous majesty.~
+97 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 9702
+DDIR_WEST
+~
+~
+0 -1 9700
+S
+#9702
+North Chaos road.~
+You are at the back of many bustling tents and people milling about.  West of
+you there are some abandoned tents and stalls.  Many large towers rise up above
+you, looking as if they will crumble any minute.~
+97 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 9703
+DDIR_WEST
+~
+~
+0 -1 9701
+S
+#9703
+North Entrance of Chakkor.~
+You are at one of the most crowded places in the Realm.  There is black smoke
+floating across the muddied courtyard.  Nearly all the traffic seems to be
+moving north or south, although quite a few are hearing off towards the Temple
+to the east.~
+97 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 17224
+DDIR_EAST
+~
+~
+0 -1 9704
+DDIR_SOUTH
+~
+~
+0 -1 9713
+DDIR_WEST
+~
+~
+0 -1 9702
+S
+#9704
+Blacksmith Guild.~
+This is one of the very few Guilds in the city of Chakkor that allow anyone to
+enter.  There is black smoke floating everywhere, just above head level.  Loud
+banks of hammers rivet the room.  There are several very large men working here
+on armor that has suffered too much to be used.
+  There is a sign on the wall.~
+97 ROOM_NO_MOB|ROOM_INDOORS SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 9703
+E
+sign~
+The sign reads:
+  Welcome to the Blacksmith Guild.  Feel free to look around, but be aware
+  that nothing is for sale.  We serve those that serve themselves.
+  
+You may wish to ENGRAVE an item here.
+  Engraving an item will make it stonger, but costs gold.
+  An engraved object cannot be used by a thief.
+  An engraved object's strength depends on the level of the engraver.~
+S
+#9705
+Under the Tower of Quin'toBine~
+You are standing under the massive tower of Quin'toBine that the original
+sorcerer emperor ruled from.  The only thing that the tower holds now is the
+school of the sorcerer.  The entrance appears to have a sign on it.~
+97 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 9706
+DDIR_SOUTH
+~
+~
+0 -1 9715
+DDIR_UP
+~
+~
+0 -1 9815
+E
+sign~
+The sign reads:
+  School of Sorcery.    Spells for sale.~
+S
+#9706
+Dark under the Tower of Quin'toBine~
+You are standing under the huge tower that rises up to the sky.  The tower is
+reeking with power and intimidation.  It's no wonder that the ruling class
+used to live here.~
+97 0 SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 9716
+DDIR_WEST
+~
+~
+0 -1 9705
+S
+#9707
+Entrance to the Temple of Chaos~
+You are standing at the foot of the largest towering cathedral that has ever
+been constructed, and ever will.  The towers on the five corners lean at
+peculiar angles, but on a second glance, it's really an optical illusion.  There
+is a large sign above the entrance.~
+97 ROOM_SAFE SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 9708
+DDIR_SOUTH
+~
+~
+0 -1 9717
+E
+sign~
+^
+                      /|\
+                       |             The Temple of Chaos
+                       |
+                /      |      \    Always open to everyone
+               <-------+------->
+                \      |      /  The Sanctuary is open only to the Chosen
+                       |
+                       |       Seek always to follow the path of Chaos
+                      \|/
+                       v     Know the Sign of Chaos as a Four Pointed Arrow~
+S
+#9708
+Chaotic Foyer~
+There are many many people and creatures milling about here, each heading on
+their own missions.  There are many black robed priests running around.  You
+see a sign on the wall.
+The Note Board of Chaos and his followers resides here.~
+97 ROOM_NO_MOB|ROOM_INDOORS|ROOM_SAFE|ROOM_NOTE_BOARD SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 9709
+DDIR_SOUTH
+~
+~
+0 -1 9718
+DDIR_WEST
+~
+~
+0 -1 9707
+E
+sign~
+Decree of Chaos:  All priests and followers of Chaos must run everywhere.~
+S
+#9709
+Common room of Chaos~
+This is the main meeting hall of the priests of Chaos.  There are many rows
+of seats, and a large dias rising over twenty feet above the people.  There is
+a large chair made of ebony mounted on the dias.  Several minstrels sit off to
+the side of the room.
+  The Ebony Throne sits here.~
+97 ROOM_NO_MOB|ROOM_INDOORS|ROOM_SAFE|ROOM_ALTAR_C SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 9708
+E
+chair throne ebony~
+The Ebony Throne gives off a swirling blackness that gives you the feeling that
+Chaos himself was recently here.~
+X JOLLFOST.MID~
+S
+#9710
+West Road~
+This is the west road of Chakkor.  There are many small towers erupting here
+from the west wall.  There are large buildings to the east that all face away
+from you.~
+97 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 9700
+DDIR_SOUTH
+~
+~
+0 -1 9720
+DDIR_WEST
+~
+~
+0 -1 30940
+S
+#9711
+The Hall of Illusionists~
+You are standing before an arched entrance that leads to the north.  The
+path leads into a foggy area filled with imaginary beasts, and unreal people.
+  There is a small statue here.~
+97 ROOM_NO_MOB|ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 9809
+DDIR_SOUTH
+~
+~
+0 -1 9721
+E
+statue~
+The small statue of an elf, seems to have a very interesting iron ring.~
+E
+iron ring~
+The ring has some inscriptions on it.~
+E
+inscription inscriptions~
+To traverse the fog, look at the hiding imp.~
+E
+imp~
+The Imp seems to point north, then east, then south, then tells you to look into what the stand under the statue has to show.~
+E
+stand~
+The stand points Up to the spot where the Elf waits to train you.~
+S
+#9712
+The Leather Shop~
+This is a small leather shop.  There are racks of chemicals on the lack wall
+and the smell of animals prevades the shop.  The master of the leather shop has
+all his wares laid out for you to buy.~
+97 ROOM_NO_MOB|ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 9713
+S
+#9713
+North Road of Chakkor~
+You are standing at one of the busiest intersections of Chakkor.  People are
+milling about.  The road is covered in mud and muck.  The grand temple of Chaos
+can be seen to the east.~
+97 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 9703
+DDIR_EAST
+~
+~
+0 -1 9714
+DDIR_SOUTH
+~
+~
+0 -1 9723
+DDIR_WEST
+~
+~
+0 -1 9712
+S
+#9714
+Quin Road~
+This road has many priests and magicians traveling to their various
+destinations.  There is an ornate sign posted here.~
+97 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 9715
+DDIR_WEST
+~
+~
+0 -1 9713
+E
+sign~
+The History of Quin:
+  The Great Emperor Quin of the 'toBine family, founder of the city Chakkor,
+saved the city from utter destruction by the forces of Order only to be pushed
+into a stalemate.  Quin and his desciples to Chaos seek ever to rule the world.~
+S
+#9715
+Quin Road~
+You are on one of the few roads on the north ond of the city.  There is a
+massive tower to the north that used to hold the ruling class.  Although it
+appears to be falling down, a good 5 stories still jutt into the sky.~
+97 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 9705
+DDIR_WEST
+~
+~
+0 -1 9714
+S
+#9716
+Grand Quin Road~
+This is the most ornately carved and decorated road that has ever existed.
+There are small gargoyles covering every roof and spire.  The road is paved in
+bricks.  There is a small wooden sign posted here.~
+97 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 9706
+DDIR_EAST
+~
+~
+0 -1 9717
+E
+sign~
+The Grand Road of Quin was originally paved in gold, but was later exhumed
+to provide for the first war with Order.  Chaos eventually lost in a stalemate,
+and was forced to cecede half of the city.~
+S
+#9717
+Quin Square~
+Quin Square is the heart of Northern Chakkor, with roads leading to the Grand
+Tower of Quin'toBine, The Temple of Chaos, and the southern shops dictrict.
+  There is a bronze statue here.~
+97 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 9707
+DDIR_SOUTH
+~
+~
+0 -1 9727
+DDIR_WEST
+~
+~
+0 -1 9716
+E
+statue~
+This is a bronze statue of the Emperor Necromancer Quin'toBine.
+There is a small plaque at the base of the statue.~
+E
+plaque~
+----------------------------------------------------------------------
+||  THE EMPEROR QUIN'toBINE AT THE FOUNDING OF THE TEMPLE OF CHAOS  ||
+||  He delegated many of his lands to the successors of Dregoneous  ||
+||  after the fall of Southern Chakkor.                             ||
+----------------------------------------------------------------------~
+S
+#9718
+The entrance to the Inner Sanctum of Chaos~
+This is the small guarded entrance to those that are devout followers of
+Chaos.  You may not trespass here.~
+97 ROOM_NO_MOB|ROOM_INDOORS|ROOM_SAFE SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 9708
+DDIR_EAST
+~
+~
+0 -1 9719
+S
+#9719
+The Inner Sanctum of Chaos~
+You are standing in a small room filled with many chairs with people having
+discussions about their plans of bring Chaos back to the Realm.~
+97 ROOM_NO_MOB|ROOM_INDOORS|ROOM_SAFE SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 9718
+S
+#9720
+The West Road of Chakkor~
+You are standing under the High Tower of Necromancy.  There is a small sign
+set into the road here.~
+97 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 9710
+DDIR_SOUTH
+~
+~
+0 -1 9730
+DDIR_UP
+~
+~
+0 -1 9800
+E
+sign~
+The West Road of Chakkor was deemed useless by the architects of Order.  We,
+the followers of Chaos, deem this as Order's first step onto the path of Chaos.~
+S
+#9721
+Winding road in North Chakkor~
+You are in one of the many winding roads of Northern Chakkor.  There are many
+small shops around the area, and the slight stench of death.  You see the east
+wall of the Tower of Necromancy off to the west.~
+97 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 9711
+DDIR_EAST
+~
+~
+0 -1 9722
+DDIR_SOUTH
+~
+~
+0 -1 9731
+S
+#9722
+Wendaho Street~
+You are on one of the business districts that have fallen into disrepair.
+There are several shops boarded up here.  One shop sign catches your attention.~
+97 0 SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 9732
+DDIR_WEST
+~
+~
+0 -1 9721
+E
+sign~
+Fentor's Shop of Greater Arms.
+Closed until further notice.~
+S
+#9723
+North Road of Chakkor~
+You are on the main roadthrough the north of Chakkor.  Many people are
+milling about, looking and buying at the various shops and stalls.  The road
+to the south seems to be diverted because of construction.~
+97 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 9713
+DDIR_EAST
+~
+~
+0 -1 9724
+S
+#9724
+Side Alley off the North Road of Chakkor~
+You are on one of the many alleys that infest the northern sections of
+Chakkor.  You see a steaming grate below you.  Several rats scurry from around
+the grating.~
+97 0 SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 9734
+DDIR_WEST
+~
+~
+0 -1 9723
+DDIR_DOWN
+~
+~
+0 -1 9803
+S
+#9725
+Geeth's Pub~
+You are surrounded by drunks, lowlifes, and fiends.  The smell of several day
+old beer permeates the air.  There is a large bar on the north wall, and many
+rows of tables.  This appears to be one of the most popular places in
+Chakkor.  People are laughing and talking, and fighting occasionally.~
+97 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 9726
+DDIR_UP
+~
+~
+0 -1 9813
+X BOARHED2.MID~
+S
+#9726
+Argnarko Street~
+This is one of the many non-interesting roads of northern Chakkor.
+Many people can be heard from the west, and occasionally a fight spews into the
+street here.~
+97 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 9727
+DDIR_SOUTH
+~
+~
+0 -1 9736
+DDIR_WEST
+~
+~
+0 -1 9725
+S
+#9727
+East Road of Chakkor~
+The Temple of Chaos rises up in it's full majesty to the north, then your
+visions clear, and you realize that the slight illusion cast upon the ruined
+temple makes it appear much larger than is actually is.~
+97 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 9717
+DDIR_SOUTH
+~
+~
+0 -1 9737
+DDIR_WEST
+~
+~
+0 -1 9726
+S
+#9728
+Sam's Store of Stuffs~
+This large area is cram packed with miscellaneous stuff from all over the
+world.  Some of which seems to be valueable, some are just marked wrong.
+  There is a small sign on the wall which attracts little attention.~
+97 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 9729
+E
+sign~
+Instructions for those that have never bargained for items before.
+  Please read the HELP on:  LIST, BUY, SELL, and VALUE.~
+S
+#9729
+The Northern Road of the Merchants Quarter~
+This is the northern section of the Merchants Quart of the City.  This section
+of the city actually merges south into the southern section of Chakkor.
+  There is a sign on the wall.~
+97 0 SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 9739
+DDIR_WEST
+~
+~
+0 -1 9728
+E
+sign~
+Opening soon:  Angarak's Furs, Balrin's Herbs, and Wortub's House of Tax.~
+S
+#9730
+West Road of Chakkor~
+This is a fairly unused road that links the northern portion of the city of
+Chakkor to the western districts.~
+97 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 9720
+DDIR_SOUTH
+~
+~
+0 -1 9740
+S
+#9731
+Morgue~
+This room is FILLed with decaying corpses, and rotting meat.  There are 
+several slots in the wall where muck is dripping out from cracks.
+  There are 2 corpses on tables currently being opened up and examined by the
+resident mortician.
+  There is a large sign on the wall.~
+97 ROOM_MORGUE SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 9721
+E
+sign~
+The sign reads:
+  Quin Family Mortuary
+  Corpses recovered, examined, and buried.
+
+  You may purchase your old corpse here, similar to a normal shop.  The corpse
+  will contain all the items that you last had in your corpse.
+  Your corpse will only appear here if it exists in the Realm somewhere.~
+S
+#9732
+Wendaho Street~
+This is one of the many business districts of Northern Chakkor.  This
+section of the street smells exquisitely discusting.~
+97 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 9722
+DDIR_EAST
+~
+~
+0 -1 9733
+DDIR_SOUTH
+~
+~
+0 -1 9742
+S
+#9733
+City of Chakkor Cess Pool~
+This is the most stinky place in Chakkor, with slime and feces moving in a
+slow procession from up the street, into one of the many drains that are
+located at various places here.
+  There is a small sign on the wall~
+97 0 SECT_CITY
+DDIR_DOWN
+The Sewer~
+~
+0 -1 7030
+DDIR_SOUTH
+~
+~
+0 -1 9743
+DDIR_WEST
+~
+~
+0 -1 9732
+E
+sign~
+The sign reads:
+  The change of populace in the city has created a minor emergency in the
+  sewage system of Chakkor.  The North Road has been rerouted to the east.~
+S
+#9734
+Busy Alley~
+This is one of the busiest alleys that you have ever seen.  Many faces look
+at you from under hooded cloaks.~
+97 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 9724
+DDIR_EAST
+~
+~
+0 -1 9735
+S
+#9735
+Busy Alley~
+The alley here slightly opens up to the south.  There is a suprisingly large
+amount of traffic in this small alley.~
+97 0 SECT_CITY
+DDIR_EAST
+You see the Tower of Training.~
+~
+0 -1 3760
+DDIR_SOUTH
+~
+~
+0 -1 9745
+DDIR_WEST
+~
+~
+0 -1 9734
+S
+#9736
+Argnarko Street~
+This small road has many shops that are either closed currently,
+or just plain
+abandoned.~
+97 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 9726
+DDIR_SOUTH
+~
+~
+0 -1 9746
+E
+guard cityguard~
+The Cityguard appears to be mangled beyond recognition.  There is a bloody
+symbol of a 4 pointed arrow cut into his chest.~
+S
+#9737
+East Road of Chakkor~
+This road is fairly crowded with bustling people and creatures.~
+97 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 9727
+DDIR_EAST
+~
+~
+0 -1 9738
+S
+#9738
+East Road of Chakkor~
+This road is fairly crowded with bustling creatures and people.~
+97 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 9739
+DDIR_SOUTH
+~
+~
+0 -1 9748
+DDIR_WEST
+~
+~
+0 -1 9737
+S
+#9739
+Eastern Business District~
+This portion of Northern Chakkor has all the finest warehouses and shops.
+Shops sell and buy items here with just about anyone.~
+97 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 9729
+DDIR_SOUTH
+~
+~
+0 -1 9749
+DDIR_WEST
+~
+~
+0 -1 9738
+DDIR_UP
+~
+~
+0 -1 30950
+S
+#9740
+West Gate of Chakkor~
+The gates here have been ripped down and used as roofing material for many of
+the small huts located just outside of the city.
+  There is a prominent sign here.~
+97 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 9730
+DDIR_EAST
+~
+~
+0 -1 9741
+DDIR_WEST
+~
+~
+0 -1 6000
+E
+sign~
+The sign has been painted over, but is still faintly legible:
+  Use of City Property for personal use is punishable by Death.
+
+Apparently they're a little lax in their laws...~
+S
+#9741
+Western Entrance to the City~
+This is the Western entrance to the city.
+  From here you may travel west or into the city of Chakkor.
+    There is a small sign here.
+    There is a large sign here.~
+97 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 9742
+DDIR_SOUTH
+~
+~
+0 -1 9751
+DDIR_WEST
+~
+~
+0 -1 9740
+E
+sign~
+Which sign?~
+E
+small~
+The small sign reads:
+  Travel west to leave the city.~
+E
+large~
+The large sign reads:
+  Travel east to enter the city of Chakkor.~
+S
+#9742
+Wendaho Road~
+This is a small business district in Northern Chakkor.
+Many of the buildings here are destroyed from the battles of the last war
+between Chaos and Order.~
+97 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 9732
+DDIR_WEST
+~
+~
+0 -1 9741
+S
+#9743
+Edna's Inn~
+This place has the most outrageous assortment of denizens of the Realm, of any
+place in existence.  There are several tables here, and a small bar area.
+There is a small sign posted by the door to the upstairs rooms.~
+97 0 SECT_INN
+DDIR_NORTH
+~
+~
+0 -1 9733
+DDIR_EAST
+~
+~
+0 -1 9744
+DDIR_SOUTH
+~
+~
+0 -1 9753
+E
+sign~
+The sign reads:
+    No Vacancy.~
+X 3RAVENS.MID~
+S
+#9744
+Stables~
+The smell of manure is ripe here.  Horse stalls line the north and east walls.
+Stable boys run to and fro trying to work with the animals.~
+97 0 SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 9754
+DDIR_WEST
+~
+~
+0 -1 9743
+S
+#9745
+Small Alley~
+This small alley seems to go nowhere, yet it also seems highly traversed.~
+97 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 9735
+DDIR_SOUTH
+~
+~
+0 -1 9755
+S
+#9746
+Argnarko Street~
+This street could use more lighting.
+Entrances to houses and villas are scattered on both sides of the street.~
+97 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 9736
+DDIR_EAST
+~
+~
+0 -1 9747
+S
+#9747
+Argnarko Street~
+Many people make this street their home.  There are doors to courtyards,
+apartments, and a few small shops.~
+97 0 SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 9757
+DDIR_WEST
+~
+~
+0 -1 9746
+S
+#9748
+East road of Chakkor~
+This is the road that connects the Temple of Chaos to the Eastern Gates.~
+97 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 9738
+DDIR_SOUTH
+~
+~
+0 -1 9758
+S
+#9749
+Borlon's Jewelry Shop~
+This shop is filled with 1 or 2 different items of valueable, but useless
+worth.  Borlon is occasionally here to help you with your purchases.~
+97 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 9739
+S
+#9750
+The western end of Patrokles Avenue.~
+Patrokles Avenue comes to an abrupt end here against the western wall of
+Chakkor.  The avenue here appears to be well used for such an out-of-the-way
+location.~
+97 ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 9751
+DDIR_SOUTH
+~
+~
+0 -1 9760
+S
+#9751
+Patrokles Avenue.~
+The avenue you are on runs east to west.  It appears to lead into a large
+open area to the east.  To the west, you can see the wall of the city and a
+shop of some sort.  Another street leads northward into the chaotic districts
+of town.~
+97 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 9741
+DDIR_EAST
+~
+~
+0 -1 9752
+DDIR_WEST
+~
+~
+0 -1 9750
+S
+#9752
+Patrokles Avenue.~
+The northern edge of Basher Square is really a part of Patrokles Avenue.  The
+avenue leads east and west.  East leads across the top of the square and on
+into another portion of the avenue.  To the west you can make out another
+street heading north and, in the distance, the western wall of Chakkor.~
+97 ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 9753
+DDIR_SOUTH
+~
+~
+0 -1 9762
+DDIR_WEST
+~
+~
+0 -1 9751
+S
+#9753
+Patrokles Avenue.~
+The northern edge of Basher Square is really a part of Patrokles Avenue.  The
+avenue leads east and west.  A street from the northern, chaotic regions of the
+city dumps into the avenue here.  To the east you can see more such streets
+coming out of the north.  A look to the west reveals the northwest edge of the
+square.~
+97 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 9743
+DDIR_EAST
+~
+~
+0 -1 9754
+DDIR_SOUTH
+~
+~
+0 -1 9763
+DDIR_WEST
+~
+~
+0 -1 9752
+S
+#9754
+Patrokles Avenue.~
+This part of the avenue is interrupted by several streets that lead north
+into the maze of twisting and turning paths that occupy that part of Chakkor.
+Patrokles Avenue continues to the east and opens into a large, open area
+immediately west.
+  Above you there is a floating room that houses the Town Hall.~
+97 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 9744
+DDIR_EAST
+~
+~
+0 -1 9755
+DDIR_WEST
+~
+~
+0 -1 9753
+DDIR_UP
+~
+~
+0 -1 9784
+S
+#9755
+Patrokles Avenue.~
+This east to west avenue appears much newer than the streets which border it
+on the north.  Just to the east you espy an opening into what appears to be a
+guild house.~
+97 ROOM_NO_MOB|ROOM_INDOORS|ROOM_SAFE|ROOM_ALTAR_C|ROOM_ALTAR_O SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 9745
+DDIR_EAST
+~
+~
+0 -1 9756
+DDIR_WEST
+~
+~
+0 -1 9754
+S
+#9756
+Patrokles Avenue.~
+At this point on the avenue, you can see several streets leading off into the
+north immediately to your east and west.  You are somehow comforted by the
+straightness of this particular street.~
+97 ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 9757
+DDIR_SOUTH
+~
+~
+0 -1 9766
+DDIR_WEST
+~
+~
+0 -1 9755
+DDIR_DOWN
+~
+~
+0 -1 9816
+S
+#9757
+Patrokles Avenue.~
+The avenue begins just to the east of your current location.  A couple of
+streets run into this avenue to the north and northeast.~
+97 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 9747
+DDIR_EAST
+~
+~
+0 -1 9758
+DDIR_WEST
+~
+~
+0 -1 9756
+S
+#9758
+The eastern most end of Patrokles Avenue.~
+This is what appears to be the beginning of a long, straight avenue.  Peering
+west for a particularly long time, you think you can see the far wall of
+Chakkor.~
+97 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 9748
+DDIR_EAST
+~
+~
+0 -1 17225
+DDIR_WEST
+~
+~
+0 -1 9757
+S
+#9759
+Maetag Weapons.~
+If you've ever been to Midgaard, you would recognize the lay-out of this
+shop.  However, the weapons sold here appear to be more dependable and would
+appear to require less service from the guy behind the counter.~
+97 ROOM_NO_MOB|ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 9778
+S
+#9760
+Marlyle's Mystical Magic Shoppe.~
+This shop is completely filled with diverse and varied forms of magical
+items.  As you sit and gape at all of the wonderful items, potions, wands, and
+staffs, wondering what and how much, you suddenly realize that most of what you
+would want to buy, the extremely rare items, are not for sale.~
+97 ROOM_NO_MOB|ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 9750
+S
+#9761
+The Knight Errant pub.~
+It would appear that the brawl occuring here is both good natured and
+continuous.  Nothing is very damaged, but everything shows the marks of
+countless fist-fights and wrestlings.~
+97 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 9762
+S
+#9762
+The western end of Basher Square.~
+The square appears to get a lot of traffic, but everything is reasonably
+clean.  There appears to be some sort of eating establishment across the square
+to the east.~
+97 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 9752
+DDIR_EAST
+~
+~
+0 -1 9763
+DDIR_SOUTH
+~
+~
+0 -1 9772
+DDIR_WEST
+~
+~
+0 -1 9761
+S
+#9763
+The eastern end of Basher Square.~
+Standing here, just outside of Lottie's, you can see a large pub to the west.~
+97 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 9753
+DDIR_EAST
+~
+~
+0 -1 9764
+DDIR_SOUTH
+~
+~
+0 -1 9773
+DDIR_WEST
+~
+~
+0 -1 9762
+S
+#9764
+Lotti's Bread and Breakfast.~
+The smells of freshly baked bread and hot drinks defeat any qualms you might
+have had when entering this quaint little shop.~
+97 ROOM_NO_MOB|ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 9763
+X AGINCOUR.MID~
+S
+#9765
+A secret chamber, deep in the heart of Chakkor.~
+You, as all elementalists inevitably say, feel a greater kinship with the
+elements here.  The room appears to be located on incongruously strong magical
+resonance point in the city.~
+97 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 9766
+X ELSLEIN.MID~
+S
+#9766
+The Elementalists' private hall.~
+Kick back, relax, and jaw around with your guild buds, no-one outside of your
+guild can enter here.~
+97 ROOM_NO_MOB|ROOM_INDOORS|ROOM_ALLOW_ELE SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 9756
+DDIR_WEST
+~
+~
+0 -1 9765
+S
+#9767
+Psif's Armor Shop.~
+The walls are arrayed with common, every day forms of bodily protection.
+Some items that appear to have come from far-away places are also for sale
+here.~
+97 ROOM_NO_MOB|ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 9777
+S
+#9768
+Jalil's Obedience School.~
+Much hustle and bustle occurs in this school so that you can buy the finest
+of low-grade pets.~
+97 ROOM_INDOORS|ROOM_PET_SHOP SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 9779
+S
+#9769
+Orderly pet's room.~
+You do NOT belong here!  Get hence immediately!~
+97 ROOM_NO_MOB|ROOM_INDOORS SECT_CITY
+S
+#9770
+The western end of Ystroth Boulevard.~
+You are blocked from going west by the city wall.  East leads on toward the
+bazaar at the other end of town.~
+97 ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 9771
+DDIR_SOUTH
+~
+~
+0 -1 16014
+S
+#9771
+Near the western end of Ystroth Boulevard.~
+The boulevard appears to end at the city wall to the west and a glance to the
+east reveals a small but busy square and an opening leading south.~
+97 ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 9772
+DDIR_WEST
+~
+~
+0 -1 9770
+S
+#9772
+Ystroth Boulevard.~
+You are at the southwest corner of Basher Square.~
+97 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 9762
+DDIR_EAST
+~
+~
+0 -1 9773
+DDIR_SOUTH
+~
+~
+0 -1 9782
+DDIR_WEST
+~
+~
+0 -1 9771
+S
+#9773
+Ystroth Boulevard.~
+You are standing at the southeast corner of Basher Square.~
+97 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 9763
+DDIR_EAST
+~
+~
+0 -1 9774
+DDIR_SOUTH
+~
+~
+0 -1 30910
+DDIR_WEST
+~
+~
+0 -1 9772
+S
+#9774
+Ystroth Boulevard.~
+Ystroth Boulevard cuts between two buildings here, Basher Square is to your
+immediate west, and a dark alley opens up to your southeast.~
+97 ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 9775
+DDIR_WEST
+~
+~
+0 -1 9773
+S
+#9775
+Ystroth Boulevard.~
+The boulevard leads into the Grand Bazaar east of here.  West leads between
+two buildings and into the western part of the city.~
+97 ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 9776
+DDIR_SOUTH
+~
+~
+0 -1 9785
+DDIR_WEST
+~
+~
+0 -1 9774
+S
+#9776
+Ystroth Boulevard at the opening to the Grand Bazaar.~
+You are standing in a wide entrance to the city's famous "Grand Bazaar."~
+97 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 30900
+DDIR_EAST
+~
+~
+0 -1 9777
+DDIR_WEST
+~
+~
+0 -1 9775
+S
+#9777
+The Grand Bazaar on Ystroth Boulevard.~
+All kinds of stands and stores are located here in the bazaar.  From where
+you stand, you could see someone who sells whatever you would ever wanted.~
+97 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 9767
+DDIR_EAST
+~
+~
+0 -1 9778
+DDIR_SOUTH
+~
+~
+0 -1 9787
+DDIR_WEST
+~
+~
+0 -1 9776
+S
+#9778
+The Grand Bazaar on Ystroth Boulevard.~
+All kinds of stands and stores are located here in the bazaar.  From where
+you stand, you could see someone who sells whatever you would ever wanted.~
+97 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 9759
+DDIR_EAST
+~
+~
+0 -1 9779
+DDIR_SOUTH
+~
+~
+0 -1 9788
+DDIR_WEST
+~
+~
+0 -1 9777
+S
+#9779
+The Grand Bazaar at the eastern end of Ystroth Boulevard.~
+All kinds of stands and stores are located here in the bazaar.  From where
+you stand, you could see someone who sells whatever you would ever wanted.~
+97 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 9768
+DDIR_WEST
+~
+~
+0 -1 9778
+S
+#9781
+A secret chamber, in the southwest corner of Chakkor.~
+This room seems to resonate with the shear energy of physical strength.  You
+feel that you could exercise your life away here.~
+97 ROOM_NO_MOB|ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+~
+~
+0 -1 9782
+X MONTAGNU.MID~
+S
+#9782
+The Rangers' private hall.~
+Kick back, relax, and jaw around with your guild buds, no-one outside of your
+guild can enter here.~
+97 ROOM_NO_MOB|ROOM_INDOORS|ROOM_ALLOW_RAN SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 9772
+DDIR_WEST
+~
+~
+0 -1 9781
+S
+#9783
+Prita's Potent Potion Place.~
+Wow, the power here seems to over-whelm you.  The shelves are filled with
+many exotic and powerful potions.~
+97 ROOM_NO_MOB|ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+~
+door exit~
+EX_ISDOOR|EX_CLOSED|EX_LOCKED|EX_HIDDEN|EX_PICKPROOF 9720 9793
+S
+#9784
+The Town Hall.~
+When Order and/or Chaos deem it necessary, everyone in the world can gather
+here to discuss whatever important questions exist.~
+97 ROOM_NO_MOB|ROOM_INDOORS|ROOM_SAFE SECT_INSIDE
+DDIR_DOWN
+~
+~
+0 -1 9754
+S
+#9785
+A dark passage between buildings.~
+Are you kidding?  This is a dark alley!~
+97 ROOM_DARK|ROOM_NO_MOB|ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 9775
+DDIR_SOUTH
+~
+~
+0 -1 9795
+DDIR_WEST
+~
+~
+0 -1 30996
+S
+#9786
+A secret chamber, in the southeast corner of Chakkor.~
+In this room, you feel like you are much closer to God.  Somehow, you think
+your prayers will be better heard here.~
+97 ROOM_NO_MOB|ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 9796
+S
+#9787
+The northern end of Sr Lane.~
+This is a narrow lane that runs along the western side of the Temple of
+Order.~
+97 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 9777
+DDIR_EAST
+~
+~
+0 -1 9788
+DDIR_SOUTH
+~
+~
+0 -1 9797
+S
+#9788
+The entrance hall to the Temple of Order.~
+The temple astounds you with its wonders.  Freizes of ancient battles
+encompassing enormous armies parade across the golden archways over-head.~
+97 ROOM_INDOORS|ROOM_SAFE SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 9778
+DDIR_EAST
+~
+~
+0 -1 9789
+DDIR_SOUTH
+~
+~
+0 -1 9798
+DDIR_WEST
+~
+~
+0 -1 9787
+S
+#9789
+The Crystal Chamber.~
+Beholding all of the wonderful artistry that encompasses this room quiets
+any doubts you might have had about what the greatest wonder of the world is.~
+97 ROOM_NO_MOB|ROOM_INDOORS|ROOM_SAFE SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 -1 9799
+DDIR_WEST
+~
+~
+0 -1 9788
+S
+#9790
+The western end of a dark alley.~
+Are you kidding?  This is a dark alley!~
+97 ROOM_DARK|ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 9791
+S
+#9791
+A dark alley.~
+Are you kidding?  This is a dark alley!~
+97 ROOM_DARK|ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 9792
+DDIR_WEST
+~
+~
+0 -1 9790
+S
+#9792
+A dark alley.~
+Are you kidding?  This is a dark alley!~
+97 ROOM_DARK|ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 9793
+DDIR_WEST
+~
+~
+0 -1 9791
+S
+#9793
+A dark alley.~
+Are you kidding?  This is a dark alley!~
+97 ROOM_DARK|ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+door~
+EX_ISDOOR|EX_CLOSED|EX_LOCKED|EX_HIDDEN|EX_PICKPROOF 9720 9783
+DDIR_EAST
+~
+~
+0 -1 9794
+DDIR_WEST
+~
+~
+0 -1 9792
+S
+#9794
+A dark alley.~
+Are you kidding?  This is a dark alley!~
+97 ROOM_DARK|ROOM_INDOORS SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 9795
+DDIR_WEST
+~
+~
+0 -1 9793
+S
+#9795
+The eastern end of a long, dark alley.~
+Are you kidding?  This is a dark alley!  Get out while you can!
+There is a small gate that is jarred open to the south.~
+97 ROOM_DARK|ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 9785
+DDIR_SOUTH
+~
+~
+0 -1 17232
+DDIR_WEST
+~
+~
+0 -1 9794
+S
+#9796
+The Monks' private hall.~
+Kick back, relax, and jaw around with your guild buds, no-one outside of your
+guild can enter here.~
+97 ROOM_NO_MOB|ROOM_INDOORS|ROOM_ALLOW_ELE|ROOM_ALLOW_RAN SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 9786
+DDIR_EAST
+~
+~
+0 -1 9797
+X WHATSHAL.MID~
+S
+#9797
+The southern end of Sr Lane.~
+The western wall of the Temple of Order towers above you here.  The entrance
+to the monk's guild lies to the west.~
+97 ROOM_INDOORS SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 9787
+DDIR_SOUTH
+~
+~
+0 -1 30930
+DDIR_WEST
+~
+~
+0 -1 9796
+S
+#9798
+The stacks~
+This tremendously comprehensive library appears to hold any and every book
+ever created.  It looks well used.~
+97 ROOM_INDOORS|ROOM_SAFE SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 9788
+DDIR_EAST
+~
+~
+0 -1 9799
+S
+#9799
+The Chamber of Order~
+When Order occupies the mortal realms, he often visits the temple.  It is
+rumored that he appears here much more than anywhere else in the world.~
+97 ROOM_NO_MOB|ROOM_INDOORS|ROOM_SAFE|ROOM_ALTAR_O SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 9789
+DDIR_WEST
+~
+~
+0 -1 9798
+X AGRIVENB.MID~
+S
+#9800
+Entrance to the Hall of Necromancy~
+You are standing in a great foyer at least 50 feet across with an amazingly
+large spiral staircase rising above the room at least 4 stories, before
+before vanishing into the maticulously painted ceiling.  Statues of all the
+dead sons and daughters of Chaos surround the chamber in recessed alcoves.  The
+stairs down lead into the city proper.
+  There is a large checkered area on the floor, with small figures moving about.
+  There are plaques to Dregoneous, Rendorous, and Bendabanus.~
+97 0 SECT_CITY
+DDIR_UP
+~
+~
+0 -1 9801
+DDIR_DOWN
+~
+~
+0 -1 9720
+E
+plaque plaques~
+Which plaque?~
+E
+dregoneous~
+The plaque under this masculine statue tells the story of the Eldest of the
+Mortals.  He is the father of all Drows, and had the strength of 4 gods.
+When he walked, even Belial tembled.~
+E
+rendorous~
+The plaque under this rather cannine statue tells the story of the court
+jester that entertained Chaos himself with the most diabolically chaotic feats.~
+E
+Bendabanus~
+The plaque under this stalwart figure tells the story of the first of the Humans
+and how he brought about the best of all those in the followers of Chaos.  Yet
+they were to be the first of the converts into Order, therefore being the thorn
+in the side of Chaos.~
+E
+checkered chess figures~
+The chess set figures move about on their own accord.  The Tower of Necromancy
+has survived the destruction of the Chaos/Order war because this is where they
+are constantly involved in their games of chess.  Some even contemplate that
+the destruction of the Chess Board would destroy the entire Realm.~
+S
+#9801
+Library in the Tower of Necromancy~
+There are several rows of tables, with large chairs and candlabras.  The
+walls are covered by scrolls, tomes, books, and parchments of vague spells
+that only necromancers seem to be able to understand.~
+97 ROOM_ALLOW_ILL|ROOM_ALLOW_RAN SECT_CITY
+DDIR_UP
+~
+~
+0 -1 9802
+DDIR_DOWN
+~
+~
+0 -1 9800
+E
+scrolls~
+One of the scrolls explains:
+"... The shouts can be heard faintly even when not using
+the sacred magicks. They emanate from the souls of the dead,
+screaming for relief from the eternal torment and suffering 
+they must endure. To hear their words you will need the better
+senses of the detect magic spell. Then, to prompt their shouting,
+scream loudly. Their wails will then be heard."~
+E
+tomes~
+One of the tomes reads:
+"The song of the dead may be sung to gain entrance to 
+the home and origin of necromancery. The song's words 
+are written in the tongue of our trade, the subject
+of this tome. The letter A in the common tongue
+corresponds to the necromancer's Z. The letter B 
+corresponds to the necro's letter A. The letter C
+corresponds to the necro's let..."
+The rest of the document is illegible.~
+E
+parchments~
+One of the parchments reads:
+"JDX QSGW SC JDX BXZB
+
+XKVF QSPFQ, FVKXQ SC FPQJ
+PGBXZB DSFX SC XZIJDXG YIPQJ
+BVIJ, YSCCVG, ASGX, BPQJ
+SHXG GSO ZQ V QZN NSP TPQJ"~
+S
+#9802
+The Chamber of the High Necromancer~
+The High Necromancer sits in judgement of all those that study the black arts.
+There are a few scrolls on the wall, with a large desk here.~
+97 0 SECT_CITY
+DDIR_DOWN
+~
+~
+0 -1 9801
+X JANUNS.MID~
+S
+#9803
+Sewers~
+You are in one of the nastiest smelling places that you have ever been.  Rats
+and large insects can be seen moving about.  Several small snakes brush up
+on your leg.
+  A strange noise can be heard from the west.~
+97 0 SECT_CITY
+DDIR_NORTH
+~
+~
+EX_ISDOOR|EX_HIDDEN -1 30960
+DDIR_EAST
+~
+~
+0 -1 9806
+DDIR_WEST
+~
+~
+0 -1 9804
+DDIR_UP
+~
+~
+0 -1 9724
+S
+#9804
+Sewers~
+This is a very dark section of the nasty sewers.  You really should not be
+down here, as the snakes get larger in this direction.
+  A loud strange noise can be heard from the west.~
+97 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 9803
+DDIR_SOUTH
+~
+~
+0 -1 9807
+DDIR_WEST
+~
+~
+0 -1 9805
+S
+#9805
+Sewers~
+You run into a large mound of dirt blocking the slowly moving cess-pool.
+  There is a large frog here.~
+97 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 9804
+E
+frog~
+The frog tells you ,'Go back.  You will die if you travel further.'
+The frog tells you ,'Read the HELP ARENA.'
+The frog is in perfect health.~
+S
+#9806
+Sewers~
+You are blocked from going further by a large mound of debris.  The stench
+is aweful.  You have mud, and what looks like mud, but smells worse, sticking
+to your boots.
+  There is a soft moaning sound from the west.~
+97 0 SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 9803
+S
+#9807
+Sewer~
+This section of the sewer system does not smell bad at all, and you can see
+some light coming from the east.  There is a small table set here in the center
+of the corridor.~
+97 ROOM_ALLOW_ILL|ROOM_ALLOW_ELE|ROOM_ALLOW_RAN SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 9804
+DDIR_EAST
+~
+~
+0 -1 9808
+S
+#9808
+Sewer~
+This is a well lit, and well aired, section of the underground sewer system.
+You almost think that this section is habitable, if you got rid of the
+oversized goons guarding the door.~
+97 0 SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 9807
+X LA_ROTTA.MID~
+S
+#9809
+The Fog~
+You are in a patch of fog.~
+97 ROOM_NO_MOB|ROOM_INDOORS|ROOM_NO_RECALL|ROOM_ALLOW_ILL SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 9809
+DDIR_EAST
+~
+~
+0 -1 9810
+DDIR_SOUTH
+~
+~
+0 -1 9711
+DDIR_WEST
+~
+~
+0 -1 9809
+DDIR_UP
+~
+~
+0 -1 9809
+DDIR_DOWN
+~
+~
+0 -1 9809
+S
+#9810
+The Fog~
+You are in a patch of fog.~
+97 ROOM_NO_MOB|ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 9809
+DDIR_EAST
+~
+~
+0 -1 9809
+DDIR_SOUTH
+~
+~
+0 -1 9811
+DDIR_WEST
+~
+~
+0 -1 9809
+DDIR_UP
+~
+~
+0 -1 9809
+DDIR_DOWN
+~
+~
+0 -1 9809
+S
+#9811
+The Fog~
+You are in a patch of fog.~
+97 ROOM_NO_MOB|ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 9810
+DDIR_EAST
+~
+~
+0 -1 9809
+DDIR_SOUTH
+~
+~
+0 -1 9809
+DDIR_WEST
+~
+~
+0 -1 9809
+DDIR_UP
+~
+~
+0 -1 9812
+DDIR_DOWN
+~
+~
+0 -1 9809
+S
+#9812
+The Fog~
+You are in a patch of fog.
+  There is a small table and a set of chairs.~
+97 ROOM_NO_MOB|ROOM_INDOORS|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 9809
+DDIR_EAST
+~
+~
+0 -1 9809
+DDIR_SOUTH
+~
+~
+0 -1 9809
+DDIR_WEST
+~
+~
+0 -1 9809
+DDIR_UP
+~
+~
+0 -1 9809
+DDIR_DOWN
+~
+~
+0 -1 9811
+E
+chair table chairs~
+The table seems to be occupied by your guildmaster.~
+X CLKCWNGR.MID~
+S
+#9813
+Private Meeting Hall~
+You are in the private meeting hall of the merchant Dinum.  There are 4 chairs
+laid out for you to sit in, and a large oak desk by the south wall.  The area
+off to the west is quite large.
+  There is a small picture on the wall.~
+97 ROOM_ALLOW_ILL|ROOM_ALLOW_ELE SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 9814
+DDIR_DOWN
+~
+~
+0 -1 9725
+E
+picture~
+The picture is of the great Rogue Trothgar.
+As small testament reads:  In memory of Trothgar.~
+S
+#9814
+Trothgar's Practice Hall~
+This is one of the most well equiped training facilities in the Realm.  The
+walls are lined with pictures of great 'Businessmen' and 'Diplomats'.  There
+are several drow assistants here helping with the training of new rogues.~
+97 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 9813
+X HOLBMVYL.MID~
+S
+#9815
+The magic shop of Quin`toBine~
+This is a very decrepid magic shop with scrolls laying around on the floors.
+There are many acolytes running around, and a few priests of Chaos.  There is
+a sign on the wall that doesn't really interest you very much.~
+97 0 SECT_CITY
+DDIR_DOWN
+~
+~
+0 -1 9705
+S
+#9816
+The training yard~
+This is a room filled with people.  They are each doing some task that seems
+to increase their physical attributes.  Some people are sitting in chairs
+reading and expanding their minds.  There is a large man here to help you with
+your endevores.~
+97 0 SECT_CITY
+DDIR_UP
+~
+~
+0 -1 9756
+S
+#9817
+The Arena~
+This room is littered with the corpses of dead players.  The stench seems
+almost pleasing.  
+  There is a large sign on the wall.~
+97 ROOM_NO_MOB|ROOM_INDOORS|ROOM_NO_RECALL SECT_CITY
+E
+sign~
+The sign reads, 'Type HELP ARENA for more information.'~
+S
+#0
+
+
+
+
+#RESETS
+O 0  9784   1  9735 ; obelisk
+M 0  9812   1  9735 ; obelisketh 
+M 0  9708   1  9762 ;              a small elf in The western end of Basher
+O 0  9779   1  9755 ;         the donation pit in Patrokles Avenue.        
+P 0  9780 100  9779 ;A brown book on commands: in the donation pit         
+P 0  9781 100  9779 ;A purple book on commands in the donation pit         
+P 0  9782 100  9779 ;A green book on commands: in the donation pit         
+M 0  9811   1  9755 ;                      pit in Patrokles Avenue.        
+D 0  9803 DIR_NORTH DOOR_OPEN ;door in Sewers                   
+O 0  9766   1  9762 ;       a statue of Basher in The western end of Basher
+O 0  9767   1  9751 ;    a statue of Patrokles in Patrokles Avenue.        
+O 0  9768   1  9797 ;           a statue of Sr in The southern end of Sr La
+O 0  9769   1  9799 ; order, the god of Reason in The Chamber of Order     
+O 0  9770   1  9774 ;    a painting of Ystroth in Ystroth Boulevard.       
+M 0  9753   1  9783 ;                    Prita in Prita's Potent Potion Pla
+G 1  9700 10000       ;a potion of refresh with 
+G 1  9701 10000       ;a potion of pass door and
+G 1  9702 10000       ;a potion of infravision p
+G 1  9703 10000       ;a potion of weak sanctuar
+G 1  9704 10000       ;a potion of displaced hea
+D 0  9783 DIR_SOUTH DOOR_CLOSED_LOCKED ;door in Prita's Potent Potion Pla
+D 0  9793 DIR_NORTH DOOR_CLOSED_LOCKED ;door in A dark alley.            
+O 0  9760   1  9760 ;a sign behind the counter in Marlyle's Mystical Magic 
+M 0  9750   1  9760 ;                  Marlyle in Marlyle's Mystical Magic 
+G 1  9710 25000       ;a potion of enhanced sigh
+G 1  9711 25000       ;  a potion of cure poison
+G 1  9712 25000       ; a scroll of remove curse
+G 1  9713 25000       ;          a wand of armor
+G 1  9714 25000       ;a scroll of understand an
+O 0  9761   1  9761 ;a sign behind the counter in The Knight Errant pub.   
+M 0  9754   1  9761 ;            the bartender in The Knight Errant pub.   
+G 1  3000 10000       ;         a barrel of beer
+G 1  3001 10000       ;         a bottle of beer
+E 1  9747 10000 WEAR_WIELD ;equip a club                   
+O 0  9762   1  9764 ;a sign behind the counter in Lotti's Bread and Breakfa
+M 0  9755   1  9764 ;                   Lottie in Lotti's Bread and Breakfa
+G 1  3009 10000       ;            a big pot pie
+G 1  3100 20000       ;             a cup of tea
+G 1  3101 20000       ;          a cup of coffee
+G 1  3102 20000       ;           a cup of water
+O 0  9763   1  9767 ;a sign behind the counter in Psif's Armor Shop.       
+M 0  9752   1  9767 ;                     Psif in Psif's Armor Shop.       
+G 1  3072 10000       ;      a scale mail jerkin
+G 1  3073 10000       ;        a scale mail coif
+G 1  3074 10000       ;  a long scale mail skirt
+G 1  3075 10000       ;a pair of reinforced boot
+G 1  3076 10000       ;a pair of reinforced glov
+G 1  3077 10000       ;a pair of scale mail slee
+G 1  3097 10000       ;     a small metal shield
+E 1  9745 10000 WEAR_WIELD ;equip a broadsword             
+O 0  9764   1  9759 ;a sign behind the counter in Maetag Weapons.          
+M 0  9751   1  9759 ;          the weaponsmith in Maetag Weapons.          
+G 1  9740 10000       ;              a small bow
+G 1  9741 10000       ;               a long bow
+G 1  9742 10000       ;               a crossbow
+G 1  9743 10000       ;                 a quiver
+G 1  9744 10000       ;                 a dagger
+G 1  9745 10000       ;             a broadsword
+G 1  9746 20000       ;         a throwing knife
+G 1  9747 10000       ;                   a club
+G 1  9750 20000       ;          a crossbow bolt
+G 1  9751 20000       ;            a small arrow
+G 1  9752 20000       ;          a flaming arrow
+E 1  9745 10000 WEAR_WIELD ;equip a broadsword             
+O 0  9765   1  9768 ;a sign behind the counter in Jalil's Obedience School.
+M 0  9756   1  9768 ;                    Jalil in Jalil's Obedience School.
+E 1  9744 10000 WEAR_WIELD ;equip a dagger                 
+M 1  3090   9  9769 ;               the kitten in Orderly pet's room.      
+M 1  3091   9  9769 ;                the puppy in Orderly pet's room.      
+M 1  3092   9  9769 ;               the beagle in Orderly pet's room.      
+M 1  3093   9  9769 ;           the rottweiler in Orderly pet's room.      
+M 1  3094   9  9769 ;                 the wolf in Orderly pet's room.      
+M 0  9759   1  9789 ;      the healer of Order in The Crystal Chamber.     
+E 1  9745 10000 WEAR_WIELD ;equip a broadsword             
+M 0  9802   1  9725 ;                    Degar in Geeth's Pub              
+M 0  9803   1  9755 ;      Jahred the minstrel in Patrokles Avenue.        
+M 0  9700   5  9771 ;  a lonely street sweeper in Near the western end of Y
+M 1  9700   5  9774 ;  a lonely street sweeper in Ystroth Boulevard.       
+M 1  9700   5  9777 ;  a lonely street sweeper in The Grand Bazaar on Ystro
+M 1  9700   5  9750 ;  a lonely street sweeper in The western end of Patrok
+M 1  9700   5  9756 ;  a lonely street sweeper in Patrokles Avenue.        
+M 0  9701   8  9761 ;         a brawling drunk in The Knight Errant pub.   
+M 0  9760   1  9781 ;          the guildmaster in A secret chamber, in the 
+M 0  9761   1  9786 ;          the guildmaster in A secret chamber, in the 
+M 0  9762   1  9765 ;          the guildmaster in A secret chamber, deep in
+M 0  9702   2  9770 ;                 a beggar in The western end of Ystrot
+M 0  9703   7  9797 ;             a pedestrian in The southern end of Sr La
+M 0  9703   7  9777 ;             a pedestrian in The Grand Bazaar on Ystro
+M 0  9703   7  9779 ;             a pedestrian in The Grand Bazaar at the e
+M 0  9704   7  9796 ;                   a monk in The Monks' private hall. 
+M 0  9704   7  9788 ;                   a monk in The entrance hall to the 
+M 0  9704   7  9797 ;                   a monk in The southern end of Sr La
+M 0  9704   7  9798 ;                   a monk in The stacks               
+M 0  9704   7  9799 ;                   a monk in The Chamber of Order     
+M 0  9705   5  9797 ;              a foreigner in The southern end of Sr La
+M 0  9705   5  9777 ;              a foreigner in The Grand Bazaar on Ystro
+M 0  9705   5  9779 ;              a foreigner in The Grand Bazaar at the e
+M 0  9706   3  9790 ;              a mercenary in The western end of a dark
+E 1  9745 100 WEAR_WIELD ;equip a broadsword             
+M 0  9706   3  9793 ;              a mercenary in A dark alley.            
+E 1  9745 100 WEAR_WIELD ;equip a broadsword             
+M 0  9706   3  9785 ;              a mercenary in A dark passage between bu
+E 1  9745 100 WEAR_WIELD ;equip a broadsword             
+M 0  9707   1  9792 ;              a cutthroat in A dark alley.            
+E 1  9744 100 WEAR_WIELD ;equip a dagger                 
+M 0  3060   5  9777 ;            the cityguard in The Grand Bazaar on Ystro
+M 0  3060   5  9774 ;            the cityguard in Ystroth Boulevard.       
+M 0  3060   5  9763 ;            the cityguard in The eastern end of Basher
+M 0  3060   5  9797 ;            the cityguard in The southern end of Sr La
+M 0  3060   5  9779 ;            the cityguard in The Grand Bazaar at the e
+M 0  9800   1  9746 ;               the statue in Argnarko Street          
+M 0  9775   1  9704 ;           The blacksmith in Blacksmith Guild.        
+M 0  9776   1  9815 ;             the magician in The magic shop of Quin`to
+G 1  3040 20000       ;     a scroll of identify
+G 1  3041 20000       ;a yellow potion of see in
+G 1  3042 20000       ;a potion of understanding
+G 1  3043 30000       ;      a potion of tongues
+G 1  9775 15000       ;       a scroll of recall
+M 0  9777   3  9707 ;      the priest of Chaos in Entrance to the Temple of
+M 0  9777   3  9718 ;      the priest of Chaos in The entrance to the Inner
+M 0  9777   3  9709 ;      the priest of Chaos in Common room of Chaos     
+M 0  9778   5  9708 ;     the student of Chaos in Chaotic Foyer            
+M 0  9778   5  9708 ;     the student of Chaos in Chaotic Foyer            
+M 0  9778   5  9718 ;     the student of Chaos in The entrance to the Inner
+M 0  9778   5  9718 ;     the student of Chaos in The entrance to the Inner
+M 0  9778   5  9719 ;     the student of Chaos in The Inner Sanctum of Chao
+M 0  9779   1  9711 ;                the guard in The Hall of Illusionists 
+M 0  9780   1  9812 ;   the master of illusion in The Fog                  
+M 0  9781   1  9712 ;    Lar the Master Tanner in The Leather Shop         
+G 1  3060 30000       ;         a leather jerkin
+G 1  3061 30000       ;            a leather cap
+G 1  3062 30000       ;  a pair of leather pants
+G 1  3063 30000       ;  a pair of leather boots
+G 1  3064 30000       ; a pair of leather gloves
+G 1  3065 30000       ;a pair of leather sleeves
+G 1  3066 30000       ; a studded leather jerkin
+G 1  3067 30000       ;       a hard leather cap
+G 1  3068 30000       ;a pair of studded leather
+G 1  3069 30000       ;a pair of hard leather bo
+G 1  3070 30000       ;a pair of hard leather gl
+G 1  3071 30000       ;a pair of studded leather
+M 0  9782   1  9719 ;Tsi the High Priest of Ch in The Inner Sanctum of Chao
+M 0  9783   1  9800 ;          the chess piece in Entrance to the Hall of N
+M 0  9784   1  9802 ; the master of necromancy in The Chamber of the High N
+M 0  9785   1  9801 ;                the guard in Library in the Tower of N
+M 0  9786   1  9807 ;                the guard in Sewer                    
+M 0  9787   1  9808 ;                  the man in Sewer                    
+M 0  9788   1  9813 ;                the guard in Private Meeting Hall     
+M 0  9789   1  9814 ;                    Dinum in Trothgar's Practice Hall 
+M 0  9790   1  9728 ;               Sam Waldon in Sam's Store of Stuffs    
+G 1  9780 20000       ;A brown book on commands:
+G 1  9781 20000       ;A purple book on commands
+G 1  9782 20000       ;A green book on commands:
+G 1  9783 20000       ;A blue book on commands: 
+G 1  3030 20000       ;                  a torch
+G 1  3031 20000       ;   a hooded brass lantern
+G 1  3138 29009       ;     a buffalo water skin
+M 0  9791   1  9749 ;       Borlon the Jeweler in Borlon's Jewelry Shop    
+G 1  9776 20099       ;          a chunk of gold
+M 0  9792   6  9702 ;            the young boy in North Chaos road.        
+M 0  9792   6  9723 ;            the young boy in North Road of Chakkor    
+M 0  9792   6  9746 ;            the young boy in Argnarko Street          
+M 0  9792   6  9738 ;            the young boy in East Road of Chakkor     
+M 0  9792   6  9722 ;            the young boy in Wendaho Street           
+M 0  9792   6  9744 ;            the young boy in Stables                  
+M 0  9793   6  9702 ;           the young girl in North Chaos road.        
+M 0  9793   6  9723 ;           the young girl in North Road of Chakkor    
+M 0  9793   6  9746 ;           the young girl in Argnarko Street          
+M 0  9793   6  9738 ;           the young girl in East Road of Chakkor     
+M 0  9793   6  9722 ;           the young girl in Wendaho Street           
+M 0  9793   6  9744 ;           the young girl in Stables                  
+M 0  9794   6  9703 ;   the citizen of Chakkor in North Entrance of Chakkor
+M 0  9794   6  9723 ;   the citizen of Chakkor in North Road of Chakkor    
+M 0  9794   6  9735 ;   the citizen of Chakkor in Busy Alley               
+M 0  9794   6  9729 ;   the citizen of Chakkor in The Northern Road of the 
+M 0  9794   6  9753 ;   the citizen of Chakkor in Patrokles Avenue.        
+M 0  9794   6  9758 ;   the citizen of Chakkor in The eastern most end of P
+M 0  9795   3  9800 ;the student of necromancy in Entrance to the Hall of N
+M 0  9795   3  9700 ;the student of necromancy in A chaotic corner of the c
+M 0  9795   3  9730 ;the student of necromancy in West Road of Chakkor     
+M 0  9796   3  9711 ;  the student of illusion in The Hall of Illusionists 
+M 0  9796   3  9721 ;  the student of illusion in Winding road in North Cha
+M 0  9796   3  9731 ;  the student of illusion in Morgue                   
+M 0  9797   3  9762 ;              the student in The western end of Basher
+M 0  9797   3  9764 ;              the student in Lotti's Bread and Breakfa
+M 0  9797   3  9767 ;              the student in Psif's Armor Shop.       
+M 0  9798   1  9816 ;   Dar the Master Trainer in The training yard        
+M 0  9799   1  9731 ;                   Arctum in Morgue                   
+G 1  3041 20000       ;a yellow potion of see in
+M 0  9801   1  9784 ;                     Kine in The Town Hall.           
+O 0  9749   2  9784 ;                the seats in The Town Hall.           
+O 0  3135   1  9755 ;               a fountain in Patrokles Avenue.        
+M 0  9804   1  9778 ;       The Lady Stephanie in The Grand Bazaar on Ystro
+M 0  9805   4  9724 ;            The alley cat in Side Alley off the North 
+M 0  9805   4  9745 ;            The alley cat in Small Alley              
+M 0  9805   4  9793 ;            The alley cat in A dark alley.            
+M 0  9805   4  9720 ;            The alley cat in The West Road of Chakkor 
+M 0  9806   3  9721 ;           A homeless boy in Winding road in North Cha
+M 0  9806   3  9717 ;           A homeless boy in Quin Square              
+M 0  9806   3  9774 ;           A homeless boy in Ystroth Boulevard.       
+M 0  9807   1  9776 ;            A shoe shiner in Ystroth Boulevard at the 
+M 0  9808   1  9757 ;       A vegetable vendor in Patrokles Avenue.        
+M 0  9809   3  9777 ;                A peasant in The Grand Bazaar on Ystro
+M 0  9809   3  9735 ;                A peasant in Busy Alley               
+M 0  9809   3  9787 ;                A peasant in The northern end of Sr La
+M 0  9810   6  9773 ;               The parrot in Ystroth Boulevard.       
+M 0  9810   6  9703 ;               The parrot in North Entrance of Chakkor
+M 0  9810   6  9753 ;               The parrot in Patrokles Avenue.        
+M 0  9810   6  9743 ;               The parrot in Edna's Inn               
+M 0  9810   6  9763 ;               The parrot in The eastern end of Basher
+M 0  9810   6  9739 ;               The parrot in Eastern Business District
+S
+
+
+
+
+#SHOPS
+9750 ITEM_TYPE_SCROLL ITEM_TYPE_WAND ITEM_TYPE_STAFF ITEM_TYPE_POTION
+     ITEM_TYPE_PILL 100  25  0 23 ;Marlyle
+9754 ITEM_TYPE_WEAPON ITEM_TYPE_ARMOR ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  50  0 23 ;the bartender
+9755 ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  25  0 23 ;Lottie
+9752 ITEM_TYPE_ARMOR ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  25  0 23 ;Psif
+9781 ITEM_TYPE_ARMOR ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  28  0 23 ;Lar the Master Tanner
+9751 ITEM_TYPE_WEAPON ITEM_TYPE_AMMO ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  25  0 23 ;the weaponsmith
+9756 ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  25  0 23 ;Jalil
+9753 ITEM_TYPE_POTION ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  35  0 23 ;Prita
+9803 ITEM_TYPE_SCROLL ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  35  0 23 ;Jahred the minstrel
+9790 ITEM_TYPE_CONTAINER ITEM_TYPE_LIGHT ITEM_TYPE_DRINK_CON ITEM_TYPE_TRASH
+     ITEM_TYPE_NOTHING 100  25  0 23 ;Sam Waldon
+9776 ITEM_TYPE_SCROLL ITEM_TYPE_WAND ITEM_TYPE_STAFF ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  25  0 23 ;the magician
+9791 ITEM_TYPE_TREASURE ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  25  0 23 ;Borlon the Jeweler
+9799 ITEM_TYPE_POTION ITEM_TYPE_FURNITURE ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  25  0 23 ;Arctum
+0
+
+
+
+
+#SPECIALS
+M 9707 spec_thief
+M 9759 spec_cast_order
+M 9782 spec_cast_chaos
+M 9806 spec_thief
+O 9749 chakkor_seats
+O 9769 chakkor_order_statue
+S
+
+
+
+
+#$

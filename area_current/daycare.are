@@ -1,0 +1,1032 @@
+#AREA Dwarven Day Care~
+#AUTHORS Hapines~
+
+
+
+
+
+#HELPS
+-1 'DWARVEN DAYCARE' DAYCARE~
+THE DWARVEN DAY CARE
+This is the breeding ground and nursery for young dwarves everywhere.
+
+Watch out for that nanny, she is one tough woman!
+~
+0 $~
+
+
+
+
+#RANGES 1 10 0 99
+#MOBILES
+#6600
+youth dwarven dwarf~
+the dwarven youth~
+A young dwarf plays with a toy axe.~
+This is a young but not totally harmless creature.  He waves his toy axe
+around you.  He is wearing the cutest pair of overalls you have ever seen.~
+ACT_SCAVENGER|ACT_STAY_AREA|ACT_BODY|ACT_RACE
+0
+-5 S
+3 BODY_HEAD|BODY_HIP BODY_MOUTH|BODY_EYE 1d4+30 1d4+3
+50 RACE_DWARF
+POS_STANDING POS_STANDING SEX_MALE
+>fight_prog 50~
+if rand(50)
+~
+|
+#6601
+teddy bear~
+a teddy bear~
+A cute and fuzzy teddy bear stands here.~
+This is a tiny little bear with a heart on his chest.  For some odd reason
+it seems alive.  This shouldn't be.  Better kill it before it gains some
+other powers which may not be so friendly.~
+ACT_SCAVENGER|ACT_STAY_AREA|ACT_BODY
+0
+500 S
+1 BODY_HEAD|BODY_MOUTH|BODY_HIP BODY_HEAD|BODY_TORSO 1d10+10 1d4+1
+17 10
+POS_STANDING POS_STANDING SEX_MALE
+#6602
+doll raggedy anne~
+a raggedy anne doll~
+A raggedy anne doll is sitting here.~
+You see a small little cute rag doll.  She seems to be alive!~
+ACT_SCAVENGER|ACT_STAY_AREA
+0
+300 S
+2 0 0 2d5+19 1d5+1
+144 152
+POS_STANDING POS_STANDING SEX_MALE
+#6603
+soldier toy~
+a toy soldier~
+A toy soldier is standing here.~
+The toy is looking for target practice.  It sees you and attempts to take
+careful aim.  It is wearing a tin suit of armor.~
+ACT_SCAVENGER|ACT_STAY_AREA
+0
+-300 S
+3 0 0 3d5+26 2d3+2
+216 300
+POS_STANDING POS_STANDING SEX_MALE
+>fight_prog 40~
+if rand (50)
+  emote swings his sword at you.
+else
+endif
+~
+|
+#6604
+bear ugly~
+the ugly bear~
+An ugly stuffed bear stands here.~
+This is obviously a reject from the toy factory.  How is he alive anyway? 
+Better put this ugly thing out of its misery.~
+ACT_SCAVENGER|ACT_STAY_AREA|ACT_BODY
+0
+-400 S
+3 BODY_HEAD|BODY_HIP BODY_MOUTH|BODY_EYE 3d4+25 1d5+2
+100 300
+POS_STANDING POS_STANDING SEX_MALE
+#6605
+doll old~
+an old doll~
+An abused and old doll is here.~
+This doll has been hugged and played with until there is almost nothing left.
+Why not finish her off?~
+ACT_SCAVENGER|ACT_STAY_AREA
+0
+-2 S
+1 0 0 1d10+1 1d4+2
+24 10
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#6606
+nanny~
+the nanny~
+An old wrinkled nanny stands here, looking over the little ones.~
+You see an old dwarven lady who has been hunched over with age.  However, it
+appears that there is still some fight left in her.  Her gray hair is rolled
+up in a tight bun, and she is wearing a pink shawl around her shoulders.~
+ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_UNDERSTAND|AFF_TONGUES
+10 S
+5 BODY_HIP BODY_MOUTH|BODY_EYE 4d4+50 1d8+2
+750 631
+POS_STANDING POS_STANDING SEX_FEMALE
+>greet_prog 100~
+tell $n Are we being good boys and girls?
+~
+>speech_prog yes yup yep yeah~
+mpoload 6653
+~
+>speech_prog no nope nah never~
+emote spanks $n and grumbles something.
+~
+>fight_prog 10~
+emote swings her cane at you.
+~
+|
+#6607
+guard~
+the armed guard~
+An armed guard stands here looking lost.~
+This guard was locked up in this maze after he proved uneffective in
+protecting the young in the day care center.  Too many unfriendly mortals
+got past him and destroyed all the young ones.  Two nannys came in to take
+this guys place.  Hopefully they are doing a better job.  He is wielding a
+small metal sword, and upon his head is a lightweight metal helmet.~
+ACT_SENTINEL|ACT_SCAVENGER|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_DETECT_INVIS|AFF_UNDERSTAND|AFF_TONGUES
+-800 S
+8 BODY_HEAD|BODY_TORSO BODY_MOUTH 3d10+100 3d5+2
+2000 1286
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+tell $n Heh, those nannies ain't that good if you got all the
+~
+|
+#6608
+brat spoiled~
+the spoiled brat~
+A spoiled brat is crying here.~
+You see a little tyke who has always gotten what he wanted.  He is screaming
+and kicking now because the nanny wouldn't give him a lollipop.  For a
+moment he looks at you expectantly thinking that you were going to give him
+some candy.  But he sees your armor and cringes and fear screaming again.~
+ACT_SENTINEL|ACT_SCAVENGER|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_UNDERSTAND|AFF_TONGUES
+-400 S
+1 BODY_MOUTH|BODY_HIP BODY_HEAD|BODY_TORSO 2d4+15 2d2+1
+25 10
+POS_STANDING POS_STANDING SEX_MALE
+>fight_prog 45~
+if rand(15)
+  kick 
+else
+  if rand(15)
+    scream 
+  else
+    mpecho The brat punches you and demands a lollipop.
+  endif
+endif
+~
+|
+#6609
+elmira~
+Elmira~
+Elmira is hugging and cuddling a teddybear.~
+Elmira is here sqeezing a teddy bear to death.  At first you think she looks
+sweet with her red hair and button nose, but after a quick glance you
+realize how cruel she can be to her pets.  You should call the humane
+society on her.~
+ACT_SENTINEL|ACT_SCAVENGER|ACT_STAY_AREA|ACT_RACE
+0
+-200 S
+4 0 0 6d8+12 1d8+0
+601 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+>fight_prog 40~
+say I wanna just hold you and cuddle you and love you and keep you.
+peace 
+Unknown ?'
+~
+|
+#6610
+elf elven youth~
+An elven youth~
+An elven youth is here, playing with his toy bow.~
+What a cute toddler this is.  He is dressed in a cute green outfit, and
+wearing adorable brown shoes with curled up toes.  His ears are rather
+large, but quite cute.  His eyes have a sparkling gleam to them.~
+ACT_SENTINEL|ACT_SCAVENGER|ACT_STAY_AREA|ACT_RACE
+0
+-200 S
+3 0 0 6d6+10 1d7+0
+338 RACE_ELF
+POS_STANDING POS_STANDING SEX_MALE
+#6611
+monster five headed boy brat~
+A little monster~
+A huge five headed monster is here!~
+This is actually a very badly behaved little boy.  He is down here because
+he is stobborn and just doesn't care to listen to the nannies anymore.  He
+was told to go play in the maze until he thought he could act better.  These
+days though all he does is terrorize anyone that comes near him.~
+ACT_SENTINEL|ACT_SCAVENGER|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_UNDERSTAND|AFF_TONGUES
+-500 S
+8 BODY_MOUTH|BODY_HIP BODY_HEAD|BODY_TORSO 4d25+15 2d5+1
+2571 1286
+POS_STANDING POS_STANDING SEX_MALE
+>fight_prog 50~
+if rand (50)
+  emote snarls at you wildly.
+else
+  say Take that!
+endif
+~
+|
+#6612
+teacher~
+The teacher~
+A teacher stands before the chalkboard here lecturing.~
+Before you stands about a sixty year old retired teacher.  She is wearing a
+blue dress.  Her hair is pulled tightly back into a white bun, and she is
+wearing little wired rimmed glasses.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY
+AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+400 S
+8 BODY_HIP|BODY_LEG|BODY_ARM|BODY_HAND BODY_HIP|BODY_LEG|BODY_ARM|BODY_HAND 3d30+10 3d3+2
+1847 1286
+POS_STANDING POS_STANDING SEX_FEMALE
+>greet_prog 100~
+emote begins writing tomorrow's lesson on the board for you.
+mpecho $I says, 'Butterflies are beautiful creatures.'
+mpecho $I says, 'For your homework get some paint.'
+mpecho $I says, 'Then we can fingerpaint.'
+if rand (50)
+  say Welcome to class, $n.
+  say Have you done your homework?
+endif
+~
+>speech_prog yes yeah yup yep~
+mpecho $I says, Good job $N! :)  You get an A!
+~
+>give_prog dropofpaintfromtanglewood~
+mpecho $I says, 'Ok let's see what we can do with this.'
+~
+>fight_prog 50~
+if rand(30)
+  kick $r
+  say I know karate!
+else
+  mpecho 'I'll send you to the principal's office for this!'
+else
+  emote slaps you with the end of her ruler!  OUCH!
+endif
+endif
+~
+|
+#6613
+ethereal obeliskguy2~
+The ethereal obelisk guy~
+The ethereal obelisk guy is here.~
+This mob should be invisible to you.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY|ACT_RACE|ACT_UNDEAD
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_TONGUES|AFF_ETHEREAL
+0 S
+90 BODY_HEAD BODY_LEG 1d10+10000 1d10+100
+292510 RACE_DWARF
+POS_STANDING POS_STANDING SEX_MALE
+>speech_prog chakkor tower~
+if level($n) < 18
+  mpecho The obelisk glows with energy.
+  mpechoaround $n $n fades out of existence.
+  mpechoat $n You disappear suddenly!
+  mptransfer $n 9735
+else
+  mpechoat $n You are too big to call on the aid of the obelisk.
+endif
+~
+|
+#0
+
+
+
+
+#OBJECTS
+#6600
+axe toy~
+a toy axe~
+An axe made of plastic lies here.~
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 1 6 WEAPON_SLASH
+15 600 1
+E
+axe toy~
+This axe is made out of black colored plastic.  It prolly would not be a
+great weapon for fighting the larger creatures in the realms.~
+#6601
+ring pink ice~
+a pink ice ring~
+A pink ice ring draws your eye.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER
+1 0 0 0
+8 7000 3
+E
+ring ice pink~
+This ring holds some magic powers.  For as it feels as cold as ice when
+you put it on, it will never melt.  It is a light colored pink and shines a
+bit in the light.~
+A
+APPLY_STR 1
+A
+APPLY_HIT 2
+#6621
+robe linen~
+a linen robe~
+A linen robe is crumpled into a ball here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT
+1 0 0 0
+5 4000 2
+E
+robe linen~
+A cream colored linen robe.  It is lightweight and will offer a little bit of
+protection against the cold.~
+A
+APPLY_WIS 1
+A
+APPLY_MANA 2
+A
+APPLY_MANA 2
+#6644
+meat steak~
+a juicy steak~
+A juicy steak sits on a plate here.~
+~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+15 0 0 NOT_POISONED
+5 15 1
+E
+meat steak~
+Mmm, this is about the tastiest looking steak you have ever seen.  Your
+mouth begins to water as you smell it as well.~
+#6645
+steak rotten~
+a rotten steak~
+A dry steak lies on the floor.~
+~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+4 0 0 POISONED
+5 14 1
+E
+steak rotten~
+Ug, who let this steak go to waste.  A few weeks ago it might have been
+edible.  You probably should not eat this.~
+#6646
+potion amber~
+an amber potion~
+An amber potion sits in a corner.~
+~
+ITEM_TYPE_POTION
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+20 SPELL_CURE_LIGHT SPELL_ARMOR SPELL_NONE
+1 1500 23
+E
+potion amber~
+An amber colored potion.  It is fairly translucent.  There is a label on the
+container.  Perhaps you should read it.~
+E
+container label~
+In case of headaches or other phsyical aches or pains, take two of these
+and call a doctor in the morning.~
+#6647
+sword toy~
+a toy sword~
+A toy sword lies here.~
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 3 3 WEAPON_POUND
+5 1700 1
+#6648
+overalls blue jean~
+blue jean overalls~
+A pair of blue jean overalls lies on the ground here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+5 0 0 0
+7 2000 7
+E
+overhalls blue jean~
+A pair of denim blue overhalls.  How cute!~
+#6649
+armor suit tin~
+a tin suit of armor~
+A tin suit of armor lies on the ground here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+4 0 0 0
+10 2000 5
+E
+armor suit tin~
+This suit of armor looks like it could actually protect you from head to
+toe.  How useful!~
+#6650
+cane wooden~
+a wooden cane~
+A wooden cane almost trips you as you walk past it.~
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 2 2 WEAPON_POUND
+5 1500 9
+E
+cane wooden~
+A wooden cane with a turned handle.  It is a useful walking stick.  It
+probably could knock someone unconsious too.~
+A
+APPLY_MOVE 10
+#6651
+sword metal~
+a small metal sword~
+A small metal sword catches your attension.~
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 3 3 WEAPON_SLICE
+10 2500 10
+E
+sword metal~
+This sword actually looks like it could hurt someone.  It is about a food
+and a half long.  It has a long thin blade.  Its hilt is made out of wood.~
+A
+APPLY_DAMROLL 2
+#6652
+helmet metal small~
+a small metal helmet~
+A small metal helmet lies on the ground here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+5 0 0 0
+7 3000 7
+E
+helmet metal small~
+This helmet looks like it could offer some protection.  It is made out of
+some fairly soft shiny metal.~
+#6653
+lollipop~
+a lollipop~
+A lollipop attracts your attention.~
+~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+5 0 0 NOT_POISONED
+1 10 1
+E
+lollipop~
+On the wrapper is a label.  It reads: Enjoy your lollipop.  Stay Happy. :)~
+#6654
+shawl pink~
+a pink shawl~
+A pink shawl lies on the ground here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+3 0 0 0
+5 750 3
+E
+shawl pink~
+This shawl looks handwoven, probably by a nanny.  Pink fringe lines the
+entire shawl.  It looks warm and servicable.~
+#6655
+bow hair blue~
+a blue hair bow~
+A blue hair bow catches your attention.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+2 0 0 0
+5 1000 2
+E
+bow hair blue~
+Aw, isn't it so cute?  Maybe you should try it on.
+Is that Mr. Skullhead?~
+A
+APPLY_DEX 1
+A
+APPLY_SEX 1
+#6656
+painting fingerpainting butterfly picture~
+a fingerpainting~
+A pretty fingerpainting lies here.~
+~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_GLOW|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+2 1000 1
+E
+painting fingerpainting butterfly picture~
+This is a fine fingerpainting of butterflies of various colors.  It is amazing how it could have
+all come from one drop of paint.  It must have some magical quality.~
+#6657
+magical black obelisk monolith~
+a black obelisk~
+A magical black obelisk stands here.~
+The obelisk has the power to return you to a matching obelisk in
+Chakkor outside the Tower of Training.
+A plaque on the obelisk reads:
+    ________________________________________________________________
+   /                                                                \
+   |  INSTRUCTIONS FOR USING THE OBELISK                            |
+   |  Simply say the name of the location to which you would like   |
+   |  to travel and the obelisk will magically transport you.       |
+   |                                                                |
+   |   Available locations include:       Recommended levels:       |
+   |                                                                |
+   |   Chakkor                            Levels 1-95               |
+   \________________________________________________________________/
+~
+ITEM_TYPE_FURNITURE
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+100 0 1
+#0
+
+
+
+
+#ROOMS
+#6600
+~
+~
+66 0 0
+S
+#6601
+The Dwarven Drop Off~
+This is where the dwarven mommies and daddies come to drop off their
+annoying little brats.  To the south you hear the whining and screaming of
+little brats.  You have the urge to leave.  There is a sign here.~
+66 ROOM_NO_MOB|ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 -1 17418
+DDIR_SOUTH
+You see a large room full of noisy brats.~
+door~
+EX_ISDOOR -1 6602
+E
+sign~
+This is an area for newbies, so have fun.  -- Sandman
+Recently changes have been made.  There are some new
+mobs, new treasures, and some puzzles.  Enjoy! -Happi~
+S
+#6602
+Day Care Center~
+You are in the north-east corner of the main part of the center.  Toys and
+toddlers are all over the room.  On this side of the center are a lot of
+small tables.  Currently there are a number of small projects lying on the
+tables ranging from drying finger paintings to piles of building blocks.  At
+meal times the tables are cleared off the children eat here.  There is a 
+kitchen to the east.~
+66 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+You see the drop off.~
+~
+0 -1 6601
+DDIR_EAST
+You see an extremely messy kitchen.~
+~
+0 -1 6626
+DDIR_SOUTH
+You see a large room full of noisy brats.~
+~
+0 -1 6604
+DDIR_WEST
+You see a large room full of noisy brats.~
+~
+0 -1 6603
+S
+#6603
+Day Care Center~
+You are in the north-west corner of the main part of the center.  Toys and
+toddlers are all over the room.  In the northwest corner of the room there
+is a large box, presumably where the toys are kept when not in use. 
+However, this day care is open 24 hours a day, and since there are always
+kids here, things just never seem to get totally put away.  
+There is a bathroom to the west.~
+66 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+You see a large room full of noisy brats.~
+~
+0 -1 6602
+DDIR_SOUTH
+You see a large room full of noisy brats.~
+~
+0 -1 6605
+DDIR_WEST
+You see a messy bathroom.~
+~
+0 -1 6606
+S
+#6604
+Day Care Center~
+You are in the south-east corner of the main part of the center.  Toys and
+toddlers are all over the room.  This room seems to act like a learning
+center.  There is a large chalkboard on the southern wall.  There is also a
+rather large table here.  On the eastern wall is a bookcase filled with
+children's tales.  There is a playground to the east.~
+66 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+You see a large room full of noisy brats.~
+~
+0 -1 6602
+DDIR_EAST
+You see the playground.~
+~
+0 -1 6610
+DDIR_WEST
+You see a large room full of noisy brats.~
+~
+0 -1 6605
+E
+chalkboard board~
+A large green chalkboard covers this wall.  Above the board is the alphabet. 
+On the board is written: 'Assignment: Go explore Tanglewood.  There are
+beautiful butterflies there that wait to be seen.'~
+S
+#6605
+Day Care Center~
+You are in the south-west corner of the main part of the center.  Toys and
+toddlers are all over the room.  This area is just a large open playroom. 
+Careful not to trip over anything as you pass.  There is a staircase 
+to the west.~
+66 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+You see a large room full of noisy brats.~
+~
+0 -1 6603
+DDIR_EAST
+You see a large room full of noisy brats.~
+~
+0 -1 6604
+DDIR_WEST
+You see a staircase leading down into darkness.~
+~
+0 -1 6607
+S
+#6606
+The Messy Bathroom~
+You hold your nose as you realize you have made the worst mistake of your
+life.  There is a little potty here, along with a little toilet seat for the
+younger youths.  Toilet paper litters the floor.  The air is rancid and the 
+walls are stained.~
+66 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+You see a large room full of noisy brats.~
+~
+0 -1 6603
+S
+#6607
+The Staircase~
+You stand on top of a staircase leading down, and wonder what mystery could
+lie down under.  The stairs are made of wood, and are not stained.  Peering
+down into the darkness you can see the basement doesn't look very finished. 
+You wonder why there isn't a door here anyway.  This doesn't look very safe.
+Beware!~
+66 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+You see a large room full of noisy brats.~
+~
+0 -1 6605
+DDIR_DOWN
+You see the entrance to something.~
+~
+0 -1 6612
+S
+#6608
+The Playground~
+You are in the north-west corner of the playground.  A large wire fence goes
+around the playground so the children can't escape.~
+66 0 SECT_FIELD
+DDIR_EAST
+You see the playground.~
+~
+0 -1 6609
+DDIR_SOUTH
+You see the playground.~
+~
+0 -1 6610
+S
+#6609
+The Playground~
+You are in the north-east corner of the playground.  A large wire fence goes
+around the playground so the children can't escape.~
+66 0 SECT_FIELD
+DDIR_SOUTH
+You see the playground.~
+~
+0 -1 6611
+DDIR_WEST
+You see the playground.~
+~
+0 -1 6608
+S
+#6610
+The Playground~
+You are in the south-west corner of the playground.  A large wire fence goes
+around the playground so the children can't escape.~
+66 0 SECT_FIELD
+DDIR_NORTH
+You see the playground.~
+~
+0 -1 6608
+DDIR_EAST
+You see the playground.~
+~
+0 -1 6611
+DDIR_WEST
+You see a large room full of noisy brats.~
+~
+0 -1 6604
+S
+#6611
+The Playground~
+You are in the south-east corner of the playground.  A large wire fence goes
+around the playground so the children don't escape.~
+66 0 SECT_FIELD
+DDIR_NORTH
+You see the playground.~
+~
+0 -1 6609
+DDIR_WEST
+You see the playground.~
+~
+0 -1 6610
+S
+#6612
+Entrance to the Mini-Maze~
+You stand in the entrance to a small, but confusing maze.  You really hope
+that you don't get lost.  The walls of the maze are made of wood and there
+are some colorful pictures on the wall as well.  You wonder where it leads.~
+66 ROOM_DARK|ROOM_NO_MOB|ROOM_INDOORS SECT_FIELD
+DDIR_EAST
+~
+~
+0 -1 6613
+DDIR_UP
+You see some stairs.~
+~
+0 -1 6607
+E
+pictures~
+The pictures in this room are of various animals, most of which come from a
+plains area, although some come from the jungle.  What a bunch of odd
+looking creatures you see here: some giraffes, hippos, zebras, and hyenas.  
+Some that really catch your attention are a large proud lion, a wild boar, 
+and a muskrat.~
+S
+#6613
+Mini-Maze~
+You are in a small passage that looks just like every other one.  The walls
+are made out of wood and there are some colorful pictures on them.~
+66 ROOM_DARK|ROOM_INDOORS SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 6612
+DDIR_SOUTH
+~
+~
+0 -1 6614
+DDIR_WEST
+~
+~
+0 -1 6615
+E
+pictures~
+The pictures in this room depict various landscapes around the realms,
+forests, caverns, mountains, hills, and plains.  They are quite beautiful.~
+S
+#6614
+Mini-Maze~
+You are in a small passage that looks just like every other one.  The walls
+are made out of wood and there are some colorful pictures on them.~
+66 ROOM_DARK|ROOM_INDOORS SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 6613
+DDIR_EAST
+~
+~
+0 -1 6616
+E
+pictures~
+The pictures in this room look like some old attempts at art by the children
+upstairs.  There are various fingerpaintings and crayon drawings.  Most of
+them look childish, but one catches your eye.  It is of a slaughtered
+drarven guard.  It is so sad, isn't it?~
+S
+#6615
+Mini-Maze~
+You are in a small passage that looks just like every other one.  The walls
+are made out of wood and there are some colorful pictures on them.~
+66 ROOM_DARK|ROOM_INDOORS SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 6616
+DDIR_EAST
+~
+~
+0 -1 6613
+E
+pictures~
+The pictures in this room depict scenes from the childhood fantasy, Snow
+White.  There is a bueatiful picture of Snow White, one of the seven dwarves
+coming home from work, and one of the wicked stepmother disguised as an ugly
+old lady holding an apple.~
+S
+#6616
+Mini-Maze~
+You are in a small passage that looks just like every other one.  The walls
+are made out of wood and there are some colorful pictures on them.~
+66 ROOM_DARK|ROOM_INDOORS SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 6614
+DDIR_SOUTH
+~
+~
+0 -1 6615
+DDIR_WEST
+~
+~
+0 -1 6624
+E
+pictures~
+The pictures in this room depict various places around the realms, most of
+which you have not seen yet.  You cringe at the sight of some of these and
+stand in awe of others.  A couple of ones that catch your interest are ones
+you'll prolly be exploring soon... an old gnome chief sitting on the throne
+of his hut, a large number of fire newts in an odd cavern, and some mutant
+slime which is glowing oddly...EW!~
+S
+#6624
+End of the Mini-Maze~
+You stand at the end of your journey.  The walls are made out of wood and
+there is a big sign here and you had better read it!~
+66 ROOM_DARK|ROOM_INDOORS SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 6616
+DDIR_SOUTH
+~
+~
+0 -1 6631
+E
+sign~
+If you are not level 8 or above, you may not want to go south.  From here
+you can make out the squaking of a young boy, but he seems somewhat wild. 
+He is the bully of the daycare, and the nannies sent him down here long ago
+to learn to behave. - Sandman/Happiness~
+S
+#6626
+Messy Kitchen~
+You stand in the kitchen of the day care center.  Pots and pans are everywhere,
+while the toddlers continue to create chaos.  This is a fairly large kitchen
+as enough food has to be made here to fill all the childen you see running
+about.~
+66 ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+You see a large room full of noisy brats.~
+~
+0 -1 6602
+S
+#6631
+The End?~
+You have reached the final lair.  It is dominated by a huge five headed
+dragon (actually an overgrown brat with a Halloween mask).~
+66 ROOM_DARK|ROOM_INDOORS SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 6624
+S
+#0
+
+
+
+
+#RESETS
+O 0  6657   1  6601 ; obelisk
+M 0  6613   1  6601 ; obelisketh
+R 0  6613   4       ;randomize exits in Mini-Maze                
+R 0  6614   4       ;randomize exits in Mini-Maze                
+R 0  6615   4       ;randomize exits in Mini-Maze                
+R 0  6616   4       ;randomize exits in Mini-Maze                
+M 0  6611   1  6631 ;         A little monster in The End?                 
+M 0  6600   6  6602 ;        the dwarven youth in Day Care Center          
+E 1  6600 100 ITEM_WEAR_HEAD ;equip a toy axe                
+M 0  6600   6  6603 ;        the dwarven youth in Day Care Center          
+E 1  6600 100 ITEM_WEAR_HEAD ;equip a toy axe                
+M 0  6600   6  6604 ;        the dwarven youth in Day Care Center          
+E 1  6600 10 ITEM_WEAR_HEAD ;equip a toy axe                
+M 0  6600   6  6605 ;        the dwarven youth in Day Care Center          
+E 1  6600 100 ITEM_WEAR_HEAD ;equip a toy axe                
+M 0  6600   6  6608 ;        the dwarven youth in The Playground           
+M 0  6600   6  6609 ;        the dwarven youth in The Playground           
+M 0  6600   2  6610 ;        the dwarven youth in The Playground           
+M 0  6601   2  6602 ;             a teddy bear in Day Care Center          
+M 0  6601   2  6606 ;             a teddy bear in The Messy Bathroom       
+M 0  6602   3  6602 ;      a raggedy anne doll in Day Care Center          
+M 0  6602   3  6604 ;      a raggedy anne doll in Day Care Center          
+M 0  6602   3  6605 ;      a raggedy anne doll in Day Care Center          
+G 1  6645  20       ;           a rotten steak
+M 0  6603   6  6608 ;            a toy soldier in The Playground           
+E 1  6647 100 ITEM_WEAR_HEAD ;equip a toy gun                
+M 0  6603   6  6609 ;            a toy soldier in The Playground           
+E 1  6647 100 ITEM_WEAR_HEAD ;equip a toy gun                
+M 0  6603   6  6609 ;            a toy soldier in The Playground           
+E 1  6647 100 ITEM_WEAR_HEAD ;equip a toy gun                
+M 0  6603   6  6610 ;            a toy soldier in The Playground           
+E 1  6647 100 ITEM_WEAR_HEAD ;equip a toy gun                
+M 0  6603   6  6611 ;            a toy soldier in The Playground           
+E 1  6647 100 ITEM_WEAR_HEAD ;equip a toy gun                
+M 0  6603   6  6611 ;            a toy soldier in The Playground           
+E 1  6647 100 ITEM_WEAR_HEAD ;equip a toy gun                
+M 0  6604   3  6609 ;            the ugly bear in The Playground           
+M 0  6604   3  6610 ;            the ugly bear in The Playground           
+M 0  6604   3  6611 ;            the ugly bear in The Playground           
+M 0  6605   3  6604 ;              an old doll in Day Care Center          
+M 0  6605   3  6605 ;              an old doll in Day Care Center          
+E 1  6601 100 ITEM_WEAR_TAKE ;equip a pink ice ring          
+M 0  6605   3  6610 ;              an old doll in The Playground           
+M 0  6606   2  6602 ;                the nanny in Day Care Center          
+G 1  6646  20       ;          an amber potion
+G 1  6644  20       ;            a juicy steak
+E 1  6621 100 12 ;equip a linen robe             
+E 1  6654 100 3 ;equip a pink shawl             
+M 0  6606   2  6604 ;                the nanny in Day Care Center          
+G 1  6646  20       ;          an amber potion
+G 1  6653  20       ;               a lollipop
+M 0  6607   1  6624 ;          the armed guard in End of the Mini-Maze     
+E 1  6651 100 ITEM_WEAR_HEAD ;equip a small metal sword      
+E 1  6652 100 6 ;equip a small metal helmet     
+M 0  6608   3  6602 ;         the spoiled brat in Day Care Center          
+M 0  6608   3  6608 ;         the spoiled brat in The Playground           
+M 0  6608   3  6611 ;         the spoiled brat in The Playground           
+M 0  6609   1  6603 ;                   Elmira in Day Care Center          
+E 1  6655 100 6 ;equip a blue hair bow          
+M 0  6610   6  6602 ;           An elven youth in Day Care Center          
+E 1  6648 100 5 ;equip blue jean overalls       
+M 0  6610   6  6604 ;           An elven youth in Day Care Center          
+M 0  6610   6  6606 ;           An elven youth in The Messy Bathroom       
+E 1  6648 100 5 ;equip blue jean overalls       
+M 0  6610   6  6607 ;           An elven youth in The Staircase            
+M 0  6610   6  6608 ;           An elven youth in The Playground           
+E 0  6648 100 5 ;equip blue jean overalls       
+M 0  6610   6  6610 ;           An elven youth in The Playground           
+M 0  6611   1  6631 ;         A little monster in The End?                 
+M 0  6612   1  6605 ;              The teacher in Day Care Center          
+E 1  6656 100 ITEM_WEAR_TAKE ;equip a fingerpainting         
+S
+
+
+
+
+#SHOPS
+0
+
+
+
+
+#SPECIALS
+M 6600 spec_thief
+M 6601 spec_thief
+M 6602 spec_thief
+M 6603 spec_thief
+M 6604 spec_thief
+M 6605 spec_thief
+M 6606 spec_cast_cleric
+M 6608 spec_thief
+S
+
+
+
+
+#$

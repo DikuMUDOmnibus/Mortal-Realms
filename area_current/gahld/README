@@ -1,0 +1,22 @@
+The Land of Ghald, Copyright 1991,1993, Dug Michael
+  An area developed for Diku Mud as released in 1990, 1991.  DikuMUD is
+/* ************************************************************************
+*  Copyright (C) 1990, 1991                                               *
+*  All Rights Reserved                                                    *
+************************************************************************* */
+
+If you don't mind The Land of Ghald loading at 6400-6499 then only 
+  do steps 1, 3, and 4. 
+0) load all of the Ghald files into a directory under the directory that
+  contains your "tinyworld.*" files
+1) for "ghald.c", "ghald.?d", and "ghald.?i" read the comments at the beginning 
+  of the files and do as they say.
+2) for "ghald.h" read the comments in it and change the appropriate values
+3) for "ghald.wld", "ghald.zon", "ghald.mob", and "ghald.obj" you need only 
+  read them into the appropriate "tinyworld.*" files in the appropriate place.
+4) modify room room #3502 (The Turning Point) so that room #6400 is to the
+  South of it.  You might also want to modify the description of the Turning
+  Point so it signifies something to the South.
+
+Oh yeah, you'll need to recompile spec_assign.c and spec_proc.c after you
+  modify them.

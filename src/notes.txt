@@ -1,0 +1,7 @@
+0 1 Announcements~
+1 5 Game Changes and Ideas~
+2 5 Area Creators~
+3 5 Game Bugs~
+4 10 Complaints~
+5 5 Chat~
+-1

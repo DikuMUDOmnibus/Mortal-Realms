@@ -1,0 +1,1767 @@
+#AREA Dungeon~
+#AUTHORS MrMud~
+
+
+
+
+
+#HELPS
+-1 JAIL IMPRISONMENT MRPD DUNGEON 'THE DUNGEON'~
+The Dungeon is the ultimate method of punishment available to a Sheriff.  
+An imprisoned player will stay in the dungeon and cannot communicate with
+the outside world until ones prison sentence expires.  The duration of the
+sentence can be found in the finger info of the captive, as well as the
+reason for captivity.
+
+The dungeon updated to ensure prisoner captivity on 16 May 1998.
+The dungeon updated to ensure prisoner captivity on 05 Jan 1999.
+
+           (A) Sheriff Policies                         
+           (B) List of Legal and Illegal Practices
+
+
+
+{-}PRESTO
+{a}MRPD1
+{b}MRPD0
+~
+-1 MRPD1~
+Rules of the Realm as Enforced by the Sheriffs (Most of them at least):
+----------------------------------------------------------------------
+These rules are set up as a guideline for ensuring an enjoyable gaming
+environment.  Some actions are more severe than others, and methods of
+punishment is at the officer's discretion.
+
+              IGNORANCE OF THE RULES IS NOT AN EXCUSE!
+
+  (A) Multi-Playing          (D) Bug Abuse            (G) Punishment
+  (B) Player Names           (E) Idling and Scripts   (H) Sharing Characters
+  (C) Harrassment            (F) Titles               (I) Spamming
+                                                      (J) Summoning Rules
+
+
+{a}MRPD2
+{b}MRPD3
+{c}MRPD4
+{d}MRPD5
+{e}MRPD6
+{f}MRPD7
+{g}MRPD8
+{h}MRPD9
+{i}MRPDA1
+{j}MRPD0
+~
+-1 MRPD2~
+Multi-Playing:
+----------------------------------------------------------------------
+Multi-Playing is defined as one person having more than one character
+logged into the game at a time.  The current limit is THREE characters
+MAXIMUM at any one time.  During heavy periods of lag an officer will
+notify players of a new limit, either ONE or TWO MAXIMUM depending on
+the amount of lag.  Violation of this rule is justification for severe
+punishment.
+
+Punishment for multi-playing is as follows:
+First offense:  1 week in the dungeon
+Second offense: 2 weeks in the dungeon
+Third offense:  1 month in the dungeon
+After the third offense, punishment is doubled.
+
+  (-) Back
+
+
+
+{-}MRPD1
+~
+-1 MRPD3~
+Player Names:
+----------------------------------------------------------------------------
+Suitable names are an essential part of maintaining a role-playing 
+environment.  Stupid names, names which involve profanity, or sexual 
+implications, or names that use illegal words will NOT be tolerated.
+eg: Stupid names:  buttmunch, dorkone, dorktwo, Tdork, BGut, FFFunnyyy.
+eg: Illegal words: Lord, Lady, Sir, Miss, Maiden, Squire, Thee
+eg: Handles: TheBigOne, LordHolio, SirNerd, FrogBoy, etc.
+eg: Similar names: Rhapsody and Rhapsodys, etc.
+Names that are from television programs and movies are illegal,
+unless they come from shows which take place during the medieval period.
+We recognize that several current players have what would be considered
+illegal names under the new rules.  So this policy kicks in: 16-Nov-95.
+All players created before this date are considered exempt.  If you delete
+a character with an illegal name, that name is no longer exempt.
+
+Punishment for breaking this rule is immediate the dungeoning until the character
+auto-deletes.  There will be no level limit at which punishment will be
+waived.  If you want the equipment from the the dungeoned character, post a note to
+the officers, after removing the equipment you must delete said character.
+
+  (-) Back
+
+
+
+{-}MRPD1
+~
+-1 MRPD4~
+Harrassment:
+---------------------------------------------------------------------------
+Harrassment is defined as one person going to extremes to make the game
+an unenjoyable place for another player.  What is "extreme" will be defined
+by the baron for each specific situation.  While things like player-killing,
+assassination, and steal are skills that can only be exercised in a limited
+fashion, name-calling, swearing, unwanted sexual overtures etc are all forms
+of harrassment that will not be tolerated.
+
+Anything you communicate on any channel (notes, talk, chat, say, tell) about
+someone else that is demeaning, degrading, or meant to humiliate will be
+considered harassment.  For example: The skill 'spy' was meant specifically
+as a help for assassination. What you overhear and tell to others by means of
+spy can be considered harassment.
+
+Punishment for harassment is as follows:
+First offense:  1 week in the dungeon
+Second offense: 2 weeks in the dungeon
+Third offense:  1 month in the dungeon
+Any offense after the third will be doubled. 
+
+  (-) Back
+
+
+
+{a}MRPD0
+{-}MRPD1
+~
+-1 MRPD5~      
+Bug Abuse:
+-----------------------------------------------------------------------------
+Bugs are defined as quirks in the coding that allow you to do things that
+aren't intended as a part of game play.  Using a bug in any way is considered
+abuse.  And any abuse will result in a severe action from the police.  If you 
+find a bug, report it IMMEDIATELY, so that it can be taken care of.  Failure 
+to report a bug or the use of a bug by another player is a severe offence, 
+and can even get your character deleted!
+
+Punishment for bug abuse is:
+First offense: slay and sacrifice of all equipment + two weeks in the dungeon
+Second offense: deletion of character
+
+NOTE: Any characters involved with "god bugs" whether you use the command
+or are effected by it, will be deleted. Any abuse of a bug that enables a
+player to gain levels and strength (hp, mv, pracs, mana, etc...) will
+cause deletion.
+
+  (-) Back
+
+
+
+{-}MRPD1
+~
+-1 MRPD6~
+Idling Characters:
+---------------------------------------------------------------------------
+Idling characters taxes the CPU, and in general, slows the entire game 
+down.  Anyone caught idling can expect to have their characters the dungeoned and
+disconnected.  
+
+Punishment for idling is:
+First offense:  1 day in the dungeon
+Second offense: 3 days in the dungeon
+Third offense:  1 week in the dungeon
+After the third offense, the dungeon time doubles.
+
+Scripting to autolevel any character is illegal.  You may use a script to
+roll your character but any script usage other than that is strictly
+forbidden.  If a baron sends you tells (and does a goto to the room you are in)
+and you do not reply but continue to attack and kill mobs you will be the dungeoned
+for scripting.
+
+Punishment for scripting is:
+First offense:  1 month in the dungeon
+Second offense: 2 months in the dungeon
+Third offense:  4 months in the dungeon
+After the third offense, the dungeon time doubles.
+
+  (-) Back
+
+
+
+{-}MRPD1
+~
+-1 MRPD7~
+Appropriate Titles and Other (Visible Information):
+----------------------------------------------------------------------
+Titles can be seen by everyone in the game.  We want them as clean as
+possible.  No sexual implications, profanity, racist remarks, etc will
+be tolerated in titles, tactical indexes, disguises, descriptions,
+email addresses, or any other form of written communication.
+
+Punishment for inappropriate titles:
+First offense:  levels 1-90  Slaughter
+                levels 91-95 1 day in the dungeon
+Second offense: 3 days in the dungeon
+Third offense:  1 week in the dungeon
+After the third offense, punishment is doubled.
+
+  (-) Back
+
+
+
+{-}MRPD1
+~
+-1 MRPD8~
+Punishment:
+---------------------------------------------------------------------------
+Sheriffs are expected to listen to your side of the story before any punishment,
+except for idling and scripting.  If you choose to be rude or have a bad
+attitude, the officer may slay, slaughter or execute you.
+
+Punishment can take place in a variety of forms.  Sheriffs have the following
+commands at their disposal: 
+
+  SLAY       - Kills your character without loss of experience.
+  SLAUGHTER  - Kills your character with loss of experience.
+  DISCONNECT - Makes your character lose link.
+
+Other options of punishment are:
+
+  EXECUTION    - Public execution of your character.
+  SACRIFICE    - The ordered sacrificing of all your character's possessions.
+  IMPRISONMENT - Keeps your character from doing anything productive for an
+                 indefinite time.
+
+  NOTE: These jail terms for punishments are recommendations for jail
+        sentences. The actual jail time is at the discretion of the
+        jailer.
+
+  (-) Back
+
+
+
+{-}MRPD1
+~
+-1 MRPD9~
+Sharing Characters:
+------------------------------------------------------------------------
+Sharing characters is not authorized.  This means that any trouble caused
+by a character, even if it's not being used by the player who created it,
+will be paid for by the character.  Any disputes over ownership of a
+shared character will be settled by the players.  Asking for help from a
+god or officer to get a lost character back will not work.  The only way
+to ensure your characters are protected is to use good passwords and trust
+them to none other than yourself.  If you are going to share your character
+with someone else, please make sure you do not give out the password on
+the game.  Email or a phone call will protect you from having your password
+spied upon.
+ 
+
+  (-) Back
+
+
+
+{-}MRPD1
+~
+
+-1 MRPDA1~
+Spamming is flooding another player with useless or irrevelant text. It is
+typically done by repeating a command numerous times.  This is illegal.
+It is legal to spam yourself if you think you are being spied upon.
+
+The limits of spamming are as follows:
+Any public channel (talk, chat, notes, etc.):  5 times.
+Any private channel (tells, says): 10 times.
+For player-killers who spam tintin users the limit is 15 times per
+kill attempt. Note that is 15 times all together, not 15 times for
+each tintin command.
+
+The punishments for spamming are:
+First offense:  3 days in the dungeon
+Second offense: 1 week in the dungeon
+Third offense:  2 weeks in the dungeon
+Punishments double after the third offense.
+
+~
+
+
+
+-1 MRPD0~
+Player Killing and Summoning (What's legal and illegal?):
+
+You may not assassinate (and kill) any character more than two times in a
+24 hour period (rl).
+------------------------------------------------------------------------------
+Murdering a follower of the opposite god.                                LEGAL
+Assassinating anyone within your level range or higher.                  LEGAL
+Summoning a killer to a guard.                                           LEGAL
+Summoning an opposite follower to be murdered by you.                    LEGAL
+Summoning an opp fol to be attacked by a fol of the same god as you.     LEGAL
+Summoning an army oponent to be attacked by another in your army.        LEGAL
+Summoning an army oponent to be murdered by you.                         LEGAL
+
+Summoning a killer to a guard repeatedly (more than twice).            ILLEGAL
+Summoning non-god fol to be attacked repeatedly (more than twice).     ILLEGAL
+Summoning anyone to be attacked by another of your characters.         ILLEGAL
+Summoning anyone to be attacked by a neutral assassin.                 ILLEGAL
+Summoning anyone to an aggressive mob.                                 ILLEGAL
+Summoning a neutral player to be assassinated.                         ILLEGAL
+
+ NOTE: Guards only attack killers and thieves.  They are not aggressive mobs.
+
+  (-) Back
+
+
+
+{-}MRPD4
+~
+0 $~
+
+
+
+
+#RANGES 0 99 0 99
+#FLAGS AFLAG_NOTELEPORT
+#MOBILES
+#12000
+dungeon keeper~
+The dungeon keeper~
+The dungeon keeper is here.~
+The dungeon keeper is here ready to supply you with everything you need.
+If you are in need of magical enhancements, simply say 'SPELLS'.
+If you need to dispel enhancements, simply say 'DISPEL'.
+If you are cursed, simply say 'CURSED'.
+If you are injured, simply say 'HEAL'.
+To get a guillotine, simply say 'GUILLOTINE'.
+To get a dungeon master's uniform, simply say 'UNIFORM'.
+To get experience, you can try to kill me (Muhahaha).
+~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_TONGUES|AFF_SANCTUARY
+0 S
+150 BODY_LEG|BODY_ARM BODY_LEG|BODY_ARM 1d1+19999 1d1+199
+0 0
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if whichgod($n)!= 4
+ if level($n) <= 96
+  say You are are but a lowly peon $n! BEGONE!
+  mptransfer $n 9755
+ else
+  say Greetings $n.
+ endif
+else
+ say Greetings Sheriff $n.
+endif
+~
+>speech_prog dispel~
+cast "dispel magic" $n
+~
+>speech_prog cursed~
+mpquiet on
+cast "remove curse" $n
+cast "remove curse" $n
+cast "remove curse" $n
+cast "remove curse" $n
+cast "remove curse" $n
+cast "remove curse" $n
+mpquiet off
+say Curses removed, Righteous One.
+~
+>speech_prog spells~
+mpquiet on
+cast "ethereal travel" $n
+cast "astral projection" $n
+cast "breath water" $n
+cast "enhanced revive" $n
+cast "enhanced heal" $n
+cast "enhanced rest" $n
+cast "giant strength" $n
+cast "remove curse" $n
+cast sanctuary $n
+cast bless $n
+cast armor $n
+cast shield $n
+cast "mirror image" $n
+cast infravision $n
+cast fly $n
+cast tongues $n
+cast understand $n
+cast feast
+cast 'righteous fury' $n
+cast 'benediction' $n
+mpquiet off
+say You're all spelled up, Master $n.
+~
+>speech_prog heal~
+mpquiet on
+cast 'cure critical' $n
+cast 'cure critical' $n
+cast 'cure critical' $n
+cast 'cure critical' $n
+cast 'cure critical' $n
+cast 'cure critical' $n
+cast 'cure critical' $n
+cast 'cure critical' $n
+cast 'cure critical' $n
+cast 'cure critical' $n
+cast 'cure critical' $n
+cast 'cure critical' $n
+mpquiet off
+say You're all healed up, Master $n.
+~
+>speech_prog uniform~
+if whichgod($n) == 4
+  mpoload 12009
+  give i12009 $n
+  mpquiet on
+  sac all
+  mpquiet off
+ else
+  if level($n) >= 96
+   mpoload 12030
+   give i12030 $n
+   mpoload 12031
+   give i12031 $n
+   mpoload 12032
+   give i12032 $n
+   mpoload 12033
+   give i12033 $n
+   mpoload 12034
+   give i12034 $n
+   mpoload 12035
+   give i12035 $n
+   mpoload 12036
+   give i12036 $n
+   mpoload 12037
+   give i12037 $n
+   mpoload 12038
+   give i12038 $n
+   mpoload 12039
+   give i12039 $n
+   mpquiet on
+   sac all
+   mpquiet off
+ endif
+endif
+~
+>speech_prog guillotine~
+if whichgod($n) == 4
+ if level($n) <= 96
+  mpoload 12009
+  give i12009 $n
+ endif
+endif
+~
+|
+#12001
+Bubba~
+Bubba~
+Bubba is here.~
+Bubba is a large man, who has obviously not seen the inside of a wash-house
+in many years. He's dressed in grubby, smelly coarse clothes that seem to 
+have been dragged through several fields of manure. As he sees you looking at
+him, he leers at you, revealing 3 or 4 blackened teeth.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 BODY_LEG|BODY_ARM BODY_LEG|BODY_ARM 1d1+19999 1d1+99
+100 780605
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 20~
+if rand(15)
+  emote drops some lipstick.
+  say $n wanna bend over and pick that up for me?
+  smile
+else
+  if rand(15)
+    say Hey, $n you ever been in a Turkish prison??
+  else
+    if rand(15)
+      say Wow $n! Do you hang out in the gym alot?
+      wink
+    else
+      if rand(15)
+        say You ever watch two dogs playin in the yard $n ?
+        lick
+      else
+        if rand(15)
+          say What ye doin' in my cell, $n ? Get the hell out!
+        else
+          say Have you ever seen a grown man naked $n??
+         endif
+      endif
+    endif
+  endif
+endif
+mpquiet on
+cast feast
+mpquiet off
+~
+|
+#12002
+dungeon cook~
+The dungeon cook~
+The dungeon cook is here.~
+This shriveled old woman is the dungeon cook.  She prepares a meal of bread
+and water once a day for the captives of the dungeon.  She stocks a few
+tasty morsels for the dungeon keepers to eat however.  During her off hours,
+she works by selling food in the bazzar of Chakkor~
+ACT_SENTINEL|ACT_SCAVENGER|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 BODY_LEG|BODY_ARM BODY_LEG|BODY_ARM 1d1+19999 1d1+99
+236285 780605
+POS_STANDING POS_STANDING SEX_FEMALE
+>all_greet_prog 100~
+if whichgod($n) == 4
+or level($n) > 96  
+ say Greetings, $n.
+endif
+~
+>rand_prog 10~
+if time() == 5
+  mpgoto 9778
+  say Drumsticks, bread, and wine for sale.
+endif
+if time() == 9
+  mpgoto 12002
+endif
+~
+|
+#12003
+dragon master~
+The dragon master~
+The dragon master is here.~
+This is the dungeon dragon trainer.  He skillfully trains dragons to help
+protect policemen during hostile acts of duty.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 BODY_LEG|BODY_ARM BODY_LEG|BODY_ARM 1d1+19999 1d1+99
+100000 780605
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if whichgod($n) == 4
+or level($n) > 96
+  say Greetings, $n.
+endif
+~
+|
+#12004
+trained dragon~
+A trained dragon~
+A large, viscious-looking dragon sits here.~
+This dragon is quite ugly, but you shouldn't tell it that.  It seems pretty
+intelligent, and quite strong.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_PET|ACT_SMART|ACT_BODY
+AFF_SANCTUARY|AFF_UNDERSTAND|AFF_STEALTH|AFF_TONGUES|AFF_FLYING
+0 S
+90 BODY_LEG|BODY_ARM BODY_LEG|BODY_ARM 1d1+9999 3d20+100
+1 250000
+POS_STANDING POS_STANDING SEX_NEUTRAL
+
+#12010
+ethmobeq~
+~
+~
+~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_SMART|ACT_BODY
+AFF_DETECT_INVIS|AFF_UNDERSTAND|AFF_TONGUES|AFF_ETHEREAL
+0 S
+1 BODY_HEAD|BODY_TORSO BODY_CLAW 1d1+36 1d1+20
+25 10
+POS_STANDING POS_STANDING SEX_MALE
+>speech_prog p equip me~
+ if actorhasobjnum(53)
+    mpoload 12012
+    mpoload 12013
+    mpoload 12014
+    mpoload 12015
+    mpoload 12016
+    mpoload 12017
+    mpoload 12018
+    mpoload 12019
+    mpoload 12020
+    mpoload 12021
+    mpoload 12022
+    mpoload 12023
+    mpoload 12024
+    mpoload 12025
+    mpoload 12026
+    mpoload 12027
+    mpoload 12028
+    mpoload 12029
+    mpquiet on
+    give i12012 $n
+    give i12013 $n
+    give 112014 $n
+    give i12015 $n
+    give i12016 $n
+    give i12017 $n
+    give i12018 $n
+    give i12019 $n
+    give i12020 $n
+    give i12021 $n
+    give i12022 $n
+    give i12023 $n
+    give i12024 $n
+    give i12025 $n
+    give i12026 $n
+    give i12027 $n
+    give i12028 $n
+    give i12029 $n
+    mpquiet off
+endif
+~
+|
+#0
+
+
+#OBJECTS
+#12001
+noteboard~
+the noteboard~
+A noteboard stands here.~
+~
+ITEM_TYPE_FURNITURE
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+100 0 1
+#12004
+dungeon master's uniform~
+a dungeon master's uniform~
+A dark uniform lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_INVENTORY|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+18 0 0 0
+1 100 91
+E
+uniform~
+Here's what the uniform commands do (5/15/98):
+
+  cover        : changes your disguise (broken)
+  guillotine   : loads a guillotine 
+  cell         : transfers you to the the dungeon cell
+  limit        : informs the realm that max players is THREE
+  haste        : temporarily increases your speed
+  scroll       : loads a recall scroll (only one can be made at a time)~
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_WHICH_GOD ! 4 2 5
+P 2
+TRIG_VOID
+OPROG_JUNK
+P 4
+TRIG_UNKNOWN 100 cover
+OPROG_GOD_ARGUMENT mpmset $ long~
+P 4
+TRIG_VOID
+OPROG_ECHO
+You assume a disguise.~
+P 5
+TRIG_TICK 75
+OPROG_APPLY OAPPLY_HIT 100
+P 9
+TRIG_UNKNOWN 100 cell
+OPROG_GOD_COMMAND
+mpgoto 12001 & look~
+P 11
+TRIG_UNKNOWN 100 guillotine
+OPROG_GOD_COMMAND
+mpoload 12009~
+P 11
+TRIG_VOID
+OPROG_ECHO
+You pull a guillotine out of a pocket in your uniform.~
+P 12
+TRIG_UNKNOWN 100 limit
+OPROG_GOD_COMMAND
+echo ***     Remember: The Character per Player limit is THREE!      *** &
+echo *** So IF you have more than THREE logged in, log some out NOW. ***~
+P 15
+TRIG_UNKNOWN 100 haste
+OPROG_GOD_COMMAND
+mpoload 12010 & eat i12010 & speed zip~
+P 16
+TRIG_UNKNOWN 100 scroll
+OPROG_GOD_COMMAND
+mpoload 12011~
+P 16
+TRIG_VOID
+OPROG_ECHO Recall scroll created.~
+
+
+#12005
+wine goblet~
+a goblet of wine~
+A sparkling goblet of wine sets on the ground here.~
+~
+ITEM_TYPE_DRINK_CON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+1 1 LIQ_WINE NOT_POISONED
+1 10 1
+
+#12006
+drumstick~
+a roasted drumstick~
+A delicious-looking roasted drumstick lies on the ground here.~
+~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+48 0 0 NOT_POISONED
+1 10 1
+
+#12007
+slice bread~
+a slice of bread~
+A large slice of bread lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+15 0 0 NOT_POISONED
+1 10 51
+#12009
+guillotine~
+the guillotine~
+A lethal killing device sets here.~
+~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_INVENTORY|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+0 100 1
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_WHICH_GOD = 4 2 3
+P 2
+TRIG_VOID
+OPROG_QUEST_SET 0 5 5
+P 3
+TRIG_VOID
+OPROG_OBJECT_QUEST_IF 0 5  = 5 4 5
+P 4
+TRIG_VOID
+OPROG_GOD_COMMAND
+ECHO $ has been sentenced to execution.~
+P 4
+TRIG_VOID
+OPROG_QUEST_ADD 0 5 -1
+P 5
+TRIG_VOID
+OPROG_OBJECT_QUEST_IF 0 5  ! 0 6 8
+P 6
+TRIG_VOID
+OPROG_QUEST_ADD 0 5 -1
+P 6
+TRIG_VOID
+OPROG_IF OIF_USER_ROOM_NUM ! 9755 7 0
+P 7
+TRIG_VOID
+OPROG_GOD_COMMAND
+MPGOTO 9755~
+P 8
+TRIG_VOID
+OPROG_APPLY OAPPLY_HIT -100000
+P 8
+TRIG_VOID
+OPROG_GOD_COMMAND
+ECHO $ has been executed!~
+P 8
+TRIG_VOID
+OPROG_JUNK
+P 9
+TRIG_COMMAND 100 quit
+OPROG_IF OIF_USER_WHICH_GOD ! 4 10 11
+P 10
+TRIG_VOID
+OPROG_ECHO
+You cannot do that until after your execution!~
+P 10
+TRIG_VOID
+OPROG_APPLY OAPPLY_HIT -100000
+P 10
+TRIG_VOID
+OPROG_GOD_COMMAND
+ECHO $ has been executed!~
+P 10
+TRIG_VOID
+OPROG_JUNK
+P 11
+TRIG_VOID
+OPROG_GOD_ARGUMENT
+quit~
+P 12
+TRIG_COMMAND 100 give
+OPROG_IF OIF_USER_WHICH_GOD ! 4 13 14
+P 13
+TRIG_VOID
+OPROG_ECHO
+You cannot do that until after your execution!~
+P 14
+TRIG_VOID
+OPROG_GOD_ARGUMENT
+give~
+P 15
+TRIG_COMMAND 100 drop
+OPROG_IF OIF_USER_WHICH_GOD ! 4 16 17
+P 16
+TRIG_VOID
+OPROG_ECHO
+You cannot do that until after your execution!~
+P 17
+TRIG_VOID
+OPROG_GOD_ARGUMENT
+drop~
+P 18
+TRIG_COMMAND 100 put
+OPROG_IF OIF_USER_WHICH_GOD ! 4 19 20
+P 19
+TRIG_VOID
+OPROG_ECHO
+You cannot do that until after your execution!~
+P 20
+TRIG_VOID
+OPROG_GOD_ARGUMENT
+put~
+
+#12010
+speedpill~
+~
+~
+~
+ITEM_TYPE_PILL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+50 SPELL_HASTE SPELL_DETECT_INVIS SPELL_DETECT_HIDDEN
+0 10 50
+
+#12011
+recall~
+a scroll of recall~
+a scroll of recall~
+~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+1 SPELL_WORD_OF_RECALL -1 -1
+0 10 1
+
+#12012
+Flame fury~
+The Flame of Fury~
+~
+The flame burns like nothing you have ever seen before. Mysteriously Embers do not fall from around the flames.
+~
+ITEM_TYPE_LIGHT
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE
+0 0 -1 0
+1 100 95
+A
+APPLY_DAMROLL 8
+A
+APPLY_SAVING_SPELL -9
+A
+APPLY_AC -15
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_WHICH_GOD ! 4 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+
+#12013
+one ring~
+The One Ring~
+~
+Unmistakeably this is that one ring. You know That One Ring.
+Whats the name. The One Ring, What ring, sheesh you got 
+the point.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_HUM|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER
+15 0 0 0
+1 100 95
+A
+APPLY_DAMROLL 8
+A
+APPLY_HITROLL 6
+A
+APPLY_SAVING_SPELL -9
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_WHICH_GOD ! 4 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+
+#12015
+ring souls~
+The Ring of Souls~
+~
+The ring has a strange force residing within it.
+It seems that it hold the soul of many, as if it
+were worn before.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER
+15 0 0 0
+1 100 95
+A
+APPLY_DAMROLL 8
+A
+APPLY_HITROLL 6
+A
+APPLY_SAVING_SPELL -9
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_WHICH_GOD ! 4 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+#12016
+Weight world~
+The Weight of the World~
+~
+Bearing the wieght of the world seems to be a tiresome
+and heavy burden. 
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_HUM|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+15 0 0 0
+1 100 95
+A
+APPLY_DAMROLL 8
+A
+APPLY_HITROLL 6
+A
+APPLY_SAVING_SPELL -9
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_WHICH_GOD ! 4 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+#12014
+vigil cross~
+The Vigil Cross~
+~
+ THE VIGIL CROSS
+                    .-------.
+                    |(;\o/;)|
+                  _.||\/X\/||._
+               ,-;  || \ / ||, "'_
+             ,'  () ||o X o|| ()  ',
+            / ()  ,-|| / \ ||-,  () \
+           : o  ,'  ||/\X/\||  ',  o ;
+        .----------._).-.-.(_.----------.
+        |\/)**(\/\ o (     ) o /\/)**(\/|
+        |(X () X)  .-.\ : /.-.  (X () X)|
+        |/\)__(/\/(   .`:`.   )\/\)__(/\|
+        '----------(   /|\   )----------'
+           ; o  ',  |       |  ,'  o ;
+            \ ()  '-|  /o\  |-'  () /
+             ',  () |(*\ /*)| ()  ,'
+               '-._ ||\/X\/|| _.-'
+                   '|| \ / ||'
+                    ||  X  ||
+                    ||\(/\/||
+                    ||=)O(=||
+                    ||/\/)\||
+                    ||  X  ||
+                    || / \ ||
+                    ||/\X/\||
+                    |(_/o\_)|
+                    '._____.'
+
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+15 0 0 0
+1 100 95
+A
+APPLY_DAMROLL 8
+A
+APPLY_HITROLL 7
+A
+APPLY_SAVING_SPELL -9
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_WHICH_GOD ! 4 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+#12017
+trinitite breastplate~
+A Trinitite Breastplate~
+~
+A greenish type of glass, unbreakable it seems to the
+mere mortal. Yet smooth and light, as to not hinder 
+the wearer.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+15 0 0 0
+1 100 95
+A
+APPLY_DAMROLL 8
+A
+APPLY_HITROLL 8
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_WHICH_GOD ! 4 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+#12018
+helm true sight~
+The Helm of True Sight~
+~
+Upon looking at this helm you see a huge eye looking
+back at you, it senses you are worthy of such a gift
+so it allows you to see more clearly than those 
+who don't wear it.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+20 0 0 0
+1 100 95
+A
+APPLY_DAMROLL 8
+A
+APPLY_HITROLL 6
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_WHICH_GOD ! 4 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+#12019
+greaves truth~
+The Greaves of Truth~
+~
+Greaves such as these must have been made by
+a very honorable person. Hence the name.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_LEGS
+20 0 0 0
+1 100 95
+A
+APPLY_DAMROLL 8
+A
+APPLY_HITROLL 7
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_WHICH_GOD ! 4 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+#12020
+boots infinity~
+The Boots of Infinity~
+~
+Your gaze seems to go on forever as you look at these
+boots.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_FEET
+19 0 0 0
+1 100 95
+A
+APPLY_DAMROLL 5
+A
+APPLY_HITROLL 5
+A
+APPLY_AC -15
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_WHICH_GOD ! 4 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+#12021
+gauntlets destruction~
+The Gauntlets of Destruction~
+~
+While wearing these you cause major desctruction to
+mortals and monsters.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_HANDS
+20 0 0 0
+1 100 95
+A
+APPLY_DAMROLL 8
+A
+APPLY_HITROLL 6
+A
+APPLY_SAVING_SPELL -5
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_WHICH_GOD ! 4 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+#12022
+sleeves shielding~
+The sleeves of Shielding~
+~
+The sleves protect you like no other possibly could.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_ARMS
+15 0 0 0
+1 100 95
+A
+APPLY_DAMROLL 8
+A
+APPLY_HITROLL 6
+A
+APPLY_STR 5
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_WHICH_GOD ! 4 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+#12023
+shield lies~
+The Shield of Lies~
+~
+                       
+           |`-._/\_.-`|
+           |    ||    |
+           |___o()o___|
+           |__((  ))__|
+           \   o\/o   /
+            \   ||   /
+             \  ||  /
+              '.||.'
+                ``
+
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_SHIELD
+19 0 0 0
+1 100 95
+A
+APPLY_DAMROLL 8
+A
+APPLY_HITROLL 7
+A
+APPLY_SAVING_SPELL -8
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_WHICH_GOD ! 4 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+#12024
+belt honor~
+The Belt of Honor~
+~
+Only a select few may wear this belt.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_WAIST
+15 0 0 0
+1 100 95
+A
+APPLY_DAMROLL 8
+A
+APPLY_HITROLL 7
+A
+APPLY_SAVING_SPELL -8
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_WHICH_GOD ! 4 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+#12025
+shroud punishment~
+The Shroud of Punishment~
+~
+You wear the shroud to protect your body. While
+wearing this you do not feel remorse for punishing
+the guilty.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT
+10 0 0 0
+1 100 95
+A
+APPLY_DAMROLL 8
+A
+APPLY_HITROLL 6
+A
+APPLY_STR 5
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_WHICH_GOD ! 4 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+#12026
+silver bracer ivy~
+A Silver Bracer Entwined with Ivy~
+~
+A silver band that has the etchings of ivy leaves 
+engraved upon it.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_HUM|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_WRIST
+15 0 0 0
+1 100 95
+A
+APPLY_DAMROLL 9
+A
+APPLY_HITROLL 5
+A
+APPLY_DEX 6
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_WHICH_GOD ! 4 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+#12027
+shadow bracer~
+The Shadow Bracer~
+~
+The bracer seems to consume all of the surrounding light
+and cause you to dissappear.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_HUM|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_WRIST
+15 0 0 0
+1 100 95
+A
+APPLY_DAMROLL 9
+A
+APPLY_HITROLL 6
+A
+APPLY_SAVING_SPELL -8
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_WHICH_GOD ! 4 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+#12028
+power tsi~
+The Power of Tsi~
+~
+The Power of Tsi is here.
+            _,'|             _.-''``-...___..--';)
+           /_ \'.      __..-' ,      ,--...--'''
+          <\    .`--'''       `     /'      
+           `-';'               ;   ; ;
+     __...--''     ___...--_..'  .;.' 
+   (,__....----'''       (,..--''   
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_HUM|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+15 0 0 0
+1 100 95
+A
+APPLY_DAMROLL 9
+A
+APPLY_HITROLL 6
+A
+APPLY_SAVING_SPELL -8
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_WHICH_GOD ! 4 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+P 3
+TRIG_UNKNOWN 100 tsi
+OPROG_GOD_COMMAND
+recho The power of Tsi fills the room. & restore $~
+#12029
+sword justice~
+The Sword of Justice~
+~
+                   __    ___
+                  /{     \ _\      ;                          ,'
+                  \\\_   /( \\    ;(                         ;(
+                   \\(` / /  '   (',)                         ;)
+                    \\\/ {`       );                         ;)
+   J                 )/ //       ;(     ,') ,(    ;'    ,(   /(
+  /I\ ______________//\/{_______/  \___/ (_/  \__;(____/  )_/ '\____
+ //T\/WWWWWWWWWWWWWWW\ \'             \               \         ____\
+-<T< IIIIIIIIIIIIIII @ }{} {} {} {} @ \ {} {} {} {} @ \ {} {} {)     \
+ \\L/\ZZZZZZZZZZZZZZZ/ _______________\_______________\______________/
+  \O/\(             ))/\{
+   V  \\___________///\ \\     -=The Sword of Justice=-
+       \ZZZZZZZZZZZZ/  \ {,
+        'V''V''V''V'    \ \  , 
+                         \(_//  
+                         /__/   
+
+ 
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 16 10 11
+1 100 95
+C
+Sword of Justice~
+FLAG_CLASS_ILLUSIONIST|FLAG_CLASS_ELEMENTALIST|FLAG_CLASS_ROGUE|FLAG_CLASS_RANGER|FLAG_CLASS_NECROMANCER|FLAG_CLASS_MONK|FLAG_CLASS_ASSASSIN
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_WHICH_GOD ! 4 2 3 
+P 2
+TRIG_VOID
+OPROG_JUNK
+P 3
+TRIG_UNKNOWN 100 justice
+OPROG_GOD_COMMAND
+mposet i12029 short The Sword of Justice of $~
+#12030
+long blade sword bard~
+The Long Blade of the Bard~
+~
+It's a big sword. Big and dark and heavy and ... just mean. The command
+'personalize' will give it a new flare for you.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL|ITEM_FLAG_GLOW|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_NODROP
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 16 10 11
+1 1 97
+C
+death slash~
+FLAG_CLASS_ILLUSIONIST|FLAG_CLASS_ELEMENTALIST|FLAG_CLASS_ROGUE|FLAG_CLASS_RANGER|FLAG_CLASS_NECROMANCER|FLAG_CLASS_MONK|FLAG_CLASS_ASSASSIN
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_LEVEL < 97 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+P 3
+TRIG_UNKNOWN 100 personalize
+OPROG_GOD_COMMAND
+mposet i12030 short The Long Blade of Count $~
+#12031
+bard sash~
+The Bard Sash~
+~
+It's dark, and it's a sash. You can use 'person_one' to personalize it if
+you wish.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_HUM|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK|ITEM_WEAR_ABOUT|ITEM_WEAR_WAIST
+17 0 0 0
+1 1 97
+A
+APPLY_DAMROLL 10
+A
+APPLY_HITROLL 6
+A
+APPLY_SAVING_SPELL -8
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_LEVEL < 97 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+P 3
+TRIG_UNKNOWN 100 person_one
+OPROG_GOD_COMMAND
+mposet i12031 short The Bard Sash of Count $~
+#12032
+bard crown~
+The Bardic Crown~
+~
+It's dark. Use 'person_two' to personalize it if you wish.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_HUM|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+17 0 0 0
+1 1 97
+A
+APPLY_DAMROLL 10
+A
+APPLY_HITROLL 6
+A
+APPLY_SAVING_SPELL -8
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_LEVEL < 97 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+P 3
+TRIG_UNKNOWN 100 person_two
+OPROG_GOD_COMMAND
+mposet i12032 short The Bardic Crown of Count $~
+#12033
+bardic plate~
+Bardic Plate~
+~
+It's dark. Use 'person_three' to personalize it if you wish.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_HUM|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+23 0 0 0
+1 1 97
+A
+APPLY_DAMROLL 6
+A
+APPLY_HITROLL 6
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_LEVEL < 97 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+P 3
+TRIG_UNKNOWN 100 person_three
+OPROG_GOD_COMMAND
+mposet i12033 short Bardic Plate of Count $~
+#12034
+bardic band~
+The Bardic Band~
+~
+It's dark. Use 'person_four' to personalize it if you wish.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_HUM|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER|ITEM_WEAR_WRIST
+17 0 0 0
+1 1 97
+A
+APPLY_DAMROLL 10
+A
+APPLY_HITROLL 6
+A
+APPLY_SAVING_SPELL -8
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_LEVEL < 97 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+P 3
+TRIG_UNKNOWN 100 person_four
+OPROG_GOD_COMMAND
+mposet i12034 short The Bardic Band of Count $~
+#12035
+bardic chain~
+The Bardic Chain~
+~
+It's dark. Use 'person_five' to personalize it if you wish.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_HUM|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_ARMS|ITEM_WEAR_LEGS
+17 0 0 0
+1 1 97
+A
+APPLY_DAMROLL 10
+A
+APPLY_HITROLL 6
+A
+APPLY_SAVING_SPELL -8
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_LEVEL < 97 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+P 3
+TRIG_UNKNOWN 100 person_five
+OPROG_GOD_COMMAND
+mposet i12035 short The Bardic Chain of Count $~
+#12036
+bardic light~
+The Bardic Light~
+~
+It's dark. Use 'person_six' to personalize it if you wish.~
+ITEM_TYPE_LIGHT
+ITEM_FLAG_LEVEL|ITEM_FLAG_HUM|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 -1 0
+1 1 97
+A
+APPLY_DAMROLL 10
+A
+APPLY_HITROLL 6
+A
+APPLY_SAVING_SPELL -8
+A
+APPLY_AC -10
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_LEVEL < 97 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+P 3
+TRIG_UNKNOWN 100 person_six
+OPROG_GOD_COMMAND
+mposet i12036 short The Bardic Light of Count $~
+#12037
+bardic ring~
+The Bardic Ring~
+~
+It's dark. Use 'person_seven' to personalize it if you wish.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_HUM|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_ARMS|ITEM_WEAR_FINGER
+17 0 0 0
+1 1 97
+A
+APPLY_DAMROLL 10
+A
+APPLY_HITROLL 6
+A
+APPLY_SAVING_SPELL -8
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_LEVEL < 97 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+P 3
+TRIG_UNKNOWN 100 person_seven
+OPROG_GOD_COMMAND
+mposet i12037 short The Bardic Ring of Count $~
+#12038
+bardic shield~
+The Bardic Shield~
+~
+It's dark. Use 'person_eight' to personalize it if you wish.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_HUM|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_SHIELD
+17 0 0 0
+1 1 97
+A
+APPLY_DAMROLL 10
+A
+APPLY_HITROLL 6
+A
+APPLY_SAVING_SPELL -8
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_LEVEL < 97 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+P 3
+TRIG_UNKNOWN 100 person_eight
+OPROG_GOD_COMMAND
+mposet i12038 short The Bardic Shield of Count $~
+#12039
+bardic boots~
+The Bardic Boots~
+~
+It's dark. Use 'person_nine' to personalize it if you wish.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_HUM|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_FEET
+17 0 0 0
+1 1 97
+A
+APPLY_DAMROLL 10
+A
+APPLY_HITROLL 6
+A
+APPLY_SAVING_SPELL -8
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_LEVEL < 97 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+P 3
+TRIG_UNKNOWN 100 person_nine
+OPROG_GOD_COMMAND
+mposet i12039 short The Bardic Boots of Count $~
+#12098
+favor gods presence ethereal~
+favor of the gods~
+An ethereal presence is here.~
+This aura is only bestowed to those who have
+found the favor of the gods.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL|ITEM_FLAG_MAGIC|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+18 0 0 0
+1 10000 90
+A
+APPLY_DAMROLL 8
+#12050
+staff area administrator~
+The Area Administrator's Staff~
+A staff of area administration should not be here.~
+This staff gives invis and goto to its bearer. The following
+names are engraved upon its surface:
+Presto
+Facade
+Emperor
+~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_LEVEL|ITEM_FLAG_INVENTORY|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+97 100 1
+P 1
+TRIG_UNKNOWN 100 invis
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 2 0
+P 2
+TRIG_VOID
+OPROG_GOD_ARGUMENT invis~
+P 3
+TRIG_UNKNOWN 100 goto
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 4 0
+P 4
+TRIG_VOID
+OPROG_GOD_ARGUMENT goto~
+#0
+
+
+
+
+#ROOMS
+#12000
+Center of the Dungeon of Mortal Realms~
+You stand within the center of the dungeon of Mortal Realms.  Glancing around
+you can see the cook in the room above you.  To the east is the dungeon cell
+where prisoners are locked up.  The eastern room leads to an interrogation
+room, while down in the depths below lies the dragon training area.~
+120 ROOM_INDOORS|ROOM_NOTE_BOARD SECT_INSIDE
+DDIR_NORTH
+You see Patrokles Avenue.~
+~
+0 -1 9755
+DDIR_EAST
+You see the dungeon cell.~
+~
+0 -1 12001
+DDIR_WEST
+You see the interrogation room.~
+~
+0 -1 12005
+DDIR_UP
+You see the dungeon kitchen.~
+~
+0 -1 12002
+DDIR_DOWN
+You see the dragon training area.~
+~
+0 -1 12003
+DDIR_SOUTH
+~
+~
+0 -1 9770
+S
+
+#12001
+The Dungeon Cell~
+This is the infamous Dungeon Cell.  You must have committed a serious crime
+to have been imprisoned here.  The room is quite filthy, for it serves as
+the dungeon restroom.  A few other prisoners are shackled to the walls, and
+you wish you had not commited your crime.~
+120 ROOM_NO_MOB|ROOM_INDOORS|ROOM_SAFE|ROOM_NO_RECALL SECT_INSIDE
+S
+#12002
+The Dungeon Kitchen~
+This kitchen is quite clean compared to the rest of the dungeon.~
+120 ROOM_INDOORS SECT_INSIDE
+DDIR_DOWN
+You see the center of the dungeon.~
+~
+0 -1 12000
+S
+#12003
+The Dragon Training Room~
+This is where all the dungeon masters buy themselves faithful dragons to take
+into the field with them.  Plates full of fresh meat are being served to the
+beasts which live here, as well as red hot coals of fire to fuel their firey
+breath.~
+120 ROOM_INDOORS|ROOM_PET_SHOP SECT_INSIDE
+DDIR_UP
+You see the center of the dungeon.~
+~
+0 -1 12000
+S
+#12004
+Dragon Resting Room~
+This is where the dragons await their masters.~
+120 ROOM_NO_MOB|ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+You see training room~
+~
+0 -1 12003
+S
+#12005
+The Interrogation Room~
+This room is filled with many blood-covered tools of torture are spread
+around the room.  Razor sharp knives and hatchets, as well as whips and
+flesh hooks are haphazzardly stacked in a small pile on a table.  You
+wonder if you will get out of here safely.~
+120 ROOM_INDOORS|ROOM_SAFE|ROOM_NO_RECALL SECT_INSIDE
+DDIR_NORTH
+You see Patrokles.~
+exit door~
+EX_ISDOOR|EX_CLOSED -1 9755
+S
+#0
+
+
+
+#RESETS
+O 0 12001   1 12000 ;            the noteboard    
+M 0 12000   1 12000 ;          dungeon master
+M 0 12001   1 12001 ;           Bubba in Jail                     
+M 0 12002   1 12002 ;         cook      
+G 1 12005 100       ;          wine
+G 1 12006 100       ;         drumstick
+G 1 12007 100       ;         bread
+M 0 12003   1 12003 ;  dragonmaster     
+M 0 12004   1 12004 ;          dragon 
+M 0 12010   1 12000 ;          ethmob     
+D 0 12005 DIR_NORTH DOOR_CLOSED ;door in The Interrogation Ro
+S
+
+
+
+
+#SHOPS
+12002 ITEM_TYPE_ARMOR ITEM_TYPE_WEAPON ITEM_TYPE_FOOD ITEM_TYPE_DRINK_CON
+     ITEM_TYPE_TREASURE 100  50  0 23 ; dungeon cook
+0
+
+
+
+
+#SPECIALS
+S
+
+
+
+
+#$

@@ -1,0 +1,3026 @@
+#AREA Dwarven Caravan~
+#AUTHORS Presto~
+
+
+
+
+
+#HELPS
+-1 CARAVAN~
+The Dwarven Caravan is actually a mobile area.  It's made of eleven rooms,
+which travel the roads of the central continent in a circular loop.  You
+can see this loop by putting the maps together.  The caravan costs only ten
+gold pieces to get on board.
+
+  (A) Story behind it, or
+  (B) A map of the caravan.
+
+{a}CARSTORY
+{b}CARMAP
+~
+-1 CARSTORY~
+Quite some time ago, a group of dwarves was outcast from its homeland.
+They became nomads, wandering the realm in a great caravan.  Lacking funds,
+they decided to allow passengers to ride their caravan for a price.  They
+also began selling merchandise, and it became their way of life.
+
+  (A) Map of the caravan, or
+  (B) Back.
+
+{a}CARMAP
+{b}CARAVAN
+~
+-1 CARMAP~
+The caravan looks like:    _____    _____    _____    _____    _____
+                          |     |__|     |__|     |__|     |__|     |
+  Oxen--Oxen--Oxen--Oxen--|         Armor    Foods                  |
+                          |Lobby                      Altars  Casino|
+  Oxen--Oxen--Oxen--Oxen--|      __ Wepns __ Magic __       __      |
+                          |_____|  |_____|  |_____|  |_____|  |_____|
+                             ^        ^        ^        ^        ^
+                             |        |        |        |        |
+  (A) Story               Enter/      Shop Wagons    Prayer     Play
+  (B) Back                 Exit       One and Two     Wagon   Blackjack
+
+{a}CARSTORY
+{b}CARAVAN
+~
+0 BLACKJACK~
+Blackjack, also known as "21", is a game of chance where you start with two
+cards, between ace and king.  Aces have value 1, face cards have value 10,
+and numbered cards are each worth face value.  The object of the game is to
+reach a total as close to twenty-one as possible, without exceeding twenty-
+one.  Since you start with only two cards, which will have a total between 
+two and twenty, you have the option to HIT for another card, or STAND with
+your existing hand.  If you hit, your new card is added in with your existing
+hand.  There is no limit to the number of times you can hit.  If you stand, 
+the dealer will then deal himself cards, and the person closest to twenty-one 
+without going over will win.  To begin a game, say "new deal".
+
+  (A) Specifics of the game
+
+{a}BJDETAILS~
+0 BJDETAILS~
+Costs/Money:
+To play blackjack it costs 100 gold pieces.
+If you beat the dealer, you win 200 gold pieces.
+If you beat the dealer and he has a total of 19, you receive 350 gold pieces.
+If you beat the dealer and he has a total of 20, you receive 500 gold pieces!
+
+Cards:
+You are allowed to HIT for as many cards as you want.
+The dealer is only allowed a maximum of five cards.
+
+  (-) Back
+
+{-}BLACKJACK~
+0 $~
+
+
+
+
+#RANGES 0 99 0 99
+#FLAGS AFLAG_NOTELEPORT
+#MOBILES
+#17900
+caravan master~
+The caravan master~
+A dwarven caravan master leads his caravan along the roads here.~
+The caravan is made up of an incredibly long train of wagons, and it's
+being pulled along the roads by eight oxen, commanded by the caravan
+master.  He does not look like someone you'd want to fight.~
+ACT_SENTINEL|ACT_SMART|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 0 0 1d1+9999 1d1+99
+0 RACE_DWARF
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>rand_prog 100~
+if quest(0,4,$i) != 0
+  mpmadd self quest 0 4 -1
+  break
+else
+  mpmset self quest 0 4 3
+endif
+if inroom($i) == 17008
+  mpecho The caravan rolls along.
+  mpgoto 17014
+  mpat 17900 connect 5 17014
+  mpat 17900 mpecho The caravan rolls along.
+  mpquiet on
+  mpat 17900 mposet carmap wear 1
+  mpat 17900 mppurge carmap
+  mpat 19249 mposet carmap wear 1
+  mpat 19249 mppurge carmap
+  mpat 9740 mposet carmap wear 1
+  mpat 9740 mppurge carmap
+  mpat 17900 mpoload 17923
+  mpat 19249 mpoload 17923
+  mpat 9740 mpoload 17923
+  mpquiet off
+  mpecho A dwarven caravan has arrived.
+  say Need a ride?  It costs 10 gps.
+  break
+endif
+if inroom($i) == 17014
+  mpecho The caravan rolls along.
+  mpgoto 17020
+  mpat 17900 connect 5 17020
+  mpat 17900 mpecho The caravan rolls along.
+  mpat 17900 shout Next stop: The Great Western Cross Roads.
+  mpquiet on
+  mpat 17900 mposet carmap wear 1
+  mpat 17900 mppurge carmap
+  mpat 19249 mposet carmap wear 1
+  mpat 19249 mppurge carmap
+  mpat 9740 mposet carmap wear 1
+  mpat 9740 mppurge carmap
+  mpat 17900 mpoload 17924
+  mpat 19249 mpoload 17924
+  mpat 9740 mpoload 17924
+  mpquiet off
+  mpecho A dwarven caravan has arrived.
+  say Need a ride?  It costs 10 gps.
+  break
+endif
+if inroom($i) == 17020
+  mpecho The caravan rolls along.
+  mpgoto 17026
+  mpmadd self quest 0 4 2
+  mpat 17900 connect 5 17026
+  mpat 17900 mpecho The caravan comes to a stop for a second.
+  mpquiet on
+  mpat 17900 mposet carmap wear 1
+  mpat 17900 mppurge carmap
+  mpat 19249 mposet carmap wear 1
+  mpat 19249 mppurge carmap
+  mpat 9740 mposet carmap wear 1
+  mpat 9740 mppurge carmap
+  mpat 17900 mpoload 17925
+  mpat 19249 mpoload 17925
+  mpat 9740 mpoload 17925
+  mpquiet off
+  mpecho A dwarven caravan has arrived.
+  say Need a ride?  It costs 10 gps.
+  break
+endif
+if inroom($i) == 17026
+  mpecho The caravan rolls along.
+  mpgoto 17076
+  mpat 17900 connect 5 17076
+  mpat 17900 mpecho The caravan rolls along.
+  mpquiet on
+  mpat 17900 mposet carmap wear 1
+  mpat 17900 mppurge carmap
+  mpat 19249 mposet carmap wear 1
+  mpat 19249 mppurge carmap
+  mpat 9740 mposet carmap wear 1
+  mpat 9740 mppurge carmap
+  mpat 17900 mpoload 17926
+  mpat 19249 mpoload 17926
+  mpat 9740 mpoload 17926
+  mpquiet off
+  mpecho A dwarven caravan has arrived.
+  say Need a ride?  It costs 10 gps.
+  break
+endif
+if inroom($i) == 17076
+  mpecho The caravan rolls along.
+  mpgoto 17083
+  mpat 17900 connect 5 17083
+  mpat 17900 mpecho The caravan rolls along.
+  mpquiet on
+  mpat 17900 mposet carmap wear 1
+  mpat 17900 mppurge carmap
+  mpat 19249 mposet carmap wear 1
+  mpat 19249 mppurge carmap
+  mpat 9740 mposet carmap wear 1
+  mpat 9740 mppurge carmap
+  mpat 17900 mpoload 17927
+  mpat 19249 mpoload 17927
+  mpat 9740 mpoload 17927
+  mpquiet off
+  mpecho A dwarven caravan has arrived.
+  say Need a ride?  It costs 10 gps.
+  break
+endif
+if inroom($i) == 17083
+  mpecho The caravan rolls along.
+  mpgoto 17093
+  mpat 17900 connect 5 17093
+  mpat 17900 mpecho The caravan rolls along.
+  mpquiet on
+  mpat 17900 mposet carmap wear 1
+  mpat 17900 mppurge carmap
+  mpat 19249 mposet carmap wear 1
+  mpat 19249 mppurge carmap
+  mpat 9740 mposet carmap wear 1
+  mpat 9740 mppurge carmap
+  mpat 17900 mpoload 17928
+  mpat 19249 mpoload 17928
+  mpat 9740 mpoload 17928
+  mpquiet off
+  mpecho A dwarven caravan has arrived.
+  say Need a ride?  It costs 10 gps.
+  break
+endif
+if inroom($i) == 17093
+  mpecho The caravan rolls along.
+  mpgoto 17100
+  mpat 17900 connect 5 17100
+  mpat 17900 mpecho The caravan rolls along.
+  mpat 17900 shout Next Stop: The Road to Ofcol.
+  mpquiet on
+  mpat 17900 mposet carmap wear 1
+  mpat 17900 mppurge carmap
+  mpat 19249 mposet carmap wear 1
+  mpat 19249 mppurge carmap
+  mpat 9740 mposet carmap wear 1
+  mpat 9740 mppurge carmap
+  mpat 17900 mpoload 17929
+  mpat 19249 mpoload 17929
+  mpat 9740 mpoload 17929
+  mpquiet off
+  mpecho A dwarven caravan has arrived.
+  say Need a ride?  It costs 10 gps.
+  break
+endif
+if inroom($i) == 17100
+  mpecho The caravan rolls along.
+  mpgoto 17106
+  mpmadd self quest 0 4 3
+  mpat 17900 connect 5 17106
+  mpat 17900 mpecho The caravan comes to a stop for a second.
+  mpquiet on
+  mpat 17900 mposet carmap wear 1
+  mpat 17900 mppurge carmap
+  mpat 19249 mposet carmap wear 1
+  mpat 19249 mppurge carmap
+  mpat 9740 mposet carmap wear 1
+  mpat 9740 mppurge carmap
+  mpat 17900 mpoload 17930
+  mpat 19249 mpoload 17930
+  mpat 9740 mpoload 17930
+  mpquiet off
+  mpecho A dwarven caravan has arrived.
+  say Need a ride?  It costs 10 gps.
+  break
+endif
+if inroom($i) == 17106
+  mpecho The caravan rolls along.
+  mpgoto 17138
+  mpat 17900 connect 5 17138
+  mpat 17900 mpecho The caravan rolls along.
+  mpquiet on
+  mpat 17900 mposet carmap wear 1
+  mpat 17900 mppurge carmap
+  mpat 19249 mposet carmap wear 1
+  mpat 19249 mppurge carmap
+  mpat 9740 mposet carmap wear 1
+  mpat 9740 mppurge carmap
+  mpat 17900 mpoload 17931
+  mpat 19249 mpoload 17931
+  mpat 9740 mpoload 17931
+  mpquiet off
+  mpecho A dwarven caravan has arrived.
+  say Need a ride?  It costs 10 gps.
+  break
+endif
+if inroom($i) == 17138
+  mpecho The caravan rolls along.
+  mpgoto 17145
+  mpat 17900 connect 5 17145
+  mpat 17900 mpecho The caravan rolls along.
+  mpquiet on
+  mpat 17900 mposet carmap wear 1
+  mpat 17900 mppurge carmap
+  mpat 19249 mposet carmap wear 1
+  mpat 19249 mppurge carmap
+  mpat 9740 mposet carmap wear 1
+  mpat 9740 mppurge carmap
+  mpat 17900 mpoload 17932
+  mpat 19249 mpoload 17932
+  mpat 9740 mpoload 17932
+  mpquiet off
+  mpecho A dwarven caravan has arrived.
+  say Need a ride?  It costs 10 gps.
+  break
+endif
+if inroom($i) == 17145
+  mpecho The caravan rolls along.
+  mpgoto 17154
+  mpat 17900 connect 5 17154
+  mpat 17900 mpecho The caravan rolls along.
+  mpat 17900 shout Next Stop: The Cross Roads North of Chakkor.
+  mpquiet on
+  mpat 17900 mposet carmap wear 1
+  mpat 17900 mppurge carmap
+  mpat 19249 mposet carmap wear 1
+  mpat 19249 mppurge carmap
+  mpat 9740 mposet carmap wear 1
+  mpat 9740 mppurge carmap
+  mpat 17900 mpoload 17933
+  mpat 19249 mpoload 17933
+  mpat 9740 mpoload 17933
+  mpquiet off
+  mpecho A dwarven caravan has arrived.
+  say Need a ride?  It costs 10 gps.
+  break
+endif
+if inroom($i) == 17154
+  mpecho The caravan rolls along.
+  mpgoto 17160
+  mpmadd self quest 0 4 3
+  mpat 17900 connect 5 17160
+  mpat 17900 mpecho The caravan comes to a stop for a second.
+  mpat 17900 shout Next Stop: Outside the West Gate of Chakkor.
+  mpquiet on
+  mpat 17900 mposet carmap wear 1
+  mpat 17900 mppurge carmap
+  mpat 19249 mposet carmap wear 1
+  mpat 19249 mppurge carmap
+  mpat 9740 mposet carmap wear 1
+  mpat 9740 mppurge carmap
+  mpat 17900 mpoload 17934
+  mpat 19249 mpoload 17934
+  mpat 9740 mpoload 17934
+  mpquiet off
+  mpecho A dwarven caravan has arrived.
+  say Need a ride?  It costs 10 gps.
+  break
+endif
+if inroom($i) == 17160
+  mpecho The caravan rolls along.
+  mpgoto 6000
+  mpmset self quest 0 4 8
+  mpat 17900 connect 5 6000
+  mpat 17900 mpecho The caravan comes to a stop for a second.
+  mpquiet on
+  mpat 17900 mposet carmap wear 1
+  mpat 17900 mppurge carmap
+  mpat 19249 mposet carmap wear 1
+  mpat 19249 mppurge carmap
+  mpat 9740 mposet carmap wear 1
+  mpat 9740 mppurge carmap
+  mpat 17900 mpoload 17935
+  mpat 19249 mpoload 17935
+  mpat 9740 mpoload 17935
+  mpquiet off
+  mpecho A dwarven caravan has arrived.
+  say Need a ride?  It costs 10 gps.
+  break
+endif
+if inroom($i) == 6000
+  mpecho The caravan rolls along.
+  mpgoto 6137
+  mpat 17900 connect 5 6137
+  mpat 17900 mpecho The caravan rolls along.
+  mpat 17900 shout Next Stop: The Dwarven Cross Roads.
+  mpquiet on
+  mpat 17900 mposet carmap wear 1
+  mpat 17900 mppurge carmap
+  mpat 19249 mposet carmap wear 1
+  mpat 19249 mppurge carmap
+  mpat 9740 mposet carmap wear 1
+  mpat 9740 mppurge carmap
+  mpat 17900 mpoload 17936
+  mpat 19249 mpoload 17936
+  mpat 9740 mpoload 17936
+  mpquiet off
+  mpecho A dwarven caravan has arrived.
+  say Need a ride?  It costs 10 gps.
+  break
+endif
+if inroom($i) == 6137
+  mpecho The caravan rolls along.
+  mpgoto 17409
+  mpmset self quest 0 4 12
+  mpat 17900 connect 5 17409
+  mpat 17900 mpecho The caravan comes to a stop for a few minutes.
+  mpquiet on
+  mpat 17900 mposet carmap wear 1
+  mpat 17900 mppurge carmap
+  mpat 19249 mposet carmap wear 1
+  mpat 19249 mppurge carmap
+  mpat 9740 mposet carmap wear 1
+  mpat 9740 mppurge carmap
+  mpat 17900 mpoload 17937
+  mpat 19249 mpoload 17937
+  mpat 9740 mpoload 17937
+  mpquiet off
+  mpecho A dwarven caravan has arrived.
+  say Need a ride?  It costs 10 gps.
+  break
+endif
+if inroom($i) == 17409
+  mpecho The caravan rolls along.
+  mpgoto 17396
+  mpat 17900 connect 5 17396
+  mpat 17900 mpecho The caravan rolls along.
+  mpquiet on
+  mpat 17900 mposet carmap wear 1
+  mpat 17900 mppurge carmap
+  mpat 19249 mposet carmap wear 1
+  mpat 19249 mppurge carmap
+  mpat 9740 mposet carmap wear 1
+  mpat 9740 mppurge carmap
+  mpat 17900 mpoload 17938
+  mpat 19249 mpoload 17938
+  mpat 9740 mpoload 17938
+  mpquiet off
+  mpecho A dwarven caravan has arrived.
+  say Need a ride?  It costs 10 gps.
+  break
+endif
+if inroom($i) == 17396
+  mpecho The caravan rolls along.
+  mpgoto 17390
+  mpat 17900 connect 5 17390
+  mpat 17900 mpecho The caravan rolls along.
+  mpquiet on
+  mpat 17900 mposet carmap wear 1
+  mpat 17900 mppurge carmap
+  mpat 19249 mposet carmap wear 1
+  mpat 19249 mppurge carmap
+  mpat 9740 mposet carmap wear 1
+  mpat 9740 mppurge carmap
+  mpat 17900 mpoload 17939
+  mpat 19249 mpoload 17939
+  mpat 9740 mpoload 17939
+  mpquiet off
+  mpecho A dwarven caravan has arrived.
+  say Need a ride?  It costs 10 gps.
+  break
+endif
+if inroom($i) == 17390
+  mpecho The caravan rolls along.
+  mpgoto 17382
+  mpat 17900 connect 5 17382
+  mpat 17900 mpecho The caravan rolls along.
+  mpat 17900 shout Next Stop: The Road to Entropy.
+  mpquiet on
+  mpat 17900 mposet carmap wear 1
+  mpat 17900 mppurge carmap
+  mpat 19249 mposet carmap wear 1
+  mpat 19249 mppurge carmap
+  mpat 9740 mposet carmap wear 1
+  mpat 9740 mppurge carmap
+  mpat 17900 mpoload 17940
+  mpat 19249 mpoload 17940
+  mpat 9740 mpoload 17940
+  mpquiet off
+  mpecho A dwarven caravan has arrived.
+  say Need a ride?  It costs 10 gps.
+  break
+endif
+if inroom($i) == 17382
+  mpecho The caravan rolls along.
+  mpgoto 17377
+  mpmadd self quest 0 4 3
+  mpat 17900 connect 5 17377
+  mpat 17900 mpecho The caravan comes to a stop for a second.
+  mpquiet on
+  mpat 17900 mposet carmap wear 1
+  mpat 17900 mppurge carmap
+  mpat 19249 mposet carmap wear 1
+  mpat 19249 mppurge carmap
+  mpat 9740 mposet carmap wear 1
+  mpat 9740 mppurge carmap
+  mpat 17900 mpoload 17941
+  mpat 19249 mpoload 17941
+  mpat 9740 mpoload 17941
+  mpquiet off
+  mpecho A dwarven caravan has arrived.
+  say Need a ride?  It costs 10 gps.
+  break
+endif
+if inroom($i) == 17377
+  mpecho The caravan rolls along.
+  mpgoto 17371
+  mpat 17900 connect 5 17371
+  mpat 17900 mpecho The caravan rolls along.
+  mpquiet on
+  mpat 17900 mposet carmap wear 1
+  mpat 17900 mppurge carmap
+  mpat 19249 mposet carmap wear 1
+  mpat 19249 mppurge carmap
+  mpat 9740 mposet carmap wear 1
+  mpat 9740 mppurge carmap
+  mpat 17900 mpoload 17942
+  mpat 19249 mpoload 17942
+  mpat 9740 mpoload 17942
+  mpquiet off
+  mpecho A dwarven caravan has arrived.
+  say Need a ride?  It costs 10 gps.
+  break
+endif
+if inroom($i) == 17371
+  mpecho The caravan rolls along.
+  mpgoto 17365
+  mpat 17900 connect 5 17365
+  mpat 17900 mpecho The caravan rolls along.
+  mpquiet on
+  mpat 17900 mposet carmap wear 1
+  mpat 17900 mppurge carmap
+  mpat 19249 mposet carmap wear 1
+  mpat 19249 mppurge carmap
+  mpat 9740 mposet carmap wear 1
+  mpat 9740 mppurge carmap
+  mpat 17900 mpoload 17943
+  mpat 19249 mpoload 17943
+  mpat 9740 mpoload 17943
+  mpquiet off
+  mpecho A dwarven caravan has arrived.
+  say Need a ride?  It costs 10 gps.
+  break
+endif
+if inroom($i) == 17365
+  mpecho The caravan rolls along.
+  mpgoto 17359
+  mpat 17900 connect 5 17359
+  mpat 17900 mpecho The caravan rolls along.
+  mpquiet on
+  mpat 17900 mposet carmap wear 1
+  mpat 17900 mppurge carmap
+  mpat 19249 mposet carmap wear 1
+  mpat 19249 mppurge carmap
+  mpat 9740 mposet carmap wear 1
+  mpat 9740 mppurge carmap
+  mpat 17900 mpoload 17944
+  mpat 19249 mpoload 17944
+  mpat 9740 mpoload 17944
+  mpquiet off
+  mpecho A dwarven caravan has arrived.
+  say Need a ride?  It costs 10 gps.
+  break
+endif
+if inroom($i) == 17359
+  mpecho The caravan rolls along.
+  mpgoto 17351
+  mpat 17900 connect 5 17351
+  mpat 17900 mpecho The caravan rolls along.
+  mpquiet on
+  mpat 17900 mposet carmap wear 1
+  mpat 17900 mppurge carmap
+  mpat 19249 mposet carmap wear 1
+  mpat 19249 mppurge carmap
+  mpat 9740 mposet carmap wear 1
+  mpat 9740 mppurge carmap
+  mpat 17900 mpoload 17945
+  mpat 19249 mpoload 17945
+  mpat 9740 mpoload 17945
+  mpquiet off
+  mpecho A dwarven caravan has arrived.
+  say Need a ride?  It costs 10 gps.
+  break
+endif
+if inroom($i) == 17351
+  mpecho The caravan rolls along.
+  mpgoto 17346
+  mpat 17900 connect 5 17346
+  mpat 17900 mpecho The caravan rolls along.
+  mpat 17900 shout Next Stop: Outside the Realm of Amber.
+  mpquiet on
+  mpat 17900 mposet carmap wear 1
+  mpat 17900 mppurge carmap
+  mpat 19249 mposet carmap wear 1
+  mpat 19249 mppurge carmap
+  mpat 9740 mposet carmap wear 1
+  mpat 9740 mppurge carmap
+  mpat 17900 mpoload 17946
+  mpat 19249 mpoload 17946
+  mpat 9740 mpoload 17946
+  mpquiet off
+  mpecho A dwarven caravan has arrived.
+  say Need a ride?  It costs 10 gps.
+  break
+endif
+if inroom($i) == 17346
+  mpecho The caravan rolls along.
+  mpgoto 17337
+  mpmadd self quest 0 4 3
+  mpat 17900 connect 5 17337
+  mpat 17900 mpecho The caravan comes to a stop for a second.
+  mpquiet on
+  mpat 17900 mposet carmap wear 1
+  mpat 17900 mppurge carmap
+  mpat 19249 mposet carmap wear 1
+  mpat 19249 mppurge carmap
+  mpat 9740 mposet carmap wear 1
+  mpat 9740 mppurge carmap
+  mpat 17900 mpoload 17947
+  mpat 19249 mpoload 17947
+  mpat 9740 mpoload 17947
+  mpquiet off
+  mpecho A dwarven caravan has arrived.
+  say Need a ride?  It costs 10 gps.
+  break
+endif
+if inroom($i) == 17337
+  mpecho The caravan rolls along.
+  mpgoto 17330
+  mpat 17900 connect 5 17330
+  mpat 17900 mpecho The caravan rolls along.
+  mpquiet on
+  mpat 17900 mposet carmap wear 1
+  mpat 17900 mppurge carmap
+  mpat 19249 mposet carmap wear 1
+  mpat 19249 mppurge carmap
+  mpat 9740 mposet carmap wear 1
+  mpat 9740 mppurge carmap
+  mpat 17900 mpoload 17948
+  mpat 19249 mpoload 17948
+  mpat 9740 mpoload 17948
+  mpquiet off
+  mpecho A dwarven caravan has arrived.
+  say Need a ride?  It costs 10 gps.
+  break
+endif
+if inroom($i) == 17330
+  mpecho The caravan rolls along.
+  mpgoto 17324
+  mpat 17900 connect 5 17324
+  mpat 17900 mpecho The caravan rolls along.
+  mpquiet on
+  mpat 17900 mposet carmap wear 1
+  mpat 17900 mppurge carmap
+  mpat 19249 mposet carmap wear 1
+  mpat 19249 mppurge carmap
+  mpat 9740 mposet carmap wear 1
+  mpat 9740 mppurge carmap
+  mpat 17900 mpoload 17949
+  mpat 19249 mpoload 17949
+  mpat 9740 mpoload 17949
+  mpquiet off
+  mpecho A dwarven caravan has arrived.
+  say Need a ride?  It costs 10 gps.
+  break
+endif
+if inroom($i) == 17324
+  mpecho The caravan rolls along.
+  mpgoto 17318
+  mpat 17900 connect 5 17318
+  mpat 17900 mpecho The caravan rolls along.
+  mpat 17900 shout Next Stop: Outside the East Gate of New Chakkor.
+  mpquiet on
+  mpat 17900 mposet carmap wear 1
+  mpat 17900 mppurge carmap
+  mpat 19249 mposet carmap wear 1
+  mpat 19249 mppurge carmap
+  mpat 9740 mposet carmap wear 1
+  mpat 9740 mppurge carmap
+  mpat 17900 mpoload 17950
+  mpat 19249 mpoload 17950
+  mpat 9740 mpoload 17950
+  mpquiet off
+  mpecho A dwarven caravan has arrived.
+  say Need a ride?  It costs 10 gps.
+  break
+endif
+if inroom($i) == 17318
+  mpecho The caravan rolls along.
+  mpgoto 17008
+  mpmadd self quest 0 4 4
+  mpat 17900 connect 5 17008
+  mpat 17900 mpecho The caravan comes to a stop for a second.
+  mpquiet on
+  mpat 17900 mposet carmap wear 1
+  mpat 17900 mppurge carmap
+  mpat 19249 mposet carmap wear 1
+  mpat 19249 mppurge carmap
+  mpat 9740 mposet carmap wear 1
+  mpat 9740 mppurge carmap
+  mpat 17900 mpoload 17922
+  mpat 19249 mpoload 17922
+  mpat 9740 mpoload 17922
+  mpquiet off
+  mpecho A dwarven caravan has arrived.
+  say Need a ride?  It costs 10 gps.
+  break
+endif
+~
+>speech_prog yes ya yeah sure ok~
+if goldamt($n) < 10
+  say You don't have enough gold.  Sorry.
+else
+  tell $n Climb on board!
+  mpmadd $n gold -10
+  mpat 17900 mpecho $n climbs aboard.
+  mptransfer $n 17900
+  mpat 17900 mpforce $n look
+  mpecho $n climbs into the passenger wagon of the caravan.
+endif
+~
+>greet_prog 100~
+tell $n Need a ride?  It costs 10 gps.
+if quest(0,4,$i) < 2
+  mpmset self quest 0 4 2
+endif
+~
+|
+#17901
+fabric weaver dwarf~
+The fabric weaver~
+The dwarven fabric weaver is here, awaiting a sale.~
+The fabric weaver is an elderly dwarf.  She's wearing some of the items she
+sells.  She doesn't act quite as old as you would guess from her looks.~
+ACT_SENTINEL|ACT_SMART|ACT_RACE
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 0 0 1d1+9999 1d1+99
+100000 RACE_DWARF
+POS_STANDING POS_STANDING SEX_FEMALE
+#17902
+weaponsmith dwarf~
+The weaponsmith~
+The weaponsmith is here, hoping you'll buy some of his wares.~
+He is a stout dwarf, with a long, dark beard, and large, blue eyes.
+His warm smile reassures you that he won't use his weapons against you.~
+ACT_SENTINEL|ACT_SMART|ACT_RACE
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 0 0 1d1+9999 1d1+99
+100000 RACE_DWARF
+POS_STANDING POS_STANDING SEX_MALE
+#17903
+baker dwarf~
+The baker~
+The baker is here, hoping you'll take part in his grand buffet.~
+The baker is a large dwarf, with an extra large stomach and appetite.
+He's got a grey beard and his stomach shakes like a bowl of jam.~
+ACT_SENTINEL|ACT_SMART|ACT_RACE
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 0 0 1d1+9999 1d1+99
+100000 RACE_DWARF
+POS_STANDING POS_STANDING SEX_MALE
+#17904
+magician dwarf~
+The magician~
+The magician is here, rearranging his stand.~
+The magician is an old, wisened dwarf with a long white beard.  He has
+very strange eyes that seem able to pierce you like knives.~
+ACT_SENTINEL|ACT_SMART|ACT_RACE
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 0 0 1d1+9999 1d1+99
+100000 RACE_DWARF
+POS_STANDING POS_STANDING SEX_MALE
+#17905
+dealer dwarf~
+The dealer~
+The dealer is here, hoping to win your gold pieces.~
+The dealer is tall for a dwarf.  That way he can see over the table and
+make sure no one is cheating.~
+ACT_SENTINEL|ACT_SMART|ACT_RACE
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 0 0 1d1+9999 1d1+99
+100000 RACE_DWARF
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+  tell $n Welcome to the Blackjack Table.
+  tell $n Type HELP BLACKJACK for instructions.
+  mpmset $n quest 0 5 0~
+>speech_prog p new deal~
+  mpmset $n quest 0 5 0
+  if goldamt($n) < 100
+    tell $n Minimum bet is 100.  You don't have that much.
+    break
+  else
+    mpmadd $n gold -100
+    mpechoat $n You bet 100 gold pieces.
+  endif
+  if rand(10)
+    mpmadd $n quest 0 5 1
+    mpechoat $n Your first card is an ACE.
+  else
+    if rand(10)
+      mpmadd $n quest 0 5 2
+      mpechoat $n Your first card is a TWO.
+    else
+      if rand(10)
+        mpmadd $n quest 0 5 3
+        mpechoat $n Your first card is a THREE.
+      else
+        if rand(10)
+          mpmadd $n quest 0 5 4
+          mpechoat $n Your first card is a FOUR.
+        else
+          if rand(10)
+            mpmadd $n quest 0 5 5
+            mpechoat $n Your first card is a FIVE.
+          else
+            if rand(10)
+              mpmadd $n quest 0 5 6
+              mpechoat $n Your first card is a SIX.
+            else
+              if rand(10)
+                mpmadd $n quest 0 5 7
+                mpechoat $n Your first card is a SEVEN.
+              else 
+                if rand(10)
+                  mpmadd $n quest 0 5 8
+                  mpechoat $n Your first card is a EIGHT.
+                else
+                  if rand(10)
+                    mpmadd $n quest 0 5 9
+                    mpechoat $n Your first card is a NINE.
+                  else
+                    if rand(10)
+                      mpmadd $n quest 0 5 10
+                      mpechoat $n Your first card is a TEN.
+                    else
+                      if rand(10)
+                        mpmadd $n quest 0 5 10
+                        mpechoat $n Your first card is a JACK.
+                      else
+                        if rand(10)
+                          mpmadd $n quest 0 5 10
+                          mpechoat $n Your first card is a QUEEN.
+                        else
+                          mpmadd $n quest 0 5 10
+                          mpechoat $n Your first card is a KING.
+                        endif
+                      endif
+                    endif
+                  endif
+                endif
+              endif
+            endif
+          endif
+        endif
+      endif
+    endif
+  endif
+  if rand(10)
+    mpmadd $n quest 0 5 1
+    mpechoat $n Your second card is an ACE.
+  else
+    if rand(10)
+      mpmadd $n quest 0 5 2
+      mpechoat $n Your second card is a TWO.
+    else
+      if rand(10)
+        mpmadd $n quest 0 5 3
+        mpechoat $n Your second card is a THREE.
+      else
+        if rand(10)
+          mpmadd $n quest 0 5 4
+          mpechoat $n Your second card is a FOUR.
+        else
+          if rand(10)
+            mpmadd $n quest 0 5 5
+            mpechoat $n Your second card is a FIVE.
+          else
+            if rand(10)
+              mpmadd $n quest 0 5 6
+              mpechoat $n Your second card is a SIX.
+            else
+              if rand(10)
+                mpmadd $n quest 0 5 7
+                mpechoat $n Your second card is a SEVEN.
+              else
+                if rand(10)
+                  mpmadd $n quest 0 5 8
+                  mpechoat $n Your second card is a EIGHT.
+                else
+                  if rand(10)
+                    mpmadd $n quest 0 5 9
+                    mpechoat $n Your second card is a NINE.
+                  else
+                    if rand(10)
+                      mpmadd $n quest 0 5 10
+                      mpechoat $n Your second card is a TEN.
+                    else
+                      if rand(10)
+                        mpmadd $n quest 0 5 10
+                        mpechoat $n Your second card is a JACK.
+                      else
+                        if rand(10)
+                          mpmadd $n quest 0 5 10
+                          mpechoat $n Your second card is a QUEEN.
+                        else
+                          mpmadd $n quest 0 5 10
+                          mpechoat $n Your second card is a KING.
+                        endif
+                      endif
+                    endif
+                  endif
+                endif
+              endif
+            endif
+          endif
+        endif
+      endif
+    endif
+  endif
+  if quest(0, 5, $n) == 2
+    mpechoat $n The total of your hand is TWO.
+  endif
+  if quest(0, 5, $n) == 3
+    mpechoat $n The total of your hand is THREE.
+  endif
+  if quest(0, 5, $n) == 4
+    mpechoat $n The total of your hand is FOUR.
+  endif
+  if quest(0, 5, $n) == 5
+    mpechoat $n The total of your hand is FIVE.
+  endif
+  if quest(0, 5, $n) == 6
+    mpechoat $n The total of your hand is SIX.
+  endif
+  if quest(0, 5, $n) == 7
+    mpechoat $n The total of your hand is SEVEN.
+  endif
+  if quest(0, 5, $n) == 8
+    mpechoat $n The total of your hand is EIGHT.
+  endif
+  if quest(0, 5, $n) == 9
+    mpechoat $n The total of your hand is NINE.
+  endif
+  if quest(0, 5, $n) == 10
+    mpechoat $n The total of your hand is TEN.
+  endif
+  if quest(0, 5, $n) == 11
+    mpechoat $n The total of your hand is ELEVEN.
+  endif
+  if quest(0, 5, $n) == 12
+    mpechoat $n The total of your hand is TWELVE.
+  endif
+  if quest(0, 5, $n) == 13
+    mpechoat $n The total of your hand is THIRTEEN.
+  endif
+  if quest(0, 5, $n) == 14
+    mpechoat $n The total of your hand is FOURTEEN.
+  endif
+  if quest(0, 5, $n) == 15
+    mpechoat $n The total of your hand is FIFTEEN.
+  endif
+  if quest(0, 5, $n) == 16
+    mpechoat $n The total of your hand is SIXTEEN.
+  endif
+  if quest(0, 5, $n) == 17
+    mpechoat $n The total of your hand is SEVENTEEN.
+  endif
+  if quest(0, 5, $n) == 18
+    mpechoat $n The total of your hand is EIGHTEEN.
+  endif
+  if quest(0, 5, $n) == 19
+    mpechoat $n The total of your hand is NINETEEN.
+  endif
+  if quest(0, 5, $n) == 20
+    mpechoat $n The total of your hand is TWENTY.
+  endif
+  tell $n Do you wish to HIT or STAND?
+~
+>speech_prog hit~
+  if quest(0, 5, $n) == 0
+    tell $n You're not in a game.  Say "new deal" instead.
+    break
+  endif
+  if quest(0, 5, $n) > 21
+    tell $n You're busted.  Say "new deal" instead.
+    break
+  endif
+  if rand(10)
+    mpmadd $n quest 0 5 1
+    tell $n You draw an ACE.
+  else
+    if rand(10)
+      mpmadd $n quest 0 5 2
+      tell $n You draw a TWO.
+    else
+      if rand(10)
+        mpmadd $n quest 0 5 3
+        tell $n You draw a THREE.
+      else
+        if rand(10)
+          mpmadd $n quest 0 5 4
+          tell $n You draw a FOUR.
+        else
+          if rand(10)
+            mpmadd $n quest 0 5 5
+            tell $n You draw a FIVE.
+          else
+            if rand(10)
+              mpmadd $n quest 0 5 6
+              tell $n You draw a SIX.
+            else
+              if rand(10)
+                mpmadd $n quest 0 5 7
+                tell $n You draw a SEVEN.
+              else 
+                if rand(10)
+                  mpmadd $n quest 0 5 8
+                  tell $n You draw a EIGHT.
+                else
+                  if rand(10)
+                    mpmadd $n quest 0 5 9
+                    tell $n You draw a NINE.
+                  else
+                    if rand(10)
+                      mpmadd $n quest 0 5 10
+                      tell $n You draw a TEN.
+                    else
+                      if rand(10)
+                        mpmadd $n quest 0 5 10
+                        tell $n You draw a JACK.
+                      else
+                        if rand(10)
+                          mpmadd $n quest 0 5 10
+                          tell $n You draw a QUEEN.
+                        else
+                          mpmadd $n quest 0 5 10
+                          tell $n You draw a KING.
+                        endif
+                      endif
+                    endif
+                  endif
+                endif
+              endif
+            endif
+          endif
+        endif
+      endif
+    endif
+  endif
+  if quest(0, 5, $n) == 3
+    mpechoat $n The total of your hand is THREE.
+  endif
+  if quest(0, 5, $n) == 4
+    mpechoat $n The total of your hand is FOUR.
+  endif
+  if quest(0, 5, $n) == 5
+    mpechoat $n The total of your hand is FIVE.
+  endif
+  if quest(0, 5, $n) == 6
+    mpechoat $n The total of your hand is SIX.
+  endif
+  if quest(0, 5, $n) == 7
+    mpechoat $n The total of your hand is SEVEN.
+  endif
+  if quest(0, 5, $n) == 8
+    mpechoat $n The total of your hand is EIGHT.
+  endif
+  if quest(0, 5, $n) == 9
+    mpechoat $n The total of your hand is NINE.
+  endif
+  if quest(0, 5, $n) == 10
+    mpechoat $n The total of your hand is TEN.
+  endif
+  if quest(0, 5, $n) == 11
+    mpechoat $n The total of your hand is ELEVEN.
+  endif
+  if quest(0, 5, $n) == 12
+    mpechoat $n The total of your hand is TWELVE.
+  endif
+  if quest(0, 5, $n) == 13
+    mpechoat $n The total of your hand is THIRTEEN.
+  endif
+  if quest(0, 5, $n) == 14
+    mpechoat $n The total of your hand is FOURTEEN.
+  endif
+  if quest(0, 5, $n) == 15
+    mpechoat $n The total of your hand is FIFTEEN.
+  endif
+  if quest(0, 5, $n) == 16
+    mpechoat $n The total of your hand is SIXTEEN.
+  endif
+  if quest(0, 5, $n) == 17
+    mpechoat $n The total of your hand is SEVENTEEN.
+  endif
+  if quest(0, 5, $n) == 18
+    mpechoat $n The total of your hand is EIGHTEEN.
+  endif
+  if quest(0, 5, $n) == 19
+    mpechoat $n The total of your hand is NINETEEN.
+  endif
+  if quest(0, 5, $n) == 20
+    mpechoat $n The total of your hand is TWENTY.
+  endif
+  if quest(0, 5, $n) == 21
+    mpechoat $n The total of your hand is TWENTY-ONE.
+  endif
+  if quest(0, 5, $n) == 22
+    mpechoat $n The total of your hand is TWENTY-TWO.
+    mpechoat $n You're busted!
+  endif
+  if quest(0, 5, $n) == 23
+    mpechoat $n The total of your hand is TWENTY-THREE.
+    mpechoat $n You're busted!
+  endif
+  if quest(0, 5, $n) == 24
+    mpechoat $n The total of your hand is TWENTY-FOUR.
+    mpechoat $n You're busted!
+  endif
+  if quest(0, 5, $n) == 25
+    mpechoat $n The total of your hand is TWENTY-FIVE.
+    mpechoat $n You're busted!
+  endif
+  if quest(0, 5, $n) == 26
+    mpechoat $n The total of your hand is TWENTY-SIX.
+    mpechoat $n You're busted!
+  endif
+  if quest(0, 5, $n) == 27
+    mpechoat $n The total of your hand is TWENTY-SEVEN.
+    mpechoat $n You're busted!
+  endif
+  if quest(0, 5, $n) == 28
+    mpechoat $n The total of your hand is TWENTY-EIGHT.
+    mpechoat $n You're busted!
+  endif
+  if quest(0, 5, $n) == 29
+    mpechoat $n The total of your hand is TWENTY-NINE.
+    mpechoat $n You're busted!
+  endif
+  if quest(0, 5, $n) == 30
+    mpechoat $n The total of your hand is THIRTY.
+    mpechoat $n You're busted!
+  endif
+~
+>speech_prog stand~
+  if quest(0, 5, $n) == 0
+    tell $n You're not in a game.  Say "new deal" instead.
+    break
+  endif
+  if quest(0, 5, $n) > 21
+    tell $n You're busted.  Say "new deal" instead.
+    break
+  endif
+  mpmset self quest 0 5 0
+  mpechoat $n The dealer takes his first two cards.
+  if rand(10)
+   mpmadd self quest 0 5 1
+  else
+    if rand(10)
+      mpmadd self quest 0 5 2
+    else
+      if rand(10)
+        mpmadd self quest 0 5 3
+      else
+        if rand(10)
+          mpmadd self quest 0 5 4
+        else
+          if rand(10)
+            mpmadd self quest 0 5 5
+          else
+            if rand(10)
+              mpmadd self quest 0 5 6
+            else
+              if rand(10)
+                mpmadd self quest 0 5 7
+              else
+                if rand(10)
+                  mpmadd self quest 0 5 8
+                else
+                  if rand(10)
+                    mpmadd self quest 0 5 9
+                  else
+                    mpmadd self quest 0 5 10
+                  endif
+                endif
+              endif
+            endif
+          endif
+        endif
+      endif
+    endif
+  endif
+  if rand(10)
+   mpmadd self quest 0 5 1
+  else
+    if rand(10)
+      mpmadd self quest 0 5 2
+    else
+      if rand(10)
+        mpmadd self quest 0 5 3
+      else
+        if rand(10)
+          mpmadd self quest 0 5 4
+        else
+          if rand(10)
+            mpmadd self quest 0 5 5
+          else
+            if rand(10)
+              mpmadd self quest 0 5 6
+            else
+              if rand(10)
+                mpmadd self quest 0 5 7
+              else
+                if rand(10)
+                  mpmadd self quest 0 5 8
+                else
+                  if rand(10)
+                    mpmadd self quest 0 5 9
+                  else
+                    mpmadd self quest 0 5 10
+                  endif
+                endif
+              endif
+            endif
+          endif
+        endif
+      endif
+    endif
+  endif
+  if quest(0, 5, self) == 2
+    mpechoat $n The dealer begins with a total of TWO.
+  endif
+  if quest(0, 5, self) == 3
+    mpechoat $n The dealer begins with a total of THREE.
+  endif
+  if quest(0, 5, self) == 4
+    mpechoat $n The dealer begins with a total of FOUR.
+  endif
+  if quest(0, 5, self) == 5
+    mpechoat $n The dealer begins with a total of FIVE.
+  endif
+  if quest(0, 5, self) == 6
+    mpechoat $n The dealer begins with a total of SIX.
+  endif
+  if quest(0, 5, self) == 7
+    mpechoat $n The dealer begins with a total of SEVEN.
+  endif
+  if quest(0, 5, self) == 8
+    mpechoat $n The dealer begins with a total of EIGHT.
+  endif
+  if quest(0, 5, self) == 9
+    mpechoat $n The dealer begins with a total of NINE.
+  endif
+  if quest(0, 5, self) == 10
+    mpechoat $n The dealer begins with a total of TEN.
+  endif
+  if quest(0, 5, self) == 11
+    mpechoat $n The dealer begins with a total of ELEVEN.
+  endif
+  if quest(0, 5, self) == 12
+    mpechoat $n The dealer begins with a total of TWELVE.
+  endif
+  if quest(0, 5, self) == 13
+    mpechoat $n The dealer begins with a total of THIRTEEN.
+  endif
+  if quest(0, 5, self) == 14
+    mpechoat $n The dealer begins with a total of FOURTEEN.
+  endif
+  if quest(0, 5, self) == 15
+    mpechoat $n The dealer begins with a total of FIFTEEN.
+  endif
+  if quest(0, 5, self) == 16
+    mpechoat $n The dealer begins with a total of SIXTEEN.
+  endif
+  if quest(0, 5, self) == 17
+    mpechoat $n The dealer begins with a total of SEVENTEEN.
+  endif
+  if quest(0, 5, self) == 18
+    mpechoat $n The dealer begins with a total of EIGHTEEN.
+    mpechoat $n The dealer stands.
+    if quest(0, 5, $n) < 18
+      mpechoat $n The dealer wins.
+    else
+      if quest(0, 5, $n) > 18
+        mpechoat $n You win 200 gold pieces!
+        mpmadd $n gold 200
+      else
+        mpechoat $n It's a draw.
+        mpmadd $n gold 100
+      endif
+    endif
+    mpmset $n quest 0 5 0
+    break
+  endif
+  if quest(0, 5, self) == 19
+    mpechoat $n The dealer begins with a total of NINETEEN.
+    mpechoat $n The dealer stands.
+    if quest(0, 5, $n) < 19
+      mpechoat $n The dealer wins.
+    else
+      if quest(0, 5, $n) > 19
+        mpechoat $n You win 350 gold pieces!
+        mpmadd $n gold 350
+      else
+        mpechoat $n It's a draw.
+        mpmadd $n gold 100
+      endif
+    endif
+    mpmset $n quest 0 5 0
+    break
+  endif
+  if quest(0, 5, self) == 20
+    mpechoat $n The dealer begins with a total of TWENTY.
+    mpechoat $n The dealer stands.
+    if quest(0, 5, $n) < 20
+      mpechoat $n The dealer wins.
+    else
+      if quest(0, 5, $n) > 20
+        mpechoat $n You win 500 gold pieces!
+        mpmadd $n gold 500
+      else
+        mpechoat $n It's a draw.
+        mpmadd $n gold 100
+      endif
+    endif
+    mpmset $n quest 0 5 0
+    break
+  endif
+  if quest(0, 5, self) < 18
+    mpechoat $n The dealer takes a card.
+    if rand(10)
+      mpmadd self quest 0 5 1
+    else
+      if rand(10)
+        mpmadd self quest 0 5 2
+      else
+        if rand(10)
+          mpmadd self quest 0 5 3
+        else
+          if rand(10)
+            mpmadd self quest 0 5 4
+          else
+            if rand(10)
+              mpmadd self quest 0 5 5
+            else
+              if rand(10)
+                mpmadd self quest 0 5 6
+              else
+                if rand(10)
+                  mpmadd self quest 0 5 7
+                else
+                  if rand(10)
+                    mpmadd self quest 0 5 8
+                  else
+                    if rand(10)
+                      mpmadd self quest 0 5 9
+                    else
+                      mpmadd self quest 0 5 10
+                    endif
+                  endif
+                endif
+              endif
+            endif
+          endif
+        endif
+      endif
+    endif
+    if quest(0, 5, self) == 3
+      mpechoat $n The dealer now has a total of THREE.
+    endif
+    if quest(0, 5, self) == 4
+      mpechoat $n The dealer now has a total of FOUR.
+    endif
+    if quest(0, 5, self) == 5
+      mpechoat $n The dealer now has a total of FIVE.
+    endif
+    if quest(0, 5, self) == 6
+      mpechoat $n The dealer now has a total of SIX.
+    endif
+    if quest(0, 5, self) == 7
+      mpechoat $n The dealer now has a total of SEVEN.
+    endif
+    if quest(0, 5, self) == 8
+      mpechoat $n The dealer now has a total of EIGHT.
+    endif
+    if quest(0, 5, self) == 9
+      mpechoat $n The dealer now has a total of NINE.
+    endif
+    if quest(0, 5, self) == 10
+      mpechoat $n The dealer now has a total of TEN.
+    endif
+    if quest(0, 5, self) == 11
+      mpechoat $n The dealer now has a total of ELEVEN.
+    endif
+    if quest(0, 5, self) == 12
+      mpechoat $n The dealer now has a total of TWELVE.
+    endif
+    if quest(0, 5, self) == 13
+      mpechoat $n The dealer now has a total of THIRTEEN.
+    endif
+    if quest(0, 5, self) == 14
+      mpechoat $n The dealer now has a total of FOURTEEN.
+    endif
+    if quest(0, 5, self) == 15
+      mpechoat $n The dealer now has a total of FIFTEEN.
+    endif
+    if quest(0, 5, self) == 16
+      mpechoat $n The dealer now has a total of SIXTEEN.
+    endif
+    if quest(0, 5, self) == 17
+      mpechoat $n The dealer now has a total of SEVENTEEN.
+    endif
+    if quest(0, 5, self) == 18
+      mpechoat $n The dealer now has a total of EIGHTEEN.
+      mpechoat $n The dealer stands.
+      if quest(0, 5, $n) < 18
+        mpechoat $n The dealer wins.
+      else
+        if quest(0, 5, $n) > 18
+          mpechoat $n You win 200 gold pieces!
+          mpmadd $n gold 200
+        else
+          mpechoat $n It's a draw.
+          mpmadd $n gold 100
+        endif
+      endif
+      mpmset $n quest 0 5 0
+      break
+    endif
+    if quest(0, 5, self) == 19
+      mpechoat $n The dealer now has a total of NINETEEN.
+      mpechoat $n The dealer stands.
+      if quest(0, 5, $n) < 19
+        mpechoat $n The dealer wins.
+      else
+        if quest(0, 5, $n) > 19
+          mpechoat $n You win 350 gold pieces!
+          mpmadd $n gold 350
+        else
+          mpechoat $n It's a draw.
+          mpmadd $n gold 100
+        endif
+      endif
+      mpmset $n quest 0 5 0
+      break
+    endif
+    if quest(0, 5, self) == 20
+      mpechoat $n The dealer now has a total of TWENTY.
+      mpechoat $n The dealer stands.
+      if quest(0, 5, $n) < 20
+        mpechoat $n The dealer wins.
+      else
+        if quest(0, 5, $n) > 20
+          mpechoat $n You win 500 gold pieces!
+          mpmadd $n gold 500
+        else
+          mpechoat $n It's a draw.
+          mpmadd $n gold 100
+        endif
+      endif
+      mpmset $n quest 0 5 0
+      break
+    endif
+    if quest(0, 5, self) == 21
+      mpechoat $n The dealer now has a total of TWENTY-ONE.
+      mpechoat $n The dealer stands.
+      if quest(0, 5, $n) < 21
+        mpechoat $n The dealer wins.
+      else
+        mpechoat $n It's a draw.
+        mpmadd $n gold 100
+      endif
+      break
+    endif
+    if quest(0, 5, self) > 21
+      mpechoat $n The dealer busts.
+      mpechoat $n You win 200 gold pieces!
+      mpmadd $n gold 200
+      mpmset $n quest 0 5 0
+      break
+    endif
+  endif
+  if quest(0, 5, self) < 18
+    mpechoat $n The dealer takes another card.
+    if rand(10)
+      mpmadd self quest 0 5 1
+    else
+      if rand(10)
+        mpmadd self quest 0 5 2
+      else
+        if rand(10)
+          mpmadd self quest 0 5 3
+        else
+          if rand(10)
+            mpmadd self quest 0 5 4
+          else
+            if rand(10)
+              mpmadd self quest 0 5 5
+            else
+              if rand(10)
+                mpmadd self quest 0 5 6
+              else
+                if rand(10)
+                  mpmadd self quest 0 5 7
+                else
+                  if rand(10)
+                    mpmadd self quest 0 5 8
+                  else
+                    if rand(10)
+                      mpmadd self quest 0 5 9
+                    else
+                      mpmadd self quest 0 5 10
+                    endif
+                  endif
+                endif
+              endif
+            endif
+          endif
+        endif
+      endif
+    endif
+    if quest(0, 5, self) == 4
+      mpechoat $n The dealer now has a total of FOUR.
+    endif
+    if quest(0, 5, self) == 5
+      mpechoat $n The dealer now has a total of FIVE.
+    endif
+    if quest(0, 5, self) == 6
+      mpechoat $n The dealer now has a total of SIX.
+    endif
+    if quest(0, 5, self) == 7
+      mpechoat $n The dealer now has a total of SEVEN.
+    endif
+    if quest(0, 5, self) == 8
+      mpechoat $n The dealer now has a total of EIGHT.
+    endif
+    if quest(0, 5, self) == 9
+      mpechoat $n The dealer now has a total of NINE.
+    endif
+    if quest(0, 5, self) == 10
+      mpechoat $n The dealer now has a total of TEN.
+    endif
+    if quest(0, 5, self) == 11
+      mpechoat $n The dealer now has a total of ELEVEN.
+    endif
+    if quest(0, 5, self) == 12
+      mpechoat $n The dealer now has a total of TWELVE.
+    endif
+    if quest(0, 5, self) == 13
+      mpechoat $n The dealer now has a total of THIRTEEN.
+    endif
+    if quest(0, 5, self) == 14
+      mpechoat $n The dealer now has a total of FOURTEEN.
+    endif
+    if quest(0, 5, self) == 15
+      mpechoat $n The dealer now has a total of FIFTEEN.
+    endif
+    if quest(0, 5, self) == 16
+      mpechoat $n The dealer now has a total of SIXTEEN.
+    endif
+    if quest(0, 5, self) == 17
+      mpechoat $n The dealer now has a total of SEVENTEEN.
+    endif
+    if quest(0, 5, self) == 18
+      mpechoat $n The dealer now has a total of EIGHTEEN.
+      mpechoat $n The dealer stands.
+      if quest(0, 5, $n) < 18
+        mpechoat $n The dealer wins.
+      else
+        if quest(0, 5, $n) > 18
+          mpechoat $n You win 200 gold pieces!
+          mpmadd $n gold 200
+        else
+          mpechoat $n It's a draw.
+          mpmadd $n gold 100
+        endif
+      endif
+      mpmset $n quest 0 5 0
+      break
+    endif
+    if quest(0, 5, self) == 19
+      mpechoat $n The dealer now has a total of NINETEEN.
+      mpechoat $n The dealer stands.
+      if quest(0, 5, $n) < 19
+        mpechoat $n The dealer wins.
+      else
+        if quest(0, 5, $n) > 19
+          mpechoat $n You win 350 gold pieces!
+          mpmadd $n gold 350
+        else
+          mpechoat $n It's a draw.
+          mpmadd $n gold 100
+        endif
+      endif
+      mpmset $n quest 0 5 0
+      break
+    endif
+    if quest(0, 5, self) == 20
+      mpechoat $n The dealer now has a total of TWENTY.
+      mpechoat $n The dealer stands.
+      if quest(0, 5, $n) < 20
+        mpechoat $n The dealer wins.
+      else
+        if quest(0, 5, $n) > 20
+          mpechoat $n You win 500 gold pieces!
+          mpmadd $n gold 500
+        else
+          mpechoat $n It's a draw.
+          mpmadd $n gold 100
+        endif
+      endif
+      mpmset $n quest 0 5 0
+      break
+    endif
+    if quest(0, 5, self) == 21
+      mpechoat $n The dealer now has a total of TWENTY-ONE.
+      mpechoat $n The dealer stands.
+      if quest(0, 5, $n) < 21
+        mpechoat $n The dealer wins.
+      else
+        mpechoat $n It's a draw.
+        mpmadd $n gold 100
+      endif
+      mpmset $n quest 0 5 0
+      break
+    endif
+    if quest(0, 5, self) > 21
+      mpechoat $n The dealer busts.
+      mpechoat $n You win 200 gold pieces!
+      mpmadd $n gold 200
+      break
+    endif
+  endif
+  if quest(0, 5, self) < 18
+    mpechoat $n The dealer takes his fifth, and final, card.
+    if rand(10)
+      mpmadd self quest 0 5 1
+    else
+      if rand(10)
+        mpmadd self quest 0 5 2
+      else
+        if rand(10)
+          mpmadd self quest 0 5 3
+        else
+          if rand(10)
+            mpmadd self quest 0 5 4
+          else
+            if rand(10)
+              mpmadd self quest 0 5 5
+            else
+              if rand(10)
+                mpmadd self quest 0 5 6
+              else
+                if rand(10)
+                  mpmadd self quest 0 5 7
+                else
+                  if rand(10)
+                    mpmadd self quest 0 5 8
+                  else
+                    if rand(10)
+                      mpmadd self quest 0 5 9
+                    else
+                      mpmadd self quest 0 5 10
+                    endif
+                  endif
+                endif
+              endif
+            endif
+          endif
+        endif
+      endif
+    endif
+    if quest(0, 5, self) == 5
+      mpechoat $n The dealer ends with a total of FIVE.
+      if quest(0, 5, $n) < 5
+        mpechoat $n The dealer wins.
+      else
+        if quest(0, 5, $n) > 5
+          mpechoat $n You win 200 gold pieces!
+          mpmadd $n gold 200
+        else
+          mpechoat $n It's a draw.
+          mpmadd $n gold 100
+        endif
+      endif
+    endif
+    if quest(0, 5, self) == 6
+      mpechoat $n The dealer ends with a total of SIX.
+      if quest(0, 5, $n) < 6
+        mpechoat $n The dealer wins.
+      else
+        if quest(0, 5, $n) > 6
+          mpechoat $n You win 200 gold pieces!
+          mpmadd $n gold 200
+        else
+          mpechoat $n It's a draw.
+          mpmadd $n gold 100
+        endif
+      endif
+    endif
+    if quest(0, 5, self) == 7
+      mpechoat $n The dealer ends with a total of SEVEN.
+      if quest(0, 5, $n) < 7
+        mpechoat $n The dealer wins.
+      else
+        if quest(0, 5, $n) > 7
+          mpechoat $n You win 200 gold pieces!
+          mpmadd $n gold 200
+        else
+          mpechoat $n It's a draw.
+          mpmadd $n gold 100
+        endif
+      endif
+    endif
+    if quest(0, 5, self) == 8
+      mpechoat $n The dealer ends with a total of EIGHT.
+      if quest(0, 5, $n) < 8
+        mpechoat $n The dealer wins.
+      else
+        if quest(0, 5, $n) > 8
+          mpechoat $n You win 200 gold pieces!
+          mpmadd $n gold 200
+        else
+          mpechoat $n It's a draw.
+          mpmadd $n gold 100
+        endif
+      endif
+    endif
+    if quest(0, 5, self) == 9
+      mpechoat $n The dealer ends with a total of NINE.
+      if quest(0, 5, $n) < 9
+        mpechoat $n The dealer wins.
+      else
+        if quest(0, 5, $n) > 9
+          mpechoat $n You win 200 gold pieces!
+          mpmadd $n gold 200
+        else
+          mpechoat $n It's a draw.
+          mpmadd $n gold 100
+        endif
+      endif
+    endif
+    if quest(0, 5, self) == 10
+      mpechoat $n The dealer ends with a total of TEN.
+      if quest(0, 5, $n) < 10
+        mpechoat $n The dealer wins.
+      else
+        if quest(0, 5, $n) > 10
+          mpechoat $n You win 200 gold pieces!
+          mpmadd $n gold 200
+        else
+          mpechoat $n It's a draw.
+          mpmadd $n gold 100
+        endif
+      endif
+    endif
+    if quest(0, 5, self) == 11
+      mpechoat $n The dealer ends with a total of ELEVEN.
+      if quest(0, 5, $n) < 11
+        mpechoat $n The dealer wins.
+      else
+        if quest(0, 5, $n) > 11
+          mpechoat $n You win 200 gold pieces!
+          mpmadd $n gold 200
+        else
+          mpechoat $n It's a draw.
+          mpmadd $n gold 100
+        endif
+      endif
+    endif
+    if quest(0, 5, self) == 12
+      mpechoat $n The dealer ends with a total of TWELVE.
+      if quest(0, 5, $n) < 12
+        mpechoat $n The dealer wins.
+      else
+        if quest(0, 5, $n) > 12
+          mpechoat $n You win 200 gold pieces!
+          mpmadd $n gold 200
+        else
+          mpechoat $n It's a draw.
+          mpmadd $n gold 100
+        endif
+      endif
+    endif
+    if quest(0, 5, self) == 13
+      mpechoat $n The dealer ends with a total of THIRTEEN.
+      if quest(0, 5, $n) < 13
+        mpechoat $n The dealer wins.
+      else
+        if quest(0, 5, $n) > 13
+          mpechoat $n You win 200 gold pieces!
+          mpmadd $n gold 200
+        else
+          mpechoat $n It's a draw.
+          mpmadd $n gold 100
+        endif
+      endif
+    endif
+    if quest(0, 5, self) == 14
+      mpechoat $n The dealer ends with a total of FOURTEEN.
+      if quest(0, 5, $n) < 14
+        mpechoat $n The dealer wins.
+      else
+        if quest(0, 5, $n) > 14
+          mpechoat $n You win 200 gold pieces!
+          mpmadd $n gold 200
+        else
+          mpechoat $n It's a draw.
+          mpmadd $n gold 100
+        endif
+      endif
+    endif
+    if quest(0, 5, self) == 15
+      mpechoat $n The dealer ends with a total of FIFTEEN.
+      if quest(0, 5, $n) < 15
+        mpechoat $n The dealer wins.
+      else
+        if quest(0, 5, $n) > 15
+          mpechoat $n You win 200 gold pieces!
+          mpmadd $n gold 200
+        else
+          mpechoat $n It's a draw.
+          mpmadd $n gold 100
+        endif
+      endif
+    endif
+    if quest(0, 5, self) == 16
+      mpechoat $n The dealer ends with a total of SIXTEEN.
+      if quest(0, 5, $n) < 16
+        mpechoat $n The dealer wins.
+      else
+        if quest(0, 5, $n) > 16
+          mpechoat $n You win 200 gold pieces!
+          mpmadd $n gold 200
+        else
+          mpechoat $n It's a draw.
+          mpmadd $n gold 100
+        endif
+      endif
+    endif
+    if quest(0, 5, self) == 17
+      mpechoat $n The dealer ends with a total of SEVENTEEN.
+      if quest(0, 5, $n) < 17
+        mpechoat $n The dealer wins.
+      else
+        if quest(0, 5, $n) > 17
+          mpechoat $n You win 200 gold pieces!
+          mpmadd $n gold 200
+        else
+          mpechoat $n It's a draw.
+          mpmadd $n gold 100
+        endif
+      endif
+    endif
+    if quest(0, 5, self) == 18
+      mpechoat $n The dealer ends with a total of EIGHTEEN.
+      if quest(0, 5, $n) < 18
+        mpechoat $n The dealer wins.
+      else
+        if quest(0, 5, $n) > 18
+          mpechoat $n You win 200 gold pieces!
+          mpmadd $n gold 200
+        else
+          mpechoat $n It's a draw.
+          mpmadd $n gold 100
+        endif
+      endif
+    endif
+    if quest(0, 5, self) == 19
+      mpechoat $n The dealer ends with a total of NINETEEN.
+      if quest(0, 5, $n) < 19
+        mpechoat $n The dealer wins.
+      else
+        if quest(0, 5, $n) > 19
+          mpechoat $n You win 350 gold pieces!
+          mpmadd $n gold 350
+        else
+          mpechoat $n It's a draw.
+          mpmadd $n gold 100
+        endif
+      endif
+    endif
+    if quest(0, 5, self) == 20
+      mpechoat $n The dealer ends with a total of TWENTY.
+      if quest(0, 5, $n) < 20
+        mpechoat $n The dealer wins.
+      else
+        if quest(0, 5, $n) > 20
+          mpechoat $n You win 500 gold pieces!
+          mpmadd $n gold 500
+        else
+          mpechoat $n It's a draw.
+          mpmadd $n gold 100
+        endif
+      endif
+    endif
+    if quest(0, 5, self) == 21
+      mpechoat $n The dealer ends with a total of TWENTY-ONE.
+      if quest(0, 5, $n) < 21
+        mpechoat $n The dealer wins.
+      else
+        mpechoat $n It's a draw.
+        mpmadd $n gold 100
+      endif
+    endif
+    if quest(0, 5, self) > 21
+      mpechoat $n The dealer busts.
+      mpechoat $n You win 200 gold pieces!
+      mpmadd $n gold 200
+    endif
+  endif
+  mpmset $n quest 0 5 0
+~
+|
+#0
+
+
+
+
+#OBJECTS
+#17900
+piece fabric white~
+a piece of white fabric~
+A piece of white fabric lies on the ground here.~
+This fabric was made by the dwarven caravan.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK|ITEM_WEAR_WRIST
+1 0 0 0
+2 36 1
+A
+APPLY_INT 1
+#17901
+piece fabric red~
+a piece of red fabric~
+A piece of red fabric lies on the ground here.~
+This fabric was made by the dwarven caravan.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK|ITEM_WEAR_WRIST
+1 0 0 0
+2 36 1
+A
+APPLY_DAMROLL 1
+#17902
+piece fabric blue~
+a piece of blue fabric~
+A piece of blue fabric lies on the ground here.~
+This fabric was made by the dwarven caravan.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK|ITEM_WEAR_WRIST
+1 0 0 0
+2 36 1
+A
+APPLY_STR 1
+#17903
+piece fabric green~
+a piece of green fabric~
+A piece of green fabric lies on the ground here.~
+This fabric was made by the dwarven caravan.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK|ITEM_WEAR_WRIST
+1 0 0 0
+2 36 1
+A
+APPLY_DEX 1
+#17904
+piece fabric yellow~
+a piece of yellow fabric~
+A piece of yellow fabric lies on the ground here.~
+This fabric was made by the dwarven caravan.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK|ITEM_WEAR_WRIST
+1 0 0 0
+2 36 1
+A
+APPLY_HITROLL 1
+#17905
+hammer dwarven~
+a dwarven hammer~
+A dwarven hammer lies on the ground here.~
+This hammer was made by the dwarven caravan.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 2 4 WEAPON_CRUSH
+5 50 1
+#17906
+dagger dwarven~
+a dwarven dagger~
+A dwarven dagger lies on the ground here.~
+This dagger was made by the dwarven caravan.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 2 3 WEAPON_PIERCE
+1 39 1
+#17907
+bow dwarven~
+a dwarven bow~
+A dwarven bow lies on the ground here.~
+This bow was made by the dwarven caravan.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+1 1 7 WEAPON_WHIP
+1 45 1
+#17908
+arrow dwarven~
+a dwarven arrow~
+A dwarven arrow lies on the ground here.~
+This arrow was made by the dwarven caravan.~
+ITEM_TYPE_AMMO
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+1 6 10 4
+1 7 13
+#17909
+chicken baked~
+a baked chicken~
+A baked chicken lies on the ground here.~
+This chicken was baked by the dwarven caravan.~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+20 0 0 NOT_POISONED
+1 24 1
+#17910
+steak grilled~
+a grilled steak~
+A grilled steak lies on the ground here.~
+This steak was grilled by the dwarven caravan.~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+24 0 0 NOT_POISONED
+1 32 1
+#17911
+fish breaded~
+a breaded fish~
+A breaded fish lies on the ground here.~
+This fish was breaded by the dwarven caravan.~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+12 0 0 NOT_POISONED
+1 19 1
+#17912
+lettuce head~
+a head of lettuce~
+A head of lettuce les on the ground here.~
+This head of lettuce was grown by the dwarven caravan.~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+6 0 0 NOT_POISONED
+1 3 1
+#17913
+orange~
+an orange~
+An orange lies on the ground here.~
+This orange was grown by the dwarven caravan.~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+8 0 0 NOT_POISONED
+1 5 1
+#17914
+lemon~
+a lemon~
+A lemon lies on the ground here.~
+This lemon was grown by the dwarven caravan.~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+7 0 0 NOT_POISONED
+1 6 1
+#17915
+tea glass~
+a glass of tea~
+A glass of tea lies on the ground here.~
+This glass of tea was poured by the dwarven caravan.~
+ITEM_TYPE_DRINK_CON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+3 3 LIQ_TEA NOT_POISONED
+1 2 1
+#17916
+beer mug~
+a mug of beer~
+A mug of beer lies on the ground here.~
+This mug of beer was brewed by the dwarven caravan.~
+ITEM_TYPE_DRINK_CON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+2 2 LIQ_BEER NOT_POISONED
+1 7 1
+#17917
+barrel water~
+a barrel of water~
+A barrel of water sets here.~
+This barrel is owned by the dwarven caravan.~
+ITEM_TYPE_DRINK_CON
+ITEM_FLAG_LEVEL
+0
+99 99 LIQ_WATER NOT_POISONED
+1 1 1
+#17918
+recall scroll~
+a scroll of recall~
+A scroll of recall lies on the ground here.~
+This scroll was written by the dwarven caravan.~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+7 SPELL_WORD_OF_RECALL SPELL_NONE SPELL_NONE
+1 750 6
+#17919
+staff armor~
+a staff of armor~
+A staff of armor lies on the ground here.~
+This staff was crafted by the dwarven caravan.~
+ITEM_TYPE_STAFF
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+5 3 3 SPELL_ARMOR
+4 345 4
+#17920
+potion yellow invis detect invisible~
+a yellow potion of detect invisible~
+A yellow potion of detect invisible lies on the ground here.~
+This potion was mixed by the dwarven caravan.~
+ITEM_TYPE_POTION
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+3 SPELL_DETECT_INVIS SPELL_NONE SPELL_NONE
+1 185 3
+#17921
+wand cure light wounds~
+a wand of cure light wounds~
+A wand of cure light wounds lies on the ground here.~
+This wand was forged by the dwarven caravan.~
+ITEM_TYPE_WAND
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+10 3 3 SPELL_CURE_LIGHT
+2 421 5
+#17922
+caravan map carmap~
+the dwarven route~
+A map of the route of the dwarven caravan is here.~
+The map reads:
+        *=========================================================*
+        |  KY%---|   |                    |                     | |
+        |    |   |---+-------|            |-----|            |--| |
+        |    |       |       |------------|     |---|        |    |
+        |    |                                      |-----|--+----|
+        |    |         Route of the Dwarven Caravan          |    |
+        |  |---------------|                             |---CK   |
+        |  MK              |-----|  |-------|        |---|   |    |
+        |                        |--|       |  | |---|       |--| |
+        |                           |       |--+-|              |-|
+        |  % = Current Location     |          |                  |
+        *=========================================================*~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1 0 1
+#17923
+caravan map carmap~
+the dwarven route~
+A map of the route of the dwarven caravan is here.~
+The map reads:
+        *=========================================================*
+        |  KY---%|   |                    |                     | |
+        |    |   |---+-------|            |-----|            |--| |
+        |    |       |       |------------|     |---|        |    |
+        |    |                                      |-----|--+----|
+        |    |         Route of the Dwarven Caravan          |    |
+        |  |---------------|                             |---CK   |
+        |  MK              |-----|  |-------|        |---|   |    |
+        |                        |--|       |  | |---|       |--| |
+        |                           |       |--+-|              |-|
+        |  % = Current Location     |          |                  |
+        *=========================================================*~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1 0 1
+#17924
+caravan map carmap~
+the dwarven route~
+A map of the route of the dwarven caravan is here.~
+The map reads:
+        *=========================================================*
+        |  KY----|   |                    |                     | |
+        |    |   |%--+-------|            |-----|            |--| |
+        |    |       |       |------------|     |---|        |    |
+        |    |                                      |-----|--+----|
+        |    |         Route of the Dwarven Caravan          |    |
+        |  |---------------|                             |---CK   |
+        |  MK              |-----|  |-------|        |---|   |    |
+        |                        |--|       |  | |---|       |--| |
+        |                           |       |--+-|              |-|
+        |  % = Current Location     |          |                  |
+        *=========================================================*~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1 0 1
+#17925
+caravan map carmap~
+the dwarven route~
+A map of the route of the dwarven caravan is here.~
+The map reads:
+        *=========================================================*
+        |  KY----|   |                    |                     | |
+        |    |   |---%-------|            |-----|            |--| |
+        |    |       |       |------------|     |---|        |    |
+        |    |                                      |-----|--+----|
+        |    |         Route of the Dwarven Caravan          |    |
+        |  |---------------|                             |---CK   |
+        |  MK              |-----|  |-------|        |---|   |    |
+        |                        |--|       |  | |---|       |--| |
+        |                           |       |--+-|              |-|
+        |  % = Current Location     |          |                  |
+        *=========================================================*~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1 0 1
+#17926
+caravan map carmap~
+the dwarven route~
+A map of the route of the dwarven caravan is here.~
+The map reads:
+        *=========================================================*
+        |  KY----|   |                    |                     | |
+        |    |   |---+---%---|            |-----|            |--| |
+        |    |       |       |------------|     |---|        |    |
+        |    |                                      |-----|--+----|
+        |    |         Route of the Dwarven Caravan          |    |
+        |  |---------------|                             |---CK   |
+        |  MK              |-----|  |-------|        |---|   |    |
+        |                        |--|       |  | |---|       |--| |
+        |                           |       |--+-|              |-|
+        |  % = Current Location     |          |                  |
+        *=========================================================*~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1 0 1
+#17927
+caravan map carmap~
+the dwarven route~
+A map of the route of the dwarven caravan is here.~
+The map reads:
+        *=========================================================*
+        |  KY----|   |                    |                     | |
+        |    |   |---+-------%            |-----|            |--| |
+        |    |       |       |------------|     |---|        |    |
+        |    |                                      |-----|--+----|
+        |    |         Route of the Dwarven Caravan          |    |
+        |  |---------------|                             |---CK   |
+        |  MK              |-----|  |-------|        |---|   |    |
+        |                        |--|       |  | |---|       |--| |
+        |                           |       |--+-|              |-|
+        |  % = Current Location     |          |                  |
+        *=========================================================*~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1 0 1
+#17928
+caravan map carmap~
+the dwarven route~
+A map of the route of the dwarven caravan is here.~
+The map reads:
+        *=========================================================*
+        |  KY----|   |                    |                     | |
+        |    |   |---+-------|            |-----|            |--| |
+        |    |       |       |---%--------|     |---|        |    |
+        |    |                                      |-----|--+----|
+        |    |         Route of the Dwarven Caravan          |    |
+        |  |---------------|                             |---CK   |
+        |  MK              |-----|  |-------|        |---|   |    |
+        |                        |--|       |  | |---|       |--| |
+        |                           |       |--+-|              |-|
+        |  % = Current Location     |          |                  |
+        *=========================================================*~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1 0 1
+#17929
+caravan map carmap~
+the dwarven route~
+A map of the route of the dwarven caravan is here.~
+The map reads:
+        *=========================================================*
+        |  KY----|   |                    |                     | |
+        |    |   |---+-------|            |-----|            |--| |
+        |    |       |       |--------%---|     |---|        |    |
+        |    |                                      |-----|--+----|
+        |    |         Route of the Dwarven Caravan          |    |
+        |  |---------------|                             |---CK   |
+        |  MK              |-----|  |-------|        |---|   |    |
+        |                        |--|       |  | |---|       |--| |
+        |                           |       |--+-|              |-|
+        |  % = Current Location     |          |                  |
+        *=========================================================*~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1 0 1
+#17930
+caravan map carmap~
+the dwarven route~
+A map of the route of the dwarven caravan is here.~
+The map reads:
+        *=========================================================*
+        |  KY----|   |                    |                     | |
+        |    |   |---+-------|            %-----|            |--| |
+        |    |       |       |------------|     |---|        |    |
+        |    |                                      |-----|--+----|
+        |    |         Route of the Dwarven Caravan          |    |
+        |  |---------------|                             |---CK   |
+        |  MK              |-----|  |-------|        |---|   |    |
+        |                        |--|       |  | |---|       |--| |
+        |                           |       |--+-|              |-|
+        |  % = Current Location     |          |                  |
+        *=========================================================*~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1 0 1
+#17931
+caravan map carmap~
+the dwarven route~
+A map of the route of the dwarven caravan is here.~
+The map reads:
+        *=========================================================*
+        |  KY----|   |                    |                     | |
+        |    |   |---+-------|            |-----%            |--| |
+        |    |       |       |------------|     |---|        |    |
+        |    |                                      |-----|--+----|
+        |    |         Route of the Dwarven Caravan          |    |
+        |  |---------------|                             |---CK   |
+        |  MK              |-----|  |-------|        |---|   |    |
+        |                        |--|       |  | |---|       |--| |
+        |                           |       |--+-|              |-|
+        |  % = Current Location     |          |                  |
+        *=========================================================*~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1 0 1
+#17932
+caravan map carmap~
+the dwarven route~
+A map of the route of the dwarven caravan is here.~
+The map reads:
+        *=========================================================*
+        |  KY----|   |                    |                     | |
+        |    |   |---+-------|            |-----|            |--| |
+        |    |       |       |------------|     |---%        |    |
+        |    |                                      |-----|--+----|
+        |    |         Route of the Dwarven Caravan          |    |
+        |  |---------------|                             |---CK   |
+        |  MK              |-----|  |-------|        |---|   |    |
+        |                        |--|       |  | |---|       |--| |
+        |                           |       |--+-|              |-|
+        |  % = Current Location     |          |                  |
+        *=========================================================*~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1 0 1
+#17933
+caravan map carmap~
+the dwarven route~
+A map of the route of the dwarven caravan is here.~
+The map reads:
+        *=========================================================*
+        |  KY----|   |                    |                     | |
+        |    |   |---+-------|            |-----|            |--| |
+        |    |       |       |------------|     |---|        |    |
+        |    |                                      |---%-|--+----|
+        |    |         Route of the Dwarven Caravan          |    |
+        |  |---------------|                             |---CK   |
+        |  MK              |-----|  |-------|        |---|   |    |
+        |                        |--|       |  | |---|       |--| |
+        |                           |       |--+-|              |-|
+        |  % = Current Location     |          |                  |
+        *=========================================================*~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1 0 1
+#17934
+caravan map carmap~
+the dwarven route~
+A map of the route of the dwarven caravan is here.~
+The map reads:
+        *=========================================================*
+        |  KY----|   |                    |                     | |
+        |    |   |---+-------|            |-----|            |--| |
+        |    |       |       |------------|     |---|        |    |
+        |    |                                      |-----|--%----|
+        |    |         Route of the Dwarven Caravan          |    |
+        |  |---------------|                             |---CK   |
+        |  MK              |-----|  |-------|        |---|   |    |
+        |                        |--|       |  | |---|       |--| |
+        |                           |       |--+-|              |-|
+        |  % = Current Location     |          |                  |
+        *=========================================================*~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1 0 1
+#17935
+caravan map carmap~
+the dwarven route~
+A map of the route of the dwarven caravan is here.~
+The map reads:
+        *=========================================================*
+        |  KY----|   |                    |                     | |
+        |    |   |---+-------|            |-----|            |--| |
+        |    |       |       |------------|     |---|        |    |
+        |    |                                      |-----|--+----|
+        |    |         Route of the Dwarven Caravan          |    |
+        |  |---------------|                             |--%CK   |
+        |  MK              |-----|  |-------|        |---|   |    |
+        |                        |--|       |  | |---|       |--| |
+        |                           |       |--+-|              |-|
+        |  % = Current Location     |          |                  |
+        *=========================================================*~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1 0 1
+#17936
+caravan map carmap~
+the dwarven route~
+A map of the route of the dwarven caravan is here.~
+The map reads:
+        *=========================================================*
+        |  KY----|   |                    |                     | |
+        |    |   |---+-------|            |-----|            |--| |
+        |    |       |       |------------|     |---|        |    |
+        |    |                                      |-----|--+----|
+        |    |         Route of the Dwarven Caravan          |    |
+        |  |---------------|                             |---CK   |
+        |  MK              |-----|  |-------|        |---|   |    |
+        |                        |--|       |  | |--%|       |--| |
+        |                           |       |--+-|              |-|
+        |  % = Current Location     |          |                  |
+        *=========================================================*~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1 0 1
+#17937
+caravan map carmap~
+the dwarven route~
+A map of the route of the dwarven caravan is here.~
+The map reads:
+        *=========================================================*
+        |  KY----|   |                    |                     | |
+        |    |   |---+-------|            |-----|            |--| |
+        |    |       |       |------------|     |---|        |    |
+        |    |                                      |-----|--+----|
+        |    |         Route of the Dwarven Caravan          |    |
+        |  |---------------|                             |---CK   |
+        |  MK              |-----|  |-------|        |---|   |    |
+        |                        |--|       |  | |---|       |--| |
+        |                           |       |--%-|              |-|
+        |  % = Current Location     |          |                  |
+        *=========================================================*~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1 0 1
+#17938
+caravan map carmap~
+the dwarven route~
+A map of the route of the dwarven caravan is here.~
+The map reads:
+        *=========================================================*
+        |  KY----|   |                    |                     | |
+        |    |   |---+-------|            |-----|            |--| |
+        |    |       |       |------------|     |---|        |    |
+        |    |                                      |-----|--+----|
+        |    |         Route of the Dwarven Caravan          |    |
+        |  |---------------|                             |---CK   |
+        |  MK              |-----|  |-------|        |---|   |    |
+        |                        |--|       %  | |---|       |--| |
+        |                           |       |--+-|              |-|
+        |  % = Current Location     |          |                  |
+        *=========================================================*~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1 0 1
+#17939
+caravan map carmap~
+the dwarven route~
+A map of the route of the dwarven caravan is here.~
+The map reads:
+        *=========================================================*
+        |  KY----|   |                    |                     | |
+        |    |   |---+-------|            |-----|            |--| |
+        |    |       |       |------------|     |---|        |    |
+        |    |                                      |-----|--+----|
+        |    |         Route of the Dwarven Caravan          |    |
+        |  |---------------|                             |---CK   |
+        |  MK              |-----|  |-----%-|        |---|   |    |
+        |                        |--|       |  | |---|       |--| |
+        |                           |       |--+-|              |-|
+        |  % = Current Location     |          |                  |
+        *=========================================================*~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1 0 1
+#17940
+caravan map carmap~
+the dwarven route~
+A map of the route of the dwarven caravan is here.~
+The map reads:
+        *=========================================================*
+        |  KY----|   |                    |                     | |
+        |    |   |---+-------|            |-----|            |--| |
+        |    |       |       |------------|     |---|        |    |
+        |    |                                      |-----|--+----|
+        |    |         Route of the Dwarven Caravan          |    |
+        |  |---------------|                             |---CK   |
+        |  MK              |-----|  |-%-----|        |---|   |    |
+        |                        |--|       |  | |---|       |--| |
+        |                           |       |--+-|              |-|
+        |  % = Current Location     |          |                  |
+        *=========================================================*~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1 0 1
+#17941
+caravan map carmap~
+the dwarven route~
+A map of the route of the dwarven caravan is here.~
+The map reads:
+        *=========================================================*
+        |  KY----|   |                    |                     | |
+        |    |   |---+-------|            |-----|            |--| |
+        |    |       |       |------------|     |---|        |    |
+        |    |                                      |-----|--+----|
+        |    |         Route of the Dwarven Caravan          |    |
+        |  |---------------|                             |---CK   |
+        |  MK              |-----|  |-------|        |---|   |    |
+        |                        |--%       |  | |---|       |--| |
+        |                           |       |--+-|              |-|
+        |  % = Current Location     |          |                  |
+        *=========================================================*~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1 0 1
+#17942
+caravan map carmap~
+the dwarven route~
+A map of the route of the dwarven caravan is here.~
+The map reads:
+        *=========================================================*
+        |  KY----|   |                    |                     | |
+        |    |   |---+-------|            |-----|            |--| |
+        |    |       |       |------------|     |---|        |    |
+        |    |                                      |-----|--+----|
+        |    |         Route of the Dwarven Caravan          |    |
+        |  |---------------|                             |---CK   |
+        |  MK              |-----%  |-------|        |---|   |    |
+        |                        |--|       |  | |---|       |--| |
+        |                           |       |--+-|              |-|
+        |  % = Current Location     |          |                  |
+        *=========================================================*~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1 0 1
+#17943
+caravan map carmap~
+the dwarven route~
+A map of the route of the dwarven caravan is here.~
+The map reads:
+        *=========================================================*
+        |  KY----|   |                    |                     | |
+        |    |   |---+-------|            |-----|            |--| |
+        |    |       |       |------------|     |---|        |    |
+        |    |                                      |-----|--+----|
+        |    |         Route of the Dwarven Caravan          |    |
+        |  |---------------|                             |---CK   |
+        |  MK              |%----|  |-------|        |---|   |    |
+        |                        |--|       |  | |---|       |--| |
+        |                           |       |--+-|              |-|
+        |  % = Current Location     |          |                  |
+        *=========================================================*~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1 0 1
+#17944
+caravan map carmap~
+the dwarven route~
+A map of the route of the dwarven caravan is here.~
+The map reads:
+        *=========================================================*
+        |  KY----|   |                    |                     | |
+        |    |   |---+-------|            |-----|            |--| |
+        |    |       |       |------------|     |---|        |    |
+        |    |                                      |-----|--+----|
+        |    |         Route of the Dwarven Caravan          |    |
+        |  |-------------%-|                             |---CK   |
+        |  MK              |-----|  |-------|        |---|   |    |
+        |                        |--|       |  | |---|       |--| |
+        |                           |       |--+-|              |-|
+        |  % = Current Location     |          |                  |
+        *=========================================================*~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1 0 1
+#17945
+caravan map carmap~
+the dwarven route~
+A map of the route of the dwarven caravan is here.~
+The map reads:
+        *=========================================================*
+        |  KY----|   |                    |                     | |
+        |    |   |---+-------|            |-----|            |--| |
+        |    |       |       |------------|     |---|        |    |
+        |    |                                      |-----|--+----|
+        |    |         Route of the Dwarven Caravan          |    |
+        |  |---------%-----|                             |---CK   |
+        |  MK              |-----|  |-------|        |---|   |    |
+        |                        |--|       |  | |---|       |--| |
+        |                           |       |--+-|              |-|
+        |  % = Current Location     |          |                  |
+        *=========================================================*~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1 0 1
+#17946
+caravan map carmap~
+the dwarven route~
+A map of the route of the dwarven caravan is here.~
+The map reads:
+        *=========================================================*
+        |  KY----|   |                    |                     | |
+        |    |   |---+-------|            |-----|            |--| |
+        |    |       |       |------------|     |---|        |    |
+        |    |                                      |-----|--+----|
+        |    |         Route of the Dwarven Caravan          |    |
+        |  |-----%---------|                             |---CK   |
+        |  MK              |-----|  |-------|        |---|   |    |
+        |                        |--|       |  | |---|       |--| |
+        |                           |       |--+-|              |-|
+        |  % = Current Location     |          |                  |
+        *=========================================================*~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1 0 1
+#17947
+caravan map carmap~
+the dwarven route~
+A map of the route of the dwarven caravan is here.~
+The map reads:
+        *=========================================================*
+        |  KY----|   |                    |                     | |
+        |    |   |---+-------|            |-----|            |--| |
+        |    |       |       |------------|     |---|        |    |
+        |    |                                      |-----|--+----|
+        |    |         Route of the Dwarven Caravan          |    |
+        |  |-%-------------|                             |---CK   |
+        |  MK              |-----|  |-------|        |---|   |    |
+        |                        |--|       |  | |---|       |--| |
+        |                           |       |--+-|              |-|
+        |  % = Current Location     |          |                  |
+        *=========================================================*~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1 0 1
+#17948
+caravan map carmap~
+the dwarven route~
+A map of the route of the dwarven caravan is here.~
+The map reads:
+        *=========================================================*
+        |  KY----|   |                    |                     | |
+        |    |   |---+-------|            |-----|            |--| |
+        |    |       |       |------------|     |---|        |    |
+        |    |                                      |-----|--+----|
+        |    %         Route of the Dwarven Caravan          |    |
+        |  |---------------|                             |---CK   |
+        |  MK              |-----|  |-------|        |---|   |    |
+        |                        |--|       |  | |---|       |--| |
+        |                           |       |--+-|              |-|
+        |  % = Current Location     |          |                  |
+        *=========================================================*~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1 0 1
+#17949
+caravan map carmap~
+the dwarven route~
+A map of the route of the dwarven caravan is here.~
+The map reads:
+        *=========================================================*
+        |  KY----|   |                    |                     | |
+        |    |   |---+-------|            |-----|            |--| |
+        |    |       |       |------------|     |---|        |    |
+        |    %                                      |-----|--+----|
+        |    |         Route of the Dwarven Caravan          |    |
+        |  |---------------|                             |---CK   |
+        |  MK              |-----|  |-------|        |---|   |    |
+        |                        |--|       |  | |---|       |--| |
+        |                           |       |--+-|              |-|
+        |  % = Current Location     |          |                  |
+        *=========================================================*~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1 0 1
+#17950
+caravan map carmap~
+the dwarven route~
+A map of the route of the dwarven caravan is here.~
+The map reads:
+        *=========================================================*
+        |  KY----|   |                    |                     | |
+        |    %   |---+-------|            |-----|            |--| |
+        |    |       |       |------------|     |---|        |    |
+        |    |                                      |-----|--+----|
+        |    |         Route of the Dwarven Caravan          |    |
+        |  |---------------|                             |---CK   |
+        |  MK              |-----|  |-------|        |---|   |    |
+        |                        |--|       |  | |---|       |--| |
+        |                           |       |--+-|              |-|
+        |  % = Current Location     |          |                  |
+        *=========================================================*~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+1 0 1
+#0
+
+
+
+
+#ROOMS
+#17900
+The Passenger Lobby~
+You're in a fairly large lobby.  The sides of this wagon are lined with
+windows which provide an excellent view of the land as you roll along.
+South of you are some shop wagons with eager dwarves awaiting sales.
+The caravan exit is down, where you see the roads of the realm awaiting.~
+179 ROOM_INDOORS|ROOM_SAFE SECT_INSIDE
+DDIR_SOUTH
+You see some shop wagons.~
+~
+0 -1 17901
+DDIR_DOWN
+~
+~
+0 -1 17324
+S
+#17901
+The First Shop Wagon~
+You're in the first shop wagon.  To the east is an elderly dwarf woman with
+some fine fabrics she uses to make clothing and armor.  To the west is a
+hefty dwarf with some powerful hammers and sharp daggers that could be used
+as good weapons.  There are more wagons to the south.~
+179 ROOM_INDOORS|ROOM_SAFE SECT_INSIDE
+DDIR_NORTH
+You see the main passenger lobby.~
+~
+0 -1 17900
+DDIR_EAST
+You see an elderly dwarf selling fabrics.~
+~
+0 -1 17902
+DDIR_SOUTH
+You see the second shop wagon.~
+~
+0 -1 17904
+DDIR_WEST
+You see a hefty dwarf selling weapons.~
+~
+0 -1 17903
+S
+#17902
+The Fabric Stand~
+There's a lot of colored fabrics here, and each one seems to have its own
+special aura surrounding it.  The colors are incredible, and they feel like
+they're made of satin.  To the west you see a weapons stand.~
+179 ROOM_INDOORS|ROOM_SAFE SECT_INSIDE
+DDIR_WEST
+You see the weapons stand.~
+~
+0 -1 17901
+S
+#17903
+The Weapons Stand~
+Here you see a lot of different weapons.  There's hammers, daggers, spears,
+and other weapons made with the finest in dwarven craftsmanship.  To the
+east you see the fabric stand.~
+179 ROOM_INDOORS|ROOM_SAFE SECT_INSIDE
+DDIR_EAST
+You see the fabric stand.~
+~
+0 -1 17901
+S
+#17904
+The Second Shop Wagon~
+Here you smell something incredibly delicious, and looking to the east you
+can see it.  Before you sets a grand buffet of fruits, vegetables, cooked
+meats, and a great selection of beverages to choose from.  To the west is
+an ancient dwarf with a long white beard selling magic items.  To the north
+you can see the first wagon with its fabric and weapons shops, and to the
+south is another wagon with a couple of altars.~
+179 ROOM_INDOORS|ROOM_SAFE SECT_INSIDE
+DDIR_NORTH
+You see the first shop wagon.~
+~
+0 -1 17901
+DDIR_EAST
+You see the foods and beverages buffet.~
+~
+0 -1 17905
+DDIR_SOUTH
+You see the prayer wagon.~
+~
+0 -1 17907
+DDIR_WEST
+You see a magic stand.~
+~
+0 -1 17906
+S
+#17905
+The Grand Buffet~
+Here you can see and smell the best foods and beverages the dwarves have
+to offer.  There's all sorts of treats and delicasies to choose from.
+To the west you can see a magic stand.~
+179 ROOM_INDOORS|ROOM_SAFE SECT_INSIDE
+DDIR_WEST
+You see a magic stand.~
+~
+0 -1 17904
+S
+#17906
+The Magic Stand~
+Here you can find scrolls, staves, potions, wands, and other magical items.
+The stand is kind of drab except for the incredible craftsmanship that
+went into carving the letter "D" into the wall behind the stand.  To the
+east you can see the food buffet.~
+179 ROOM_INDOORS|ROOM_SAFE SECT_INSIDE
+DDIR_EAST
+You see the food buffet.~
+~
+0 -1 17904
+S
+#17907
+The Prayer Wagon~
+Here you find yourself in a comfortable wagon, with a bunch of comfortable
+chairs set up.  To the east you see a large, white altar, with an "O" 
+carved into its face.  To the west is a dark, obsidian altar, with a
+hastily carved "C" in its face.  To the south is a door marked: Gamblers
+Only!  To the north you can see the shop wagons of the caravan.~
+179 ROOM_INDOORS|ROOM_SAFE|ROOM_ALTAR_C|ROOM_ALTAR_O SECT_INSIDE
+DDIR_NORTH
+You see the shop wagons.~
+~
+0 -1 17904
+DDIR_EAST
+You see an altar dedicated to Order.~
+~
+0 -1 17908
+DDIR_SOUTH
+You see a door marked: Gamblers Only!~
+door~
+EX_ISDOOR|EX_CLOSED -1 17910
+DDIR_WEST
+You see an altar dedicated to Chaos.~
+~
+0 -1 17909
+S
+#17908
+Order's Altar~
+You find yourself standing before Order's Altar.  It's beautifully carved,
+all in white, and there's a large "O" on the face of the altar.  The "O"
+seems to be carved in a perfect circle, without any flaws.  To the west
+is the common room of the prayer wagon.~
+179 ROOM_INDOORS|ROOM_SAFE|ROOM_ALTAR_O SECT_INSIDE
+DDIR_WEST
+You see the common room of the prayer wagon.~
+~
+0 -1 17907
+S
+#17909
+Chaos' Altar~
+Before you sets Chaos' Altar, carved totally in black, with several flaws
+in the carving, but they must be intentional.  The "C" carved into the altar
+looks more like a "U" turned on it's side.  To the east you can see the
+common room of the prayer wagon.~
+179 ROOM_INDOORS|ROOM_SAFE|ROOM_ALTAR_C SECT_INSIDE
+DDIR_EAST
+You see the common room of the prayer wagon.~
+~
+0 -1 17907
+S
+#17910
+The Dwarven Blackjack Table~
+This wagon is for gamblers only.  Here you can wager and play cards, and
+possibly win some gold.  The table is pretty large, to accomodate large
+numbers of players.  To the north is the prayer wagon.~
+179 ROOM_INDOORS|ROOM_SAFE SECT_INSIDE
+DDIR_NORTH
+You see the prayer wagon.~
+door~
+EX_ISDOOR|EX_CLOSED -1 17907
+S
+#0
+
+
+
+
+#RESETS
+D 0 17907 DIR_SOUTH DOOR_CLOSED ;door in The Prayer Wagon         
+D 0 17910 DIR_NORTH DOOR_CLOSED ;door in The Dwarven Healing Chamb
+M 0 17900   1 17008 ;       The caravan master in A T-Junction in the Great
+M 0 17901   1 17902 ;        The fabric weaver in The Fabric Stand         
+G 1 17900 100       ;  a piece of white fabric
+G 1 17901 100       ;    a piece of red fabric
+G 1 17902 100       ;   a piece of blue fabric
+G 1 17903 100       ;  a piece of green fabric
+G 1 17904 100       ; a piece of yellow fabric
+M 0 17902   1 17903 ;          The weaponsmith in The Weapons Stand        
+G 1 17905 100       ;         a dwarven hammer
+G 1 17906 100       ;         a dwarven dagger
+G 1 17907 100       ;            a dwarven bow
+G 1 17908 100       ;          a dwarven arrow
+M 0 17903   1 17905 ;                The baker in The Grand Buffet         
+G 1 17909 100       ;          a baked chicken
+G 1 17910 100       ;          a grilled steak
+G 1 17911 100       ;           a breaded fish
+G 1 17912 100       ;        a head of lettuce
+G 1 17913 100       ;                an orange
+G 1 17914 100       ;                  a lemon
+G 1 17915 100       ;           a glass of tea
+G 1 17916 100       ;            a mug of beer
+O 0 17917   1 17905 ;        a barrel of water in The Grand Buffet         
+M 0 17904   1 17906 ;             The magician in The Magic Stand          
+G 1 17918 100       ;       a scroll of recall
+G 1 17919 100       ;         a staff of armor
+G 1 17920 100       ;a yellow potion of detect
+G 1 17921 100       ;a wand of cure light woun
+M 0 17905   1 17910 ;               The dealer
+S
+
+
+
+
+#SHOPS
+17900 ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100   0  0 23 ;The caravan master
+17901 ITEM_TYPE_ARMOR ITEM_TYPE_LIGHT ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  50  0 23 ;The fabric weaver
+17902 ITEM_TYPE_WEAPON ITEM_TYPE_AMMO ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  50  0 23 ;The weaponsmith
+17903 ITEM_TYPE_FOOD ITEM_TYPE_DRINK_CON ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  50  0 23 ;The baker
+17904 ITEM_TYPE_SCROLL ITEM_TYPE_STAFF ITEM_TYPE_WAND ITEM_TYPE_POTION
+     ITEM_TYPE_TREASURE 100  50  0 23 ;The magician
+0
+
+
+
+
+#SPECIALS
+S
+
+
+
+
+#$

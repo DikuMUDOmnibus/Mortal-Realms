@@ -1,0 +1,2508 @@
+#AREA Tower of Training~
+#AUTHORS Desmond~
+
+
+
+
+
+#HELPS
+-1 TOWER TRAINING NEWBIE~
+{734}Welcome to Mortal Realms{300}
+
+   {120}The Tower of Training is the place where new adventurers would{300}
+{120}kill their first mob,  or get killed for the very first time by a{300}
+{120}mob.  The first tip that you will get from this help file is:  do{300}
+{120}not rush into leveling,  take your time and read the  help files.{300}
+{120}Read all the room description carefully,  and  learn  to use  the{300}
+{120}help command. If you are still confuse, ask people for help,  but{300}
+{120}try to find  things  out  for yourself before  you ask others for{300}
+{120}help.                                                            {300}
+
+{717}HELP{120} is the most powerful command in this MUD. Use it! :>{300}
+
+~
+0 $~
+
+
+
+
+#RANGES 1 5 1 10
+#FLAGS AFLAG_NODEBUG|AFLAG_FREEQUIT
+#MOBILES
+#3700
+avatar recruiter fasttalker~
+the Recruiter of Order~
+An Avatar of Order is here attempting to persuade you to follow Order.~
+The recruiter is a friendly looking man with blond hair and blue eyes. His 
+vestments are pure white and crisply cut. The Avatar radiates an aura of pure 
+power and is very persuasive.~
+ACT_SENTINEL|ACT_STAY_AREA
+AFF_DETECT_INVIS
+1000 S
+50 0 0 1d1+3026 2d4+100
+0 269671
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 99~
+mpecho The Recruiter of Order says 'Welcome! Make yourself comfortable. I'm here to
+mpecho TELL you about what Order stands for and what Order can do for you.'
+~
+>speech_prog tell~
+mpecho The Recruiter of Order says 'Ah! But there's so much to say! I can tell you 
+mpecho about the PHILOSOPHY of Order or fill you in on the BENEFITS of joining.'
+~
+>speech_prog philosophy~
+mpecho The Recruiter of Order says 'Order is the embodiment of stability and reason.
+mpecho Without Order there would be nothing to guide society to an improved state.
+mpecho Also, it is Order who upholds justice and law. If we didn't have these things
+mpecho we would be no better than the animals.'
+~
+>speech_prog benefits~
+mpecho The Recruiter of Order says 'I just know you are going to be excited about 
+mpecho this. When you JOIN Order, you are granted instant communication to all 
+mpecho other followers. You receive a white gold chain that is priceless just in 
+mpecho protective value alone! Plus you receive the ability to destroy Chaos 
+mpecho followers in order to protect our fair land from their corruption.
+~
+>speech_prog join~
+mpecho The Recruiter of Order says 'I'm so glad you asked me how! Order has a tower
+mpecho on this plane that houses the Test of Reason. If you manage to pass the test,
+mpecho you will automatically be inducted into our ranks!
+~
+>speech_prog thanks~
+smile 
+mpecho The Recruiter of Order says 'Don't thank me now! I look forward to seeing you
+mpecho at one of our annual Order meetings!'
+~
+>speech_prog p the other recruiter set the grey lord free~
+mpecho The Recruiter of Order says 'WHAT?'
+mpecho The Recruiter of Order utters the words, 'glmpesd'.
+if quest(0,3,$n) == 2
+  gasp 
+  mpecho The Recruiter of Order says 'Thank you for the information. You can watch me
+  mpecho slay the traitor if you like.'
+  mpmset $n quest 0 3 3
+  mptransfer sleezebag
+  mpecho The Recruiter of Order shouts 'Traitor of Chaos! You broke the pact!'
+  mpkill sleezebag
+else
+  mpecho The Recruiter of Order laughs nervously.
+  mpecho The Recruiter of Order says 'You must have been misinformed. You better go 
+  mpecho practice some more.'
+endif
+~
+>speech_prog defective~
+mpecho The Recruiter of Order says 'The token is defective? Give it to me and if
+mpecho it is then I'll replace it for you.'
+~
+>give_prog I3715~
+mpecho The Recruiter of Order says 'Your right. Here's a new token. Sorry.'
+mpjunk I3715
+mpoload 3722
+give I3722 $n
+~
+>death_prog 99~
+mpecho The Recruiter of Order says 'Lord Order will punish you for this!'
+groan 
+mpecho The Recruiter of Chaos utters the words, 'agem pzar'.
+restore sleezebag
+mpecho The Recruiter of Chaos's wounds disappear.
+mpforce sleezebag grin
+mpecho The Recruiter of Chaos says 'Let that be a lesson to you, traitor.'
+~
+|
+#3701
+gargoyle~
+the gargoyle~
+The Gargoyle is here looking for revenge against his captors.~
+He is big with skin the consitency of bark and sharp, bloody talons.  You 
+don't want to fight him when he isn't locked up in a force cage. Perhaps 
+now would be a good time to flee from him!!!  If you don't flee, you would 
+really suffer the consequences.~
+ACT_SENTINEL|ACT_STAY_AREA
+AFF_DETECT_INVIS
+0 S
+5 0 0 1d1+50 1d1+7
+0 631
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#3702
+drakeling~
+the gold drakeling~
+There is a gold drakeling wizzing around the room.~
+The drakeling is a small flying lizard with scales made out of gold! It
+looks pretty fast, and maybe a little dangerous. It has some items around its
+long neck that look like they would fit you. The scales that cover its body
+look almost like gold coins.~
+ACT_SENTINEL
+0
+100 S
+1 0 0 1d1+15 1d1+3
+24 10
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>fight_prog 15~
+mpecho The gold drakeling inhales deeply...
+mpecho and a flame that makes a lighter look large darts out of its mouth!
+mpecho You should flee from the devastating heat of the flame!
+~
+|
+#3703
+pixie~
+the forest pixie~
+There is a small pixie moping about in the corner of the room.~
+The pixie is a tiny man with butterfly wings growing out of his back. He
+wears normal looking clothes and is carrying a tiny rapier. He doesn't look
+like much of a threat to you, but he is guarding some equipment that you
+could use.~
+ACT_SENTINEL|ACT_WIMPY
+0
+250 S
+1 0 0 1d1+10 1d1+2
+10 10
+POS_STANDING POS_STANDING SEX_MALE
+#3704
+worm~
+the demonic worm~
+There is a worm from the plane of Avernus slithering right toward you!~
+The hellspawned worm is about three feet long and about a foot thick. As it
+squirms around it spreads a disgusting black mucus along the floor. It's 
+mouth opens wide as it jumps at you, but you still notice some important
+pieces of equipment mired in its slimy body.~
+ACT_SENTINEL|ACT_AGGRESSIVE
+0
+-250 S
+1 0 0 1d1+10 1d1+2
+10 10
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#3705
+kobold~
+the crater kobold~
+There is a small gnarled kobold here that stares at you intensely.~
+The kobold is a small humanoid with grey skin and unusually large pointed
+ears. It wears slovenly clothing and rubs its hands together as if warming
+them. The kobold is muttering at you and you hesitate to sleep in this cage.~
+ACT_SENTINEL|ACT_AGGRESSIVE|ACT_WIMPY
+0
+-100 S
+1 0 0 1d1+10 1d1+2
+10 10
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#3706
+warrior~
+The brawny warrior~
+There is a brawny human warrior here staring at you contemptuously.~
+This man is bulging with muscles and looks like a powerful opponent. He
+wears several pieces of the same type of spirit armor as you do. He stands
+with his arms crossed as he waits for you to cross the line.~
+ACT_SENTINEL
+AFF_INFRARED
+0 S
+2 0 0 2d2+20 1d4+1
+20 152
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 20~
+grin 
+mpecho $I says 'I dare you to cross this line, wuss.'
+mpecho $I lobs a huge glob of spit at your boots.
+~
+|
+#3707
+avatar~
+the avatar of Chaos~
+An Avatar of Chaos is here, eagerly helping you to slaughter 
+monsters.~
+She is a slightly crazed looking woman with dark hair and green eyes. Her 
+vestments are of the deepest black and cut in a haphazard manner. The Avatar 
+radiates an aura of pure power and seems eager to provide you with spells
+which protect and heal you.~
+ACT_SENTINEL|ACT_STAY_AREA
+AFF_DETECT_INVIS|AFF_SANCTUARY
+1000 S
+50 0 0 1d1+2914 2d4+30
+0 269671
+POS_STANDING POS_STANDING SEX_FEMALE
+>rand_prog 5~
+mpecho The Avatar of Chaos asks 'Are you having fun yet?'
+cackle 
+~
+|
+#3709
+rabbit~
+the rabbit~
+A rabbit is bouncing around here.~
+The rabbit smiles at you, completely harmless!~
+ACT_STAY_AREA|ACT_WIMPY
+0
+100 S
+1 0 0 1d1+10 1d1+2
+0 10
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#3710
+minion~
+the minion~
+A minion of the Grey Lord is here looking at you fearfully.~
+The minion is really quite indescribable. He seems to be humanoid and
+about one half of your height, but all of its distinguishing features 
+flicker and change as if it isn't quite able to decide what form to take.
+He looks weak.~
+ACT_STAY_AREA
+0
+-100 S
+2 0 0 2d2+20 1d4+1
+10 152
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#3711
+minion~
+the minion~
+A minion of the Grey Lord is here trying to escape from confinement.~
+The minion is really quite indescribable. He seems to be humanoid and
+about three quarters of your height, but all of its distinguishing features 
+flicker and change as if it isn't quite able to decide what form to take.
+He looks like a tough fight.~
+ACT_STAY_AREA
+0
+0 S
+3 0 0 3d3+30 1d6+1
+10 300
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#3712
+minion~
+the minion~
+A minion of the Grey Lord is here trying to run away from you.~
+The minion is really quite indescribable. He seems to be humanoid and
+about one quarter of your height, but all of its distinguishing features 
+flicker and change as if it isn't quite able to decide what form to take.
+He looks pretty weak.~
+ACT_STAY_AREA|ACT_WIMPY
+0
+100 S
+1 0 0 1d1+10 1d1+2
+5 10
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#3713
+snail~
+the snail~
+A snail is trying to get out of your way.~
+You don't see much but slime about it.~
+ACT_STAY_AREA
+0
+0 S
+1 0 0 1d1+6 1d1+3
+1 10
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#3714
+chief minion~
+the chief minion~
+The chief minion of the Grey Lord is here eyeing you cunningly.~
+The minion is really quite indescribable. He seems to be humanoid and
+about one and a half times your height, but all of its distinguishing 
+features flicker and change as if it isn't quite able to decide what form 
+to take. You see the light of intelligence in its eyes.~
+ACT_STAY_AREA|ACT_SMART
+0
+0 S
+5 0 0 5d5+55 1d6+3
+50 631
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>greet_prog 99~
+mpecho The chief minion says 'Greetings $n.'
+~
+>fight_prog 99~
+mpecho The chief minion shouts 'Wait! Don't kill me!'
+~
+>rand_prog 20~
+mpecho The chief minion says 'You must ask me about the GREY LORD.'
+~
+>speech_prog p grey lord~
+mpecho The chief minion says 'The Grey Lord was the God of Neutrality. He made sure
+mpecho the balance between Order and Chaos was kept. But Order and Chaos didn't want
+mpecho perfect balance. So they join together to strip him of his power and locked
+mpecho him up somewhere in this TOWER. They torture him even now.'
+~
+>speech_prog tower~
+mpecho The chief minion says 'I don't know exactly where to find him. But I was able 
+mpecho to steal a key to his prison. If you HELP him, I am sure he will do you a 
+mpecho favor you will never forget.
+~
+>speech_prog help~
+mpecho The chief minion says 'If you agree to help him, I will give you the key.
+mpecho Will you help my master? If so, tell me to GIVE the key.'
+~
+>speech_prog give~
+if quest(0,3,$n) == 0
+  mpmset $n quest 0 3 1
+  mpquiet on
+  mpoload 3719
+  cast 'giant strength' $n
+  mpquiet off
+  give i3719 $n
+  mpecho The chief minion says 'Use it wisely. I thank you for your help.'
+else
+  mpecho The chief minion says 'But I already gave it to you!'
+endif
+~
+|
+#3715
+minion~
+the minion~
+A minion of the Grey Lord is here looking at you vengefully.~
+The minion is really quite indescribable. He seems to be humanoid and
+about the same height as you, but all of its distinguishing features 
+flicker and change as if it isn't quite able to decide what form to take.
+He looks very tough.~
+ACT_AGGRESSIVE|ACT_STAY_AREA
+0
+0 S
+4 0 0 4d4+44 1d6+2
+40 459
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#3716
+wolf~
+the wolf~
+A wolf is here snarling at you.~
+The wolf doesn't want to be bothered.~
+ACT_STAY_AREA
+0
+0 S
+4 0 0 4d4+44 1d6+2
+40 459
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#3717
+avatar~
+the Avatar of Order~
+An Avatar of Order is here, conjuring bread and selling you stuff.~
+She is a friendly looking lady with brown hair and brown eyes. Her vestments
+are pure white and crisply cut. The Avatar radiates an aura of pure power.
+You are sure she can conjure more than just bread.~
+ACT_SENTINEL|ACT_STAY_AREA
+AFF_DETECT_INVIS|AFF_SANCTUARY
+1000 S
+50 0 0 1d1+2699 2d4+30
+0 269671
+POS_STANDING POS_STANDING SEX_FEMALE
+#3718
+avatar~
+the Avatar of Order~
+An Avatar of Order is here, training new mortals.~
+He is a friendly looking man with blond hair and blue eyes. His vestments
+are pure white and crisply cut. The Avatar radiates an aura of pure power
+and seems to be able to train you in every way.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_TRAIN
+AFF_DETECT_INVIS|AFF_SANCTUARY
+1000 S
+50 0 0 1d1+2887 2d4+30
+0 269671
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 5~
+smile 
+mpecho The Avatar of Order says 'You are doing very well so far.'
+~
+>rand_prog 5~
+mpecho The Avatar of Order says 'I recommend training your wisdom and constitution.'
+~
+>rand_prog 5~
+mpecho The Avatar of Order says 'Go DOWN when you are finished here.'
+~
+>rand_prog 5~
+mpecho The Avatar of Order says 'Don't forget. Always read the signs in the rooms.'
+~
+|
+#3719
+avatar~
+the Avatar of Chaos~
+The Avatar of Chaos is here and will sell you spells.~
+He is a slightly crazed looking man with dark hair and blue eyes. His
+vestments are of the deepest black and cut in a haphazard manner. The Avatar 
+radiates an aura of pure power and seems willing to help you learn some 
+skills. He seems even more willing to laugh at your mistakes.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_PRACTICE
+AFF_DETECT_INVIS|AFF_SANCTUARY
+1000 S
+50 0 0 1d1+2653 2d4+30
+0 269671
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 5~
+mpecho The Avatar of Chaos says 'I'm here to help you practice your skills. If you 
+mpecho are so new that you don't know what to do, then look at the sign. Only an 
+mpecho idiot wouldn't read it anyhow.'
+grin 
+~
+>rand_prog 5~
+mpecho The Avatar of Chaos says 'By the way, if you are wounded I can heal you. It
+mpecho only costs ten gold. Just give me the money and I'll do it.'
+~
+>bribe_prog 10~
+cast 'cure serious' $n
+~
+|
+#3720
+statue~
+the stone statue~
+A statue of a man is standing atop the pedastal. Occasionally the statue 
+moves its limbs and you realize that it is somehow alive.~
+The statue is carved of grey stone that is flecked with white and black.
+It has been carved as a perfect likeness of a human male. You can make out 
+every detail in all of its perfection right down to the buttons on the 
+statue's carved clothing.~
+ACT_SENTINEL|ACT_SMART
+AFF_INFRARED
+0 S
+4 0 0 2d4+30 1d6+1
+100 459
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>death_prog 100~
+if quest(3, 2, $n) == 0
+  say You have done well $n
+  say The obelisk outside the tower can help you
+  say find an even greater challenge
+  mpecho $I crumbles into a million fragments.
+  mpmset $n quest 3 2 1
+else
+endif
+~
+|
+#3721
+avatar recruiter sleezebag~
+the Recruiter of Chaos~
+An Avatar of Chaos is here attempting to lure you into following Chaos.~
+The recruiter is a friendly looking man with brown hair and green eyes. His 
+vestments are of the deepest black and cut in a haphazard manner. The Avatar 
+radiates an aura of pure power and is almost mesmerizing in his approach.~
+ACT_SENTINEL|ACT_STAY_AREA
+AFF_DETECT_INVIS
+1000 S
+50 0 0 1d1+3026 2d4+100
+0 269671
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 99~
+mpecho The Recruiter of Chaos says 'Welcome! Make yourself comfortable. I'm here to
+mpecho TELL you about what Chaos stands for and what Chaos can do for you.'
+~
+>speech_prog tell~
+mpecho The Recruiter of Chaos says 'Ah! But there's so much to say! I can tell you 
+mpecho about the PHILOSOPHY of Chaos or fill you in on the BENEFITS of joining.'
+~
+>speech_prog philosophy~
+mpecho The Recruiter of Chaos says 'Chaos is the embodiment of change and entropy.
+mpecho Without Chaos society would be stagnant, with no change for better or worse.
+mpecho Also, it is Chaos who casts down unfair laws and punishes the guilty. If we 
+mpecho had no Chaos, we would all be living the most boring life imaginable.'
+~
+>speech_prog benefits~
+mpecho The Recruiter of Chaos says 'I just know you are going to be excited about 
+mpecho this. When you JOIN Chaos, you are granted instant communication to all 
+mpecho other followers. You receive a black gold chain that is priceless just for
+mpecho protective value alone! Plus you receive the ability to destroy Order 
+mpecho followers in order to protect the land from their stagnation.'
+~
+>speech_prog join~
+mpecho The Recruiter of Chaos says 'I'm so glad you asked me how! Chaos has a tower
+mpecho on this plane that houses the Test of Entropy. If you manage to pass the test,
+mpecho you will automatically be inducted into our ranks!
+~
+>speech_prog thanks~
+grin 
+mpecho The Recruiter of Chaos says 'Don't thank me now! I'll be seeing you at one of 
+mpecho our secret war gatherings.'
+~
+>speech_prog p the other recruiter set the grey lord free~
+mpecho The Recruiter of Chaos says 'WHAT?'
+mpecho The Recruiter of Chaos utters the words, 'glmpesd'.
+if quest(0,3,$n) == 2
+  gasp 
+  mpecho The Recruiter of Chaos says 'Thank you for the information. You can watch me
+  mpecho slay the traitor if you like.'
+  mpmset $n quest 0 3 3
+  mptransfer fasttalker
+  mpecho The Recruiter of Chaos shouts 'Cur of Order! You broke the pact!'
+  mpkill fasttalker
+else
+  mpecho The Recruiter of Chaos laughs nervously.
+  mpecho The Recruiter of Chaos says 'You must have been misinformed. You better go 
+  mpecho practice some more.'
+endif
+~
+>speech_prog defective~
+mpecho The Recruiter of Chaos says 'The token is defective? Give it to me and if
+mpecho it is then I'll replace it for you.'
+~
+>give_prog I3715~
+mpecho The Recruiter of Chaos says 'Your right. Here's a new token. Sorry.'
+mpjunk I3715
+mpoload 3722
+give I3722 $n
+~
+>death_prog 99~
+mpecho The Recruiter of Chaos says 'Lord Chaos will punish you for this!'
+groan 
+mpecho The Recruiter of Order utters the words, 'agem pzar'.
+restore fasttalker
+mpecho The Recruiter of Order's wounds disappear.
+mpforce fasttalker smile
+mpecho The Recruiter of Order says 'Let that be a lesson to you, traitor.'
+~
+|
+#3722
+grey lord prisoner~
+the Grey Lord~
+The prisoner screams in agony but does not bleed!~
+The prisoner appears to be a human male but he emanates an unearthly power.
+His once fine clothing is hanging off of his body in tatters. The most
+amazing thing about him is that gruesome spikes pierce his body and yet he
+does not bleed!~
+ACT_SENTINEL|ACT_STAY_AREA
+AFF_DETECT_INVIS
+1000 S
+50 0 0 1d1+2526 1d1+33
+0 269671
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 99~
+mpecho The Grey Lord says 'Are you here to AID me?'
+~
+>rand_prog 15~
+mpasound From somewhere nearby you hear a voice scream in agony!
+mpecho The Grey Lord cries out in pain and agony!
+~
+>speech_prog aid~
+mpecho The Grey Lord narrows his eyes and looks at you carefully.
+if quest(0,3,$n) == 1
+  mpecho The Grey Lord sighs in relief.
+  mpecho The Grey Lord says 'I am glad my servant was able to find you. It is not
+  mpecho possible for you to help me escape, but you can help me gain revenge against
+  mpecho my captors. The first step is to CONCEAL my presence from the recruiters.'
+else
+  mpecho The Grey Lord says 'The mark of my servant is not upon you. If you have 
+  mpecho helped me in the past, I am sorry that I do not remember you. If you are a 
+  mpecho thief I warn you: if you attempt to harm me you will regret it.'
+endif
+~
+>speech_prog conceal~
+mpecho The Grey Lord narrows his eyes and examines you again.
+if quest(0,3,$n) == 1
+  mpecho The Grey Lord says 'There was a time when I was the master of this tower and
+  mpecho of all its contents. Then the thrice damned servants of Order and Chaos 
+  mpecho joined together to strip me of my powers. As I was captured I managed to hide
+  mpecho a powerful Stone of Concealment in one of the force cages. Find it and give 
+  mpecho it to me so I can implement the next step of my plan.'
+else
+  mpecho The Grey Lord says 'Have you been spying on one of my helpers? I see no mark
+  mpecho upon you. Begone before it is too late!'
+endif
+~
+>give_prog I3720~
+if quest(0,3,$n) == 1
+  mpecho The Grey Lord says 'At last!'
+  mpecho The Grey Lord utters the words 'dsepmlg'. 
+  mpecho The Stone of Concealment begins to glow brightly!
+  mpmset $n quest 0 3 2
+  mpecho The Grey Lord says 'Now hurry. Since they cannot detect my presence it will
+  mpecho be simple to instigate a fight. Tell either of the recruiters that:
+  mpecho "The other recruiter set the grey lord free"
+  mpecho Come back to me afterward and I will REWARD you handsomely.'
+  mpat 6499 drop stone
+else
+  mpecho The Grey Lord says 'At last, the stone!'
+  mpecho The Grey Lord narrows his eyes and examines you.
+  mpecho The Grey Lord says 'You do not have the mark of one of my helpers. Are you 
+  mpecho a spy for Chaos and Order? You will get no information from me.'
+endif
+mpjunk i3720
+~
+>speech_prog reward~
+if quest(0,3,$n) == 3
+  mpecho The Grey Lord says 'I am happy enough now to last another 1000 years of this
+  mpecho torture. Let me reward you by giving you this rune dagger. It is weak, but 
+  mpecho will help to keep you safe from harm.'
+  mpoload 3721
+  mpmset $n quest 0 3 4
+  give I3721 $n
+  mpecho The Grey Lord says 'Now leave me to my torment.'
+  mpforce $n give I3719 lord
+  mpjunk I3719
+else
+  mpecho The Grey Lord says 'You haven't fulfilled your part of the bargain yet.'
+endif
+~
+|
+#0
+
+#OBJECTS
+#3700
+spirit mace~
+a spirit mace~
+You see an insubstantial mace here.~
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 2 2 WEAPON_POUND
+5 0 1
+E
+mace~
+You see a mace that shines with beauty and power. Unfortuneately it is
+created from the stuff of the spirit realm and is relatively powerless
+on this plane.~
+#3701
+spirit dagger~
+a spirit dagger~
+You see an insubstantial dagger here.~
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 1 3 WEAPON_PIERCE
+5 0 1
+E
+dagger~
+You see a dagger that shines with beauty and power. Unfortuneately it is
+created from the stuff of the spirit realm and is relatively powerless
+on this plane.~
+#3702
+spirit sword~
+a spirit sword~
+You see an insubstantial sword here.~
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 2 3 WEAPON_SLASH
+5 0 1
+E
+sword~
+You see a sword that shines with beauty and power. Unfortuneately it is
+created from the stuff of the spirit realm and is relatively powerless
+on this plane.~
+#3703
+spirit breast breastplate plate~
+a spirit breastplate~
+You see an insubstantial breastplate here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+2 0 0 0
+5 0 1
+E
+plate~
+You see a breastplate that shines with beauty and strength. Unfortuneately 
+it is created from the stuff of the spirit realm and is relatively powerless
+on this plane.~
+#3704
+spirit shield~
+a spirit shield~
+You see an insubstantial shield here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_SHIELD
+2 0 0 0
+5 0 1
+E
+shield~
+You see a shield that shines with beauty and strength. Unfortuneately it is
+created from the stuff of the spirit realm and is relatively powerless
+on this plane.~
+#3705
+spirit cloak~
+a spirit cloak~
+You see an insubstantial cloak here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+2 0 0 0
+5 0 1
+E
+cloak~
+You see a cloak that shines with beauty and strength. Unfortuneately it is
+created from the stuff of the spirit realm and is relatively powerless
+on this plane.~
+#3706
+spirit helmet~
+a spirit helmet~
+You see an insubstantial helmet here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+2 0 0 0
+5 0 1
+E
+helmet~
+You see a helmet that shines with beauty and strength. Unfortuneately it is
+created from the stuff of the spirit realm and is relatively powerless
+on this plane.~
+#3707
+spirit greaves~
+a pair of spirit greaves~
+You see a pair of insubstantial greaves here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_LEGS
+2 0 0 0
+5 0 1
+E
+greaves~
+You see a pair of greaves that shine with beauty and strength. Unfortuneately 
+they are created from the stuff of the spirit realm and are relatively 
+powerless on this plane.~
+#3708
+spirit boots~
+a pair of spirit boots~
+You see a pair of insubstantial boots here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FEET
+2 0 0 0
+5 0 1
+E
+boots~
+You see a pair of boots that shine with beauty and strength. Unfortuneately 
+they are created from the stuff of the spirit realm and are relatively 
+powerless on this plane.~
+#3709
+spirit gauntlets~
+a pair of spirit gauntlets~
+You see a pair of insubstantial gauntlets here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HANDS
+2 0 0 0
+5 0 1
+E
+gauntlets~
+You see a pair of gauntlets that shine with beauty and strength. 
+Unfortuneately they are created from the stuff of the spirit realm and are 
+relatively powerless on this plane.~
+#3710
+spirit vambraces~
+a pair of spirit vambraces~
+You see a pair of insubstantial vambraces here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ARMS
+2 0 0 0
+5 0 1
+E
+vambraces~
+You see a pair of vambraces that shine with beauty and strength. 
+Unfortuneately they are created from the stuff of the spirit realm and are 
+relatively powerless on this plane.~
+#3711
+spirit cape~
+a spirit cape~
+You see an insubstantial cape here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT
+2 0 0 0
+5 0 1
+E
+cape~
+You see a cape that shines with beauty and strength. Unfortuneately it is
+created from the stuff of the spirit realm and is relatively powerless
+on this plane.~
+#3712
+spirit sash~
+a spirit sash~
+You see an insubstantial sash here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WAIST
+2 0 0 0
+5 0 1
+E
+sash~
+You see a sash that shines with beauty and strength. Unfortuneately it is
+created from the stuff of the spirit realm and is relatively powerless
+on this plane.~
+#3713
+spirit bracer~
+a spirit bracer~
+You see an insubstantial bracer here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WRIST
+2 0 0 0
+5 0 1
+E
+bracer~
+You see a bracer that shines with beauty and strength. Unfortuneately it is
+created from the stuff of the spirit realm and is relatively powerless
+on this plane.~
+#3714
+key~
+a key~
+You see a very important key here!~
+~
+ITEM_TYPE_KEY
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 0 1
+#3715
+symbol token completion~
+a token of completion~
+You see a tiny engraved symbol here.~
+~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+12 SPELL_WORD_OF_RECALL SPELL_NONE SPELL_NONE
+1 0 11
+E
+token~
+Show this token to prove you have completed your tower training.
+It is supposed to have magical effects on your abilities if you hold it 
+but it appears to be DEFECTIVE. If you get into a life and death situation 
+use it to recall. Stamped into the side of the token are the words:
+'Minted by the Recruiters of Order and Chaos.'~
+#3716
+banner glowing~
+a glowing banner~
+A glowing banner is on the floor here.~
+~
+ITEM_TYPE_LIGHT
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 24 0
+1 70 1
+#3717
+spirit amulet~
+a spirit amulet~
+You see an insubstantial amulet here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+2 0 0 0
+3 200 1
+E
+amulet~
+You see a amulet that shines with beauty and strength. Although it is
+created from the stuff of the spirit realm, it seems to have retained some
+of its power on this plane.~
+#3718
+loaf bread~
+a loaf of bread~
+There is a freshly conjured loaf of bread here.~
+~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+24 0 0 NOT_POISONED
+1 10 1
+E
+loaf~
+You see a loaf of bread that has been conjured straight from the hands of
+an Avatar of Order. It's soft and fluffy and mmmmm.... so good.~
+#3719
+charred key~
+a charred force key~
+You see a blackened glowing key here.~
+~
+ITEM_TYPE_KEY
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 0 1
+E
+key~
+You see a dimly glowing key that appears to have been charred by a great
+fire. It is warm to the touch.~
+#3720
+stone~
+a stone~
+There is a round, grey stone speckled with black and white here.~
+~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 250 1
+E
+stone~
+The stone is round and fits snugly into your palm. It would seem like a piece
+of trash if it weren't for the runes carved into it.~
+#3721
+Glathkar drinker dagger~
+glathkar the Drinker~
+A twisted grey dagger covered with silver runes is here.~
+You see a twisted grey dagger that is covered with runes carved out of pure
+silver. There is a grey opal in the pommel and around the hilt the name 
+'Glathkar the Drinker' is engraved.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 2 9 WEAPON_STAB
+3 22000 5
+A
+APPLY_MANA -10
+A
+APPLY_AC 5
+E
+runes~
+Glathkar the Drinker murmurs 'Greetings Master.'~
+P 1
+TRIG_DAMAGE 15
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 2 0
+P 2
+TRIG_VOID
+OPROG_ECHO
+You feel a rush of energy run up your arm!~
+P 2
+TRIG_VOID
+OPROG_APPLY OAPPLY_HIT 4
+P 3
+TRIG_HIT 50
+OPROG_IF OIF_USER_PERCENT_HITPT < 20 4 0
+P 4
+TRIG_VOID
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 5 0
+P 5
+TRIG_VOID
+OPROG_ECHO
+Glathkar the Drinker murmurs 'I recommend withdrawing from the fight, Master.'~
+#3722
+symbol token completion~
+a token of completion~
+You see a tiny engraved symbol here.~
+~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+1 SPELL_WORD_OF_RECALL SPELL_NONE SPELL_NONE
+1 0 1
+E
+token~
+Show this token to prove you have completed your tower training.
+It has magical effects on your abilities if you hold it and if you
+get into a life and death situation use it to recall.~
+A
+APPLY_WIS 1
+A
+APPLY_CON 1
+#3723
+buffalo water skin waterskin~
+a buffalo waterskin~ 
+a buffalo waterskin is left on the ground.~
+~
+ITEM_TYPE_DRINK_CON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+24 24 0 0  
+1 40 1  
+#0
+
+
+
+
+#ROOMS
+#3700
+Pinnacle Of The Training Tower~
+You have materialized into existence on a tiny platform at the top of the
+Tower of Training. A delicate golden railing keeps you from falling a 
+thousand feet to your death, but you can see the city of Chakkor spread in
+all its splendor beneath you. You know that your spirit has been newly 
+reincarnated to be a hero of this world, but even that knowledge is fading
+as your soul becomes more firmly attached to its new body. A stairway leads 
+down into the tower. An impressive looking sign is on the railing here.  
+(Type "LOOK SIGN" to read)~
+37 ROOM_NO_MOB SECT_INSIDE
+DDIR_DOWN
+~
+~
+0 -1 3757
+E
+sign~
+To move around, use the simple commands: NORTH, SOUTH, EAST, WEST, UP, DOWN.
+These commands, like all commands, can be shortened to a few letters.
+Some commands work with less than 3 letters, nearly all will work with 3.
+The direction commands, since they are used often, can be typed with one
+letter.  Therefore to move around, simply enter: N, S, E, W, U, or D.
+Type HELP NEWBIE, when you are done reading it, type DOWN to go to the next 
+room now.~
+S
+#3701
+A Room in the Tower~
+You are in a austere, brightly-lit room. The walls are grey and there are 
+no windows. Small, magical globes of energy drift lazily around the ceiling 
+which provide you with light to see. The entire place is out of this world.
+As you become increasingly aware of your mortal body, you notice that the 
+clothing you are wearing is more appropriate for a spirit of the astral 
+plane than a flesh and blood humanoid. The stairs continue up and down. An 
+impressive looking sign is on the wall here, as well as a small plaque.~
+37 ROOM_NO_MOB|ROOM_INDOORS SECT_INSIDE
+DDIR_UP
+You see the stairs leading up to the Training Room.~
+~
+0 -1 3758
+DDIR_DOWN
+You see the stairs leading downward.~
+~
+0 -1 3702
+E
+plaque~
+This zone (originally Mud School) was created by Hatchet for any Merc Mud.
+Copyright 1992, 1993. The Tower of Training is a derivitive of Mud School
+edited by Desmond for use with any MRMud.~
+E
+sign~
+Equipment check time!  Type 'EQUIPMENT' to see your current equipment.  
+Right now, you have just a breastplate, a shield, and a weapon.  As you go 
+through the tower, you will acquire a complete set of equipment. Because the 
+Tower of Training exists only partially on the mortal plane, the equipment 
+available here will not be very suitable for mortal life.
+
+To pick up items on the ground as you see them, type 'GET item'.
+To wear a piece of armor, type 'WEAR item'.
+To hold a light source, type 'HOLD item'.
+To wield a weapon, type 'WIELD weapon'.
+To wear, hold, and wield everything you have, type 'WEAR ALL'.
+To stop using a piece of equipment, type 'REMOVE item'.
+Finally, to see the items in your inventory, type 'INVENTORY'.
+
+When you are ready to continue, go down.~
+S
+#3702
+The Center Room~
+You are in a austere, brightly-lit room. The walls are grey and there are 
+no windows. Small, magical globes of energy drift lazily around the ceiling 
+which provide you with light to see. The entire place is out of this world.
+An impressive looking sign is on the wall here.  Exits lead in ALL directions.~
+37 ROOM_NO_MOB|ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+You see a room.~
+~
+0 0 3707
+DDIR_EAST
+You see a room.~
+~
+0 0 3708
+DDIR_SOUTH
+You see a room.~
+~
+0 0 3705
+DDIR_WEST
+You see a room.~
+~
+0 0 3704
+DDIR_UP
+You see a room.~
+~
+0 0 3701
+DDIR_DOWN
+You see the room down that will lead you to the next section.~
+~
+0 0 3703
+E
+sign~
+This is the direction practicing room.  The directions you can go in any
+room are: north, south, east, west, up, or down.  Of course, not all rooms
+have all exits available.
+
+To see the obvious exits in a room, type 'EXITS'.
+
+Sometimes doors are closed, or locked, or secret.  Then you have to notice
+clues in the room description, or try going into that direction and seeing
+if you bump into a door.
+
+Try going into each direction from here.  When you are done, go DOWN.~
+S
+#3703
+A Room in the Tower~
+You are in a austere, brightly-lit room. The walls are grey and there are 
+no windows. Small, magical globes of energy drift lazily around the ceiling 
+which provide you with light to see. The entire place is out of this world.
+The golden stairs lead up and down. An impressive looking sign is on the wall 
+here.~
+37 ROOM_NO_MOB|ROOM_INDOORS SECT_INSIDE
+DDIR_UP
+You see the central room.~
+~
+0 -1 3702
+DDIR_DOWN
+You see the next station ahead.~
+~
+0 0 3709
+E
+sign~
+Since you are here, let us have another lesson.  We have already seen how
+to use 'score' to see your statistics. If you wish to see what spells are
+currently affecting you, you can type 'affect'. To see how much experience
+you need to advance in level, you can type 'level'. You may try these now
+if you wish.~
+S
+#3704
+A Room in the Tower~
+You are in a austere, brightly-lit room. The walls are grey and there are 
+no windows. Small, magical globes of energy drift lazily around the ceiling 
+which provide you with light to see. The entire place is out of this world.
+The only exit is east. An impressive looking sign is on the wall here.~
+37 ROOM_NO_MOB|ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+You see the central room.~
+~
+0 0 3702
+E
+sign~
+Just go east to the central room.~
+S
+#3705
+A Room in the Tower~
+You are in a austere, brightly-lit room. The walls are grey and there are 
+no windows. Small, magical globes of energy drift lazily around the ceiling 
+which provide you with light to see. The entire place is out of this world.
+The only exit is north. An impressive looking sign is on the wall here.~
+37 ROOM_NO_MOB|ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+You see the central room.~
+~
+0 0 3702
+E
+sign~
+Just go north to the central room.~
+S
+#3707
+A Room in the Tower~
+You are in a austere, brightly-lit room. The walls are grey and there are 
+no windows. Small, magical globes of energy drift lazily around the ceiling 
+which provide you with light to see. The entire place is out of this world.
+The only exit is south. An impressive looking sign is on the wall here.~
+37 ROOM_NO_MOB|ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+You see the central room.~
+~
+0 0 3702
+E
+sign~
+Just go south to the central room.~
+S
+#3708
+A Room in the Tower~
+You are in a austere, brightly-lit room. The walls are grey and there are 
+no windows. Small, magical globes of energy drift lazily around the ceiling 
+which provide you with light to see. The entire place is out of this world.
+The only exit is west. An impressive looking sign is on the wall here.~
+37 ROOM_NO_MOB|ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+You see the central room.~
+~
+0 0 3702
+E
+sign~
+Just go west to the central room.~
+S
+#3709
+A Room in the Tower~
+You are in a austere, brightly-lit room. The walls are grey and there are 
+no windows. Small, magical globes of energy drift lazily around the ceiling 
+which provide you with light to see. The entire place is out of this world.
+The golden stairway leads both upward and downward. To the west, you can see 
+a doorway that is covered by an glowing wall of force. As you brush the wall 
+of force it disappears and you catch a glimpse of a creature inside. An 
+impressive looking sign is on the wall here.~
+37 ROOM_NO_MOB|ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+You see a force cage.~
+~
+0 -1 3710
+DDIR_UP
+You see a room in the Tower.~
+~
+0 -1 3703
+DDIR_DOWN
+You see the next station of the Tower.~
+~
+0 0 3711
+E
+sign~
+Welcome to combat training.
+
+The first lesson is knowing whom to fight.  Use the command 'CONSIDER' to
+consider killing a monster.  Avoid fighting monsters that will kill you
+easily.
+
+The second lesson is running away.  There is a monster in the room west.
+He is too strong for you to kill, but he won't kill you.  So go 'WEST' from
+here, then 'CONSIDER' him, then 'KILL' him.  After a while, type 'FLEE' to
+escape from him.
+
+You can also set your character to flee automatically with the 'WIMPY' 
+command. Type 'HELP WIMPY' to find out more about 'WIMPY'.
+
+After you flee, you will be back in this room.  Don't worry, the wall of
+force will keep the creature from following you. When you are ready to go on
+to the next station, go 'DOWN'.~
+S
+#3710
+A Force Cage~
+You are in a cage bounded by glowing walls of force.  This particular cage
+usually contains a quite powerful Gargoyle. The cage is littered with the 
+bloody remains of the Gargoyle's last meal, but you are reassured when you
+see that none of the body parts on the floor are humanoid. The force door out
+of the cage is to the east. An impressive looking sign is on the wall here.~
+37 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+You see a safe room to the east.~
+~
+0 0 3709
+E
+sign~
+Remember, don't fight the Gargoyle to the finish!  Just type 'KILL GARGOYLE', 
+then when you are fighting, type 'FLEE', until you flee and are out of here.
+If you think you are powerful enough right now to kill the Gargoyle; 
+think again.~
+S
+#3711
+A Room in the Tower~
+You are in a austere, brightly-lit room. The walls are grey and there are 
+no windows. Small, magical globes of energy drift lazily around the ceiling 
+which provide you with light to see. The entire place is out of this world.
+An impressive looking sign is on the wall here.~
+37 ROOM_NO_MOB|ROOM_INDOORS SECT_INSIDE
+DDIR_UP
+You see the tower station that you just completed.~
+~
+0 0 3709
+DDIR_DOWN
+You see the combat hall.~
+~
+0 0 3712
+E
+sign~
+Welcome to the next station.  Here, you will actually fight real monsters,
+without fleeing!  Kill every monster, since they hold some equipment you 
+need. To start, go down.~
+S
+#3712
+First Floor of Introductory Combat~
+You are in the the first of the combat zones that are in the tower. Small, 
+magical globes of energy drift lazily around the ceiling which provide 
+you with light to see. More force cages are in each of the four cardinal 
+directions. Several extremely soft couches are here so that you make take 
+a nap between battles. The ever present stairway leads up and down. An 
+impressive looking sign is on the wall here.~
+37 ROOM_NO_MOB|ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+You see a cage labeled 'Demonic Worms'.~
+~
+0 -1 3713
+DDIR_EAST
+You see a cage labeled 'Gold Drakelings'.~
+~
+0 -1 3716
+DDIR_SOUTH
+You see a cage labeled 'Forest Pixies'.~
+~
+0 -1 3715
+DDIR_WEST
+You see a cage labeled 'Crater Kobolds'.~
+~
+0 -1 3714
+DDIR_UP
+You see a room in the Tower.~
+~
+0 -1 3711
+DDIR_DOWN
+You see the next station below.~
+~
+0 -1 3761
+E
+sign~
+Welcome to the cage room.  The avatars of the Training Tower have summoned 
+some monsters for you to kill.  In the four force cages are four monsters of 
+various types.  Kill them all!
+
+After you kill each monster, get all of the equipment from their corpses
+with the command 'GET ALL CORPSE'.  You can then use the command 'WEAR ALL'
+to wear your newly won equipment.
+
+When you are done with the corpse, 'SACRIFICE CORPSE' to give it to your God.
+God will reward you for this.
+
+Between combat, you may need to rest or sleep to regenerate hit points.
+You can 'REST' to regenerate hit points, or you can 'SLEEP'.  'SLEEP' will
+refresh you faster than 'REST', but you will be less aware of your
+surroundings.~
+S
+#3713
+A Force Cage~
+You are in a force cage.  Disgusting black mucus coats the entire floor. It
+probably comes from the creature that lives here. Apparently Avatars don't 
+know how to use a mop. An impressive looking sign is on the wall here.  
+The only exit is south.~
+37 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+You see the Combat Hall.~
+~
+0 -1 3712
+E
+sign~
+There should be a demonic worm in this room.  Kill him and get out of here
+fast!  Remember to loot and sacrifice the corpse.~
+S
+#3714
+A Force Cage~
+You are in a force cage.  In one corner of the room is nest made out of torn
+up cloth. In another corner is a pile of offal that you avoid looking at but
+your nose smells all too clearly. An impressive sign is on the wall here.  
+The only exit is east.~
+37 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+You see the Combat Hall.~
+~
+0 -1 3712
+E
+sign~
+There should be a crater kobold in this room.  Kill him and get out of
+here fast!  Remember to loot and sacrifice the corpse.~
+S
+#3715
+A Force Cage~
+You are in a force cage.  The cage is filled with miniature furniture. There
+is a tiny little bed, a tiny little easy chair, a tiny little endtable, and
+a tiny little book on the tiny little endtable. An impressive looking sign  
+is on the wall here. The only exit is north.~
+37 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+You see the Cage Room.~
+~
+0 -1 3712
+E
+sign~
+There should be a pixie in this room.  Kill him and get out of here fast!
+Remember to loot and sacrifice the corpse.~
+S
+#3716
+A Force Cage~
+You are in a force cage. The ceiling is covered with scorch marks and the  
+floor is layered in straw. Some of the straw has been burned to a crisp. An 
+impressive looking sign is on the wall. The only exit is west.~
+37 ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+You see the Cage Room.~
+~
+0 -1 3712
+E
+sign~
+There should be a gold drakeling in this room.  Kill him and get out of here 
+fast! Remember to loot and sacrifice the corpse.~
+S
+#3717
+A Room in the Tower~
+You are in a austere, brightly-lit room. The walls are grey and there are 
+no windows. Small, magical globes of energy drift lazily around the ceiling 
+which provide you with light to see. The entire place is out of this world.
+An impressive looking sign is on the wall here.  Find your own exit.~
+37 ROOM_NO_MOB|ROOM_INDOORS SECT_INSIDE
+DDIR_UP
+You see a stair leading up to the Combat Hall.~
+~
+0 -1 3761
+DDIR_DOWN
+You see a room in the tower.~
+force door~
+EX_ISDOOR|EX_CLOSED -1 3719
+E
+sign~
+Time for another lesson. You will find that it can get annoying to have
+to continue doing some minor actions such as looting a corpse, sacrificing
+a corpse, or looking for exits among others. There is an easy way to set
+it up so that you can have the game do these things for you.
+To get all from a corpse automatically, type 'CONFIG +AUTOLOOT'
+To automatically sacrifice a corpse, type 'CONFIG +AUTOSAC'
+To automatically see all exits in the room, type 'CONFIG +AUTOEXIT'
+This will set the game to automatically do these things for you. You can
+type 'HELP CONFIG' for more automatic options.
+
+Configure the game for autoexit and type look again. You will be able to
+see the exits to the room.~
+S
+#3718
+The Tower Shop~
+You are in a wide open room.  Stacked neatly on shelves are a few sparse
+items and packages. Small, magical globes of energy drift lazily around the 
+ceiling which provide you with light to see. A counter made of some strange 
+grey material displays some freshly conjured loaves of bread. An impressive 
+looking sign is on the wall here. The only exit is north.~
+37 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+You see the only exit out of here.~
+~
+0 0 3719
+E
+sign~
+The sign reads:
+By now, you must be hungry and thirsty.  Time to buy groceries!      
+This is a store.  Inside the store, you can use these commands:
+
+   Buy   - Buy something from the storekeeper.
+   List  - The storekeeper will tell you what's for sale.
+   Value - The storekeeper will tell you how much he will give to you for
+           that item.
+   Sell  - Sell that item to the storekeeper.
+   Id    - The storekeeper will tell you everything about the item...
+           for a price.
+   Eval  - Let's you decide whether an item for sale is better than what
+           you already have.
+
+You may find that you do not have enough gold to buy the items that you need.
+The only solution for this is to go back and kill a few more monsters first.
+
+After buying some food and drink, you can 'EAT' and 'DRINK' it.~
+S
+#3719
+A Room in the Tower~
+You are in a austere, brightly-lit room. The walls are grey and there are 
+no windows. Small, magical globes of energy drift lazily around the ceiling 
+which provide you with light to see. The entire place is out of this world.
+There is a pitch black room to the north and to the south is a store of some 
+sort. Both stairs are covered with force doors and the one leading downward 
+appears to be locked. An impressive looking sign is on the wall here.~
+37 ROOM_NO_MOB|ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+You see a darkened room inside.~
+~
+0 0 3720
+DDIR_SOUTH
+You see a store for new mortals.~
+~
+0 0 3718
+DDIR_UP
+You see the room you just came from.~
+force door~
+EX_ISDOOR|EX_CLOSED -1 3717
+DDIR_DOWN
+You see the next station of the Tower.~
+force door~
+EX_ISDOOR|EX_CLOSED|EX_LOCKED 3714 3722
+E
+sign~
+North of you is a dark room.  You will need a lantern to see inside. If you
+do not have one already, you will have to go to the store and buy one.
+
+In the room is a monster with a key that you need.  After killing the
+monster and getting the key, come back here, UNLOCK DOWN, OPEN DOWN,
+and continue east.~
+S
+#3720
+The Darkened Force Cage~
+This room has been magically darkened so that you would be forced to get a
+light source to see your way through. Now that you can see the room, you 
+notice it is yet another of the magical force cages. This one has a line
+drawn across the floor which cuts the room into two halves. The line seems
+to be a challenge of some sort. The exit is to the south.~
+37 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+You see the room that you have come from.~
+~
+0 0 3719
+S
+#3721
+The Chamber of Testing~
+This is a very bright room, with a low marble pedestal in the center. 
+You sense that your first big test is at hand. An impressive looking sign 
+is on the wall here. The golden stairs continue upward and downward.~
+37 ROOM_NO_MOB|ROOM_INDOORS SECT_INSIDE
+DDIR_UP
+You see the stairs ascending.~
+~
+0 0 3748
+DDIR_DOWN
+You see the stairs descending.~
+~
+0 -1 3760
+E
+sign~
+If you can kill the stone statue then you have passed the Tower's Test  
+of Completion. As a reward you can pick up your token of completion from
+the golem's corpse. Make sure that you can at least handle the intermediate
+hall of combat before you try to kill the statue. The entrance hallway of
+the tower is beneath you. Beyond it lies the city of Chakkor.
+
+If you want to go directly back to the city at any time, type 'RECALL'.
+After you raise to level two, you can 'SAVE' your character.  Your character
+will be automatically SAVE'd every few minutes.
+
+If you need more help during the game, type 'HELP'.  If you see something
+wrong or have comments, use 'BUG', 'IDEA', or 'TYPO' to report them.~
+S
+#3722
+Recruitment Center~
+You are standing in a large grey room. Various banners on the wall praise the
+virtues of either Order or Chaos. Perhaps they are trying to sway you to
+their side? There are two rooms, one to the east and one to the west. Each
+one appears to be an office of some sort. The ever present stairway is also
+here. An impressive sign is hanging on the wall here.~
+37 ROOM_NO_MOB|ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+~
+~
+0 0 3725
+DDIR_WEST
+~
+~
+0 0 3723
+DDIR_UP
+You see a room in the tower.~
+~
+0 0 3719
+DDIR_DOWN
+You see the Hall of Intermediate Combat.~
+~
+0 -1 3734
+E
+sign~
+By now you must have seen that there are two gods controlling these mortal
+realms. They are Order and Chaos. Here is your chance to go into each office
+and talk with their recruiters. They will tell you why you should become a
+follower of their god. Don't worry, there is no need to make any hasty 
+decisions. You cannot actually make a commitment here. 
+
+If one of the recruiters says something in all capital letter, try saying 
+that word back to them. This will prompt the recruiter to tell you about
+that statement. These 'keywords' as they are called will not always be
+capitalized, but it has been done so in this area so that you can practice
+the concept.
+
+When you are done talking with the recruiters, continue practicing with your
+mortal body by using the Intermediate Combat Hall below you.~
+S
+#3723
+Order's Recruiting Office~
+You are in the recruiting office of Order. It is a pleasant room which 
+radiates stability and knowledge. There is a large work desk here and in
+front of it, a comfortable chair for visitors.~
+37 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+~
+~
+0 0 3722
+S
+#3724
+Air Vent~
+You are hovering in a large air duct. All around you are glowing portals that
+lead to strange areas.  The training room lies to the south.~
+37 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+You see the Dwarven Daycare.~
+~
+0 -1 6601
+DDIR_EAST
+You see the Gnome Village~
+~
+0 -1 1501
+DDIR_SOUTH
+You see the Entrance Hall.~
+vent~
+EX_ISDOOR|EX_CLOSED -1 3760
+DDIR_WEST
+You see the Miden'nir.~
+~
+0 -1 3505
+DDIR_UP
+You see the Dangerous Neighborhood.~
+~
+0 -1 2171
+DDIR_DOWN
+You see the Mob Factory.~
+~
+0 -1 9400
+S
+#3725
+Chaos's Recruiting Office~
+You are in the recruiting office of Chaos. It is a bizare room which 
+radiates change and destruction. There is a large work desk here and in
+front of it, a comfortable chair for visitors.~
+37 ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+~
+~
+0 0 3722
+S
+#3726
+South East Corner of Arena~
+This is a room that should no longer be here.~
+37 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 0 3731
+DDIR_WEST
+~
+~
+0 0 3725
+DDIR_UP
+You see the EXIT.~
+~
+0 0 3760
+S
+#3727
+West Wall of Arena~
+This is a room that should no longer be here.~
+37 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 0 3732
+DDIR_EAST
+~
+~
+0 0 3728
+DDIR_SOUTH
+~
+~
+0 0 3724
+DDIR_UP
+You see the EXIT.~
+~
+0 0 3760
+S
+#3728
+A Corner of a Combat Hall~
+You are in a corner of a huge dimly-lit room. It is so large that it must
+fill the entire width of this section of the tower. Your light shines far
+enough to catch glimpses of small, frightened creatures scuttling through 
+the shadows.~
+37 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 0 3733
+DDIR_EAST
+~
+~
+0 0 3729
+S
+#3729
+In A Combat Hall~
+You are on the edge of a huge dimly-lit room. It is so large that it must
+fill the entire width of this section of the tower. Your light shines far
+enough to catch glimpses of small, frightened creatures scuttling through 
+the shadows.~
+37 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 0 3734
+DDIR_EAST
+~
+~
+0 0 3730
+DDIR_WEST
+~
+~
+0 0 3728
+S
+#3730
+A Corner of the Combat Hall~
+You are in the corner of a huge dimly-lit room. It is so large that it must
+fill the entire width of this section of the tower. Your light shines far
+enough to catch glimpses of small, frightened creatures scuttling through 
+the shadows.~
+37 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 0 3735
+DDIR_WEST
+~
+~
+0 0 3729
+S
+#3731
+East Wall of Arena~
+This is a room that should no longer be here.~
+37 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 0 3736
+DDIR_SOUTH
+~
+~
+0 0 3726
+DDIR_WEST
+~
+~
+0 0 3730
+DDIR_UP
+You see the EXIT.~
+~
+0 0 3760
+S
+#3732
+West Wall of Arena~
+This is a room that should no longer be here.~
+37 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 0 3737
+DDIR_EAST
+~
+~
+0 0 3733
+DDIR_SOUTH
+~
+~
+0 0 3727
+DDIR_UP
+You see the EXIT.~
+~
+0 0 3760
+S
+#3733
+In A Combat Hall~
+You are on the edge of a huge dimly-lit room. It is so large that it must
+fill the entire width of this section of the tower. Your light shines far
+enough to catch glimpses of small, frightened creatures scuttling through 
+the shadows.~
+37 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 0 3738
+DDIR_EAST
+~
+~
+0 0 3734
+DDIR_SOUTH
+~
+~
+0 0 3728
+S
+#3734
+The Intermediate Hall of Combat~
+You are in the center of a huge dimly-lit room. It is so large that it must
+fill the entire width of this section of the tower. Your light shines far
+enough to catch glimpses of small, frightened creatures scuttling through 
+the shadows. An impressive looking sign is sitting on a pedestal here.~
+37 ROOM_NO_MOB|ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 0 3739
+DDIR_EAST
+~
+~
+0 0 3735
+DDIR_SOUTH
+~
+~
+0 0 3729
+DDIR_WEST
+~
+~
+0 0 3733
+DDIR_UP
+You see the recruitment offices above.~
+~
+0 0 3722
+DDIR_DOWN
+You see a practice room below.~
+~
+0 -1 3759
+E
+sign~
+Train here in this chamber for level one through three. The monsters will not
+attack you and you can always return to the center of the room which has a
+ward that prevents the creatures from entering.~
+S
+#3735
+In A Combat Hall~
+You are on the edge of a huge dimly-lit room. It is so large that it must
+fill the entire width of this section of the tower. Your light shines far
+enough to catch glimpses of small, frightened creatures scuttling through 
+the shadows.~
+37 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 0 3740
+DDIR_SOUTH
+~
+~
+0 0 3730
+DDIR_WEST
+~
+~
+0 0 3734
+S
+#3736
+East Wall of Arena~
+You are in a room that should no longer be here.~
+37 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 0 3741
+DDIR_SOUTH
+~
+~
+0 0 3731
+DDIR_WEST
+~
+~
+0 0 3735
+DDIR_UP
+You see the EXIT.~
+~
+0 0 3760
+S
+#3737
+West Wall of Arena~
+You are in a room that should no longer be here.~
+37 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 0 3742
+DDIR_EAST
+~
+~
+0 0 3738
+DDIR_SOUTH
+~
+~
+0 0 3732
+DDIR_UP
+You see the EXIT.~
+~
+0 0 3760
+S
+#3738
+A Corner of the Combat Hall~
+You are in the corner of a huge dimly-lit room. It is so large that it must
+fill the entire width of this section of the tower. Your light shines far
+enough to catch glimpses of small, frightened creatures scuttling through 
+the shadows.~
+37 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+~
+~
+0 0 3739
+DDIR_SOUTH
+~
+~
+0 0 3733
+S
+#3739
+In A Combat Hall~
+You are on the edge of a huge dimly-lit room. It is so large that it must
+fill the entire width of this section of the tower. Your light shines far
+enough to catch glimpses of small, frightened creatures scuttling through 
+the shadows.~
+37 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+~
+~
+0 0 3740
+DDIR_SOUTH
+~
+~
+0 0 3734
+DDIR_WEST
+~
+~
+0 0 3738
+S
+#3740
+A Corner of the Combat Hall~
+You are in the corner of a huge dimly-lit room. It is so large that it must
+fill the entire width of this section of the tower. Your light shines far
+enough to catch glimpses of small, frightened creatures scuttling through 
+the shadows.~
+37 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+~
+~
+0 0 3735
+DDIR_WEST
+~
+~
+0 0 3739
+S
+#3741
+East Wall of Arena~
+You are in a room that should no longer be here.~
+37 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 0 3746
+DDIR_SOUTH
+~
+~
+0 0 3736
+DDIR_WEST
+~
+~
+0 0 3740
+DDIR_UP
+You see the EXIT.~
+~
+0 0 3760
+S
+#3742
+North West Corner of Arena~
+You are in a room that should no longer be here.~
+37 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+~
+~
+0 0 3743
+DDIR_SOUTH
+~
+~
+0 0 3737
+DDIR_UP
+You see the EXIT.~
+~
+0 0 3760
+S
+#3743
+North Wall of Arena~
+You are in a room that should no longer be here.~
+37 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+~
+~
+0 0 3744
+DDIR_SOUTH
+~
+~
+0 0 3738
+DDIR_WEST
+~
+~
+0 0 3742
+DDIR_UP
+You see the EXIT.~
+~
+0 0 3760
+S
+#3744
+North Wall of Arena~
+You are in a room that should no longer be here.~
+37 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+~
+~
+0 0 3745
+DDIR_SOUTH
+~
+~
+0 0 3739
+DDIR_WEST
+~
+~
+0 0 3743
+DDIR_UP
+You see the EXIT.~
+~
+0 0 3760
+S
+#3745
+Storeroom~
+This room is a treasure trove of advanced magical knowledge. Summoning wands 
+of all shapes and sizes line the wall, each labeled with the name of a 
+different monster. There is also a glowing cube with the label 'Cubic Gate'
+here. Unfortuneately, all of these things are sealed away behind powerful
+magical force walls. Almost beyond your notice among all the clutter is a
+small force door to the south.~
+37 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+You see a locked force door.~
+force door~
+EX_ISDOOR|EX_CLOSED|EX_LOCKED|EX_PICKPROOF 3719 3746
+DDIR_UP
+You see the entrance hallway.~
+~
+0 0 3760
+S
+#3746
+Torture Chamber~
+You have entered a scene of horror! You are in a gruesome torture chamber.
+Right in the middle of the room is a glowing machine that has two slabs of
+spikes, one above and one beneath. The slabs are slowly coming together and
+the spikes are already sunk deep into a prisoner.~
+37 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+~
+~
+0 0 3745
+S
+#3748
+The Advanced Hall of Combat~
+You are in the center of a huge dimly-lit room. It is so large that it must
+fill the entire width of this section of the tower. Your light does not shine
+far enough to see anything, but a feeling of dread comes over you as you 
+realize that you are not alone in here. An impressive looking sign is on a
+pedestal here.~
+37 ROOM_NO_MOB|ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+You see the north wall.~
+~
+0 0 3750
+DDIR_EAST
+You see the east wall.~
+~
+0 0 3753
+DDIR_SOUTH
+You see the south wall.~
+~
+0 0 3755
+DDIR_WEST
+You see the west wall.~
+~
+0 0 3752
+DDIR_UP
+You see a practice room above.~
+~
+0 -1 3759
+DDIR_DOWN
+You see the testing chamber below.~
+~
+0 -1 3721
+E
+sign~
+Train here in this chamber for level four through five. The monsters WILL
+attack you, so be careful. You can always return to the center of the room 
+which has a ward that prevents the creatures from entering.~
+S
+#3749
+A Corner of the Combat Hall~
+You are in a corner of a huge dimly-lit room. It is so large that it must
+fill the entire width of this section of the tower. Your light does not shine
+far enough to see anything, but a feeling of dread comes over you as you 
+realize that you are not alone in here.~
+37 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+You see the north wall.~
+~
+0 0 3750
+DDIR_SOUTH
+You see the south wall.~
+~
+0 0 3752
+S
+#3750
+In A Combat Hall~
+You are on the edge of a huge dimly-lit room. It is so large that it must
+fill the entire width of this section of the tower. Your light does not shine
+far enough to see anything, but a feeling of dread comes over you as you 
+realize that you are not alone in here.~
+37 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+You see the north east corner.~
+~
+0 0 3751
+DDIR_SOUTH
+You see the center of the hall.~
+~
+0 0 3748
+DDIR_WEST
+You see the north west corner.~
+~
+0 0 3749
+S
+#3751
+A Corner of the Combat Hall~
+You are in a corner of a huge dimly-lit room. It is so large that it must
+fill the entire width of this section of the tower. Your light does not shine
+far enough to see anything, but a feeling of dread comes over you as you 
+realize that you are not alone in here.~
+37 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+You see the east wall.~
+~
+0 0 3753
+DDIR_WEST
+You see the north wall.~
+~
+0 0 3750
+S
+#3752
+In A Combat Hall~
+You are on the edge of a huge dimly-lit room. It is so large that it must
+fill the entire width of this section of the tower. Your light does not shine
+far enough to see anything, but a feeling of dread comes over you as you 
+realize that you are not alone in here.~
+37 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+You see the north west corner.~
+~
+0 0 3749
+DDIR_EAST
+You see the center of the hall.~
+~
+0 0 3748
+DDIR_SOUTH
+You see the south west corner.~
+~
+0 0 3754
+S
+#3753
+In A Combat Hall~
+You are on the edge of a huge dimly-lit room. It is so large that it must
+fill the entire width of this section of the tower. Your light does not shine
+far enough to see anything, but a feeling of dread comes over you as you 
+realize that you are not alone in here.~
+37 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+You see the north east corner.~
+~
+0 0 3751
+DDIR_SOUTH
+You see the south east corner.~
+~
+0 0 3756
+DDIR_WEST
+You see the center of the hall.~
+~
+0 0 3748
+S
+#3754
+A Corner of the Combat Hall~
+You are in a corner of a huge dimly-lit room. It is so large that it must
+fill the entire width of this section of the tower. Your light does not shine
+far enough to see anything, but a feeling of dread comes over you as you 
+realize that you are not alone in here.~
+37 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+You see the north wall.~
+~
+0 0 3752
+DDIR_EAST
+You see the south wall.~
+~
+0 0 3755
+S
+#3755
+In A Combat Hall~
+You are on the edge of a huge dimly-lit room. It is so large that it must
+fill the entire width of this section of the tower. Your light does not shine
+far enough to see anything, but a feeling of dread comes over you as you 
+realize that you are not alone in here.~
+37 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+You see the center of the hall.~
+~
+0 0 3748
+DDIR_EAST
+You see the south east corner.~
+~
+0 0 3756
+DDIR_WEST
+You see the south west corner.~
+~
+0 0 3754
+S
+#3756
+A Corner of the Combat Hall~
+You are in a corner of a huge dimly-lit room. It is so large that it must
+fill the entire width of this section of the tower. Your light does not shine
+far enough to see anything, but a feeling of dread comes over you as you 
+realize that you are not alone in here.~
+37 ROOM_DARK|ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+You see the east wall.~
+~
+0 0 3753
+DDIR_WEST
+You see the south wall.~
+~
+0 0 3755
+S
+#3757
+Top Of The Tower~
+You are in the top most room of the tower of training. This tower is very 
+special and was created by the gods themselves to train new mortals. The 
+avatars of the gods that dwell here are your teachers and they stock the 
+tower with creatures against which you can test your strength. There is a 
+stair leading to the very pinnacle of the tower here, but for some reason 
+you cannot force yourself to climb it. The stair also leads downward.
+There is a sign on the wall (type 'LOOK SIGN' to read it).~
+37 0 SECT_CITY
+DDIR_DOWN
+You see a Training Room.  Go there to train your attributes.~
+~
+0 0 3758
+E
+sign~
+To find out your attributes, type 'score'.  You can improve your attributes
+in the Training Room below. Later on, you will be able to practice your 
+skills and spells in by finding your guild in the city of Chakkor. You can 
+continue through mud school by going down.
+Another way to look at your attributes is by typing 'stat'. It is slightly
+shorter and shows only the most essential information.~
+S
+#3758
+The Training Room~
+You are in the Training Room of the Tower. The room is watched over by an
+Avatar who seems to create training tools out of thin air. The whole room is 
+filled with an aura of hard work. When you are finished here, you should 
+continue downward. As you descend through the tower, you will learn all of 
+the basics of being a mortal. An impressive looking sign is on the wall here.~
+37 0 SECT_CITY
+DDIR_UP
+~
+~
+0 0 3757
+DDIR_DOWN
+You sense more lessons will be learned if you go this way.~
+~
+0 0 3701
+E
+sign~
+Welcome to the Training Room.  Here you can train your attributes.  To train 
+an attribute, you need enough practices.  To find out how many practice
+sessions you have, type 'train' while you are in this room.  To train for a 
+specific attribute, type 'train <attr>' where attr is the first 3 letters of
+the attribute you want increased.  Type 'help train' for more information.
+Generally, your prime attribute costs three practice sessions to increase. 
+Any other attribute costs five sessions. Type 'help stat' to find out about
+your prime attribute.~
+S
+#3759
+The Practice Room~
+You are in the Practice Room of the Tower. The room is watched over by an
+Avatar who seems to create practice tools out of thin air. The whole room is 
+filled with an aura of hard work. The golden stairs lead up and down. A 
+scream occasionally echoes up from the chamber below. An impressive looking 
+sign is on the wall here.~
+37 ROOM_NO_MOB SECT_CITY
+DDIR_UP
+You see the intermediate combat hall above.~
+~
+0 0 3734
+DDIR_DOWN
+You see the advanced combat hall below.~
+~
+0 -1 3748
+E
+sign~
+Welcome to the Practice Room.  Here you can learn your skills and spells.
+You are forbidden to learn skills until you reach at least third level. If 
+you aren't third level, go back to the top of the tower to train more of your
+attributes instead. To find out what skills and spells you can practice 
+and how many practice sessions you have, type 'practice'.  To practice the 
+specific skill, type 'practice <skill>', where 'skill' is the skill or spell 
+you wish to practice. Practicing increases the amount you know of that skill 
+or spell, up to a certain maximum.
+It is important to note that this practice room is only for use before you
+leave the tower. Once fully into the mortal world you should seek out your
+guildhouse to practice in.~
+S
+#3760
+Entrance Hall of the Tower~
+You are in the entrance hall of the Tower of Training. Although, perhaps 
+exit hall would be more appropriate as new mortals materialize on the very 
+pinnacle of the tower. The hall is grey and a gold plated stairway leads
+upward and downward. The city of Chakkor can be seen through a huge, vaulted
+doorway to the south.~
+37 ROOM_NO_MOB|ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 9735
+DDIR_UP
+~
+~
+0 0 3721
+DDIR_DOWN
+~
+~
+0 0 3745
+S
+#3761
+Second Floor of Introductory Combat~
+You are in the the first of the combat zones that are in the tower. Small, 
+magical globes of energy drift lazily around the ceiling which provide 
+you with light to see. More force cages are in each of the four cardinal 
+directions. Several extremely soft couches are here so that you make take 
+a nap between battles. The ever present stairway leads up and down.~
+37 ROOM_NO_MOB|ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+You see a cage labeled 'Demonic Worms'.~
+~
+0 -1 3762
+DDIR_EAST
+You see a cage labeled 'Gold Drakelings'.~
+~
+0 -1 3765
+DDIR_SOUTH
+You see a cage labeled 'Forest Pixies'.~
+~
+0 -1 3764
+DDIR_WEST
+You see a cage labeled 'Crater Kobolds'.~
+~
+0 -1 3763
+DDIR_UP
+You see a room in the Tower.~
+~
+0 -1 3712
+DDIR_DOWN
+You see the next station below.~
+~
+0 -1 3717
+S
+#3762
+A Force Cage~
+You are in a force cage.  Disgusting black mucus coats the entire floor. It
+probably comes from the creature that lives here. Apparently Avatars don't 
+know how to use a mop. An impressive looking sign is on the wall here.  
+The only exit is south.~
+37 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+You see the Combat Hall.~
+~
+0 -1 3761
+E
+sign~
+There should be a demonic worm in this room.  Kill him and get out of here
+fast!  Remember to loot and sacrifice the corpse.~
+S
+#3763
+A Force Cage~
+You are in a force cage.  In one corner of the room is nest made out of torn
+up cloth. In another corner is a pile of offal that you avoid looking at but
+your nose smells all too clearly. An impressive sign is on the wall here.  
+The only exit is east.~
+37 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+You see the Combat Hall.~
+~
+0 -1 3761
+E
+sign~
+There should be a crater kobold in this room.  Kill him and get out of
+here fast!  Remember to loot and sacrifice the corpse.~
+S
+#3764
+A Force Cage~
+You are in a force cage.  The cage is filled with miniature furniture. There
+is a tiny little bed, a tiny little easy chair, a tiny little endtable, and
+a tiny little book on the tiny little endtable. An impressive looking sign  
+is on the wall here. The only exit is north.~
+37 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+You see the Cage Room.~
+~
+0 -1 3761
+E
+sign~
+There should be a pixie in this room.  Kill him and get out of here fast!
+Remember to loot and sacrifice the corpse.~
+S
+#3765
+A Force Cage~
+You are in a force cage. The ceiling is covered with scorch marks and the  
+floor is layered in straw. Some of the straw has been burned to a crisp. An 
+impressive looking sign is on the wall. The only exit is west.~
+37 ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+You see the Cage Room.~
+~
+0 -1 3761
+E
+sign~
+There should be a gold drakeling in this room.  Kill him and get out of here 
+fast! Remember to loot and sacrifice the corpse.~
+S
+#0
+
+
+
+
+#RESETS
+M 0  3701   1  3710 ;             the gargoyle in A Force Cage             
+G 1  3720   1       ;                  a stone
+M 0  3702   1  3716 ;       the gold drakeling in A Force Cage             
+E 1  3705 99 3 ;equip a sprit cloak            
+E 1  3717 99 4 ;equip a spirit amulet          
+M 0  3703   1  3715 ;         the forest pixie in A Force Cage             
+E 1  3706 99 6 ;equip a spirit helmet          
+E 1  3711 99 12 ;equip a spirit cape            
+M 0  3704   1  3713 ;         the demonic worm in A Force Cage             
+E 1  3707 99 7 ;equip a pair of spririt greaves
+E 1  3712 99 13 ;equip a spirit sash            
+M 0  3705   1  3714 ;        the crater kobold in A Force Cage             
+E 1  3708 99 WEAR_BODY ;equip a pair of spirit boots   
+E 1  3713 99 14 ;equip a spirit bracer          
+M 0  3702   1  3765 ;       the gold drakeling in A Force Cage             
+E 1  3705 99 3 ;equip a sprit cloak            
+E 1  3717 99 4 ;equip a spirit amulet          
+M 0  3703   1  3764 ;         the forest pixie in A Force Cage             
+E 1  3706 99 6 ;equip a spirit helmet          
+E 1  3711 99 12 ;equip a spirit cape            
+M 0  3704   1  3762 ;         the demonic worm in A Force Cage             
+E 1  3707 99 7 ;equip a pair of spririt greaves
+E 1  3712 99 13 ;equip a spirit sash            
+M 0  3705   1  3763 ;        the crater kobold in A Force Cage             
+E 1  3708 99 WEAR_BODY ;equip a pair of spirit boots   
+E 1  3713 99 14 ;equip a spirit bracer          
+D 0  3717 DIR_DOWN DOOR_CLOSED ;door in A Room in the Tower      
+D 0  3719 DIR_UP DOOR_CLOSED ;door in A Room in the Tower      
+D 0  3719 DIR_DOWN DOOR_CLOSED_LOCKED ;door in A Room in the Tower      
+M 0  3717   1  3718 ;      the Avatar of Order in The Tower Shop
+G 1  3716 999       ;          glowing banner
+G 1  3718 999       ;          a loaf of bread
+G 1  9780 999  ; book
+G 1 9781 999  ; book
+G 1 9782 999  ; book
+G 1  3723 999       ;          a buffalo waterskin
+M 0  3706   1  3720 ;       The brawny warrior in The Darkened Force Cage  
+E 1  3709 99 9 ;equip a pair of spirit gauntlet
+E 1  3710 99 10 ;equip a pair of spirit vambrace
+E 1  3714 99 17 ;equip a key                    
+E 1  3713 99 14 ;equip a spirit bracer          
+M 0  3700   1  3723 ;   the Recruiter of Order in Order's Recruiting Office
+M 0  3721   1  3725 ;   the Recruiter of Chaos in Chaos's Recruiting Office
+M 0  3712   1  3729 ;               the minion in In A Combat Hall         
+M 0  3711   1  3730 ;               the minion in A Corner of the Combat Ha
+M 0  3710   1  3733 ;               the minion in In A Combat Hall         
+M 0  3712   1  3739 ;               the minion in In A Combat Hall         
+M 0  3710   1  3735 ;               the minion in In A Combat Hall         
+M 0  3711   1  3738 ;               the minion in A Corner of the Combat Ha
+M 0  3714   1  3749 ;         the chief minion in A Corner of the Combat Ha
+M 0  3711   1  3750 ;               the minion in In A Combat Hall         
+M 0  3711   1  3752 ;               the minion in In A Combat Hall         
+M 0  3715   1  3751 ;               the minion in A Corner of the Combat Ha
+M 0  3715   1  3754 ;               the minion in A Corner of the Combat Ha
+M 0  3707   1  3712 ;      the avatar of Chaos in First Floor of Introducto
+M 0  3720   1  3721 ;         the stone statue in The Chamber of Testing   
+E 1  3715 99 17 ;equip a token of completion    
+M 0  3718   1  3758 ;      the Avatar of Order in The Training Room        
+M 0  3719   1  3759 ;      the Avatar of Chaos in The Practice Room        
+D 0  3724 DIR_SOUTH DOOR_CLOSED ;door in Air Vent                 
+M 0  3722   1  3746 ;            the Grey Lord in Torture Chamber          
+S
+
+
+
+
+#SHOPS
+3717 ITEM_TYPE_LIGHT ITEM_TYPE_CONTAINER ITEM_TYPE_DRINK_CON ITEM_TYPE_FOOD
+     ITEM_TYPE_NOTHING 100  50  0 23 ;the Avatar of Order
+0
+
+
+
+
+#SPECIALS
+M 3707 spec_cast_adept
+S
+
+
+
+
+#$

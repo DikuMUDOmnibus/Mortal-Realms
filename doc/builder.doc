@@ -1,0 +1,5452 @@
+	      ==
+	     = =             Mortal  Realms                     =
+	    = =  =                                              =
+	   = ====                =======                       =
+	  = =  =               ========/==                  =  =
+	  = ===               ========/====                 ====
+	  === =  =           ===        =====            =   ===
+	  = =====          ====  -.  .-  === =          =  ===  =
+	   = = ==   ==    == ==    /     ==== ==   = ===  = =  =
+	  === = ==   ======= ===         === = = ====  ===== =
+	   == == ====== = = == ==  --   == ==== ==  == ==== =
+	    === ===== == ========        ========= ====== ====
+	     = === =======__--\         / --__ ===== =======
+		= == =_-\  \                 /--__==== = =
+     \ \ \        __-- \                          --__        / / /
+      \ \ \ _    - \                               /  --___  / / /
+     \     //__-/          /                \              |\     /
+ .     __  /            ///                  \\\           \   -'
+. . .        ..      . . //  . .          .  \     . .            .  .
+.  ...  .  . . . .  .  . / . .. .. .  . .. . \ . .. . .  .  . --.   ... . .
+ ..    .  .    .. .   . .|. . . .  . .   .  .|.   .  .. ...... . . ..  . .  ..
+							       MrMud ver 1.2
+==============================================
+
+Hello future MrMud area creator!
+
+We (Chaos and me, Order) have put together this collection of
+documents as both references and instructions to building areas.
+Below is a list of the documents in the order which we recommend
+reading, along with a brief description of each.
+
+diku_bld.txt : the official handbook for creating DikuMUD areas as
+	 created by the Curious Area Workshop, it is included
+	 in the MrMud Area Package because it does a decent job
+	 of describing all of the basics of area building.  This document
+	 has been modified to the MrMud configuration.
+
+mob_prog.txt : the instruction document that describes how to
+	 implement mob programs.  This does NOT describe how to
+	 make special programs in C for mobiles, but details the
+	 functions and triggers used in programming mobiles from
+	 the area file.  This is the only method of support that can be given
+	 to creators for making mobiles do special functions.
+
+   mrmud.txt : the latest set of values used by MrMud.  Updates to
+	 this document set will be contained in this file and
+	 the following file.
+
+  spells.txt : the list of spells and the numbers necessary for
+	 specifying the spells in creating scrolls, wands,
+	 staffs, and pills.
+
+ daycare.are : an example area, with an example mob_prog
+
+Have fun creating!
+
+Order, the God of Reason
+==============================================
+
+Several utilities are included on in a different .tar file:
+
+mapmaker:  Helps create the ROOMS sections
+map: Generates a map out of a .are file
+areacheck:  Checks your .are syntax to exact MrMud v1.2 specs.
+draw:  Creates pictures for displaying mobiles and objects.  DOS only.
+
+Also various builder utilities may be located to help create areas, and can
+be found on various sites.  These are generally not 100% compatible with MrMud,
+to the extent that they do not support all the features of MrMud.  Use of these
+programs, such as dikued, may require some fixing to build your area, but these
+are generally minimal fixes.
+
+When selecting non-MrMud utilities, be sure to select Merc before Diku, or their
+derivatives.  No other mud formats (lpmud, etc.) are compatible with MrMud.
+
+==============================================
+FILE: "diku_bld.txt"
+
+
+    The Builder's Handbook
+	(version 1.0)
+	     By
+
+	  Builder_5
+
+      (of the Curious Area Workshop)
+
+    (Modified by Chaos on 8/31/94)
+
+
+TABLE OF CONTENTS
+
+1.  Overview
+2.  Terminology
+3.  Basics
+4.  The #AREA, #HELPS, and #ROOMS section
+5.  The #MOBILES section
+6.  The #OBJECTS section
+7.  The #SHOPS section
+8.  The #RESETS section
+9.  Putting it all together
+10. Credits
+
+
+1.  Overview
+
+
+  This document is meant to be a basic tutorial to building
+areas for MrMud muds.  Readers of this Handbook should have at least
+have some experience with MrMud's, and will understand the basic MrMud
+concepts of armor, levels, and the et cetera.
+
+  Nowadays, many mud-admins express the wish to have an entirely
+unique world.  Unfortunately, building is time consuming and requires
+no mean amount of skill, with the added 'bonus' of being hard to
+learn; the standard mud-docs that get bandied about are somewhat
+vague on certain subjects, and were originally intended as a reference
+guide rather than a learning document.  I hope to make this Handbook a
+'cookbook' of sorts -- an explanation of the how's and what's of
+building a MrMud based area for the non-coding inclined.
+
+  This document is a tutorial for building in the standard
+MrMud release 1.2 .  Most (95% or so) muds have changed or added
+to the information, but still follow the basic format.  Reading this
+document should prepare you for most MrMuds you will encounter out
+on the net.
+
+  The Curious Area Workshops highly recommends that every
+builder understand the nuts and bolts of building, even if they have
+access to one of the mud-area editors available out there.  Being
+able to build with an editor is nice, but the knowledge of how the
+nuts and bolts of building actually works is extremely valuble when
+things go wrong.  We cannot emphasize this enough, but we will attempt
+to refrain from preaching it in the rest of this document.
+
+
+
+2. Terminology
+
+  Here are some common terms used in builing, and this handbook:
+
+Desc:    Short for 'description'.
+Db:    Database.  The files that make up the 'world' of a MrMud.
+Flag:    A bit-vector that tells the mud that a particular monster,
+    object, or room has a certain quality.  (i.e. 'Dark', 'Magic',
+    'Aggressive')  See FLAGS in section 3 -- Basics.
+Mob:    Mobile.  A monster.
+Ob/Obj:    Object.
+Tilde:    This is a tilde: ~ .  It signifies the end of a line or
+     a field in some of the database files.
+Vnum:    An object, monster, or room's unique identification number.
+    Stands for 'Virtual Number'.
+Zone:    Used synonimously with 'area'.
+
+
+
+
+3. Basics
+
+
+  For all examples, the area under creation will be known as
+'Handbook' or 'example area'.  It is assumed that the builder has
+access to some standard type of text editor and knows how to use it.
+
+** FILES
+
+	For each area, one file must be created for inclusion into the
+dikumud's db:
+
+    Handbook.are
+
+    This file includes the various sections of:
+      #AREA
+      #MOBILES
+      #OBJECTS
+      #ROOMS
+      #RESETS
+      #SHOPS
+      #HELPS
+
+
+** FLAGS
+
+	Simply put, a flag tells the mud that there is something 'special'
+about a mob, room, or object.  In the sections below, lists of flags
+will be given with a number, a bitvector, next to it.  For example,
+here is the list of room flags that will appear below in the #ROOMS section:
+
+ROOM_DARK           1
+ROOM_NO_MOB         4  /* wandering mobiles can't enter the room */
+ROOM_INDOORS        8
+ROOM_PRIVATE      512  /* only two people at a time */
+ROOM_SAFE        1024  /* can't do aggressive commands */
+ROOM_SOLITARY    2048  /* only one person at a time */
+ROOM_PET_SHOP    4096  /* place to buy pets */
+ROOM_NO_RECALL   8192
+ROOM_BLOCK      32768  /* room blocked from entrance */
+ROOM_MORGUE    131072  /* shop in this room sells PC corpses */
+      (various other ROOM_ flags are described below)
+
+	Now, for example, you are building a room.  Deciding that this
+room is a small section of tunnel, you would choose the flags 'Dark'
+(1), and 'Indoors' (8).
+These numbers are the important part.  When the mud looks at the .wld
+file, it looks for _one_ number in a certain particular spot for each
+room's flags.  Therefore, to give one room _two_ flags, you ADD the
+bitvectors together and place that number in the flags spot of that
+room's data.  Thus for this example, Indoors + Dark = 9.
+  Another simple format can be each number separated by a '|' symbol.
+The '|' symbol is an logic 'or' symbol.
+Indoors + Dark = 1|8
+  The final format is to use the names of the flags in replace of the
+numbers.  This system is MUCH easier to read, but may not be compatible with
+some of the mud-editors.
+Indoors + Dark = ROOM_INDOORS|ROOM_DARK
+
+
+
+	How does this work, though?
+
+	The bitvectors are in binary...the number you arrived at when
+you added can only be reached by one combination of adding those
+numbers together (you're not allowed to use a flag or number more than
+once).  Thus, if your number was 522, you would know that it was
+'Private' (the highest number that will go into 522) 'Indoors'
+(522-512=10.  Indoors (8) is the next highest number that will go into
+that), and 'Death' (10-8=2, 2-2=0 -- no more flags).
+
+
+  It should be obvious that the list is not complete.  The blank spots are
+flags the are not used but exist for backward compatiblity.  PLEASE do not
+use any of these.  The game may use some of them for temporary values, and
+their use may jeopardize the system.
+
+
+** Zone Number
+
+	Each area must have its own unique number.  Usually, the imp
+of your particular mud will assign this to you.  This number is used
+as part of all your area's virtual numbers.
+(see below).
+  The system that nearly all MrMud administrators like is the QQ format.
+This system places the symbols 'QQ' in replace of any zone number.  The
+administrators will later assign a number in replace of the QQs.
+
+
+
+** Virtual Numbers
+
+	Every Mob, Obj, Room, and Shop must have its own Virtual
+Number for the mud to identify it with.  Each number must be unique
+among its own type.
+
+	For example, If I made the Sword of Cheezy Destruction, I may
+decide to make it item number 2200 of my zone.  The first two digits
+are the zone number (above) of my area, the second two identify which
+item it is in that area.
+    These first two numbers will be assigned by the system administrators.
+The first two numbers should be replaced by 'QQ'.  Therefore the format you
+would write for the item number is QQ00.
+
+
+	However, I can have a mobile with number 2200 as well.  A room
+#2200 too.  The number must be unique among all others of its type
+(rooms, obj's, mobs), but does not need to be unique in regards to
+other types of db's.
+
+  MrMud systems do not allow using any object or mobile that does not
+solely exist in the zone of the creator, so all referenced objects or
+mobiles should start with the QQs.
+
+
+If your area has more than 100 rooms then continue using the 'QQ' method,
+but change the value to 'QR' for rooms 100-199, and 'QS' for rooms 200-299,
+etc...
+
+
+** Strings
+
+  A string the the actual data of the text sent to the player, such as a
+mobile's name, or a room description.  Strings can range in size from zero
+length to the MAX_STRING_LENGTH.  MrMud systems are 20,000 bytes allowed per
+string in a description, and 2,000 for names and short descriptions.  All
+strings end in the tilde '~' symbol.  Placing a return after the text, but
+before the tilde will display the return to the player.  Putting extra returns
+in front of any text will be parsed out unless the '.' character is used.
+If the first character is a '.' then it is removed from the displayed text.
+
+  Custom color may be added to certain strings.  Room descriptions, mobiles
+descriptions, object descriptions, and extra descriptions may all have custom
+color.  Adding color is as simple as adding a pair of matching brackets, with
+three digits between them.  The three numbers are the parameters of the
+color change request.
+
+Format:    '{abc}'           with a, b, c being parameters.
+
+    Parameter 'a':  VT102 code.
+                       0 - Dim
+                       1 - Bold
+                       3 - Restore color to text default regardless of
+                                the b/c parameters
+                       4 - Reverse
+                       5 - Underline
+                       7 - Flashing
+         (All VT102 systems support Dim, Bold, Restore, and Reverse)
+
+    Parameter 'b':  Foreground color
+    Parameter 'c':  Background color
+                       0 - Black
+                       1 - Red
+                       2 - Green
+                       3 - Yellow
+                       4 - Blue
+                       5 - Purple
+                       6 - Cyan
+                       7 - White
+    
+Example:   
+The small {130}dog{300} sits by the {440}cat.~
+
+  This example starts with normal colors.  'dog' is bold, yellow on black.
+The 'cat.' is reversed blue on black, which ends up being blue background, with
+black text.
+
+
+
+
+4.1  The #AREA section
+
+	The #AREA section has very few lines but sets up the entire file.
+The first line of the .are file must contain the statment:
+
+#AREA {<level range>} <creator name> <area name>~
+
+example:
+
+#AREA {50 95} Desmond Mount Kolvir~ 
+or
+#AREA {40 60} Presto  The Isle of Mist~
+
+**  Level Range
+    This is a very arbitrary set of numbers that the creator must decide on.
+    This field must contain exactly 5 characters between the brackets.
+
+**  Creator Name
+    This field contains the creator name.
+    There must be one space after the close bracket, and exactly seven
+    characters, followed by a space.
+
+**  Area Name
+    This field should be less than 15-20 letters.  Anything larger will be
+    terminated.  Follow this with a '~' or tilde.
+
+
+***  Flags
+
+    There are two other lines you may put after the #AREA line.
+    These lines are actually area wide flags.
+
+#NODEBUG
+    Use this flag if you have rooms that are non-standard.  Usually this
+    flag is not necessary.
+    A non-standard room is one where when you leave room A north to room B.
+    Then you leave room B south.  While trying to get to A, you actually 
+    end up at room C.
+
+#AUTHORS <author character name list>~
+    This allows online area code changes for the specified authors.  This only
+    works for test games, and is not allowed in a REAL_GAME.
+
+#NOTELEPORT
+    This does not allow a player to teleport or rift into the area.
+
+#RESTRICT <low level> <high level>
+    This will restrict players from entering a room in the area based on the
+    level range specified.  The player's level must be within the values given.
+
+#TEMPERATURE <winter low> <summer low> <daily change> <wetness scale>
+    This is the daily temperature scale in Fahrenheit.  The winter and summer
+    lows are for night temperature, with the daily adding to it.  To reverse
+    the seasons, simply switch out winter and summer temps.
+    The 'Wetness Scale' is a number from 0 to 10.  0 is a desert.  10 is a
+    tropical rain forest.  5 is the default value.
+    Leaving this optional parameter off uses defualt settings for weather.
+
+
+4.2  The #HELPS section
+
+	This section allows the addition of new help listings.
+	Entire help menus may be created.
+
+    Begin this section with:
+
+#HELPS
+
+    End this section with:
+
+0 $~
+
+***  Help Archetype
+
+<level> <name list>~
+<text of help and special menu pointers>
+~ 
+
+example:
+
+5 SWORD CUTLASS~
+.       The sword is a very strong weapon
+	But you may find stronger ones.
+
+	    (A) Information on Knives
+	    (B) Information on Spoons
+	    (-) Back
+{a}knife
+{b}spoon
+{-}cuttlery
+~
+** Level
+    This is the level the player must be to be able to read this help.
+    Use -1 if you wish everyone to read it.
+
+** Name List
+    This field is a list of keywords that will reference the help text.
+    These may be odd encoded numbers for menu use only, or simple ones
+    that the player may enter help on directly.
+    This field should be in all capital letters.
+
+** Body
+    The body has several special encoded features.
+    The first is that all initial spaces and returns are removed unless
+    the body start with a '.'
+
+** Menus
+    The menu stucture shown above has two sections.  The first section, where
+    the options are surrounded by '(' and ')' is the display section.
+    The display section is shown with the rest of the body text.
+    The actual decoded menu section is a line that starts with '{'.
+    Once a menu option is trapped, the following letter is the option
+    that the user must pick, followed by '}'.
+    The following letters are what the menu item will reference in the
+    help system.
+    These menu items may point to any other item in the help db.
+    Please use only lower case letters for the menu system, since this
+    feature is case sensitive, and most people select menus by lower case.
+
+
+4.3  The #ROOMS section
+
+	The #ROOMS section contains all the information necessary for the
+mud to make all the rooms of your area, link the exits together, and
+all the other little things concerned with the 'where's' of an area.
+The file simply consists of all the rooms in sequential order by their
+virtual number.  Here is a sample room for this section's example:
+
+This section in the .are file will always start first with this line:
+#ROOMS
+
+This section in the .are file will always end with with this line:
+#0
+
+*** ROOM ARCHETYPE
+
+(the <'s and >'s are used to offset values, and should be ignored)
+
+
+#QQvnum
+Room Title~
+Room's Description
+~
+QQ <room flag> <sector type>
+D<direction number>
+exit description field
+~
+door keyword list~
+<door type> <key vnum> QQ<exit-to-room vnum>
+<more exits here, if needed>
+E
+extra description keyword list~
+extra description
+~
+S
+
+
+---example follows this line---
+#QQ00
+The First Room~
+   You are standing in the first room of this area.  Many rooms
+are sure to follow, soon to be chock-filled with adventure, danger,
+romance, and Giant Green Photosynthetic Death Gerbils from Morovia.
+There is a sign hanging from the east wall here, and a large steel
+grate bars the way to the north.
+~
+QQ 8 0
+D0
+You spot the Second Room to the north, behind a large steel grate.
+~
+grate steel~
+1 QQ00 QQ01
+E
+sign~
+The sign says:
+
+	WELCOME TO THE FIRST ROOM!
+~
+S
+---example precedes this line---
+
+
+	Now to explain what each part means, line by line:
+
+
+#QQ00
+
+	The virtual number of this room.  Totally unique; no other
+	room in the db will have this number after the adminstrators
+	assign a value for the QQ.
+
+
+The First Room~
+
+	Short description: the 'title' of the room.  This is typically not
+	more than 5-6 words long.  Note the tilde marking the end of this
+	field.
+
+
+   You are standing...
+~
+
+	The long description of the room.  This is what a player sees
+	if he or she types 'look' in that room.  What is in this section
+	is up to your own, personal taste.  More about the various
+	description types can be found below.
+	Note that a tilde follows on a line by itself.  This is important,
+	so that the mobs and obj in the room won't be jumbled all into
+	one line.
+
+
+QQ 8 0
+
+	The first number is the zone number of this room; what zone should
+	the mud consider this room to be in for game purposes.  Please see
+	'zone numbers' in section 3 of this handbook.
+
+	The second number is the room flag value.  Please see 'flags' in
+	section 3 of this handbook, and Room Flags below.
+
+	The Third number is sector type.  Please see 'sector types' below.
+
+
+D0
+
+	An exit to direction 0.  The section on 'Exits' below will
+	shed more light on this subject.
+
+
+You spot the Second Room ...
+
+	Direction description; what a player would see if he/she typed
+	'look north'.  Note the tilde on its own line afterwards.
+
+
+grate steel~
+
+	What words can be used to manipulate the door.  These two
+	words can be used in conjunction with open, close, pick, and
+	look commands, etc.
+
+
+1 QQ00 QQ01
+
+	The first number is the door value, 1 being open/close/pick/lock
+	and unlockable.  This and the other numbers will be explained
+	more fully under 'Exits' below.
+
+	The second number is the key number...the virtual number of the
+	object that can be used to lock or unlock this door.
+
+	The third number is the vnum of what room this exit leads to.
+
+
+E
+
+	Tells the mud there is an extra description coming.
+
+
+sign~
+
+	The words that can be used to look at the extra description.
+	(i.e. 'look sign')  Note the tilde ending the field.
+
+The sign says:...
+
+	The text of the extra description.  Again, note the placement
+	of the tilde on its own line.
+
+
+S
+
+	End-of-Room character.
+
+
+
+Now, for more explanations...
+
+
+*** DESCRIPTIONS
+
+	Descriptions are fairly self explanatory.  However, the
+placement of tilde's are very important.
+
+*Short Desc's: The short desc is placed at the top of the room
+description, and can often be seen even if the player is in 'brief'
+mode.  Simply put, this is the title of the room.  Short Desc's should
+be kept to one line minimum...the shorter the better, in fact -- it
+should just be the shortest possible description of this room: 'A Dark
+Tunnel' 'The Bakery' 'Ms. Celande's Office'.  A Short desc follows
+this format:
+
+Title of Room~
+
+
+*Long Desc's: The long desc is the full description of the room, which
+a player will typically see when entering or by typing 'look'.  When
+creating a long desc, please keep in mind to keep each line under 80
+characters, and put the ending tilde on a line by itself.
+  This section should be multi-line and complete.  Clues to
+the Extra Desc's should be included in the room description, if not
+elsewhere.
+
+
+*Extra Desc's: An extra desc (of which there can be many for each
+room), is something else specific to look at, not normally seen just
+by typing look, or entering the room.  An extra desc is started by an
+E (a seperate E for each extra desc in the room), followed by the
+keywords that can be used to look at this description on the next
+line, each separated by a space, followed by a tilde.  Then, the
+description itself, followed by a tilde on its own line:
+
+E
+keywords~
+You spot the keywords.  They look important!
+~
+
+
+
+*** ROOM FLAGS
+
+	Please consult the section on flags in section 3 for how
+bitvectors are added and used.  Briefly, add each flag's corresponding
+values that you want for a particular room to find your room flag
+number.  A zero signifies no flags.
+
+ROOM_DARK           1
+ROOM_NO_MOB         4  /* wandering mobiles can't enter the room */
+ROOM_INDOORS        8
+ROOM_PRIVATE      512  /* only two people at a time */
+ROOM_SAFE        1024  /* can't do aggressive commands */
+ROOM_SOLITARY    2048  /* only one person at a time */
+ROOM_PET_SHOP    4096  /* place to buy pets */
+ROOM_NO_RECALL   8192
+ROOM_BLOCK      32768  /* room blocked from entrance */
+ROOM_MORGUE    131072  /* shop in this room sells PC corpses */
+    /* The following 2 groups are combinations of bits, so do not select
+       a room for several classes of alignments */
+ROOM_ALTAR_N  1572864  /* able to DEATH set for neutral players */
+ROOM_ALTAR_C   524288  /* able to DEATH set for chaos followers */
+ROOM_ALTAR_O  1048576  /* able to DEATH set fororder followers */
+ROOM_ALLOW_ILL  2097152  /* The following rescrict all but 1 class */
+ROOM_ALLOW_ELE  4194304  /* you may use ONLY one of these */
+ROOM_ALLOW_ROG  6291456  /* Generally used to make practice halls */
+ROOM_ALLOW_RAN  8388608
+ROOM_ALLOW_NEC  10485760
+ROOM_ALLOW_MON  12582912
+ROOM_ALLOW_ASN  14680064
+
+Ask your implementor about other flags that may be on your particular mud.
+These are complete for MrMud v1.2.
+
+
+
+
+*** SECTOR TYPES
+
+	The 'sector type' of a room controls how many movement points
+it costs to enter that room.  This is not a flag type item: choose
+one, and use the value...
+
+SECT_INSIDE                   0
+SECT_CITY                     1
+SECT_FIELD                    2
+SECT_FOREST                   3
+SECT_HILLS                    4
+SECT_MOUNTAIN                 5
+SECT_WATER_SWIM               6
+SECT_WATER_NOSWIM             7    (Requires a boat)
+SECT_UNUSED                   8
+SECT_AIR                      9    (Requires fly spell)
+SECT_DESERT                  10
+SECT_LAVA                    11    (Causes some damage to stay in room)
+SECT_INN                     12    (Heals the player while not on the game)
+SECT_ETHEREAL                13    (Requires Ethereal Travel spell)
+SECT_ASTRAL                  14    (Requires Astral Projection spell)
+SECT_UNDERWATER              15    (Requires Breath water spell)
+
+
+*** EXITS
+
+	Exits use the letter D and a number, compass, rather than the
+letter abbreviations that most mudders are used to for compass
+directions.  Hence:
+
+      (north)
+	 0                          4 (up)
+	 |                         /
+(west) 3-+-1 (east)               +
+	 |                       /
+	 2                      5 (down)
+      (south)
+
+DIR_NORTH                     0
+DIR_EAST                      1
+DIR_SOUTH                     2
+DIR_WEST                      3
+DIR_UP                        4
+DIR_DOWN                      5
+
+	Thus, an exit D4 is an upward direction, while D2 would be to
+the south.  Each exit starts with its own direction field, and
+contains a exit description and door keyword list (both of which can
+be left blank with a tilde), and a fourth line containing a door type,
+key number, and exit-to-room number.  Rooms without exits need no
+direction fields and the etc...this section may be safely ignored.
+
+	The exit description is used for when a player types look
+<direction>.  This should in most cases be a vague description of what
+the next room might be, and is followed by a tilde on a line by
+itself.  Each exit starts with its own direction field, and contains a
+door keyword list and
+
+	The next field is the door keyword list, used for manipulative
+door actions, such as open, close, pick, etc.  These words are
+separated by a space, and are followed by a tilde on the same line.
+
+	The door type can be the following values:
+	       0  /* Standard hallway without door */
+EX_ISDOOR      1
+EX_CLOSED      2
+EX_LOCKED      4  /* Does not necessarily require a key */
+EX_HIDDEN      8  /* cannot be seen w/o detect hid */
+EX_PICKPROOF  32  /* only greater pick will open door */
+
+	The key number is simply the vnum of the key that can open the
+door.  A door without a keyhole is represented by a -1 or 0 in this spot.
+
+	The exit-to-room number is the vnum of the room where the exit
+leads to.  Use the QQ system here.  If the room connects to an outside room
+leave a ZZZZ here, with an extra description of where the room should connect.
+Please try to make as few outside connections as possible.
+
+	Please note that adding a description for the door itself is
+usually done under the 'extra descriptions' part of the room db.
+
+
+***  Falls  -  For Air and Cliffs
+
+  Rooms that characters may fall from have a section designated with the letter
+'F'.  This is followed by the room that they fall into, and the distance of
+the fall.
+
+F <room to fall into> <slope of cliff> <distance of fall in feet>
+
+  This modifier for a room takes into play the skill of CLIMB and flying.  The
+only special case is where the sector type is SECT_AIR.  This special case
+will check to see if the character is flying, or immediately damage them.
+All other sector types are considered cliffs, and will check both dexterity
+and the climb skill.  Flying does not affect any aspect of the non-air types
+of sectors, with the assumption that buffeting air would negative the effect
+of flying.
+
+  The Rogue class has the climb ability that greatly increases the chance of
+safety for players in a cliff modified room.  The only other modifier is
+dexterity.  The longer a player stays on a cliff, the higher the likelyhood
+that they will fall.  The slope of a cliff is defined as 0 for a slight incline,
+to 10 for a vertical cliff face.  This number is ignored for SECT_AIR.  When a
+player falls, two things happen.  They are damaged by the amount defined by an
+equation based on how many feet the fall was.  And they are transfered to the
+room pointed to by the "room to fall into" field.
+
+  An area creator can use this to make a dangerous section for players to
+cross, such as a path up a mountain.  This gives them a chance to fall back
+down the path.  The SECT_AIR is quite dangerous, in that losing fly causes an
+instant fall.  A trick that can be used to simulate a rocky terrain is to
+have a fall of a few feet, and make the fall room point to itself.
+
+
+
+*** TIPS and OBSERVATIONS
+
+
+*Map out the rooms on paper first.  Be grandiose.  As you build, it
+will usually get smaller anyways!
+
+*When making a DT (deathtrap -- a room with a death flag) make exits
+back to the rooms that lead to it...so people in those rooms can hear
+the scream.  Likewise, it's usually not good to make a death room
+dark.  It is also possible to create a room with no exits, and flagged as
+NO_RECALL.  This will force the player to suicide.
+
+*For a working door, the rooms on each side must have matching doors
+and doorflags.  Also the #RESETS section must have the associated close door
+commands.
+
+
+
+5. The #MOBILES section
+
+	The #MOBILES section contains everything the mud needs to know about
+the mobs, except for where they are and what they're holding.  Each
+mob in the file is in sequential vnum order.
+    Mobiles may also contain some form of mob_prog.  These programs make the
+mobile appear more life-like, and can be used to set up puzzles or quests.
+Mob_progs should be used as often as possible.  Mob_progs are described
+later in this text.
+
+This section in the .are file will always start first with this line:
+#MOBILES
+
+This section in the .are file will always end with with this line:
+#0
+
+*** ARCHETYPE MOB (simple)
+
+#vnum
+Name list~
+Short description~
+Long description
+~
+Mob description
+~
+<action flags> <affection flags> <alignment> S
+<level> <body parts> <attack parts> <hitpoints> <damage>
+<gold> <race>
+<loading position> <default position> <gender>
+
+
+Here's a sample mob:
+
+
+---example follows this line---
+#QQ00
+mob example~
+the Example Mob~
+An example mob stands here, completely clueless.
+~
+The example mob looks indistinct, as if it hasn't
+been completely fleshed out yet.
+~
+131072|194|65536 8 100 S
+1 4 16|8 1d6+2 1d4+0
+10 2
+7 7 0
+---example precedes this line---
+
+The following is the same example with the ascii version of the flags.
+
+---example follows this line---
+#QQ00
+mob example~
+the Example Mob~
+An example mob stands here, completely clueless.
+~
+The example mob looks indistinct, as if it hasn't
+been completely fleshed out yet.
+~
+ACT_RACE|ACT_WIMPY|ACT_STAY_AREA|ACT_SCAVENGER|ACT_BODY AFF_DETECT_INVIS 100 S
+1 BODY_EYE BODY_TORSO|BODY_HIP 1d6+2 1d4+0
+10 RACE_ELF
+POS_STANDING POS_STANDING SEX_NEUTRAL
+---example precedes this line---
+
+
+	Now, to explain, line-by-line:
+
+#QQ00
+
+	The vnum of the mob.  Read the section on Virtual Numbers in
+	part 3 of this document for more information.
+
+
+mob example~
+
+	The namelist of this mob: what words can be used to interact
+	with this mob.  For instance, 'kill mob' or 'kill example'
+	would both be valid for this mob.  Note the tilde following
+	the field.
+
+the Example Mob~
+
+	The short desc of the mob.  Used in messages such as, "You
+	poke the Example Mob." or "the Example Mob pounds you!"
+	Note the tilde following the description.
+
+An example mob stands...
+~
+
+	The long desc of the mob.  Used as part of a room description
+	when a player enters or looks in a room.  Note the tilde
+	on its own line after the description.
+
+The example mobs looks...
+~
+
+	This is the description of the mob; what a player sees when
+	typing 'look' at the mob.
+
+
+194 8 100 S
+
+	The first number is the ACTION flag of the mob, which
+	tell the mud how the mob should act.
+
+	The second number is the AFFECTION flag, which tells the
+	mud about any special abilities the mob might have.  Both
+	these flag values work as per the section 'FLAGS' in part
+	three of this handbook.  See 'ACTION & AFFECTION FLAGS' below
+	for more on both of these.
+
+	The third number is the alignment of the mob, ranging from
+	1000 (good) to -1000 (evil).
+
+	The 'S' stands for simple mob.  This feature is not used in MrMud,
+        and is left there as a placeholder.  Always use an 'S' here.
+        This feature is used for backward compatibility.
+
+1 20 10 1d6+2 1d4+0
+
+	Field one is the mob's level.
+
+	The second field is the body parts that can fall off when the mobile
+	   is killed.
+
+	The third field is the body parts that attack.
+
+	Field four is the mobs hit points.  There is more on Hitpoints
+	and damage below in the aptly named 'HITPOINTS and DAMAGE'.
+
+	The fifth field is how much damage a mob does with its bare
+	hands.
+
+10 2
+
+	The first number is how much gold pieces this mob is carrying.
+
+	The second field was used for exp on DIKU and Merc games, we ignore
+	exp in files, and allow this field to define the race of the mobile
+	if the action flags include ACT_RACE.
+
+7 7 0
+
+	The first and second number are the mob's loading and default
+	position, respectively.  There is a section below: 'POSITIONS'
+	that will explain more.
+
+	The final number is the mob's gender; 0 is neuter, 1 is male,
+	and 2 is female.
+
+
+
+*** DESCRIPTIONS
+
+	Descriptions are done much the same way as those in the
+section in 'Rooms', earlier in this handbook.  The reader is
+encouraged to go back and reread that section if necessary.  However,
+the placement of tilde's is still very important.
+
+*Short Desc: the tilde must follow right after the description, on the
+same line.
+
+*Long Desc & Mob Desc: The tilde must follow on a line by itself.
+
+
+*** ACTION & AFFECTION FLAGS
+
+	Action flags tell the mud how a mob behaves, and affection
+flags control the 'special qualities of a mob.  These flags are added
+together in the way detailed in 'FLAGS', in part 3 of this handbook.
+Remeber that the flags can be referenced as the flag name itself.
+Below is a listing of flags for each type, with descriptions of what
+each does:
+
+Action Flags
+------------------------
+ACT_IS_NPC        1 /* Auto set for mobs*/
+ACT_SENTINEL      2 /* Stays in one room*/
+ACT_SCAVENGER     4 /* Picks up objects*/
+ACT_AGGRESSIVE   32 /* Attacks PC's*/
+ACT_STAY_AREA    64 /* Won't leave area*/
+ACT_WIMPY       128 /* Flees when hurt*/
+ACT_TRAIN       512 /* Can train PC's*/
+ACT_PRACTICE   1024 /* Can practice PC's*/
+ACT_WEAK       2048 /* Cannot carry anything*/
+ACT_SMART      4096 /* Can say, normal can't*/
+ACT_ONE_FIGHT  8192 /* Disapears after fight*/
+ACT_NO_ORDER  16384 /* Cannot be ordered    */
+ACT_BODY      65536 /* Allows body parts to function.  Should always
+			       be selected    */
+ACT_RACE     131072 /* Allows race to be defined and not random */
+ACT_UNDEAD   262144 /* Does not create corpse on death for TURN spell */
+
+
+
+Affection Flags
+-----------------------
+AFF_INVISIBLE       2  The mobile is invisible.
+AFF_DETECT_INVIS    8  The mobile can see invisible players.
+AFF_SANCTUARY     128  The mobile is affected by the spell sanctuary.
+AFF_FAERIE_FIRE   256  The mobile is affected by the spell faeire fire.
+AFF_INFRARED      512  The mobile can see in the dark.
+AFF_UNDERSTAND   2048  The mobile can understand anyone.
+AFF_SNEAK       32768  The mobile is sneaking, players to not see it move.
+AFF_HIDE        65536  The mobile is hiding.
+AFF_FLYING     524288  The mobile is flying always.
+AFF_PASS_DOOR 1048576  The mobile can walk through locked doors.
+AFF_STEALTH   2097152  The mobile can hide and sneak continually.
+AFF_CLEAR     4194304  The mobile can walk through thick vegetation.
+AFF_HUNT      8388608  The mobile chases fleeing characters, if possible.
+AFF_TONGUES  16777216  Allows the mobiles to speak all languages.
+AFF_ETHEREAL 33554432  Makes the mobile absolutely invisible to system
+                       (Very good for mob_prog mobiles that shouldn't be seen
+                        or killed. Ex: allows doors to shut by themselves.)
+
+  * Note:  Please remember not to use any combination of values that will
+	   select a bit outside of those shown.  Although combining valid
+	   bits are allowed.
+
+
+***  Simple/Complex
+
+    The 'S' at the end of the affects field is a placeholder that is
+ignored by MrMud.  It should always be an 'S'.  Originally it was to
+select Simple or Complex mobiles in Diku muds.  It is here to support
+backward compatibility.
+
+
+
+***  BODY PARTS
+
+    This field was used by Thac0 on Merc and Diku muds, but is ignored
+on MrMud.  Therefore it can be used by a different value.  But you must
+give a flag to tell MrMud that this is a valid field.  This flag is
+ACT_BODY, and should obviously go in the Action Flags field.  If the
+ACT_BODY flag is not set, then body parts will be ignored.  It is required
+that body parts be used on ALL mobiles, so this flag should always be set.
+
+    Body parts are the parts that can be chopped off when the mobile dies.
+They will not show up elsewhere except in attack parts.  Body parts might
+give a slightly different version than attack parts, as in BODY_MOUTH,
+which is a jaw bone in body parts, and a bite in attack parts.  Any
+combination of body parts may be used, and it does not necessarily have to
+match the attack parts.  Only one is selected when the body part is chopped
+off with a 25% chance that the body part will even fall off.   It is not
+suggested to select two arms, as this will cause an error, only one is
+required.
+
+BODY_HEAD               1
+BODY_MOUTH              2   
+BODY_EYE                4
+BODY_TORSO              8
+BODY_HIP                16
+BODY_LEG                32
+BODY_ARM                64
+BODY_WING               128
+BODY_TAIL               256
+BODY_TENTICLE           512
+BODY_HORN               1024
+BODY_CLAW               2048
+BODY_HAND               4096
+BODY_FOOT               8192
+
+***  ATTACK PARTS
+
+    This field was originally AC on Diku and Merc muds.  This field is
+normally ignored on MrMud, but with the ACT_BODY flag selected, the
+field becomes the attack parts of the mobile.  Attack parts is how
+the mobile attacks.  The different kinds of attacks from various body
+parts do not affect damage, as it only changes what is printed when the
+attack takes place.  This feature is required, but is there to give
+the mobiles the correct forms of bare-hand attacks.
+    Attack parts use the same field values as that of the body parts.
+    Mobiles with weapons will always override the different kinds of
+body attacks.
+
+    Note:  AC, or Armor Class is computed by the game itself, and is
+	   dependant on the level of the mobile.  If the mobile is should
+	   normally be wearing armor, the armor will add 2/3 of it's normal
+	   AC bonus.  If the mobile is not weaing armor, and is normally
+	   supposed to be wearing armor, then the AC of the mobile is
+	   1/3 of the value of the armor less than the normal AC for a 
+	   mobile of the same level.
+   
+
+*** HITPOINTS and DAMAGE
+
+	The functions of hitpoints and damage are arrayed randomly by
+the mud, as a function of imaginary dice and bonuses.  These always
+follow the form xdy+z, where x is the imaginary amount of dice, y is
+how many sides these dice have, and z is a constant being added to the
+final total.
+
+	For example, our example mob had hitpoints of 1d6+2: a random
+number between 1 and 6, then add 2, for a range of 3-8.  Another mob
+might have 10d10+150 for a range of 160-250.  Damage is calculated the
+same way.
+
+	These fields must follow the form xdy+z, even if z equals 0!
+For instance, our example mob does 1d4+0 damage with its bare hands...
+Leaving any of these fields blank will cause errors for the load
+procedure.
+
+	One more important thing to know about damage: this is the
+mob's damage with its fists/claws/what-have-you.  If the mobile is
+wielding a weapon, the mobile will do it's basic damage plus one-half
+of the damage of the weapon wielded.
+
+Standards and Measures
+
+	These are the suggested strengths of mobs, as given in the
+original diku documentation...
+
+
+
+Level Hp.           Damage  Notes
+-----------------------------------------------------
+  0   1-10          1d4+0
+  1   11-22         1d5+0
+  2   23-35         1d6+0
+  3   36-47         1d7+0
+  4   48-60         1d8+0
+
+  5   61-72         2d4+0
+  6   73-85         1d8+1
+  7   86-97         2d4+1
+  8   98-110        2d5+1
+  9   111-122       2d5+1
+		 
+ 10   123-135       2d6+1
+ 11   136-147       2d6+1
+ 12   148-160       2d7+1
+ 13   161-172       2d7+1
+ 14   173-185       2d8+1
+
+ 15   186-197       2d8+2
+ 16   198-210       2d8+2
+ 17   211-222       3d6+2
+ 18   223-235       3d6+2
+ 19   236-247       3d6+3
+
+
+The following is a scaled chart of the stats of different high level mobiles.
+Please use this as a guide for creating mobiles.
+
+These are the default levels for higher level mobiles:
+Level   Ave HP          Ave Dam
+15      250             20
+20      350             22
+25      475             24
+30      600             27
+35      680             30
+40      790             33
+45      900             37
+50      1300            41
+55      1650            45
+60      2000            50
+65      2800            55
+70      3500            60
+75      4200            66
+80      5000            72
+85      6200            78
+90      7800            85
+95      10000           92
+
+These numbers are flexible.
+
+*** GOLD
+
+   This is simply the amount of gold that the mobile is carrying when it
+is loaded.  All mobiles can carry some amount of gold.
+
+
+*** RACE
+
+  This field was previously used for exp for the mobile, but MrMud calculates
+exp based on the level of the mobile.  This leaves the field open for more
+important things:  Race.  The creator must define the ACT_RACE bit in the
+action flags, and then use one of the RACE_ types in this field.  This will
+fix the mobile as to what language it speaks and understands.  It will also
+allow mobprogs to be used based on race.  You must pick a race which is one
+of the basic eight, even if the mobile should be something outside of those
+defined.  Just pick the closest one.
+
+
+*** POSITION
+
+	A mob always has two position numbers: its loading position,
+and its default position.  A mob will be loaded into its loading
+position initially, and after fighting, will return to its default
+position.  Note that these do not have to be the same, but usually
+are.
+
+	The valid positions are:
+POS_SLEEPING  4
+POS_RESTING   5
+POS_FIGHTING  6
+POS_STANDING  7
+
+	There are a few more positions than these, but are not used
+except during fighting, which the mud takes care of automatically.
+
+*** GENDER
+
+    This is the sex of the mobile, and has only three possible values:
+SEX_NEUTRAL      0
+SEX_MALE         1
+SEX_FEMALE       2
+
+
+*** TIPS and OBSERVATIONS
+
+*Mobs wander around by default.  Remember to include the 'Sentinel'
+Action flag for stationary mobs!
+
+*'Angry' mobs can be simulated by loading them sitting and agressive,
+with a default position of standing.  After being attacked, they will
+wander around instead of sitting back down!  Other interesting things
+can be done with the position values as well...
+
+
+
+6.  The #OBJECTS section
+
+
+	An object is any item in the game, be it unmovable rock, the
+fountain in market square, or that nice sword Everyman the Barbarian
+has.  Everything the mud needs to know about objects can be found in
+the #OBJECTS section, except for where they actually are.
+
+This section in the .are file will always start first with this line:
+#OBJECTS
+
+This section in the .are file will always end with with this line:
+#0
+
+
+*** OBJECT ARCHETYPE
+
+#QQvnum
+namelist~
+short desc~
+long desc
+~
+description
+~
+<object type> <object flag> <wear flag>
+<object value0> <object value1> <object value2> <object value3>
+<weight> <value> <level>
+E
+keywords~
+Extra desc
+~
+A
+<apply type> <apply amount>
+
+
+	Here is an example object, followed by a line-by-line
+breakdown:
+
+---example follows this line---
+#QQ00
+sword example~
+an example sword~
+An example sword lies on the ground, examping.
+~
+It looks very shiny and polished, as if someone
+is taking care to try to make a good example.
+~
+5 64|16384 8193
+0 3 1 10
+5 1000 10
+E
+example~
+This is a rather boring example.
+~
+A
+1 1
+---example precedes this line---
+
+The following is the same object using the ascii flags
+system:
+---example follows this line---
+#QQ00
+sword example~
+an example sword~
+An example sword lies on the ground, examping.
+~
+It looks very shiny and polished, as if someone
+is taking care to try to make a good example.
+~
+ITEM_TYPE_WEAPON ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL 
+	ITEM_WEAR_WIELD|ITEM_WEAR_WIELD
+0 3 1 10
+5 1000 10
+E
+example~
+This is a rather boring example.
+~
+A
+APPLY_STR 1
+C
+whack~
+FLAG_CLASS_RANGER|FLAG_CLASS_MONK
+---example precedes this line---
+
+    Note:  In the file, and amount of spaces or returns can separate
+	   different fields, so the extra return and spacing in the above
+	   example is valid.
+
+
+***  Field by Field Breakdown
+
+    The following is a list of each of the fields of the Object format.
+
+***  Vnum
+
+#QQ00
+
+	This is identical to the method of the mobile vnum.
+	This number may be the same as a room or mobile, but no other
+	object may have this number.
+	See the section on virtual numbers in Part 3 of this Handbook.
+
+
+***  Name list
+
+sword example~
+
+	The words can be used to manipulate the object.  
+	In this case, either of the words 'sword' or 'example'
+	can be used in conjunction with a wield, drop, take, etc.
+	This field requires a '~' or tilde at the end of the line.
+
+        For use with mob_progs and obj_progs all names are appended
+        with a special name starting with 'I' and followed by the
+        vnum of the object.  This is used to specifically point to
+        a particular key, if the player has several keys.
+        ex:   item vnum is 9775,   added keyword is 'I9775'
+
+
+***  Short description
+
+an example sword~
+
+	This is seen when the object is the target of a command:  
+	'You wield an example sword.'  'You give an example sword to...'.
+	This field requires a '~' or tilde at the end of the line.
+
+
+***  Long description
+
+An example sword lies on the ground, examping.
+~
+
+	This is what a player sees if the object is lying in a room by itself.
+	This field requires a '~' or tilde on it's own line.
+
+***  Description
+
+It looks very shiny and polished, as if someone
+is taking care to try to make a good example.
+~
+
+	In MrMud, this field is used as the default "look" at the item, 
+	for example, if you did "look sword" while holding this item.  
+	Diku used this field for an action, and Merc ignored it.
+	This field requires a '~' or tilde on it's own line.
+
+
+***  Object Type
+
+5
+	This number is what type of object this is...a weapon.  See
+	'OBJECT TYPES' below.
+
+*** OBJECT TYPES
+
+ITEM_TYPE_LIGHT               1
+ITEM_TYPE_SCROLL              2
+ITEM_TYPE_WAND                3
+ITEM_TYPE_STAFF               4
+ITEM_TYPE_WEAPON              5
+ITEM_TYPE_TREASURE            8
+ITEM_TYPE_ARMOR               9
+ITEM_TYPE_POTION             10
+ITEM_TYPE_FURNITURE          12
+ITEM_TYPE_TRASH              13
+ITEM_TYPE_CONTAINER          15
+ITEM_TYPE_DRINK_CON          17
+ITEM_TYPE_KEY                18
+ITEM_TYPE_FOOD               19
+ITEM_TYPE_MONEY              20
+ITEM_TYPE_BOAT               22
+ITEM_TYPE_FOUNTAIN           25
+ITEM_TYPE_PILL               26
+ITEM_TYPE_AMMO               30
+
+***  Object Flags
+
+64|16384
+	This determines what is affecting the object.  Also note the 
+	ITEM_FLAG_LEVEL is required on MrMud.  This is a flag that lets
+	the field of the level work.  If this flag is not set, the level
+	field is ignored, and item level might be calculated incorrect.
+
+*** OBJECT FLAGS
+
+ITEM_FLAG_GLOW                1
+ITEM_FLAG_HUM                 2
+ITEM_FLAG_DARK                4
+ITEM_FLAG_LOCK                8
+ITEM_FLAG_EVIL               16
+ITEM_FLAG_INVIS              32
+ITEM_FLAG_MAGIC              64  /* Cannot be enchanted, also set if any
+				    affects exist */
+ITEM_FLAG_NODROP            128
+ITEM_FLAG_ANTI_GOOD         512
+ITEM_FLAG_ANTI_EVIL        1024
+ITEM_FLAG_ANTI_NEUTRAL     2048
+ITEM_FLAG_NOREMOVE         4096
+ITEM_FLAG_INVENTORY        8192  /* This item will not be removed from
+				    player on death.  This item will dissappear
+				    if the mobile is killed with it */
+ITEM_FLAG_LEVEL           16384  /* Absolutely required on MrMud */
+ITEM_FLAG_AUTO_ENGRAVE    65536  /* This item is engraved to first to get */
+
+***  Wear Flags
+8193
+	This flag tells the mud where the item can be worn on a player 
+	or mob.  An object may be flagged to be worn is several places, 
+	such as a band that can go around the wrist and the waist.
+
+*** WEAR FLAGS
+
+ITEM_WEAR_TAKE                1  /* Required for the player to get object */
+ITEM_WEAR_FINGER              2
+ITEM_WEAR_NECK                4
+ITEM_WEAR_BODY                8
+ITEM_WEAR_HEAD               16
+ITEM_WEAR_LEGS               32
+ITEM_WEAR_FEET               64
+ITEM_WEAR_HANDS             128 
+ITEM_WEAR_ARMS              256
+ITEM_WEAR_SHIELD            512
+ITEM_WEAR_ABOUT            1024 
+ITEM_WEAR_WAIST            2048
+ITEM_WEAR_WRIST            4096
+ITEM_WEAR_WIELD            8192
+ITEM_WEAR_HOLD            16384
+
+*** Object Values
+
+0 3 1 10
+
+	These are the object's values.  What each number means is completely
+	dependant on what Type of object it is. 
+
+*** OBJECT VALUES
+
+	The four numbers consisting of the 'item values' are different
+for each type of item.  Below the meanings of these numbers are broken
+down by each type.  Zeroes refer to fields not used, while letters are
+explained for each section...
+
+(please note this is basically lifted verbatim from the dikudocs.
+Credits to the original author(s), and no disrespect intended.)
+ITEM_LIGHT (1)
+Value[0]: Not Used
+Value[1]: Not Used
+Value[2]: Number of hours the light can be used for. Zero hours means that
+  the light has gone out. A negative number will create an eternal
+  light source.  Eternal lights should not be plentiful or easily obtained.
+Value[3]: Not Used
+
+ITEM_SCROLL (2)
+Value[0]: Level of the spell on the scroll.
+Value[1]: Which spell (see list in spells.txt)
+Value[2]: Which spell
+Value[3]: Which spell
+  The values(1-3) are three (or less) different spells, mixed 'on' the scroll.
+  Unused spells should be set to -1.
+
+ITEM_WAND (3)
+Value[0]: Level of spell in wand.
+Value[1]: Max Charges (1..X)
+Value[2]: Charges Left
+Value[3]: Which spell in wand (see list in spells.txt)
+
+ITEM_STAFF (4)
+Value[0]: Level of spell in staff.
+Value[1]: Max Charges (1..X)
+Value[2]: Charges Left
+Value[3]: Which spell in staff (see list in spells.txt)
+
+ITEM_WEAPON (5)
+Value[0]: Type of ammo shot by the weapon (0 if not a range weapon)
+Value[1]: Number of dice to roll for damage (keep this number low)
+Value[2]: Size of dice to roll for damage
+Value[3]: The weapon type. Type is one of:
+
+NAME          NUMBER CATEGORY   Message type
+-------------------------------------------------------------------------
+WEAPON_SLICE     1  : Slice      Slice/Slices
+WEAPON_STAB      2  : Stab       Stab/Stabs     (backstabbed, throw)
+WEAPON_SLASH     3  : Slash      Slash/Slashes
+WEAPON_WHIP      4  : Whip       Whip/Whips
+WEAPON_CLAW      5  : Claw       Claw/Claws
+WEAPON_BLAST     6  : Blast      Blast/Blasts
+WEAPON_POUND     7  : Pound      Pound/Pounds   (throw)
+WEAPON_CRUSH     8  : Crush      Crush/Crushes  (throw)
+WEAPON_GREP      9  : Grep       Grep/Greps
+WEAPON_BITE     10  : Bite       Bite/Bites
+WEAPON_PIERCE   11  : Pierce     Pierce/Pierces (backstabbed, throw)
+
+  To make a ranged weapon, you must also create ammo for it.  A ranged
+weapon is defined by including the vnum of the ammo in Value[0] of the
+weapon.  If a '0' is used here, it is not a shooting weapon.
+
+ITEM_TREASURE   (8)
+Value[0]: -
+Value[1]: -
+Value[2]: -
+Value[3]: -
+
+ITEM_ARMOR      (9)
+Value[0]: The effective AC. >0 enhances the armour class. <0 reduces the
+  the armour class (cursed armour for example).
+Value[1]: -
+Value[2]: -
+Value[3]: -
+
+ITEM_POTION    (10)
+Value[0]: Level of the spell in the potion.
+Value[1]: Which spell (Listed in spells.txt)
+Value[2]: Which spell
+Value[3]: Which spell
+  The values(1-3) are three (or less) different spells, mixed in the potion.
+  Unused spells should be set to -1.
+   Eg.
+   Value 0 : 30  (Level)
+   Value 1 : 27  (Harm)
+   Value 2 : 17  (Curse)
+   Value 3 : -1  (no-spell)
+     BTW: Don't drink this - It's bad for your health!
+
+ITEM_FURNITURE (12)
+Value[0]: -
+Value[1]: -
+Value[2]: -
+Value[3]: -
+
+ITEM_TRASH     (13)
+Value[0]: -
+Value[1]: -
+Value[2]: -
+Value[3]: -
+
+ITEM_CONTAINER (15)
+Value[0]: Maximum weight the container can contain.
+Value[1]: Container flags:
+   CONT_CLOSEABLE     1
+   CONT_PICKPROOF     2
+   CONT_CLOSED        4
+   CONT_LOCKED        8
+Value[2]: The item-number of the object which can open the object. -1 means
+  no lockability.
+Value[3]: - (always 0)
+
+ITEM_DRINKCON  (17)
+Value[0]: Maximum drink-units the drink-container can contain.
+Value[1]: Number of drink-units that are left in the container.
+Value[2]: The type of liquid in the drink-container, one of:
+                  
+                           Drunkness   Fullness    Thirst
+
+      LIQ_WATER      0      0           0           10
+      LIQ_BEER       1      3           2           5
+      LIQ_WINE       2      5           2           5
+      LIQ_ALE        3      2           2           5
+      LIQ_DARKALE    4      1           2           5
+      LIQ_WHISKY     5      6           1           4
+      LIQ_LEMONADE   6      0           1           8
+      LIQ_FIREBRT    7      10          0           0
+      LIQ_LOCALSPC   8      3           3           3
+      LIQ_SLIME      9      0           4           -8
+      LIQ_MILK       10     0           3           6
+      LIQ_TEA        11     0           1           6
+      LIQ_COFFE      12     0           1           6
+      LIQ_BLOOD      13     0           2           -1
+      LIQ_SALTWATER  14     0           1           -2
+      LIQ_COKE       15     0           1           5
+
+  The above values for drunkness/fullness/thirst are used per
+  four "units" drunk. The values are expressed in HOURS!
+  Example:
+    Dragon empties a bottle (say 7 units) of saltwater.
+    His Drunkness is not changed (7*0)
+    His Fullness increases by (7*1) hours
+    His Thirst increases by (7*-2) hours, thus making
+       him More thirsty.
+
+  The hours above are numbers between 0 and 24. 24 hours is
+  maximum for drunkness/fullness/thirst. When hours are zero
+  for any drunkness/fullness/thirst the person will be
+  sober, hungry, or thirsty respectively.
+
+Value[3]: if this value is non-zero, then the drink is poisoned.
+       NOT_POISONED  0
+       POISONED      1
+
+ITEM_KEY       (18)
+Value[0]: The key-type. This value must match the lock-type the door
+  that the key can open (if the vnum of the key doesn't match the lock-type
+    that is).
+Value[1]: -
+Value[2]: -
+Value[3]: -
+
+ITEM_FOOD      (19)
+Value[0]: The number of hours, that this food will fill the stomach
+Value[1]: -
+Value[2]: -
+Value[3]: If this value is non-zero, the food is poisoned.
+       NOT_POISONED  0
+       POISONED      1
+
+ITEM_MONEY     (20)
+Value[0]: The number of gold coins "in the pile of coins".
+Value[1]: -
+Value[2]: -
+Value[3]: -
+
+ITEM_BOAT      (22)
+Value[0]: -
+Value[1]: -
+Value[2]: -
+Value[3]: -
+
+ITEM_FOUNTAIN  (22)
+Value[0]: -
+Value[1]: -
+Value[2]: -
+Value[3]: -
+
+ITEM_PILL      (22)
+Value[0]: Level of the spell in the potion.
+Value[1]: Which spell (Listed in spells.txt)
+Value[2]: Which spell
+Value[3]: Which spell
+
+ITEM_AMMO      (22)
+Value[0]: Ammunition type (matches Value[0] of weapon that will shoot it)
+Value[1]: Damage          (amount of damage caused by the ammo when it hits)
+Value[2]: Speed           (4/second, keep numbers high (20 for fast arrows))
+Value[3]: Effective range (it's possible to shoot it farther than the number
+			   given here, but at reduced damage.  Please note
+			   that ranges greater than 5 are sensless because
+			   no one can see further than 5 rooms away)
+
+  To create a ranged weapon with ammo, the weapon must also be created.
+This is done by adding the vnum of the ammo to Value[0] of the weapon.
+
+
+
+***  Object Weight
+
+5
+
+	The weight of the object.
+
+
+***  Value
+
+1000
+	The value of the object, in gold coins.
+
+***  Level
+
+10       
+	This is the level of the object.  It is only valid if the 
+	ITEM_FLAG_LEVEL flag is valid.  MrMud requires this field to be
+	used.  Level is calculated by the game otherwise, to support
+	backward compatibily.
+
+***  Extra Descriptions
+
+E
+sword example~
+This is a rather boring example.
+~
+
+	This is an extra description, and behaves EXACTLY like the extra
+	descriptions of rooms.  The reader is referred to Part 4 of this
+	Handbook for more information.
+
+***  Affects
+
+A
+1 1
+
+	These are 'applies' of the weapon...the 'A' signifying that
+	an apply is forthcoming.  The second digit is the type of
+	apply, and the third how much the apply is worth (either
+	positive or negative).
+
+
+*** APPLIES
+
+	An item apply is a particular effect the item has upon the
+holder/wielder/wearer's statistics.  There can be a maximum of TWO
+applies on an item, each requiring their own 'A' flag to let the mud
+know that there is more than one apply.  Thus, a sword that added one
+to a character's strength, and -10 to his hitpoints would be:
+
+	A
+	APPLY_STR 1
+	A
+	APPLY_HIT -10
+
+	The first value is the type of apply, the second the value.
+Below is a list of the different types of applies, and their values.
+
+APPLY_NONE                    0
+APPLY_STR                     1
+APPLY_DEX                     2
+APPLY_INT                     3
+APPLY_WIS                     4
+APPLY_CON                     5
+APPLY_SEX                     6
+APPLY_MANA                   12
+APPLY_HIT                    13
+APPLY_MOVE                   14
+APPLY_AC                     17
+APPLY_HITROLL                18
+APPLY_DAMROLL                19
+APPLY_SAVING_BREATH          23
+APPLY_SAVING_SPELL           24
+
+
+
+*** Combat Usages
+
+C
+whack~
+FLAG_CLASS_RANGER|FLAG_CLASS_MONK
+
+  This is a system to change the default statement made when a weapon hits an
+  opponent.  It also allows you to specifically define which classes can use the
+  weapon, even if that class cannot normally wield the type of weapon defined by
+  weapon type.  The creator should use the weapon type field (value 3) to set up
+  weapons for backstabbing, shooting, throwing, etc.  All npc's can wield the
+  item if any class is defined.  Class selection method will default to the
+  normal method if no classes are selected (Put a '0' in the field).
+
+  The weapon defined in the example will 'whack' the opponent, and can be
+  wielded by rangers and monks.  A weapon in the hands of a monk will disable
+  their bonus for barehand.
+
+  ** List of flags of classes
+
+    FLAG_CLASS_ILLUSIONIST             1
+    FLAG_CLASS_ELEMENTALIST            2
+    FLAG_CLASS_ROGUE                   4
+    FLAG_CLASS_RANGER                  8
+    FLAG_CLASS_NECROMANCER            16
+    FLAG_CLASS_MONK                   32
+    FLAG_CLASS_ASSASSIN               64
+
+    (Please note that FLAG_CLASS_ values are not the same as CLASS_ values)
+
+
+
+*** SPELL ID#'s
+
+	Below is a chart (lifted from the original dikudocs, mostly)
+that gives the id# and usage of each spell...
+
+			ID#    POTION  SCROLL WAND   STAFF
+ARMOR                   1      Y       Y      Y      N
+TELEPORT                2      Y       Y      Y      Y
+BLESS                   3      Y       Y      Y      N
+BLINDNESS               4      Y       Y      Y      Y
+BURNING_HANDS           5      N       N      N      N
+CALL_LIGHTNING          6      Y       Y      N      Y
+CHARM_PERSON            7      N       Y      N      Y
+CHILL_TOUCH             8      N       N      N      N
+CLONE                   9      Y       Y      Y      N
+COLOUR_SPRAY           10      N       Y      Y      N
+
+CONTROL_WEATHER        11      N       N      N      N
+CREATE_FOOD            12      N       Y      N      N
+CREATE_WATER           13      N       N      N      N
+CURE_BLIND             14      Y       N      N      Y
+CURE_CRITIC            15      Y       N      N      Y
+CURE_LIGHT             16      Y       N      N      Y
+CURSE                  17      Y       Y      N      Y
+DETECT_EVIL            18      Y       N      N      Y
+DETECT_INVISIBLE       19      Y       N      N      Y
+DETECT_MAGIC           20      Y       N      N      Y
+
+DETECT_POISON          21      Y       Y      N      N
+DISPEL_EVIL            22      Y       Y      Y      Y
+EARTHQUAKE             23      N       Y      N      Y
+ENCHANT_WEAPON         24      N       Y      N      N
+ENERGY_DRAIN           25      Y       Y      Y      Y
+FIREBALL               26      N       Y      Y      N
+HARM                   27      Y       N      N      Y
+HEAL                   28      Y       N      N      Y
+INVISIBLE              29      Y       Y      Y      Y
+LIGHTNING_BOLT         30      N       Y      Y      N
+
+LOCATE_OBJECT          31      N       N      N      N
+MAGIC_MISSILE          32      N       Y      Y      N
+POISON                 33      Y       N      N      Y
+PROTECT_FROM_EVIL      34      Y       Y      Y      Y
+REMOVE_CURSE           35      Y       Y      N      Y
+SANCTUARY              36      Y       Y      N      Y
+SHOCKING_GRASP         37      N       N      N      N
+SLEEP                  38      Y       Y      Y      Y
+STRENGTH               39      Y       Y      N      Y
+SUMMON                 40      N       N      N      N
+
+VENTRILOQUATE          41      N       N      N      N
+WORD_OF_RECALL         42      Y       Y      Y      Y
+REMOVE_POISON          43      Y       N      N      Y
+SENCE_LIFE             44      Y       N      N      Y
+
+IDENTIFY               53      N       Y      N      N
+
+
+HASTE                 613
+ENHANCED REST         614
+ENHANCED HEAL         615
+ENHANCED REVIVE       616
+ANIMATE DEAD          617
+BANISH                618
+ENHANCE OBJECT        619
+MAGE SHIELD           620
+DISPEL UNDEAD         621
+DISPEL GOOD           622
+REMOVE FEAR           623
+FEAST                 624
+RESTORE               625
+TREMOR                626
+ENERGY SHIFT          627
+INDUCTION             628
+ILLUSION              629
+MIRROR IMAGE          630
+HALLUCINATE           631
+STABILITY             632
+ETHEREAL TRAVEL       633
+ASTRAL PROJECTION     634
+BREATH WATER          635
+
+
+***  Object Programs
+
+  Object programs are based on intercepting user commands, and substituting
+new ones with actions outside of normal game operation.  Several programs may
+be included on each object.  These programs, used in combination with mob_progs
+can lead to very complex systems of commands.  Object programs can also trigger
+off of basic time increments, and damaging others, or getting damaged.  They
+cannot trigger off of things that the player sees, or text on the screen.
+Trigger off things seen on the screen is limited to mob_progs, and will not be
+included in object programs, due to operational speed problems.
+
+  Object programs start with a 'P' similar to object extra descriptions.
+Following the 'P' is a number describing the index value of the program, for
+branching operations to reference.  
+  An object will usually have a group of small 'programs' or execution units
+that do individual commands.  There is always a 'Trigger' that will start the
+program, and a 'response' that does some form of action.  The trigger need not
+be related to the response.  This also means that the response does not know
+why it was triggered, and responses cannot be based on them.  Ex: An object
+may not give back the same amount of hit points to the player if a damaged
+trigger was used, but it may give back some fixed amount, because it knows
+that the player was hit.
+  In programs with the same index, execution of a command will start with
+the first one that gets triggered regardless of the index number.  But the
+system will then flow through to any subsequent program with the same index
+number.  This will allow the programs to do several routines on one trigger.
+
+  ** IMPORTANT:  Each program set must have a unique index number.
+
+  Object programs basically follow the format of trigger followed by response.
+
+Each type of obj_prog trigger has a special format:
+
+Normal command intercept:
+
+  P <reference number>
+  TRIG_COMMAND <percentage> <game command>
+  {responses}
+
+      Percentage is the chance that the command will be intercepted.
+      Game command is the command you wish to intercept.
+
+
+Unknown command intercept:
+
+  P <reference number>
+  TRIG_UNKNOWN <percentage> <unknown command>
+  {responses}
+
+     Unknown command is either a social command, or something new that would
+       not be a normal command, such as "home" or "spit".
+
+
+Void trigger:
+
+  P <reference number>
+  TRIG_VOID
+  {responses}
+
+    This is generally used as the end effect of a branching response.
+
+
+Tick trigger:
+
+  P <reference number>
+  TRIG_TICK <percentage>
+  {responses}
+
+    This is triggered once every 4 seconds of real time.  It can be used to make
+      the player do things they did not intend to do.  Or occasionally modify
+      stats, or any other time based reaction.
+
+Hit trigger:
+
+  P <reference number>
+  TRIG_HIT <percentage>
+  {responses}
+
+    This trigger is called every time the player with the object is hit.  This
+      can be used to make objects that heal the player every time they are hit,
+      or objects that scream whenever they are damaged.
+
+
+Damage trigger:
+
+  P <reference number>
+  TRIG_DAMAGE <percentage>
+  {responses}
+
+    This is called every time a player damages another character, either a
+      mobile, or player.  It can be used to create objects that say something
+      or any other response to the damage given.
+
+
+** RESPONSES
+  Each type of obj_prog response has a special format.  The only time a tilde
+is required is after a string is used.  Commands such as OPROG_APPLY should not
+have a tilde after them.
+
+Screen Echo to user:
+
+  {trigger}
+  OPROG_ECHO
+  <text to user>
+  ~
+
+    These lines are given to the user only.  Be sure to include the tilde.
+
+
+User command with multi-line, and no arguments:
+
+  {trigger}
+  OPROG_GOD_COMMAND
+  <user command>&<user command>&< etc...>
+  ~
+
+    These commands are given at the trust level of 99.  This means that the
+      user is able to perform god commands for the duration of the object 
+      program.  Several commands may be used, and separated by the '&' symbol.
+      The '$' symbol will be interpereted as the name of the player.  This
+      name is capitalized for use in communication.  This can be very useful
+      for setting quest bits on the player.  Spaces may be required before and
+      after the '$' symbol.
+      Again do not forget the tilde.
+	**  These commands can EASILY affect the entire game!!!
+	    Use with EXTREME caution.
+    Here is a list of several of the commands that might be used:
+      PURGE              - Erases everything in the room.  
+      OLOAD <object num> - Loads a new object.
+      MLOAD <mob num>    - Loads a new mobile.
+      GOTO <room num>    - Transfers the character to that room.
+      TRANSFER <name> <room num>- Transfers a mobile to the room.
+      RECHO <text>       - Echos the text to the room.
+      EAT <object>       - Eats (destroys) an object.
+      SAVE               - Will save the player.
+    Also any of the mob_prog special commands may be used in the same format
+      that they are listed in that section.  (ex. 'MPGOTO 2755' )
+    Try to use only mob_prog commands where both exist, as the mob_prog ones
+      do not display anything to the player, while the normal god commands
+      will tell them what they are doing.
+    It should be noticed that objects can use quest bits to their fullest by
+      allowing objects to read and write both the object's and the player's
+      quest bits.
+    Example:
+      OPROG_COMMAND mpmset $ long A small turtle named $.
+      ~
+           This would set the description that others see when entering the
+           room the player is in, very similar to the skill disguise.  To
+           reset the string to normal game operation, set the string to 'NULL'.
+           
+      
+
+
+User command with one command, and arguments:
+
+  {trigger}
+  OPROG_GOD_ARGUMENT
+  <user command>~
+
+    This command allows the use of one command, but the inclusion of an
+      argument.  This allows special commands like GOTO to let the user pick
+      a destination.  It makes sure that the user cannot put any multi-line
+      commands so they will be limited to the one command given.  This is used
+      to give the player the full advantage of the god command.  Use this
+      with the most EXTREME caution.  And in most cases, only under permission
+      of the game administrators.
+
+
+Character Apply Stats:
+
+  {trigger}
+  OPROG_APPLY <apply> <amount>
+
+    This command is executed to change one of several stats of the player that
+      has the current object.  These will only affect the current stats, and
+      never the maximum, as most other object affects to.  It is allowed to
+      make the amount either positive or negative.
+
+     Apply types:
+       OAPPLY_HIT       - Applies to current hit points.
+       OAPPLY_MOVE      - Applies to current movement points.
+       OAPPLY_MANA      - Applies to current mana points.
+       OAPPLY_ALIGNMENT - Applies to current alignment.
+
+
+
+Destroy the item with the program:
+
+  {trigger}
+  OPROG_JUNK
+
+     This command will destoy the item that is executing the program.  This is
+       a much safer method that sacrifice, eating, or purging.
+
+If has object response:
+
+  {trigger}
+  OPROG_IF_HAS_OBJECT <object vnum> <true dest.> <false dest.>
+
+    This command will branch successfully if the player has the object in
+      either inventory or equipment, but not in a container.
+
+
+If check:
+
+  {trigger}
+  OPROG_IF <check variable> <symbol> <compare value> <true dest.> <false dest.>
+
+    The IF check allows branching to other obj_progs.  
+       Check Variable:
+	   OIF_WEAR_LOC           - wear location.  (-1 if not worn)
+	   OIF_USER_CLASS         - user class.
+	   OIF_USER_POSITION      - user position.
+	   OIF_USER_GOLD          - user gold.
+	   OIF_USER_ROOM_NUM      - user room number.
+	   OIF_RANDOM_PERCENT     - random percent.
+	   OIF_USER_WHICH_GOD     - user follows which god.
+	   OIF_USER_ALIGNMENT     - user alignment.
+	   OIF_USER_LEVEL         - user level.
+	   OIF_USER_RACE          - user race.
+	   OIF_USER_PERCENT_MOVE  - user move percent.
+	   OIF_USER_PERCENT_HITPT - user hitpoints percent.
+	   OIF_USER_PERCENT_MANA  - user mana percent.
+           OIF_USER_AREA          - The first room number of user's area.
+           OIF_MCLASS_ILLUSIONIST - The amount of Ill levels.
+           OIF_MCLASS_ELEMENTALIST- The amount of Ele levels.
+           OIF_MCLASS_ROGUE       - The amount of Rog levels.
+           OIF_MCLASS_RANGER      - The amount of Ran levels.
+           OIF_MCLASS_NECROMANCER - The amount of Nec levels.
+           OIF_MCLASS_ASSASSIN    - The amount of Asn levels.
+           OIF_MCLASS_MONK        - The amount of Mon levels.
+           OIF_TIME_OF_DAY        - The hour of day in game time.
+           OIF_WEATHER            - The condition of the weather.
+                                      ( 0=Clear, 1=Cloudy, 2=Raining, 3=Storm)
+           OIF_ARMYSTATUS         - Returns whether the player is in the Army.
+                                      ( 0=Never Joined, 1=In Army, 2=Retired )
+           OIF_USER_SECTOR        - The sector type the user is in.
+       Symbol:
+	   '<'  - Less than.
+	   '>'  - Greater than.
+	   '='  - Equal to.
+	   '!'  - Not equal to.
+     Compare value is a number that the check variable is compared against.
+     True destination is the obj_prog index (the one listed after the 'P') that
+     the branch will continue when the if check is true.
+     False destination is the obj_prog index that is executed when the if
+       check is false.
+     If the destination number is not found, then the branch will not be
+       successful, and the program will stop.  This can be used for branches
+       that are not necessary to the operation of the program.
+    
+
+Set quest bits on object:
+
+  {trigger}
+   OPROG_QUEST_SET <offset> <bits> <value>
+
+      This is a method of setting the value on the quest bits of an object.
+	The offset is the starting bit number of the grouped quest numbers.
+	The bits are the amount of bits involved with the defined value.
+	The value is the desired value of the set.
+
+
+Add value to quest bits on object:
+
+  {trigger}
+   OPROG_QUEST_ADD <offset> <bits> <value>
+
+      This is a method of adding a value to the quest bits of an object.
+	The offset is the starting bit number of the grouped quest numbers.
+	The bits are the amount of bits involved with the defined value.
+	The value is the desired increment being added to the quest bits.
+	  The number inside the defined bit range will never overflow to higher
+	  bits, or go below zero.  The value may be negative to subtract.
+     This can be used to make items that have limited lifespan.
+       
+
+Quest bit if check both player and object:
+
+  {trigger}
+  OPROG_PLAYER_QUEST_IF <offset> <bits> <symbol> <compare value> 
+		 <true dest.> <false dest.>
+
+  {trigger}
+  OPROG_OBJECT_QUEST_IF <offset> <bits> <symbol> <compare value> 
+		 <true dest.> <false dest.>
+
+    The quest if check allows branching to other obj_progs.  
+      The offset is the starting bit number of the grouped quest numbers.
+      The bits are the amount of bits involved with the defined value.
+       Symbol:
+	   '<'  - Less than.
+	   '>'  - Greater than.
+	   '='  - Equal to.
+	   '!'  - Not equal to.
+     Compare value is a number that the check variable is compared against.
+     True destination is the program index (the one listed after the 'P') that 
+       the branch will continue when the if check is true.
+     False destination is the obj_prog index that is executed when the if
+       check is false.
+     If the destination number is not found, then the branch will not be
+       successful, and the program will stop.  This can be used for branches
+       that are not necessary to the operation of the program.
+     It is not necessary to add a 'return' after compare, everything can be
+       placed on one line.
+
+
+
+**  Example Programs:
+
+P 2
+TRIG_COMMAND 45 say
+OPROG_ECHO
+You are occasionally tongue tied.
+~
+P 3
+TRIG_UNKNOWN 100 home
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 4 0
+~
+P 4
+TRIG_VOID
+OPROG_GOD_COMMAND
+goto 9755&say I'm home!
+~
+P 5
+TRIG_UNKNOWN 100 goto
+OPROG_GOD_ARGUMENT goto~
+ 
+
+Explanation:
+  The first section of the program is a simple command trigger to screen
+echo.  45% of the time that the user tries to use the 'say' command, it will
+not be functional, and the user will see the response that he is tongue tied.
+  The rest of the program checks when the user types the unknown command
+'home'.  If that is typed, then the If Check checks for the wear location of
+the object.  If the wear location is not WEAR_NONE (if the item is worn),
+then the command continues with program 4.  If the item is not worn, then the
+program will stop execution.
+  The next program has a void trigger, and can only be reached by the previous
+branch statement.  The user is forced to 'goto', a god command, the location of
+9755, which is in the city of Chakkor.  Then the user is forced to say 
+'I'm home!'.
+  The final program allows the player to use the god command GOTO at any time
+the exact same method that a god would.  Obviously this is a bit much power
+for a normal player, and is suggested only to allow demi-gods with these
+commands.
+
+
+Notes on obj_progs:
+
+  It can easily be seen that there is a very large amount of room for
+improvement on object_programs of this type.  This system has been set up
+because obj_programs are searched MANY more times than mob_progs, and require
+a significantly longer amount of CPU time to process than mob_progs.  Therefore
+a tokenized method was developed instead of the interpreted system of the
+mob_progs.  Essentially the format in the .are file is the same that the
+database system saves all the information.  Using this tokenized system is at
+least 4 times faster for the CPU than an interpreted based system.
+  More complex object programs can be realized by asking the MrMud implementors
+to add new types of triggers and responses.  This system is relatively new, and
+has not been fully tested for CPU usage, but early tests show that the response
+time is such that 50 people having 20 items with complex programs each, should
+not noticeably degrade system performance.  For the sake of safety, both
+the commands of 'save' and 'quit' are removed from those allowed in obj_prog
+responses.  Be very careful with using the god commands, as they can permanently
+change the statistics of players, rooms, and just about anything in the game.
+
+  ** Important:  Do not create a situation where the object with the program
+		 is deleted, unless the program terminates with the command
+		 that deletes it.  Otherwise the entire game will crash.
+		 It is allowable to delete the item as a final command.
+		 The JUNK command will always automatically terminate object
+		 programs, regardless if the object program continues.
+
+
+QUEST BITS:
+
+This is generally a very complex system to initially understand, therefore
+The following is a detailed description of how quest bits work.
+
+Quest bits are used in 3 places.  Each player has a set of quest bits for each
+area, so that a player may be on several quests, and each area has it's own
+set, without worrying about other areas.  Each mobile has one set of quest bits.
+Each item has one set of quest bits.  It should generally be considered that
+you should not allow modifications of quest bits by an something from one area
+to another.  As each set of quest bits are defined completely by the area 
+creator.
+    
+Quest bits are used to allow the area creator the ability to define their own
+set of variables that are constant for that individual, object, or mobile.
+This means that once the value is set, it is saved throughout the game, and
+allows various states, or steps in a quest to be marked.  The definition of a
+quest is the ability of the game to know how far a player has gotten in an
+area regardless if they come back to the game several days later.
+
+Each set of quest bits is really a set of user definable 32 bits, or one
+long-integer.  Some knowledge of binary numbers helps in decifering this
+system completely, but is not necessary.
+
+The offset is always the starting point of where the defined value is.
+The amount of bits defines the totaly range of the values used.
+
+  With basic binary system, the amount of bits define an exponential range:
+   1 bit - 2 values
+   2     - 4
+   3     - 8
+   4     - 16
+   5     - 32
+   6     - 64
+   7     - 128
+   8     - 256
+
+Ex.  Say a creator wants to have 4 states on an object.  The first being the
+     initial state, the second when a player hits a mobile, the third when
+     the player goes to sleep, and the fourth when he wakes up.
+     The area creator wants an object that poisons the player when he attacks
+     a mobile, and damages them when the player wakes up.  The player is
+     even informed that when he wakes up next, he will be hurting very bad.
+     Since there are only 4 states, only 2 bits are required.  And the offset
+     is defined by what other bits are used for other things.  Maybe the first
+     5 bits are used as a count-down every 4 seconds after the player wakes up
+     and when it reaches 0, the player is finally damaged.  This means that
+     the object will delay a total of 128 seconds of real time before it does
+     the damage.  This means that the 4 states must have an offset of 5 since
+     the first five bits are used for a timer.  The final check will see if the
+     state is at state 3 (really the fourth state, since numbers start at zero)
+     and the timer is at zero.  This is when the player is hurt, and the item
+     is junked.
+
+     Here is a picture of what was just explained:
+
+       30  28  26  24  22  20  18  16  14  12  10 9 8 7 6 5 4 3 2 1 0
+     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+     |X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|   |         |
+     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+      ("X" indicates an unused bit)                     \_/ \_______/
+							 |      |
+    2 bits for 4 states, starting @ bit 5 and 2 bits long'      |
+       5 bits for the timer, starting @ bit 0 and is 5 bits long'
+
+As can be seen, there is a lot that can be done with quest bits.  Given that
+it may be confusing as to their use at first, quest bits allow the objects, 
+mobiles, and players to do things that are otherwise impossible, because the
+game does not normally record what a player is doing, and where they have been.
+Each reset normally sets the game in a default condition for everyone, but
+with quest bits, the game can be different for everyone, depending on what
+they have previously done.  This may allow a mobile to get to know a player,
+or an object to find a master.
+
+
+
+*** DISPLAY
+
+  This is a system to display a near full screen color bitmap of an object or
+mobile.  In both cases the section works similar to an object's affects, in that
+the bitmap definition section is started with a letter, followed by the actual
+information.  Displayable bitmaps start with a 'D' in both objects and mobiles.
+In objects, they may be place anywhere after the initial format information.
+On mobiles, they must be placed immediately after the normal numbers, but before
+any mob_progs.  Bitmaps are defined in the area file by numbers 0 to 7 in a
+78 by 40 arrangement.  The numbers on each pixel is the color defined.
+  In the utilities file there is a DOS utility that allows the generation of
+one bitmap at a time.  The system must have ANSI.SYS loaded when using DRAW.
+The creator will generate each bitmap in a separate file that can be immediately
+inserted into the area file.  The DRAW program saves it's bitmaps in the same
+format that the area files read them.
+  There is also a more advanced drawing program called mobdraw.  This program
+utilizes a mouse, and draws in graphics mode, hence does not require the 
+ansi.sys to be loaded.
+  It should be very obvious that these bitmaps are very blocky, but it can also
+be assured that all terminal programs running ANSI color can display them.
+
+
+
+*** TIPS and OBSERVATIONS
+
+*Items with applies to stats over +3 should be very rare on most muds,
+and hard to get.
+
+*A lot of small items make an area more interesting than a few
+incredibly powerful items, for the most part.  This is very
+subjective, however.  Items that are too powerful may be changed by the
+game administrators, which usually annoys the administrator more.  %^)
+
+*Remember to put take wear-flags on almost everything.  It's easier to
+put a take wear-flag on everything, and take off the ones you don't
+need (like fountains and such).
+
+*don't feel limited to items players consider 'useful', such as weapons
+and armor.  A giant (untakeable) monolith, and other strange and odd
+items can add a lot of atmosphere to an area.
+
+*The ITEM_FLAG_INVENTORY has very special purposes and should not be used
+for normal items.  All basic shops items that are flagged as inventory.  An
+object that is flagged as inventory will follow the player, even in death.
+A mobile that is killed with an object that has an inventory type item will
+automatically delete the item.  This is useful for creating objects that the
+player desires, but cannot get.  An object with this flag can be given to the
+player by a mobile with mob_progs, or picked up off the ground.
+
+
+
+
+7.  The #SHOPS section
+
+       The #SHOPS section tells the mud each shop the kind of items it deals
+in.  It also tells the profit margins, and the hours open.  Usually all the
+numbers are on one line.
+
+**  Shop Archetype
+
+<Mob vnum>  <type 1> <type 2> <type 3> <type 4> <type 5> <%sell> <%buy>
+				   <hour open> <hour close>
+
+** Mob Vnum
+    This is the mobile that works in the shop.
+
+** Type
+    These five values are the ITEM_TYPE numbers that the shop deals in.
+    The shop will only buy or sell these types of items.  Leaving a '0' in
+    any of the slots will allow the shop to deal in less than five types of
+    items, but a shop may never deal in more than five.
+
+** %Sell
+    This is the percent of the normal value of an object when the shopkeeper
+    sells it to a player.  Usually around 100.  This number is limited by
+    the system.
+
+** %Buy
+    This is the percent of the normal value of an object when the shopkeeper
+    buys it from a player.  Usually around 80.  This number is also limited
+    by the system.  It was possible to create areas in Merc and Diku where
+    things could be bought for less that what you could sell it for.  This
+    makes for free gold.
+
+** Hour Open
+    This field is a number from 0 to 23 that is the hour that the shop opens.
+
+** Hour Close
+    This field is a number from 0 to 23 that is the hour that the shop opens.
+
+  *Note: Comments may be added after the Hour Closed following a ';'.
+	 The comments can only be as long as the screen length.
+
+  *Note: Shops on MrMud can be browsed through during off hours, but nothing
+         can be bought there.  All shops are considered safe rooms at all
+         times, even in off hours.
+
+
+
+8.  The #RESETS section
+
+
+  The #RESETS section tells the mud where everything goes, from the
+goblin in the pit to what the knight is wielding and putting the
+fountain in the square.  This section is simple a list of commands.
+
+  The zone commands tell the mud exactly how to reset a zone,
+from mobs to objects, to closing doors.  Each command is given its own
+line, one after the other, until the end of the file.  Comments can be
+added for clarity's sake (like this: /* big guy with sword */).
+
+  Areas reset based on the average of all the levels of the mobiles in
+the area.  Low level areas take about 10 minutes to reset, and high
+level areas take about 45 minutes.  This number is fixed and continuous
+regardless of how many players are in the area.
+
+*Standard Fields:
+
+<if-flag>  An if flag tells the mud to look at the previous command.
+	   If the if-flag is 0, the mud will try to execute the command
+	   regardless of the previous command.  If the if-flag is any
+	   other than a zero (one is most commonly used), then that
+	   particular command will only execute if the command immediately
+	   preceding it did as well.
+
+	   This is useful for objects loaded onto mobs; you don't want
+	   to load a shield on a guard that didn't get loaded, for example.
+	   There are several other uses as well, that should become apparent
+	   as you build...
+
+<max #>    This is the maximum number of whatever this is can exist in the
+	   mud.  If on a mob command, this will prevent excess mobs being
+	   loaded into an area.  On an object command, this limits how
+	   many of this object are available in the game.  For items not
+	   limited, it is common to put a very high number in this slot...
+	   from 100 to 1000.
+
+**  List of all Commands
+
+M <if-flag> <mob vnum> <max #> <room vnum>
+O <if-flag> <object vnum> <max #> <room vnum>
+G <if-flag> <object vnum> <max #>
+E <if-flag> <object vnum> <max #> <equipment position>
+P <if-flag> <loaded object vnum> <max #> <container vnum>
+D <if-flag> <room vnum> <exit #> <doorstate>
+R <if-flag> <room vnum> <last exit to randomize>
+
+
+*The 'M' Command
+
+	The 'M' reset command loads a mobiles to a certain place in the
+mud.  The format is:
+
+M <if-flag> <mob vnum> <max #> <room vnum>
+
+
+
+
+*The 'O' Command
+
+	The 'O' reset command loads an object into a room.  This is
+mostly used for unowned or immovable objects (like a stick on the
+ground or a fountain).
+
+O <if-flag> <object vnum> <max #> <room vnum>
+
+  To make a unique item the <max #> should be 1.  Generally this means
+that the object will not load if any others exist in the game.  There
+is a basic 20% chance that the object will load anyways when the area
+resets.
+
+
+*The 'G' Command
+
+	The 'G' reset command loads an object and gives it to a mobile
+loaded in the command immediately previous.  Note that this is
+different from the 'E' command below, in that the 'E'command loads an
+object and makes the mob equip it.  A 'G' command object stays in the
+mob's inventory.
+
+G <if-flag> <object vnum> <max #>
+
+  To make a unique item the <max #> should be 1.  Generally this means
+that the object will not load if any others exist in the game.  There
+is a basic 20% chance that the object will load anyways when the mobile
+resets.  A mobile will reset after it is killed on the next area reset.
+
+
+*The 'E' Command
+
+	The 'E' reset command loads an object and makes the mob loaded
+in the command immediately previous to this one equip it.
+
+E <if-flag> <object vnum> <max #> <equipment position>
+
+	Where equipment position is _one_ of the following:
+
+0       Light
+1       Right Finger
+2       Left Finger
+3       Neck (first slot)
+4       Neck (second slot)
+
+5       Body
+6       Head
+7       Legs
+8       Feet
+9       Hands
+
+10      Arms
+11      Shield
+12      About Body
+13      Waist
+14      Right Wrist
+
+15      Left Wrist
+16      Wield
+17      Hold
+
+  To make a unique item the <max #> should be 1.  Generally this means
+that the object will not load if any others exist in the game.  There
+is a basic 20% chance that the object will load anyways when the mobile
+resets.  A mobile will reset after it is killed on the next area reset.
+
+
+*The 'P' Command
+
+	The 'P' command loads an object, and places it into another
+object (container-type) that was previously loaded.
+
+P <if-flag> <loaded object vnum> <max #> <container vnum>
+
+
+
+*The 'D' Command
+
+	The 'D' command can open, close, or close and lock a door.
+
+D <if-flag> <room vnum> <exit #> <doorstate>
+
+	Where exit # is the _number_ equivalent of the exit as so:
+
+      (north)
+	 0                          4 (up)
+	 |                         /
+(west) 3-+-1 (east)               +
+	 |                       /
+	 2                      5 (down)
+      (south)
+
+
+
+And Door state is:
+
+0       Open
+1       Closed
+2       Closed and Locked.
+
+
+
+*The 'R' Command
+
+	The 'R' command randomizes the specified exits in a room.
+
+R <if-flag> <room vnum> <last exit to randomize>
+
+	Where <last exit to randomize> is the number equivalent of the first
+exit in the room to not randomize.  For example:
+R 0 6495 3
+would randomize the north(0), east(1), and south(2) doors of the room with the
+vnum 6495.  Swapping only those three exits.
+
+
+
+
+
+***TIPS and OBSERVATIONS
+
+*Remember, a functioning door is a door from both sides, and needs to
+be closed from both sides.  Thus, 2 door commands for each door.
+
+*The 'P' command gets confused if you try to load multiple objects
+into multiple containers IF the containers are all the same object.
+The solution is to copy the container over into the #OBJECTS section
+with a different vnum however many different containers you need.
+
+
+
+
+
+9.  Putting it all together.
+
+	This section is simply composed of building tips for novice
+builders.  This is very subjective, and based on the experiences of
+the builders at the Curious Area Workshop.  Not all these techniques
+may be of use to your average builder.
+
+
+*Absolutely, positively use the AREACHECK utility.
+
+        The areacheck utility comes with the utilites section of
+        documents that goes along with this document.  The
+        areacheck will normally allow the area to start right up
+        unless you have doors specified wrong, or have problems
+        with obj_progs or mob_progs.  Areacheck does a VERY good
+        job of checking syntax, such as numbers that are off or
+        spacing that is wrong.  It also checks the syntax or
+        spelling of all the text versions of flags.
+
+
+*Learn to build without an area editor first.
+
+	-Its a lot easier to troubleshoot when you understand what
+	exactly goes on with all those numbers in those files...
+
+        This is very important because most area editors are designed
+        for Merc or Diku areas.  They are actually fine for making
+        a framework for the area, but realize that MANY differences
+        crop up in creating MrMud areas.  And the creator must then
+        use a text editor to finish out the area.
+
+
+*Do it on paper first.  Do it big.
+
+	-Areas always seem to shrink while you're building it, from a
+	cross of aggravation and editing.  Having a map to work from
+	helps a LOT when doing exits, and provides a visual impetus
+	to getting all those tedious bits done.
+
+
+*Do the #ROOMS section first.
+
+	-The #ROOMS section almost always takes the longest.  Once past that
+	long fight, the #MOBILES and the rest will come easier.
+
+
+*Save Mobile programs and Object programs till the very end.
+
+        It is simpler to create obj_progs and mob_progs when all the
+        mobiles and objects are in place, and the rooms are finished.
+
+
+*Your #RESETS file will always be wrong on the first try.
+
+	-Get used to it.
+
+
+*For random mob distribution, use this method:
+
+	-(this was contributed by Locke of CthulhuMUD)
+	Make a room, with exits to all the places that you would
+	like mobs to come out of, in all 6 directions.  Load all
+	mobs to be randomly distributed in this room, and they'll
+	choose and walk out themselves!  (if they're not sentinel).
+
+	For a big area, several of these 'mob chutes' can be connected
+	for a bubble-sort effect.
+
+
+*An area will take twice as long as you think it will to build.
+
+	-a certain boredom sets in sometimes.  just set it aside for
+	awhile if this happens; its better to build when you want to
+	then turn out something uninspired.  If you plan on using
+        obj_progs or mob_progs then the area will take four times
+        as long as you expect.   If you plan on using quest bits, then
+        count of it taking much longer than you expect, with several
+        errors.
+
+        This does not mean that you should not add mob_progs.  Mob_progs
+        should be manditory for every mobile, but they do take a bit
+        of puzzling thought to work out correctly.  Object programs are
+        even more confusing, but add an extra dimension to the game.        
+
+
+*Be fair with the items:
+
+	-Good items should be hard to get.  Lousy items should require
+	much less effort.  Give the most powerful items actually _to_
+	a mob; theives and mages can often steal stuff on the ground
+	without even bothering with the mob.
+
+        Always remember that items and objects can easily get out of
+        scale, and all areas can and probably will be modified by the
+        implementors of a MrMud system.  This is to be expected, so
+        don't get too put out.
+
+
+Contributions to this section are welcome, and will be added with
+proper credits.
+
+
+
+10.  Credits
+
+
+Special Thanks to Tarkin of NaVieMUD and MJPrime of AlbertMUD for
+invaluble help in writing this Handbook.
+
+Extra Special Thanks to all the Players of NaVie (128.213.5.14 4001),
+for all the help during the Buggies & Bounties competitions.
+
+Builder_5
+11/11/93
+ftp.cs.odu.edu \pub\caw
+
+Modifications for MrMud v1.2 written on (incredibly) 11/11/94
+   David Bills    (Chaos on Mortal Realms - hydrogen.ee.utulsa.edu 4321)
+   Doug Michael   (Order on Mortal Realms - hydrogen.ee.utulsa.edu 4321)
+
+
+==============================================
+FILE: "mob_prog.txt"
+
+=== MOBprograms
+
+	MOBprograms are a way to make your mobiles more interesting.  This
+basic version has enough to get things going, and should be quite readable and
+understandable and more to the point, extendable. The remainder of this
+document describes MOBprograms and gives a couple trivial examples.
+
+Table of Contents:
+	The Basic Idea
+	MOBprogram Syntax
+	Associating MOBprograms With A Mobile
+	Trigger Types
+	Variables
+	Control Flow Syntax
+	Operators
+	If_Checks In Control Flow
+	MOBcommands Of Interest
+	Regarding CPU Slowdown
+	Miscellaneous Information
+	Credits
+
+
+-----------------------------The Basic Idea---------------------------------
+
+	Ever wonder why most muds either seem dead or overcrowded? The answer
+is probably partially due to the fact that the mobiles never do anything
+but wait to be slaughtered.  Unless someone has gone to great lengths
+and added many special procedures, most mobiles have no idea you are in
+the room with them and rarely listen to what you say. The typical Midgaard
+mayor wanders happily along even when the populace pokes him, waves his
+City Key about, unlocks his gates, or frenchs his secretary, etc. So a way to
+give the mobiles a bit more spirit would be neat. Enter the MOBprograms.
+
+	The backbone of the MOBprograms shall be called triggers from this
+point on.  Essentially, they are procedure calls placed in sneaky places in
+the mud code which provide the context for what is going on around the
+mobile.  So, if something happens in the mobile's room and a trigger is
+activated, then a list of commands is sent to the interpreter in the
+mobile's name, thus making her/it/him do an appropriate something.
+
+	Since knowing the appropriate response for every mobile to every
+possible trigger is not easy, this command list shouldnt be a rigid script, but
+needs to be somehow unique for the mobile and the situation.  However, in
+order to know the situation, a mobile needs to know more about the trigger
+than that it just happened. So, we have to include some sort of variables
+as well to set the context appropriately.
+
+	As most implementors know, most area creators are not versed in
+coding, but usually have great ideas. Therefore, whatever system is used needs
+to be quite simple. This is not to demean creators in anyway. Simply, it is
+useless to have a powerful system, if the only person able to write anything
+is someone who finds C coding in general to be exciting and non frustrating.
+If that is going to be the case, then stick to the special procedures, since
+there is no bound to what a complex special procedure can accomplish. Yet,
+from experience working on several muds, most admins and implementors prefer
+not to be writing one shot spec_procs to satisfy the needs of their creators.
+
+	Thus, the basic idea: let mobiles react to a myriad of mud
+events/situations by having them perform a list of commands which can be
+tailored to the moment through a simple and unintimidating scheme usable by
+any creator.
+
+
+----------------------------MOBprogram Syntax--------------------------------
+
+	The simplest way to describe any syntax is by example, so here goes.
+First, define the notation: anything contained in braces {} is required,
+anything in brackets [] is optional, anything in quotes "" is a case
+insensitive literal, NL refers to a required new-line. The meanings of
+the labels used will be described following the syntax diagram.
+
+">" {trigger_type} " " {argument_list} "~" NL
+{program_command_1} NL
+{program_command_2} NL
+{program_command_3} NL
+     .   .   .
+{program_command_N} NL
+"~" NL
+
+-- Explainations
+
+A TRIGGER_TYPE is one of the available triggers.
+A PROGRAM_COMMAND can be any legal mud command, or a control flow command.
+The ARGUMENT_LIST depends upon the trigger, but it is always parsed into the
+	system as a character string.
+
+This is an example of ONE MOBProgram block for a mob.
+
+
+-------------------Associating MOBprograms With A Mobile--------------------
+
+	There is only one way for the mud to associate the program with the
+mobile.  The result is a link list of mob_programs which are
+attached to the mobile_prototype.  This is done at boot time, and so only one
+copy is kept, regardless of how many instances of the mobile are running
+about.
+
+     In the #MOBILES section of your area files, at the end of the 
+mobile's block (i.e. on the line following the typical position/default 
+position/sex line), append any number of MOBprograms blocks 
+(using the syntax above) followed by a line starting with one '|' (pipe). 
+Example provided:  Example.are
+
+
+-----------------------------Trigger Types----------------------------------
+
+	Triggers are fairly easy to add, but this basic list should hold for
+most needs. Their names, argument list syntaxes, and translation into
+more articulate english are given below:
+
+
+Syntax:  act_prog [p] <ARGUMENT>
+
+	The argument is a list of keywords separated by spaces. If the
+first word is the character 'p' by itself then the rest of the word list is
+considered to be a phrase.  The trigger is activated whenver a keyword (or
+the phrase) is contained in the act() message. Both the phrase and keywords
+are case insensitive.
+
+NOTE:  Most general trigger. Applies to almost every event which happens
+	in the mud. Anytime the function act() is called with a message
+	to be delivered TO_CHAR,TO_VICT,TO_ROOM,etc. the act can be
+	triggered.  Basically this will trigger on almost everything
+	you'll ever want (and some things you wont as well) For example:
+	MOBprogram: >act_prog p pokes you in the ribs.~
+	This trigger will only be activated if a mobile receives a message
+	in which the above five words are found in the exact order and
+	spacing given. Note that the period is needed because the words
+	must be found on their own. This eliminates confusion when the
+	keyword is 'hi' and a message with the word 'this' is being checked.
+
+Syntax:  speech_prog <ARGUMENT>
+
+	The argument is the same as for an act_prog.  This works best when only
+        one word is used as the argument, as several can cause the mob_prog to
+        trigger several times in a row.
+        ex:   >speech_prog the dog~
+        The previous example is faulty, because it would trigger twice if the
+        player said the words 'the' and 'dog' in the same sentence.
+        correct ex:   >speech_prog dog~
+
+NOTE:  This is only triggered when the keyword is contained in a
+	message which has been said by a PC in the same room as the mob.
+	The PC restriction is not necessary, but makes infinite loops
+	between two talking mobiles impossible. It also makes it impossible
+	for two NPC's to stand and discuss the weather however.
+NOTE:  A ">speech_prog  ~" will trigger on any speech.
+
+Syntax:  rand_prog <NUMBER>
+
+	The argument is a number betweeen 1 and 100 inclusive.
+
+NOTE:  This trigger is checked at each PULSE_MOBILE and if the argument is
+	greater than a percentage roll the trigger is activated. This
+	will happen even if there is no PC in the room with the mob,
+	but there must be players in the same area.
+	It is useful to give mobiles a bit of a personality. For instance
+	a janitor who stops to spit tobacco, or complain about the hours,
+	or wonder why there are no woman janitors on muds, or a fido which
+	barks or growls or pees on the curb is much more alive than one
+	which just sits there scavenging.
+
+Syntax:  fight_prog <NUMBER>
+
+	The argument is a percentage like in rand_prog.
+
+NOTE:  Useful for giving mobiles combat attitude.  It is checked every
+	PULSE_VIOLENCE when the mobile is fighting.  Can be used to cast
+	spells, curse at the opponent, or whatever. Only the first successful
+	one will be processed to save time.  Also, this means that the
+	mobile wont get lucky and 1. curse, cast a fireball and 2. spit on the
+	player, cast another fireball in the same pulse.
+
+Syntax:  hitprcnt_prog <NUMBER>
+
+	The argument is a percentage.
+
+NOTE:  Is activated at each PULSE_VIOLENCE when the mobile is fighting. It
+	checks to see if the hitpoints of the mobile are below the given
+	percentage.  Multiple hitprcnt_progs should be listed in increasing
+	order of percent since a 40% will always be activated before a 20%
+	and, only the first successful hitprcnt trigger is performed.
+
+Syntax:  greet_prog <NUMBER>
+
+	Again a percentage argument.
+
+NOTE:  Whenever someone enters the room with the mobile, and the mobile saw
+	the person enter, this is checked. Good for shopkeepers who want
+	to welcome customers, or for pseudo-aggressive mobiles which need to
+	discriminate on who they attack.
+
+Syntax:  all_greet_prog <NUMBER>
+
+	Again a percentage argument.
+
+NOTE:  Like greet_prog, but it can be triggered even if the mobile didnt
+	see the arrival (i.e. sneak, invis, etc). Most useful for faking
+	teleport rooms (if your mobiles can transfer) or for impassable
+	guardians.
+
+    **NOTE: neither greet_prog is activated if the mobile is fighting.**
+
+Syntax:  entry_prog <NUMBER>
+
+	Again a percentage argument.
+
+NOTE:  The opposite of a greet_prog. Whenver the mobile itself enters a new
+	room, this can be triggered.  Useful for looking around, or waving
+	or other things that real PCs do when they arrive at a crowded room.
+	Only the first successful one of these is done so the mobile doesnt
+	look stupid by repeating commands resulting from multiple MOBprograms.
+
+Syntax:  give_prog <ARGUMENT>
+
+        This command should always be used with the 'I' format for item vnums.
+        example:  A scroll of recall is vnum 9775, so use 'I9775' for the
+                  argument.
+
+NOTE:  This is triggered whenever something is given to the mobile.  Best used
+	for quests.
+
+Syntax:  bribe_prog <NUMBER>
+
+	The argument is any positive integer number.
+
+NOTE:  This trigger is activated whenever money is given to the mobile. If the
+	amount given exceeds the number, then process the commands. Note
+	again, that an argument of '1' would act as a default response.
+	If money is given to a mobile with this trigger type, instead of the
+	cash being added to mob->gold, the mobile is instead given a pile of
+	coins in the proper amount. In this way, the mobile can drop the coins
+	or refer to the object by "amount" (short description:"%d gold coins")
+	This surely has some drawbacks, but it lets the mobile do something
+	with the bribe (NOTE: dropping it and getting it turns it into cash)
+	This can be done sneakily if a NPC-only "at" command exists.
+
+Syntax:  death_prog <NUMBER>
+
+	The argument is a percent once again.
+
+NOTE:  When the mobile dies, if the random percentage is less than the argument
+	the mobile performs the MOBprogram commands rather than the usual
+	death_cry sequence.  This is done before the corpse is made, so the
+	commands can be considered the mobiles last gasp.  It could perhaps
+	destroy the items it was holding, or create some, or cast a spell
+	on the killer and the room, or even goto a new location and die
+	there (with a text message, the corpse would seem to vanish)  The
+	position of the mobile is set to STANDING, and so it can do all the
+	normal commands, without worrying about being DEAD.  However, even
+	if the mobile restores itself to full hitpoints, it will still die.
+	This is not a way to immortal mobiles. However, the last thing this
+	mobile does could be to goto some vacant room, load a fresh version
+	of itself, drop all its items, force the new mobile to get all the
+	items and wear them, send the new mobile back to the character who
+	killed it and force the new mobile to attack that character. Along
+	with a text message which said the mobile restored itself, this
+	might be a convincing effect. (Note that your kitten could turn into
+	a dragon this way too).  Of course this assumes that some NPC
+	commands have been implemented.
+
+Syntax: range_prog
+
+	There is no argument to range_prog.
+
+  NOTE: The range_prog is triggered if the mobile is shot by a range
+	weapon.  The program can then check the shotfrom($i) ifcheck
+	to see which direction the shot came from.
+
+	Note that the first successful bribe_prog, give_prog, hitprcnt_prog,
+death_prog, fight_prog, rand_prog and entry_prog is the only one which
+is executed.  All the successful greet(_all)_progs, speech_progs, and
+act_progs will be done. This is the best arrangement we found for handling
+situations where you imported several MOBprogram files for a mobile.  If you
+are going to write lots of little files and piece them together to create
+the effect you want, it is advisible to not mix things together all that
+much, otherwise you have to pay close attention to the order in which the
+programs are added to the link list.
+
+	Also, no MOBprograms will be successful when the mobile is charmed
+(since it has no self violition, it should act like it has none) to protect
+mobiles which are given special powers from being implemented by a player.
+One bug we had in early testing was a player who charmed a mobile and then
+used its aggressive greet_prog to attack other players.
+
+
+------------------------------Variables------------------------------------
+
+	To make things come alive, variables are needed.  These are represented
+in the MOBprograms by using a dollar sign convention as in the socials.
+When the mud command is processed, these variables are expanded into the
+values shown below.  Usually, it is best to use the short descriptions
+of mobiles and the names of players when speaking them, but if you are
+performing an action to someone almost always you want the name. The
+title field for players is an extra that probably wont often be used.
+Without further hesitation... the variables:
+
+$i      the first of the names of the mobile itself.
+$I      the short description of the mobile itself.
+$n      the name of whomever caused the trigger to happen.
+$N      the name and title of whomever caused the trigger to happen.
+$t      the name of a secondary character target (i.e A smiles at B)
+$T      the short description, or name and title of target (NPC vs PC)
+$r      the name of a random char in the room with the mobile (never == $i)
+$R      the short description, or name and title of the random char
+
+$j      he,she,it based on sex of $i.
+$e      he,she,it based on sex of $n.
+$E      he,she,it based on sex of $t.
+$J      he,she,it based on sex of $r.
+
+$k      him,her,it based on sex of $i.
+$m      him,her,it based on sex of $n.
+$M      him,her,it based on sex of $t.
+$K      him,her,it based on sex of $r.
+
+$l      his,hers,its based on sex of $i.
+$s      his,hers,its based on sex of $n.
+$S      his,hers,its based on sex of $t.
+$L      his,hers,its based on sex of $r.
+
+$o      the first of the names of the primary object (i.e A drops B)
+$O      the short description of the primary object
+$p      the first of the names of the secondary object (i.e A puts B in C)
+$P      the short description of the secondary object
+$c      the first of the names of the third object (carry object)
+$C      the short description of the thrid object (carry object)
+
+$a      a,an based on first character of $o
+$A      a,an based on first character of $p
+
+$1..$9  Corresponding word in the trigger phrase.  $5 when the triggering
+	  string is "Hey, give me a boot" would be "boot"
+
+	Also, in if_checks, the accepted variables are the basic ones
+(i,n,t,r,o,p).  If a variable is referenced that doesnt exist, then the value
+is simply left blank. (i.e referring to $o when the trigger is: A kisses B)
+
+	The only problem with the variables is that the secondary object and
+the secondary target are passed by act() in the same location.  This means that
+if you reference $t in an  A puts B in C  situation, the result will probably
+be a happy mud crash or some weird side effect, espescially if $t is used in
+an if_check (i.e. if isnpc($t) in the above situation) The basic fix for this
+is to change everyone who calls the act() procedure to specify a secondary
+object and a secondary character. But that is a fairly comprehensive trivial
+twiddle, so we left it the way it is so that, you arent forced to make all
+those twiddles to use the MOBprograms.
+
+
+---------------------------Control Flow Syntax------------------------------
+
+	In place of any legal mud command in a MOBprogram, one can substitute a
+flow of control command. Here is the syntax for a flow of control command.
+
+"if" " " {if_check_1} "(" {argument} ")" [ {operator} {value} ] NL
+[ "or" " " {if_check_2} "(" {argument} ")" [ {operator} {value} ] NL ]
+			.           .           .
+[ "or" " " {if_check_N} "(" {argument} ")" [ {operator} {value} ] NL ]
+
+	[ {program_command_1} NL ]
+	[ {program_command_2} NL ]
+	      .   .   .
+	[ "break" NL ]
+	      .   .   .
+	[ {program_command_N} NL ]
+
+[ "else" NL ]
+
+	[ {program_command_1} NL ]
+	[ {program_command_2} NL ]
+	      .   .   .
+	[ "break" NL ]
+	      .   .   .
+	[ {program_command_N} NL ]
+
+"endif" NL
+
+	Basically, it is: an 'if' line, followed by zero or more 'or' lines,
+followed by zero or more legal mud commands, which may contain a 'break' line,
+possibly followed by an 'else' line , followed by zero or more legal mud
+commands, which may contain a 'break' line, followed by an 'endif' line.
+
+The only new syntax labels are all in the IF line:
+
+--Explainations
+
+An IF_CHECK is a string which describes under what context to compare things.
+The ARGUMENT is the reference point from which the LHS of an expression comes.
+The OPERATOR indicates how the LHS and RHS are going to be compared.
+The VALUE is the RHS of the expression to be compared by the operator.
+
+The BREAK command bails out of the entire MOBprogram regardless of the
+level if nesting.
+
+If that looks confusing, skip to the end of the document and review the
+Example. Hopefully that should clear things, otherwise you'll probably have
+to give us a mail since examples are the best way we know to explain syntax.
+
+
+--------------------------------Operators-----------------------------------
+
+	Most of the basic numeric operators are legal and perform the same
+function as in C. The string operators are a bit more confusing. There are
+negative versions of some of the operators. These are not strictly needed,
+since the if/else construct of Control Flow commands can handle either case.
+
+Numeric Operators: == != > < >= <= & |     String Operators: == != / !/
+
+	For strings, == and != check for exact match between the two strings
+and the other two, / and !/ check to see if the second string is contained in
+the first one.  This is so things like:  if name($n) / guard  will respond
+true to "cityguard" "guard" "guardian"  etc. Using == on a name implies
+that you are matching the complete name "cityguard guard" or whatever.
+The string operators are case SENSITIVE.
+
+
+------------------------If_Checks In Control Flow---------------------------
+
+	The provided list of if_checks and their arguments are below.  They
+should all be fairly obvious in what they do, but some of the more obtuse
+deserve a slight explanation. Any '==' operator can be replaced with any of the
+available ones described above.  The argument ($*) refers to any of the
+variables which make sense for that if_check (i.e. for an if_check which is
+referencing a person the only valid variables would be $i, $n, $t or $r)
+A value type of string is a sequence of characters. It does not need to be
+included in quotes or anything like that (i.e. name($n)== orc large brown)
+
+rand     (num)                  Is random percentage less than or equal to num
+isnpc     ($*)                  Is $* an NPC
+ispc      ($*)                  Is $* a PC
+isgood    ($*)                  Does $* have a good alignment
+isfight   ($*)                  Is $* fighting
+isimmort  ($*)                  Is the level of $* greater than max_mortal
+ischarmed ($*)                  Is $* affected by charm
+isfollow  ($*)                  Is $* a follower with their master in the room
+isaffected($*)  & integer       Is ($*->affected_by & integer) true
+				(person only)
+hitprcnt  ($*)  == percent      Is the hit/max_hit of $* equal to percent
+inroom    ($*)  == integer      Is the room of $* equal to integer
+				(person only)
+sex       ($*)  == integer      Is the sex of $* equal to integer
+position  ($*)  == integer      Is the position of $* equal to integer
+level     ($*)  == integer      Is the level of $* equal to integer
+class     ($*)  == integer      Is the class of $* equal to integer
+goldamt   ($*)  == integer      Does $* have a gold total equal to integer
+objtype   ($*)  == integer      Is the type of $* equal to integer
+				(armor,boat,etc)
+objval#   ($*)  == integer      Is $*->value[#] equal to integer (# from 0-3)
+number    ($*)  == integer      Is the vnum of $* equal to integer
+name      ($*)  == string       Is the name of $* equal to string
+race      ($*)  == integer    # Is the race of $* equal to integer
+armystatus($*)  == integer      Army:  0=Not in Army, 1=In Army, 2= Retired
+time      ()    == integer    # Is the time of day in the game equal to integer
+shotfrom  ($i)  == string     # Is the name of the direction a shot came from
+hasobj    (name)              # True if the mobile has an object named "name"
+				allows you to access the $c and $C variables
+hasobjnum (vNum)              # True if the mobile has object of specified vNum
+				allows you to access the $c and $C variables
+actorhasobjnum (vNum)         # Actor has object with vNum=vNum? sets $c & $C
+whichgod  ($*)  == integer    # Is the number of the specified mobile/char's
+				leading god (0=None, 1=Order,  2=Chaos,
+                                                     3=Demise, 4=Police )
+quest (B,N,$*)  == integer    # The value of the bitfield that starts at bit B
+				(0..31) and is N bits wide for $* (mobile)
+objquest(B,N,$*)== integer    # The value of the bitfield that starts at bit B
+				(0..31) and is N bits wide for $* (object)
+pcsinarea ()    == integer    # The number of PC's in the area of mobile
+pcsinarea (room#) == integer  # The number of PC's in the area of room #
+
+		"#" marks ifchecks exclusive to MrMud
+------------------------MOBCommands Of Interest-----------------------------
+
+	These are fairly basic things, most of them are wiz commands which have
+been changed to allow for mobiles to perform the commands.  If you have the
+problem of immortals abusing these powers on your mud either ditch the
+immortals, or add a check in all of them to only let NPC's with null
+descriptors do the commands.  (However, you lose a little debugging help that
+way).  MrMud has provided a little security feature against this but
+it is by no means comprehensive.  Please check yourself if you are concerned.
+
+***  Important:  Since many items have the same name for keywords, it is highly
+                 suggested that the creator use the I#### system for such
+                 things as give_prog.  This uses the object number with an 'I'.
+                 This method allows exact procedures of handling objects in
+                 mob_progs.  This system is added to all item keywords, so it
+                 is not necessary to add them to each item keyword list.
+
+Here are the basic MOBcommands that we found to be enticing:
+
+Syntax:  MPSTAT <mobile>
+
+	Shows the MOBprograms which are set on the mob of the given name or
+	vnum and some basic stats for the mobile
+
+Syntax:  MPASOUND <text_string>
+
+	Prints the text string to the rooms around the mobile in the same
+	manner as a death cry. This is really useful for powerful aggressives
+	and is also nice for wandering minstrels or mobiles like that in
+	concept.
+
+Syntax:  MPJUNK <object>
+
+	Destroys the object refered to in the mobiles inven. It prints no
+	message to the world and you can do things like junk all.bread or
+	junk all. This is nice for having janitor mobiles clean out their
+	inventory if they are carrying too much (have a MOBprogram trigger on
+	the 'full inventory')
+
+Syntax:  MPECHO                 <text_string>
+	 MPECHOAT      <victim> <text_string>
+	 MPECHOAROUND  <victim> <text_string>
+
+	Prints the text message to the room of the mobile. The three options
+	let you tailor the message to goto victims or to do things sneaky
+	like having a merchant do: mpat guard mpechoat guard rescue_please
+	This coupled with a guard act_prog trigger on rescue_please to
+	mpgoto $n and mpecho $I has arrived.  It is an affective way of quickly
+	bringing guards to the scene of an attack.
+
+Syntax:  MPMLOAD <mobile vnum>
+	 MPOLOAD <object vnum>
+
+	Loads the obj/mobile into the inven/room of the mobile. Even if the
+	item is non-takable, the mobile will receive it in the inventory.
+	This lets a mobile distribute a quest item or load a key or something.
+	Please use this under EXTREME caution.  In most cases the game
+	administrator will not allow these cases, unless a special effect is
+	required.  It is very easy to overdue it, by continually loading
+	objects and items.
+     
+
+Syntax:  MPKILL <victim>
+
+	Lets a mobile kill a player without having to murder and be fifth
+	level.  Lots of MOBprograms end up with mpkill $n commands floating
+	around. It works on both mobiles and players.
+
+Syntax:  MPPURGE [argument]
+
+	Destroys the argument from the room of the mobile. Without an argument
+	the result is the cleansing of all NPC's and items from the room with
+	the exception of the mobile itself.  However, mppurge $i will indeed
+	purge the mobile, but it MUST be the last command the mobile tries to
+	do, otherwise the mud cant reference the acting mobile trying to do the
+	commands and bad things happen.
+
+Syntax:  MPQUIET  < 'ON', 'OFF'>
+
+        This command stops ALL forms out output data from reaching anyone.
+        This command can be only used inside of mob_progs, and should not be
+        used in obj_progs at any time (it will not work regardless).
+        Simply issue 'mpquiet on' to make all commands quiet.  The mob_prog
+        will always reset it to 'off' regardless is the programmer calls the
+        'off'.  This command could be used to simulate a snake biting, when
+        it is actually casting 'poison'.  Simply mpecho the bite, then turn
+        MPQUIET ON and do the casting.
+
+Syntax:  MPGOTO <dest>
+
+	Moves the mobile to the room or mobile or object requested.  It makes
+	no message of its departure or of its entrance, so these must be
+	supplied with mpecho commands if they are desired.
+
+Syntax:  MPAT <dest> <command>
+
+	Perfoms the command at the designated location. Very useful for doing
+	magic slight of hand tricks that leave players dumbfounded.. such as
+	metamorphing mobiles, or guard summoning, or corpse vanishing.
+
+Syntax:  MPTRANSFER [<victim>, 'all', 'pcs'] [dest]
+
+	Sends the victim to the destination or to the room of the mobile as a
+	default.  if the victim is "all" then all the characters in the room
+	of the mobile are transfered to the destination.  Good for starting
+	quests or things like that.  There is no message given to the player
+	that it has been transfered and the player doesnt do a look at the
+	new room unless the mob forces them to. Immortals cannot be tranfered.
+	The mobile MUST be in the same room as the character being transfered
+	before the transfer will take place.
+        Please note that the use of "all" includes mobiles except one issuing
+        the command.  Use "pcs" to transfer all players and pets.
+        
+
+Syntax:  MPFORCE <victim> <command>
+
+	Forces the victim to do the designated command.  The victim is not told
+	that they are forced, they just do the command so usually some mpecho
+	message is nice.  You can force players to remove belongings and give
+	them to you, etc.  The player sees the normal command messages (such as
+	removing the item and giving it away in the above example)  Again, if
+	the victim is "all" then everyone in the mobiles room does the command.
+	This cannot be used on immortals.
+
+Syntax:  MPMSET <mobile> <field> <value>
+	 MPMSET <mobile> <string> <value>
+
+	 Enables the mob_prog to change mobiles on the fly.  Parameters:
+	   <mobile> is the name of the mobile to change
+	   <field> is one of:
+	     str int wis dex con sex class level practice align
+	     thirst drunk full exp gold hp mana move quest randquest
+	   <string> is one of:
+	     name short long description title spec
+	   <value> is whatever is appropriate for the specified string/field
+	     'quest' has three <values>: firstBit numBits newValue
+             'randquest' has two <values>: firstBit numBits
+               it assigns a random value to the specified quest bit range
+              There is a special case with strings, using the value "NULL" will
+              reset the string to it's original value.
+	     EXAMPLE: mpmset $n quest 0 4 1
+	       would take the bitfield starting at bit 0 and that is 4 bits
+	       long and set it to the value 1.  (each mobile has 32 bits)
+
+         Special note:  To make a diguise for a player, change the string of
+                        LONG to what you want to disguise the player as.  To
+                        return the player to it's normal state, use the value of
+                        NULL.
+                        ex:  mpmset $n long There is a small boy here.
+                                           (disguise the player as a small boy)
+                             mpmset $n long null
+                                           (returns the player to normal)
+
+Syntax:  MPOSET <object> <field>  <value>
+	 MPOSET <object> <string> <value>
+
+	 Enables the mob_prog to change objects on the fly.  Parameters:
+	   <object> is the name of the object to change
+	   <field> is one of:
+	     value0 value1 value2 value3
+	     extra setextra clrextra wear level weight cost timer quest
+	   <string> is one of:
+	     name short long ed
+	   <value> is whatever is appropriate for the specified string/field
+	     'setextra' and 'clrextra' set or clear extra flag bits and 'extra'
+	       sets the extra flag bits to the specified value
+	     'quest' has three <values>: firstBit numBits newValue
+             'randquest' has two <values>: firstBit numBits
+               it assigns a random value to the specified quest bit range
+             There is a special case with strings, using the value "NULL" will
+              reset the string to it's original value.
+	     EXAMPLE: mposet $n quest 0 4 1
+	       would take the bitfield starting at bit 0 and that is 4 bits
+	       long and set it to the value 1.  (each object has 32 bits)
+
+Syntax:  MPMADD <victim> <field> <value>
+
+	 Enables you to add to or subtract from the values of the following
+	 stats of a mobile or player character.  Parameters are:
+	   <victim> is the name of the mobile/player to modify
+	   <field> is one of:
+	     str int wis dex con sex class level exp practice align
+	     gold hp mana move thirst drunk full quest
+	   <value> is whatever is appropriate for the specified field
+	     'quest' has three <values>: firstBit numBits addValue
+	     EXAMPLE: mpmadd $n quest 0 4 1
+	       would take the bitfield starting at bit 0 and that is 4 bits
+	       long and add 1 to it.  (each mobile has 32 bits)
+
+Syntax:  MPOADD <object> <field> <value>
+
+	 Enables you to add to or subtract from the values of the following
+	 stats of an object.  Parameters are:
+	   <object> is the name of the object to modify
+	   <field> is one of:
+	     value0 value1 value2 value3 level weight cost timer
+	   <value> is whatever is appropriate for the specified field
+	     'quest' has three <values>: firstBit numBits addValue
+	     EXAMPLE: mpoadd $n quest 0 4 -1
+	       would take the bitfield starting at bit 0 and that is 4 bits
+	       long and subtract 1 from it.  (each item has 32 bits)
+
+Syntax:  MPGORAND <firstroom> <lastroom> <offset> <skipsize>
+
+	 say, you have a 4x4 area from room #6400 to #6415 arranged like:
+	    6400 6401 6402 6403
+	    6404 6405 6406 6407
+	    6408 6409 6410 6411
+	    6412 6413 6414 6415
+	 then "mpgorand 6400 6415 0 4" would put the mobile in one of the
+	   the following rooms: 6400 6404 6408 6412
+	 then "mpgorand 6400 6415 3 4" would put the mobile in one of the
+	   the following rooms: 6403 6407 6411 6415
+
+==============================================
+New commands devoted to mobile programs:
+  These commands can be used by gods or mobiles only.
+  Many of these commands alter the structure of the world, so please use
+    only where required.
+
+MAZE <X size> <Y size> <Z size> <Character Name>
+  This command takes an area that already exists, and redefines the exits
+  into a random pattern.  This can be used to create mazes that change during
+  game play.  This command is very slow, so use with caution.
+  The maze that is created has absolutely no connections to the rest of the
+  world, so the use of "connect", "door" and "key" may be required to link
+  the area to the rest of the game.
+    <? size> defines the dimensions of the maze.
+    <Character Name> defines what the seed number will be.
+      Seed number is a value that determines how the maze will be generated.
+      The use of the same seed on a maze with the same dimensions will always
+      generate the same maze.  Therefore individuals will always see the same
+      maze, but it will be different between individuals.
+	example:  maze 3 2 4 Bilbo
+	  Creates a maze that has 24 rooms, with a seed based on Bilbo.
+      NOTE: The name is a good place for '$n' of the mob_progs.
+
+CONNECT <door number> <destination room number> [both]
+  This command creates a hallway in one direction from the current room to the
+  room described in the destination.
+    <door number> defines which door the exit is generated at.  (Use 0 to 5)
+    <destination room number> defines the number of the room connecting to.
+      Use a destination number of "-1" to create a wall, and disconnect a room.
+    [both] is an optional parameter that creates a bi-directional hallway.
+      Without this option, the hallway created it totaly one-way.
+    example:  connect 1 9709 both
+      Creates a hallway from the current room, east to the Chaos temple.
+    Usage:
+      An interesting use for this command is to temporarily create a door that
+      did not previously exist, and force a party through it, then use the
+      connect command again to remove the newly created eixt.
+
+DOOR <door number> <door type> [<door name>]
+  This command places a door between two connected rooms.  These rooms need not
+  be connected through the "connect" command.  If you are using the "connect"
+  command, be sure to connect both sides, since the "connect" command only works
+  in one direction.  The door command only works if both exits on the two rooms
+  are going in opposite directions, to the other room, which is a standard
+  hallway.
+    <door number> defines which door the exit is generated at.  (Use 0 to 5)
+    <door type> is the door flag:
+      0 - open hallway.
+      1 - open, not locked door.
+      2 - closed, but not locked door.
+      4 - closed, and locked door. (key does NOT exist upon creation)
+      8 - closed, locked, and hidden door. (key does not exist)
+    <door name> this a the text name of the door.
+      If the name is not specified, the the name defaults to "door".
+	example:  door 1 4 gate
+	  Creates a gate at the hallway to the east that is locked and shut.
+
+KEY <door number> <key name>
+  This command creates a key for the locked door in the specified direction.
+  This command does not required that the door be created using the "door"
+  command.  The key is encoded with the number of the room it was generated
+  at, so DO NOT use this command more than once in the same room, because
+  effectively, this will create two of the same keys.  This key also changes
+  the door's number that describes which key fits it, so DO NOT use this
+  command on a door that already has a key, as it will invalidate the previous
+  key, if the previous key has a different number compared to the room number.
+    <door number> defines which door the exit is generated at.  (Use 0 to 5)
+    <key name> must be used to give the text name of the key.
+      example:  key 1 brown
+	Creates a key for the door to the east, and names the key to
+	"the brown key".
+
+RESCALE <mobile vnum> <character name> <percentage>
+  This command changes the level of all of a particular type of mobile to some
+  level based on a player in the game.  The mobile need not be in the same room
+  as the character.
+    <mobile vnum> Defines which mobiles are modified.  This only modifies the
+      surface characteristics, and any new mobiles created use the normal stats.
+    <character name> The name of the character that the mobile will be scaled
+      against.  The Character name must be a valid player currently in the game,
+      and other mobiles do not qualify.
+    <percentage> Defines how strong the mobile is in relation to the character
+      being considered.
+  Note:  This command is best used when the mobile is level 95th, and rescaled
+	 down to the level of the character.
+  Note:  The best use of this command is during a mob_prog and utilizing the
+	 '$n' for the name of the character.
+
+PURGE [area]
+  This command is a modified form of PURGE, called by "purge area".  When used
+  it scans every room in an entire area, and purges it of items, and mobiles.
+  This command is VERY slow, so use with caution.
+
+
+--------------------------Regarding CPU Slowdown-------------------------------
+
+	We have no real idea how slow this makes a mud. However, you will find
+that if you are judicious with your use of MOBprograms, you can either do
+little damage, or even reduce the effort on your server!  This means that
+mobile polling (including the rand_progs) need only be checked when players
+are around. This reduces computation of random_stuff a little, but it is
+still a polling method, and subject to a basic inefficiency there. However,
+aside from the rand_progs, the only additional slowdowns will be when the
+mobile is responding to the situation, and you would get that from a special
+procedure as well (although MOBprograms are surely not as efficient as
+compiled C code).
+
+  MrMud systems can track the average speed for various functions.  Mobile
+programs rank as one of the top 3 functions, and eat up about 30% of the
+total cpu usage for the entire game.  Although this is a general game-wide
+value, it gives an idea of the complexity of the mob_prog system.
+
+
+
+-------------------------Miscellaneous Information-----------------------------
+
+	There is really no limit to the number of MOBprograms a given mobile
+can have. However, the length of a single command block is limited by the
+value of MAX_STRING_LENGTH.  In my version it was around 22k, so that is
+probably about 500 lines.  The indentation spaces shown in the example
+above are NOT required, but do make it easier to read (and debug), but they
+do take up some space.
+
+	The MOBprogram stuff runs totally without anything in the
+mob_commands.c file, but letting mobiles be a bit more godlike has allowed
+us to do what we consider to be wonderful things. The replicant and
+polymorphing mobiles described above as well as some nifty mob helping mob
+interactions are an example.
+
+	It IS possible to accidentally make mobiles which can trigger in
+loops. As mentioned in the example at the end of this document, the result is
+usually a mud crash or major CPU dent.  We dont know any way to prevent this
+from happening, other than careful coding and a restriction of mobile travel
+from zones of one creator to another (another good reason to not have charmed
+mobiles do anything).  Tracking down the culprit mobile is not always easy.
+The only thing we have found which always works, is to add a log statement
+into the MOBprogram driver and fill some disk space until it becomes apparent
+what commands are repetitively issued. Also, most infinite loops are flukes
+where the situation just happens to be right and usually it never happens
+again.
+
+        Another common problem is mobiles that load other mobiles for various
+reasons.  This may seem innoculous, until the loaded mobile decides to load
+another mobile.  It has been seen that some areas, over the course of time
+can develope thousands of mobiles, which slow down the cpu drastically, not to
+mention the drain on system resources, such as RAM.  Be very careful that you
+know the exact situation before mpmloading another mobile.
+
+	The list of variables and triggers and if_checks will grow
+continuously as our creators demand the ability to do certain things.  If you
+have a request or if you have a new one, we don't mind hearing about them,
+and if you find bugs, we shall gladly attempt to squash them for you. As
+additions or fixes are made, the code will occasionally be redistributed.
+However, if you want a current version, please feel free to ask. When the
+code is redistributed, a file containing the change history from the original
+release will be provided (when possible) to allow you to patch in the changes
+with low grief.
+
+Note about testing:
+        All area creators are required to test their area thoroughly before
+it is included in the working game.  This is usually done on a test game, where
+the implementors of the working game run the test game on a part-time basis.
+Special note should be taken on all mob_progs, and obj_progs.  It is absolutely
+required that all cases of a program must be tested, even if it is a simple
+failure to break.  It is much better to find program bugs in the test game then
+in the working game.
+
+
+----------------------------------Credits-----------------------------------
+
+	The reason this code was written was to enhance the playing
+experience at ThePrincedom (a Merc 2.0 based world scheduled to open in
+October 1993)
+
+	The original idea for this type of MOBprogram came from playing on:
+WORLDS of CARNAGE, a dikumud implemented by Robbie Roberts and Aaron Buhr.
+Aaron (known as Dimwit Flathead the First) was the original author from what
+I have been told, and I hope he will not be totally offended and angered
+by my coding and sharing a mimicked version with the world. This version
+is probably not as good as the original and I do feel remorse for publishing
+the idea. However, since Carnage has been down for months without a word of
+information regarding its return, I am glad to let one of the best features
+live on in future generations of MUDs.
+
+	There are no objections to this code being shared, since, aside from
+a nuclear destruction of all the Temples of Midgaard (excepting the original
+one!!), bland mobiles are the greatest bane of Dikumuds today. It would be
+nice to get a message saying you are using the code just for our references.
+We shant answer questions from anyone until told where they are using the
+code. *grin*  Since this code is not copyrighted, you of course dont have to
+do anything we say, but it would be nice of you to put the mobprog help
+screen into your database. and have mobinfo show up somewhere on a more
+visable help screen (possibly tagged onto the bottom of credits as a see
+also...)
+
+	I acknowledge all the work done by the original Diku authors as well as
+those at Merc Industries and appreciate their willingness to share code.
+Also, quick thanks to Wraith for doing a little beta-installation testing.
+
+N'Atas-Ha                                                       June, 1993
+murph@ri.cmu.edu
+
+	In addition to this DOC file credit section, I'd like to add
+a thank you to Yaz, Mahatma, Zelda, and the rest of the Marble Mud crew for
+extensively testing MOBProgram 2.1 for me.  You may see MOBPrograms in
+action as well as their own "flavor" of mud at marble.bu.edu 4000.
+
+Kahn                                                            Oct 28th, 1993
+MERC Industries
+
+{+}+{+}+{+}+{+}+{+}+{+}+{+}+{+}+{+}+{+}+{+}+{+}+{+}+{+}+{+}+{+}+{+}+{+}+{+}+{+}
+
+Just a tasteless gloating statement by Chaos:
+
+  A major advancement to the operation of mob_progs was introduced October of
+1995.  This major advancement is the tokenizing of mob_progs.  The original
+code was a simple system that parsed the code for the $n stuff and shoved the
+result into the interp routine.  This is the same interp routine that players
+use to decipher commands.  The interp routine is relatively slow, and the
+mob_prog parser is quite slow itself.  The basis of the tokenizer is that a
+mob_prog will not change, once the mud itself has started up, so why parse and
+interperet it with every execution of a mob_prog?  
+  The basic system parses and interperets the mob_progs at boot time.  During
+the execution of a mob_prog, the entire program is made up of pointers to
+tokens, or blocks of binary (not ascii) data.  Execution time is improved
+significantly.
+
+  As a fringe benefit, the wiz command mpstat that normally displays the
+mob_prog's input, now displays the mob_prog's output.  This means that the
+command shows what the mud understands from the mob_prog given to it.  Which
+is excellent for debugging.  Also the TIMEMODE command in active mode will
+give a trace output of the mob_progs while they execute, including the mob_prog
+line numbers.  Future efforts may give these commands to the players on the
+testing game.
+
+
+
+===================CUT HERE FOR QUICK REFERENCE SHEET========================
+	 MOBprogram quick reference (# indicates exclusive to MrMud)
+* TRIGGERS______argument and what must happen to activate trigger____________
+act_prog        WORDLIST or P WORD_PHRASE to match from act() to mobile
+bribe_prog      INTEGER amount of miminum gold amount given to mobile
+entry_prog      PERCENT chance to check when mobile moves to a new room
+give_prog       FULL OBJECT NAME or ALL to match when obj given to mobile
+greet_prog      PERCENT chance to check if visable char enters mobile's room
+all_greet_prog  PERCENT chance to check when any char enters mobile's room
+fight_prog      PERCENT chance to check at fight_pulse if mobile is fighting
+hitprcnt_prog   PERCENT lower than mobiles hit/max_hit if mobile is fighting
+death_prog      PERCENT chance to check after mobile has been slain
+rand_prog       PERCENT chance to check whenever a PC is in the mobiles zone
+speech_prog     WORDLIST or P WORD_PHRASE to match in dialogue to mobile
+range_prog    # NOARG triggered when mobile shot
+* VARIABLES______mobile_actor_victim_random_____object___2nd-Obj__3rd-Obj____
+name               $i     $n    $t     $r         $o       $p     # $c
+shrt_desc/title    $I     $N    $T     $R         $O       $P     # $C
+he/she/it          $j     $e    $E     $J         --       --       --
+him/her/it         $l     $m    $M     $L         --       --   $D = exitName
+his/hers/its       $k     $s    $S     $K         --       --   $d = exitNum
+a/an               --     --    --     --         $a       $A   '$'symbol=$$
+* IFCHECK_____argument?_____meaning__________________________________________
+rand(num)                   Is a random percentage less than or equal to num
+isnpc($*) or ispc($*)       Is $* an NPC or PC?
+isgood($*)                  Does $* have a good alignment
+isfight($*)                 Is $* fighting
+isimmort($*)                Is the level of $* greater than max_mortal
+ischarmed($*)               Is $* affected by charm
+isfollow($*)                Is $* a follower with their master in the room
+validexit()                 Is there a valid exit in the room?  (sets $d/$D)
+isaffected($*) & integer    Is ($*->affected_by & integer) true (person only)
+hitprcnt($*)  == percent    Is the hit/max_hit of $* equal to percent
+inroom($*)    == integer    Is the room of $* equal to integer (person only)
+sex($*)       == integer    Is the sex of $* equal to integer
+position($*)  == integer    Is the position of $* equal to integer
+level($*)     == integer    Is the level of $* equal to integer
+class($*)     == integer    Is the class of $* equal to integer
+goldamt($*)   == integer    Does $* have a gold total equal to integer
+objtype($*)   == integer    Is the type of $* equal to integer (armor,boat..)
+objval#($*)   == integer    Is $*->value[#] equal to integer (# from 0-3)
+number($*)    == integer    Is the vnum of $* equal to integer
+name($*)      == string     Is the name of $* equal to string
+time()        == integer  # Is the mud's time of day equal to integer
+race($*)      == integer  # Is the race of $* equal to integer
+shotfrom($i)  == string   # Is the name of the direction a shot came from
+hasobj(name)              # mobile has an object named "name"?  $c & $C set
+hasobjnum(vNum)           # mobile has object of specified vNum? $c & $C set
+actorhasobjnum(vNum)      # actor has object of specified vNum? $c & $C set
+whichgod($*)  == integer  # which god leads player? 0=none,1=Order,2=Chaos
+quest(B,N,$*) == integer  # value of bitfield from bit B for N bits (mob)
+objquest(B,N,$*)== integer# value of bitfield from bit B for N bits (obj)
+* MobCOMMAND____argument-list___________MobCOMMAND______argument-list________
+MPSTAT          <mobile>                MPASOUND        <text_string>
+MPJUNK          <object>                MPECHO          <text_string>
+MPMLOAD         <mobile>                MPECHOAT        <victim> <text_string>
+MPOLOAD         <object> <level>        MPECHOAROUND    <victim> <text_string>
+MPKILL          <victim>                MPPURGE         [argument]
+MPGOTO          <dest>                  MPAT            <dest> <command>
+MPTRANSFER      <dest> [location]       MPFORCE         <victim> <command>
+MPMSET #        <mobile> <flag/string>  MPOSET #        <object> <flag/string>
+MPMADD #        <victim> <flag> <val>   MPOADD #        <object> <flag> <val>
+MPGORAND #      <frm> <lrm> <ofs> <skp>
+======================END OF QUICK REFERENCE SHEET===========================
+++++++++++++++++++++++++++++++++EXAMPLE++++++++++++++++++++++++++++++++++++++
+
+Referenced from above in the Control Flow section
+
+>act_prog p pokes you in the~
+if isnpc($n)
+   chuckle
+   poke $n
+else
+   if level($n) <= 5
+   or isgood($n)
+      tell $n I would rather you didnt poke me.
+   else
+      if level($n)>15
+	 scream
+	 say Ya know $n. I hate being poked!!!
+	 kill $n
+	 break
+      endif
+      slap $n
+      shout MOMMY!!! $N is poking me.
+   endif
+endif
+~
+
+Ok.. time to translate.. the trigger will only happen when the mobile
+gets the message "... pokes you in the ..." If the offender (recall
+the $n and $N refer to the char who did the poking...) is an NPC, then
+the mobile merely chuckles and pokes back. If the offender was a PC
+then good and low level characters get a warning, high level chars
+get attacked, and midlevel chars get slapped and whined at.
+
+Note that two of these mobiles could easily get into an infinite poke
+war which slows down (or frequently crashes) the mud just a bit :(
+Be very careful about things like that if you can. (i.e dont respond
+to a poke with a poke, and try not to let heavily programmed robot mobiles
+wander around together. More on that is given above.)
+
+Also, it is clear that the 'order' command could get confused with the 'or'
+control flow. However, this is only the case when 'order' is abbreviated to
+its two letter form, and placed immediately following an 'if' line. Thus,
+if you want to be that malicious in trying to break the MOBprogram code,
+noone is going to stand in your way (However, the result of this would be
+a bug message and a bail out from the ifcheck so things dont really break)
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+The following are extra examples of mob_progs.  These are the running code
+for the area Gateway to Avernus.  Use these as references for creating
+mob_progs.
+
+
+#QQ19
+iron golem chair~
+The Iron Golem~
+There is a chair here with the distinct outline of a large man.
+~
+The Iron Golem, formerly a chair, is large and menacing.  His steps echo in the
+room.  He has a complete look of indifference in his eyes.
+~
+1|2|4096 32|8 0 S
+65 0 -9 2d800+6000 2d5+50
+0 450000
+6 6 1
+>speech_prog margoyle~
+mpgoto QQ54
+mpecho $n arrives from the infinite plains.
+mptrans $n
+tell $n You may pass.
+mpgoto QQ53
+mpecho $n is taken from the infinite plains.
+~
+>rand_prog 20~
+say Hello mortal.  I know how to leave the plains.
+~
+>rand_prog 20~
+say Ask me to tell you about the stones.
+~
+>speech_prog stones~
+say The stones can move, when they have life.
+say But the question is how do they get life?
+~
+>speech_prog life~
+say Life can be endowed by the simplest of powers.
+say Even the homonculous can tell you that.
+mpecho The homonculous grins widely.
+~
+>speech_prog plains~
+say The plains are infinite.
+~
+>speech_prog homonculous~
+say The homonculous was also created by my master,
+say along with the other creatures, that exist behind
+say a set of gates.  If you know who my fellow stone
+say creatures are, I will take you out of the plains.
+~
+|
+#QQ20
+efreeti~
+The Efreeti~
+There is a large Efreeti here laughing deeply at you.
+~
+The efreeti stands over twelve feet tall.  Although man-like in appearance, he
+has two small horns sprouting out of his head.  He has flames licking his body.
+~
+1|2|4|32|4096 8|32 -100 S
+62 0 -8 2d400+2000 2d25+25
+80000 310000
+8 8 1
+>fight_prog 99~
+if rand(15)
+  cast "energy" $n
+else
+  if rand(15)
+    cast "lightening" $n
+  endif
+endif
+~
+|
+#QQ12
+belial devil arch~
+Belial the Arch Devil~
+Belial is twiddling with the ring on his finger and grinning evilly.
+~
+With an angry glare, Belial judges you.  He looks like an ebony man with small
+horns poking out from the top of his head.  He says something to you that you
+don't understand.
+~
+1|2|4|32|4096 8|32|512|262144|16777216|2097152 -1000 S
+95 0 -10 1d1+9000 4d18+50
+60000 600000
+6 6 1
+>fight_prog 99~
+if rand(17)
+  mpecho A black hole opens in space to admit a small devil.
+  mpmload QQ01
+else
+  if rand(13)
+    mpecho A black hole opens in space to admit a devil.
+    mpmload QQ02
+  else
+    if rand(11)
+      mpecho A black hole opens in space to admit a large devil.
+      mpmload QQ11
+    else
+      if rand(9)
+	mpecho A black hole opens in space to admit a huge devil.
+	mpmload QQ13
+      else
+      endif
+    endif
+  endif
+endif
+if rand(15)
+  say You will die mortal!
+else
+endif
+if rand(20)
+  cast "earth"
+else
+endif
+if rand(15)
+  cast "acid" $r
+else
+endif
+if rand(15)
+  cast "lightening" $r
+else
+endif
+if rand(15)
+  cast "heal" $i
+else
+endif
+~
+>rand_prog 50~
+  get all
+  remove all
+  wear all
+  drop all
+  sac all
+~
+|
+#QQ13
+barbed devil~
+The Barbed Devil~
+There is a rather large Barbed Devil here.
+~
+The Barbed Devil is toying with the small flame that is erupting from his hands.
+~
+1|4|32|4096 8|32 -1000 S
+70 0 -7 2d200+2100 2d25+35
+30000 200000
+8 8 0
+>fight_prog 99~
+if rand(15)
+  cast "fire breath" $n
+else
+  if rand(10)
+    mpecho The Barbed Devil cries out for help from Belial.
+    mpecho A large opening in space appears, and a devil steps out.
+    mpmload QQ11
+  else
+    kick
+  endif
+endif
+~
+>rand_prog 30~
+cast "stone skin" $i
+~
+|
+
+==============================================
+FILE: "mrmud.txt"
+
+These are extractions from MrMud, the program.  So they are accurate
+for the time they were extracted from the program. 
+
+
+MAX_CLASS    7
+MAX_RACE     8
+MAX_LEVEL   99
+
+PULSE_PER_SECOND    4
+PULSE_VIOLENCE    ( 4 * PULSE_PER_SECOND)
+PULSE_MOBILE      ( 4 * PULSE_PER_SECOND)
+
+/*
+ * ACT bits for mobs.
+ * Used in #MOBILES.
+ */
+ACT_IS_NPC        1 /* Auto set for mobs*/
+ACT_SENTINEL      2 /* Stays in one room*/
+ACT_SCAVENGER     4 /* Picks up objects*/
+ACT_AGGRESSIVE   32 /* Attacks PC's*/
+ACT_STAY_AREA    64 /* Won't leave area*/
+ACT_WIMPY       128 /* Flees when hurt*/
+ACT_PET         256 /* Auto set for pets*/
+ACT_TRAIN       512 /* Can train PC's*/
+ACT_PRACTICE   1024 /* Can practice PC's*/
+ACT_WEAK       2048 /* Cannot carry anything*/
+ACT_SMART      4096 /* Can say, normal can't*/
+ACT_ONE_FIGHT  8192 /* Disapears after fight*/
+ACT_NO_ORDER  16384 /* Cannot be ordered    */
+ACT_BODY      65536 /* uses body parts (Highly suggested)  */
+ACT_RACE     131072 /* Allows race to be defined (Highly suggested) */
+ACT_UNDEAD   262144 /* Does not create corpse on death for TURN spell */
+
+/*
+ * Bits for 'affected_by'.
+ * Used in #MOBILES.
+ */
+AFF_BLIND           1
+AFF_INVISIBLE       2
+AFF_DETECT_INVIS    8
+AFF_SANCTUARY     128
+AFF_FAERIE_FIRE   256
+AFF_INFRARED      512
+AFF_UNDERSTAND   2048
+AFF_PROTECT      8192
+AFF_SNEAK       32768
+AFF_HIDE        65536
+AFF_SLEEP      131072
+AFF_FLYING     524288
+AFF_PASS_DOOR 1048576
+AFF_STEALTH   2097152
+AFF_CLEAR     4194304
+AFF_HUNT      8388608
+AFF_TONGUES  16777216
+AFF_ETHEREAL 33554432  Makes the mobile absolutely invisible to system
+
+/*
+ * Sex.
+ * Used in #MOBILES.
+ */
+SEX_NEUTRAL      0
+SEX_MALE         1
+SEX_FEMALE       2
+
+/*
+ * Item types.
+ * Used in #OBJECTS.
+ */
+ITEM_TYPE_LIGHT       1  /* to light rooms...can't be invis */
+ITEM_TYPE_SCROLL      2  /* recitable magic (w/ target) */
+ITEM_TYPE_WAND        3  /* zapable magic (w/ target) */
+ITEM_TYPE_STAFF       4  /* brandishable magic (all in room) */
+ITEM_TYPE_WEAPON      5  /* weapons, of course */
+ITEM_TYPE_TREASURE    8  /* things of value? */
+ITEM_TYPE_ARMOR       9  /* armor, what else? */
+ITEM_TYPE_POTION     10  /* quaffable magic (on self) */
+ITEM_TYPE_FURNITURE  12  /* signs, statues, etc. */
+ITEM_TYPE_TRASH      13  /* valueless items */
+ITEM_TYPE_CONTAINER  15  /* backpacks, bags, etc. */
+ITEM_TYPE_DRINK_CON  17  /* bottles, skins, etc. */
+ITEM_TYPE_KEY        18  /* to unlock doors and containers */
+ITEM_TYPE_FOOD       19  /* edible nourishment */
+ITEM_TYPE_MONEY      20  /* piles of gold */
+ITEM_TYPE_BOAT       22  /* lets you move across water */
+ITEM_TYPE_FOUNTAIN   25  /* place to drink */
+ITEM_TYPE_PILL       26  /* edible magic (on self) */
+ITEM_TYPE_AMMO       30  /* ammunition (arrows, bolts, etc.)
+
+/*
+ * Extra flags.
+ * Used in #OBJECTS.
+ */
+ITEM_FLAG_GLOW             1
+ITEM_FLAG_HUM              2
+ITEM_FLAG_DARK             4
+ITEM_FLAG_LOCK             8
+ITEM_FLAG_EVIL            16
+ITEM_FLAG_INVIS           32
+ITEM_FLAG_MAGIC           64
+ITEM_FLAG_NODROP         128
+ITEM_FLAG_BLESS          256
+ITEM_FLAG_ANTI_GOOD      512
+ITEM_FLAG_ANTI_EVIL     1024
+ITEM_FLAG_ANTI_NEUTRAL  2048
+ITEM_FLAG_NOREMOVE      4096 /* "cursed" items */
+ITEM_FLAG_INVENTORY     8192  /* This item will not be removed from
+				 player on death.  This item will dissappear
+				 if the mobile is killed with it */
+ITEM_FLAG_LEVEL        16384 /* set to make RENTAL COST==LEVEL */
+ITEM_FLAG_AUTO_ENGRAVE 65536 /* Engraved to first to get item */
+
+NOTE: if the ITEM_FLAG_LEVEL flag of an object is set then the RENTAL
+      COST field of that object is interpreted as being that objects
+      level and not its rent value (because MrMud doesn't have rent).
+
+/*
+ * Wear flags.
+ * Used in #OBJECTS.
+ */
+ITEM_WEAR_TAKE        1
+ITEM_WEAR_FINGER      2
+ITEM_WEAR_NECK        4
+ITEM_WEAR_BODY        8
+ITEM_WEAR_HEAD       16
+ITEM_WEAR_LEGS       32
+ITEM_WEAR_FEET       64
+ITEM_WEAR_HANDS     128
+ITEM_WEAR_ARMS      256
+ITEM_WEAR_SHIELD    512
+ITEM_WEAR_ABOUT    1024
+ITEM_WEAR_WAIST    2048
+ITEM_WEAR_WRIST    4096
+ITEM_WEAR_WIELD    8192
+ITEM_WEAR_HOLD    16384
+
+/*
+ * Apply types (for affects).
+ * Used in #OBJECTS.
+ */
+APPLY_NONE           0
+APPLY_STR            1
+APPLY_DEX            2
+APPLY_INT            3
+APPLY_WIS            4
+APPLY_CON            5
+APPLY_SEX            6
+APPLY_MANA          12
+APPLY_HIT           13
+APPLY_MOVE          14
+APPLY_GOLD          15  /* not used */
+APPLY_AC            17
+APPLY_HITROLL       18
+APPLY_DAMROLL       19
+APPLY_SAVING_BREATH 23
+APPLY_SAVING_SPELL  24
+
+/*
+ * Values for containers (value[1]).
+ * Used in #OBJECTS.
+ */
+CONT_CLOSEABLE      1
+CONT_PICKPROOF      2
+CONT_CLOSED         4
+CONT_LOCKED         8
+
+/*
+ * Room flags.
+ * Used in #ROOMS.
+ */
+ROOM_DARK           1
+ROOM_NO_MOB         4  /* wandering mobiles can't enter the room */
+ROOM_INDOORS        8
+ROOM_PRIVATE      512  /* only two people at a time */
+ROOM_SAFE        1024  /* can't do aggressive commands */
+ROOM_SOLITARY    2048  /* only one person at a time */
+ROOM_PET_SHOP    4096  /* place to buy pets */
+ROOM_NO_RECALL   8192
+ROOM_BLOCK      32768  /* room blocked from entrance */
+ROOM_NO_SAVE    65536  /* you can't save in this room also means no
+				  quitting in this room */
+ROOM_MORGUE    131072  /* shop in this room sells PC corpses */
+    /* The following 2 groups are combinations of bits, so do not select
+       a room for several classes of alignments */
+ROOM_ALTAR_N  1572864  /* able to DEATH set for neutral players */
+ROOM_ALTAR_C   524288  /* able to DEATH set for chaos followers */
+ROOM_ALTAR_O  1048576  /* able to DEATH set fororder followers */
+ROOM_ALLOW_ILL  2097152  /* The following rescrict all but 1 class */
+ROOM_ALLOW_ELE  4194304  /* you may use ONLY one of these */
+ROOM_ALLOW_ROG  6291456  /* Generally used to make practice halls */
+ROOM_ALLOW_RAN  8388608
+ROOM_ALLOW_NEC  10485760
+ROOM_ALLOW_MON  12582912
+ROOM_ALLOW_ASN  14680064
+
+/*
+ * Directions.
+ * Used in #ROOMS.
+ */
+DIR_NORTH      0
+DIR_EAST       1
+DIR_SOUTH      2
+DIR_WEST       3
+DIR_UP         4
+DIR_DOWN       5
+
+/*
+ * Exit flags.
+ * Used in #ROOMS.
+ */
+EX_ISDOOR      1
+EX_CLOSED      2
+EX_LOCKED      4
+EX_HIDDEN      8  /* cannot be seen w/o detect hid */
+EX_PICKPROOF  32
+
+/*
+ * Sector types.
+ * Used in #ROOMS.
+ */
+SECT_INSIDE        0
+SECT_CITY          1
+SECT_FIELD         2
+SECT_FOREST        3
+SECT_HILLS         4
+SECT_MOUNTAIN      5
+SECT_WATER_SWIM    6
+SECT_WATER_NOSWIM  7
+SECT_UNUSED        8
+SECT_AIR           9
+SECT_DESERT       10
+SECT_LAVA         11  /*  Hurts the player every second or so */
+SECT_INN          12  /*  Heals the player while not on the game */
+SECT_ETHEREAL     13    (Requires Ethereal Travel spell)
+SECT_ASTRAL       14    (Requires Astral Projection spell)
+SECT_UNDERWATER   15    (Requires Breath water spell)
+
+/*
+ * Equpiment wear locations.
+ * Used in #RESETS.
+ */
+WEAR_NONE        -1
+WEAR_LIGHT        0
+WEAR_FINGER_L     1
+WEAR_FINGER_R     2
+WEAR_NECK_1       3
+WEAR_NECK_2       4
+WEAR_BODY         5
+WEAR_HEAD         6
+WEAR_LEGS         7
+WEAR_FEET         8
+WEAR_HANDS        9
+WEAR_ARMS        10
+WEAR_SHIELD      11
+WEAR_ABOUT       12
+WEAR_WAIST       13
+WEAR_WRIST_L     14
+WEAR_WRIST_R     15
+WEAR_WIELD       16
+WEAR_HOLD        17
+MAX_WEAR         18
+
+/*
+ * Conditions.
+ */
+COND_DRUNK      0
+COND_FULL       1
+COND_THIRST     2
+
+/*
+ * Positions.
+ */
+POS_DEAD      0
+POS_MORTAL    1
+POS_INCAP     2
+POS_STUNNED   3
+POS_SLEEPING  4
+POS_RESTING   5
+POS_FIGHTING  6
+POS_STANDING  7
+
+/*
+ * Player class defines
+ */
+CLASS_ILLUSIONIST             0
+CLASS_ELEMENTALIST            1
+CLASS_ROGUE                   2
+CLASS_RANGER                  3
+CLASS_NECROMANCER             4
+CLASS_MONK                    5
+CLASS_ASSASSIN                6
+
+/* Player Races  */
+RACE_HUMAN                    0
+RACE_HALFING                  1
+RACE_ELF                      2
+RACE_DROW                     3
+RACE_DWARF                    4
+RACE_GNOME                    5
+RACE_ORC                      6
+RACE_OGRE                     7
+
+============================================================================
+/*
+ * the values for items (value[0]..value[3])
+ */
+
+ITEM_LIGHT (1)
+Value[0]: Not Used
+Value[1]: Not Used
+Value[2]: Number of hours the light can be used for. Zero hours means that
+  the light has gone out. A negative number will create an eternal
+  light source.  Eternal lights should not be plentiful or easily obtained.
+Value[3]: Not Used
+
+ITEM_SCROLL (2)
+Value[0]: Level of the spell on the scroll.
+Value[1]: Which spell (see list in spells.txt)
+Value[2]: Which spell
+Value[3]: Which spell
+  The values(1-3) are three (or less) different spells, mixed 'on' the scroll.
+  Unused spells should be set to -1.
+
+ITEM_WAND (3)
+Value[0]: Level of spell in wand.
+Value[1]: Max Charges (1..X)
+Value[2]: Charges Left
+Value[3]: Which spell in wand (see list in spells.txt)
+
+ITEM_STAFF (4)
+Value[0]: Level of spell in staff.
+Value[1]: Max Charges (1..X)
+Value[2]: Charges Left
+Value[3]: Which spell in staff (see list in spells.txt)
+
+ITEM_WEAPON (5)
+Value[0]: Type of ammo shot by the weapon (0 if not a range weapon)
+Value[1]: Number of dice to roll for damage (keep this number low)
+Value[2]: Size of dice to roll for damage
+Value[3]: The weapon type. Type is one of:
+
+NAME          NUMBER CATEGORY   Message type
+-------------------------------------------------------------------------
+WEAPON_SLICE     1  : Slice      Slice/Slices
+WEAPON_STAB      2  : Stab       Stab/Stabs     (can be backstabbed with)
+WEAPON_SLASH     3  : Slash      Slash/Slashes
+WEAPON_WHIP      4  : Whip       Whip/Whips
+WEAPON_CLAW      5  : Claw       Claw/Claws
+WEAPON_BLAST     6  : Blast      Blast/Blasts
+WEAPON_POUND     7  : Pound      Pound/Pounds
+WEAPON_CRUSH     8  : Crush      Crush/Crushes
+WEAPON_GREP      9  : Grep       Grep/Greps
+WEAPON_BITE     10  : Bite       Bite/Bites
+WEAPON_PIERCE   11  : Pierce     Pierce/Pierces (can be backstabbed with)
+
+
+ITEM_TREASURE   (8)
+Value[0]: -
+Value[1]: -
+Value[2]: -
+Value[3]: -
+
+ITEM_ARMOR      (9)
+Value[0]: The effective AC. >0 enhances the armour class. <0 reduces the
+  the armour class (cursed armour for example).
+Value[1]: -
+Value[2]: -
+Value[3]: -
+
+ITEM_POTION    (10)
+Value[0]: Level of the spell in the potion.
+Value[1]: Which spell (Listed in spells.txt)
+Value[2]: Which spell
+Value[3]: Which spell
+  The values(1-3) are three (or less) different spells, mixed in the potion.
+  Unused spells should be set to -1.
+   Eg.
+   Value 0 : 30  (Level)
+   Value 1 : 27  (Harm)
+   Value 2 : 17  (Curse)
+   Value 3 : -1  (no-spell)
+     BTW: Don't drink this - It's bad for your health!
+
+ITEM_FURNITURE (12)
+Value[0]: -
+Value[1]: -
+Value[2]: -
+Value[3]: -
+
+ITEM_TRASH     (13)
+Value[0]: -
+Value[1]: -
+Value[2]: -
+Value[3]: -
+
+ITEM_CONTAINER (15)
+Value[0]: Maximum weight the container can contain.
+Value[1]: Container flags:
+   CLOSEABLE     1
+   PICKPROOF     2
+   CLOSED        4
+   LOCKED        8
+Value[2]: The item-number of the object which can open the object. -1 means
+  no lockability.
+Value[3]: - (always 0)
+
+ITEM_DRINKCON  (17)
+Value[0]: Maximum drink-units the drink-container can contain.
+Value[1]: Number of drink-units that are left in the container.
+Value[2]: The type of liquid in the drink-container, one of:
+
+      Type           nr.    Effect
+    Drunkness   Fullness   Thirst
+
+      LIQ_WATER      0      0           1           10
+      LIQ_BEER       1      3           2           5
+      LIQ_WINE       2      5           2           5
+      LIQ_ALE        3      2           2           5
+      LIQ_DARKALE    4      1           2           5
+      LIQ_WHISKY     5      6           1           4
+      LIQ_LEMONADE   6      0           1           8
+      LIQ_FIREBRT    7      10          0           0
+      LIQ_LOCALSPC   8      3           3           3
+      LIQ_SLIME      9      0           4           -8
+      LIQ_MILK       10     0           3           6
+      LIQ_TEA        11     0           1           6
+      LIQ_COFFE      12     0           1           6
+      LIQ_BLOOD      13     0           2           -1
+      LIQ_SALTWATER  14     0           1           -2
+      LIQ_COKE       15     0           1           5
+
+  The above values for drunkness/fullness/thirst are used per
+  four "units" drunk. The values are expressed in HOURS!
+  Example:
+    Dragon empties a bottle (say 7 units) of saltwater.
+    His Drunkness is not changed ((7/4)*0)
+    His Fullness increases by ((7/4)*1) hours
+    His Thirst increases by ((7/4)*-2) hours, thus making
+       him More thirsty.
+
+  The hours above are numbers between 0 and 24. 24 hours is
+  maximum for drunkness/fullness/thirst. When hours are zero
+  for any drunkness/fullness/thirst the person will be
+  sober, hungry, or thirsty respectively.
+
+Value[3]: if this value is non-zero, then the drink is poisoned.
+
+ITEM_KEY       (18)
+Value[0]: The key-type. This value must match the lock-type the door
+  that the key can open (if the vnum of the key doesn't match the lock-type
+    that is).
+Value[1]: -
+Value[2]: -
+Value[3]: -
+
+ITEM_FOOD      (19)
+Value[0]: The number of hours, that this food will fill the stomach
+Value[1]: -
+Value[2]: -
+Value[3]: If this value is non-zero, the food is poisoned.
+
+ITEM_MONEY     (20)
+Value[0]: The number of gold coins "in the pile of coins".
+Value[1]: -
+Value[2]: -
+Value[3]: -
+
+ITEM_BOAT      (22)
+Value[0]: -
+Value[1]: -
+Value[2]: -
+Value[3]: -
+
+ITEM_FOUNTAIN  (22)
+Value[0]: -
+Value[1]: -
+Value[2]: -
+Value[3]: -
+
+ITEM_PILL      (22)
+Value[0]: Level of the spell in the potion.
+Value[1]: Which spell (Listed in spells.txt)
+Value[2]: Which spell
+Value[3]: Which spell
+
+ITEM_AMMO      (22)
+Value[0]: Ammunition type (matches Value[0] of weapon that will shoot it)
+Value[1]: Damage          (amount of damage caused by the ammo when it hits)
+Value[2]: Speed           (4/second, keep numbers high (20 for fast arrows))
+Value[3]: Effective range (it's possible to shoot it farther than the number
+			   given here, but at reduced damage.  Please note
+			   that ranges greater than 5 are sensless because
+			   no one can see further than 5 rooms away)
+
+============================================================================
+     Percentwise Coverage of Armour
+	 and allowed AC range
+
+Location  Protects   Range
+--------  --------   -----
+
+Body        30%      [1..10]
+Head        20%      [1..10]
+Legs        20%      [1..10]
+Feet        10%      [1..10]
+Arms        10%      [1..10]
+Hands       10%      [1..10]
+Shield      10%      [1..10]
+Magic       10%      [1..10]
+
+--------------------------------------------
+    PRICE GUIDELINES
+
+ AC     BODY    LEGS    HEAD    ARMS    FEET       ARMOUR
+----    ----    ----    ----    ----    ----       ------
+ +1      100      50      50      25      25       Cloth (Heavy)
+ +2      200     100     100      50      50       Soft Leather
+ +3      500     150     150      75      75       Studded Leather
+ +4    1,000     500     500     250     250       Scale Mail
+ +5    2,500   1,250   1,250     625     625       Chain Mail
+ +6    7,000   3,500   3,500   1,750   1,750       Bronze Plate Mail
+ +7   18,000   9,000   9,000   4,500   4,500       Plate Mail
+ +8   35,000  17,500  17,500   8,750   8,750       Field Plate Mail
+ +9   50,000  25,000  25,000  12,500  12,500       Full Plate
++10   75,000  37,500  37,500  18,750  18,750       Anti Bomb ShieldPlate
+
+*Hands and shields should be regarded as arms.
+--------------------------------------------
+    IMPORTANT NOTICE
+
+Rare items may only exist in minimal quantities!
+Especially you should limit the occurence of
+magical protection, since it is easy to carry.
+
+============================================================================
+
+Weapons & Carrying capacity
+---------------------------
+
+The weight of a weapon determines the strength needed to wield the weapon,
+these values should be used:
+
+STR     Max. Weapon Weight    Carrying capacity
+---     ------------------    -----------------
+  0           0                      0
+  1           1                      3
+  2           2                      3
+  3           3                     10
+  4           4                     25
+  5           5                     55
+  6           6                     80
+  7           7                     90
+  8           8                    100
+  9           9                    100
+ 10          10                    115
+ 11          11                    115
+ 12          12                    140
+ 13          13                    140
+ 14          14                    170
+ 15          15                    170
+ 16          16                    195
+ 17          18                    220
+ 18          20                    255
+
+No weapon may ever exceed 30 pounds in weight.
+
+Backstabbing is only possible with piercing weapons.
+
+No weapon may ever exceed 30 pounds in weight.
+
+No shop-produced weapon may exceed 2d8 in total damage or weigh more
+   than 20 pounds.
+
+
+PRIMARY BUYABLE WEAPONS <PBW>:
+
+Name               Damage    Type    Cost    Weight
+---------------    -----     ----    ----    ------
+Dagger              1d4       P        10       1
+Small sword         1d6       P        60       3
+Long sword          1d8       S       600       8
+Wooden Club         1d3       B        12       3
+War hammer          1d5       B        50       6
+
+
+===========================================================================
+FILE: "spells.txt"
+Spell numbers (slots) for magical objects.
+
+SPELL_ARMOR              1      'armor'
+SPELL_TELEPORT           2      'teleport'
+SPELL_BLESS              3      'bless'
+SPELL_BLINDNESS          4      'blindness'
+SPELL_BURNING_HANDS      5      'burning hands'
+SPELL_CALL_LIGHTNING     6      'call lightning'
+SPELL_CHARM_PERSON       7      'charm person'
+SPELL_CHILL_TOUCH        8      'chill touch'
+SPELL_COLOUR_SPRAY      10      'colour spray'
+SPELL_CONTROL_WEATHER   11      'control weather'
+SPELL_CREATE_FOOD       12      'create food'
+SPELL_CREATE_WATER      13      'create water'
+SPELL_CURE_BLINDNESS    14      'cure blindness'
+SPELL_CURE_CRITICAL     15      'cure critical'
+SPELL_CURE_LIGHT        16      'cure light'
+SPELL_CURSE             17      'curse'
+SPELL_DETECT_EVIL       18      'detect evil'
+SPELL_DETECT_INVIS      19      'detect invis'
+SPELL_DETECT_MAGIC      20      'detect magic'
+SPELL_DETECT_POISON     21      'detect poison'
+SPELL_DISPEL_EVIL       22      'dispel evil'
+SPELL_EARTHQUAKE        23      'earthquake'
+SPELL_ENCHANT_WEAPON    24      'enchant weapon'
+SPELL_ENERGY_DRAIN      25      'energy drain'
+SPELL_FIREBALL          26      'fireball'
+SPELL_HARM              27      'harm'
+SPELL_HEAL              28      'heal'
+SPELL_INVIS             29      'invis'
+SPELL_LIGHTNING_BOLT    30      'lightning bolt'
+SPELL_LOCATE_OBJECT     31      'locate object'
+SPELL_MAGIC_MISSILE     32      'magic missile'
+SPELL_POISON            33      'poison'
+SPELL_PROTECTION        34      'protection'
+SPELL_REMOVE_CURSE      35      'remove curse'
+SPELL_SANCTUARY         36      'sanctuary'
+SPELL_SHOCKING_GRASP    37      'shocking grasp'
+SPELL_SLEEP             38      'sleep'
+SPELL_GIANT_STRENGTH    39      'giant strength'
+SPELL_VENTRILOQUATE     41      'ventriloquate'
+SPELL_WORD_OF_RECALL    42      'word of recall'
+SPELL_CURE_POISON       43      'cure poison'
+SPELL_DETECT_HIDDEN     44      'detect hidden'
+SPELL_IDENTIFY          53      'identify'
+SPELL_FLY               56      'fly'
+SPELL_CONTINUAL_LIGHT   57      'continual light'
+SPELL_KNOW_ALIGNMENT    58      'know alignment'
+SPELL_DISPEL_MAGIC      59      'dispel magic'
+SPELL_CURE_SERIOUS      61      'cure serious'
+SPELL_CAUSE_LIGHT       62      'cause light'
+SPELL_CAUSE_CRITICAL    63      'cause critical'
+SPELL_CAUSE_SERIOUS     64      'cause serious'
+SPELL_FLAMESTRIKE       65      'flamestrike'
+SPELL_STONE_SKIN        66      'stone skin'
+SPELL_SHIELD            67      'shield'
+SPELL_WEAKEN            68      'weaken'
+SPELL_MASS_INVIS        69      'mass invis'
+SPELL_ACID_BLAST        70      'acid blast'
+SPELL_FAERIE_FIRE       72      'faerie fire'
+SPELL_FAERIE_FOG        73      'faerie fog'
+SPELL_PASS_DOOR         74      'pass door'
+SPELL_SUMMON            76      'summon'
+SPELL_INFRAVISION       77      'infravision'
+SPELL_CREATE_SPRING     80      'create spring'
+SPELL_REFRESH           81      'refresh'
+SPELL_CHANGE_SEX        82      'change sex'
+SPELL_GATE              83      'gate'
+SPELL_ACID_BREATH      200      'acid breath'
+SPELL_FIRE_BREATH      201      'fire breath'
+SPELL_FROST_BREATH     202      'frost breath'
+SPELL_GAS_BREATH       203      'gas breath'
+SPELL_LIGHTNING_BREATH 204      'lightning breath'
+SPELL_GENERAL_PURPOSE  501      'general purpose'
+SPELL_HIGH_EXPLOSIVE   502      'high explosive'
+SPELL_BLOCK_AREA       601      'block area'
+SPELL_WRITE_SPELL      602      'write spell'
+SPELL_HOMONCULOUS      603      'homonculous'
+SPELL_DEMON            604      'demon'
+SPELL_SHADOW           605      'shadow'
+SPELL_SHADE            606      'shade'
+SPELL_PHANTASM         607      'phantasm'
+SPELL_RIFT             608      'rift'
+SPELL_RIP              609      'rip'
+SPELL_TONGUES          610      'tongues'
+SPELL_UNDERSTAND       611      'understand'
+SPELL_OBJECT_INVIS     612      'object invis'
+SPELL_HASTE            613      'haste'
+HASTE                 613
+ENHANCED HEAL         615
+ENHANCED REVIVE       616
+ANIMATE DEAD          617
+BANISH                618
+ENHANCE OBJECT        619
+MAGE SHIELD           620
+DISPEL UNDEAD         621
+DISPEL GOOD           622
+REMOVE FEAR           623
+FEAST                 624
+RESTORE               625
+TREMOR                626
+ENERGY SHIFT          627
+INDUCTION             628
+ILLUSION              629
+MIRROR IMAGE          630
+HALLUCINATE           631
+STABILITY             632
+ETHEREAL TRAVEL       633
+ASTRAL PROJECTION     634
+BREATH WATER          635
+
+
+***  Object Programs
+==============================================
+FILE: "daycare.are"  Using the 'QQ' system
+==============================================
+#AREA  { 1  5} Sandman Dwarven Day Care~
+
+
+
+#MOBILES
+#QQ00
+youth dwarven dwarf~
+the dwarven youth~
+A young dwarf plays with a toy axe.
+~
+This is a young but not totally harmless creature.
+~
+68 0 -5 S
+3 17 69 1d4+30 1d6+3
+50 400
+6 8 1
+>rand_prog 40~
+wear all
+~
+>rand_prog 25~
+mpemote swings his toy axe, almost hitting you!
+~
+>rand_prog 15~
+mpemote says "I may be short, but I'm a mean one!"
+~
+|
+#QQ01
+teddy bear~
+a teddy bear~
+A cute and fuzzy teddy bear stands here.
+~
+This is a tiny little bear with a heart on his chest.
+~
+68 0 500 S
+1 19 90 1d10+10 1d4+1
+75 75
+8 8 1
+#QQ02
+doll raggedy anne~
+a raggedy anne doll~
+A raggedy anne doll is sitting here.
+~
+You see a small little cute rag doll.
+~
+68 0 300 S
+2 18 79 2d5+19 1d5+2
+250 200
+6 8 1
+#QQ03
+soldier toy~
+a toy soldier~
+A toy soldier is standing here.
+~
+The toy is looking for target practice.
+~
+68 0 -300 S
+3 18 59 3d5+26 2d3+3
+400 300
+8 8 1
+#QQ04
+bear ugly~
+the ugly bear~
+An ugly stuffed bear stands here.
+~
+This is obviously a reject from the factory.
+He snarls and growls at you.
+~
+68 0 -400 S
+3 17 69 3d4+25 1d4+4
+100 300
+8 8 1
+#QQ05
+doll old~
+an old doll~
+An abused and old doll is here.
+~
+This doll has been hugged and played with until there is almost nothing left.
+~
+68 0 -2 S
+1 20 90 1d10+1 1d4+2
+50 50
+8 8 0
+#QQ06
+nanny~
+the nanny~
+An old wrinkled nanny stands here, looking over the little ones.
+~
+You see an old dwarven lady who has been hunched over with age.  However, it
+appears that there is still some fight left in her.
+~
+64 0 10 S
+5 16 60 4d4+50 1d8+5
+750 750
+8 8 2
+#QQ07
+guard~
+the armed guard~
+An armed guard stands here looking lost.
+~
+This is a big mean bully who is tired of being lost in this maze.
+You suddenly think that you had better flee.
+~
+70 8 -800 S
+8 9 29 3d10+100 3d5+2
+2000 2000
+8 8 1
+#QQ08
+brat spoiled~
+the spoiled brat~
+A spoiled brat is crying here.
+~
+You see a little tyke who has always gotten what he wanted.  You have the
+biggest urge to put him out of his misery.
+~
+70 0 -400 S
+1 18 90 2d4+15 2d2+1
+2000 50
+8 8 1
+#0
+
+
+
+#OBJECTS
+#QQ00
+axe toy~
+a toy axe~
+An axe made of plastic lies here.~
+~
+5 0 8193
+0 1 6 3
+15 600 200
+#QQ01
+ring pink ice~
+a pink ice ring~
+A pink ice ring draws your eye.~
+~
+9 0 3
+1 0 0 0
+8 7000 2500
+A
+1  1
+A
+13 6
+#QQ21
+robe linen~
+a linen robe~
+A linen robe is crumpled into a ball here.~
+~
+9 0 1025
+1 0 0 0
+5 4000 2000
+A
+4 1
+A
+12 5
+#QQ44
+meat steak~
+a juicy steak~
+A juicy steak sits on a plate here.~
+~
+19 0 1
+15 0 0 0
+5 15 2
+#QQ45
+steak rotten~
+a rotten steak~
+A dry steak lies on the floor.~
+~
+19 0 1
+4 0 0 1
+5 14 1
+#QQ46
+potion amber~
+an amber potion~
+An amber potion sits in a corner.~
+~
+10 0 1
+30 16 1 0
+1 1500 500
+#QQ47
+gun toy~
+a toy gun~
+A toy gun with a sharp bayonet lies here.~
+~
+5 0 8193
+0 2 3 7
+5 1700 1000
+#0
+
+
+
+#ROOMS
+#QQ01
+The Dwarven Drop Off~
+This is where the dwarven mommies and daddies come to drop off their
+annoying little brats.  You have the urge to leave.  There is a sign here.
+~
+QQ 12 0
+DDIR_SOUTH
+You see a large room full of noisy brats.
+~
+~
+1 -1 QQ02
+DDIR_NORTH
+~
+~
+0 -1 6500
+E
+sign~
+This is an area for newbies, so have fun.  -- Sandman
+~
+S
+#QQ02
+Day Care Center~
+You are in the north-east corner of the main part of the center.  Toys and
+toddlers are all over the room.  There is a kitchen to the east.
+~
+QQ 8 0
+D0
+You see the drop off.
+~
+~
+0 -1 QQ01
+D3
+You see a large room full of noisy brats.
+~
+~
+0 -1 QQ03
+D2
+You see a large room full of noisy brats.
+~
+~
+0 -1 QQ04
+D1
+You see an extremely messy kitchen.
+~
+~
+0 -1 QQ26
+S
+#QQ03
+Day Care Center~
+You are in the north-west corner of the main part of the center.  Toys and
+toddlers are all over the room.  There is a bathroom to the west.
+~
+QQ  8 0
+D1
+You see a large room full of noisy brats.
+~
+~
+0 -1 QQ02
+D2
+You see a large room full of noisy brats.
+~
+~
+0 -1 QQ05
+D3
+You see a messy bathroom.
+~
+~
+0 -1 QQ06
+S
+#QQ04
+Day Care Center~
+You are in the south-east corner of the main part of the center.  Toys and
+toddlers are all over the room.  There is a playground to the east.
+~
+QQ 8 0
+D0
+You see a large room full of noisy brats.
+~
+~
+0 -1 QQ02
+D1
+You see the playground.
+~
+~
+0 -1 QQ10
+D3
+You see a large room full of noisy brats.
+~
+~
+0 -1 QQ05
+S
+#QQ05
+Day Care Center~
+You are in the south-west corner of the main part of the center.  Toys and
+toddlers are all over the room.  There is a staircase to the west.
+~
+QQ 8 0
+D0
+You see a large room full of noisy brats.
+~
+~
+0 -1 QQ03
+D1
+You see a large room full of noisy brats.
+~
+~
+0 -1 QQ04
+D3
+You see a staircase leading down.
+~
+~
+0 -1 QQ07
+S
+#QQ06
+The Messy Bathroom~
+You hold your nose as you realize you have made the worst mistake of your
+life.  The air is rancid and the walls are stained.
+~
+QQ 8 0
+D1
+You see a large room full of noisy brats.
+~
+~
+0 -1 QQ03
+S
+#QQ07
+The Staircase~
+You stand on top of a staircase leading down, and wonder what mystery could
+lie down under.  Beware!
+~
+QQ 8 0
+D1
+You see a large room full of noisy brats.
+~
+~
+0 -1 QQ05
+D5
+You see the entrance to something.
+~
+~
+0 -1 QQ12
+S
+#QQ08
+The Playground~
+You are in the north-west corner of the playground.
+~
+QQ 0 2
+D1
+You see the playground.
+~
+~
+0 -1 QQ09
+D2
+You see the playground.
+~
+~
+0 -1 QQ10
+S
+#QQ09
+The Playground~
+You are in the north-east corner of the playground.
+~
+QQ 0 2
+D2
+You see the playground.
+~
+~
+0 -1 QQ11
+D3
+You see the playground.
+~
+~
+0 -1 QQ08
+S
+#QQ10
+The Playground~
+You are in the south-west corner of the playground.
+~
+QQ 0 2
+D0
+You see the playground.
+~
+~
+0 -1 QQ08
+D1
+You see the playground.
+~
+~
+0 -1 QQ11
+D3
+You see a large room full of noisy brats.
+~
+~
+0 -1 QQ04
+S
+#QQ11
+The Playground~
+You are in the south-east corner of the playground.
+~
+QQ 0 2
+D0
+You see the playground.
+~
+~
+0 -1 QQ09
+D3
+You see the playground.
+~
+~
+0 -1 QQ10
+S
+#QQ12
+Entrance to the Mini-Maze~
+You stand in the entrance to a small, but confusing maze.  You really hope
+that you don't get lost.
+~
+QQ 13 2
+D1
+~
+~
+0 -1 QQ13
+D4
+You see some stairs.
+~
+~
+0 -1 QQ07
+S
+#QQ13
+Mini-Maze~
+You are in a small passage that looks just like every other one.
+~
+QQ 9 2
+D3
+~
+~
+0 -1 QQ12
+D2
+~
+~
+0 -1 QQ15
+D1
+~
+~
+0 -1 QQ14
+S
+#QQ14
+Mini-Maze~
+You are in a small passage that looks just like every other one.
+~
+QQ 9 2
+D2
+~
+~
+0 -1 QQ16
+D3
+~
+~
+0 -1 QQ13
+S
+#QQ15
+Mini-Maze~
+You are in a small passage that looks just like every other one.
+~
+QQ 9 2
+D0
+~
+~
+0 -1 QQ13
+D1
+~
+~
+0 -1 QQ16
+S
+#QQ16
+Mini-Maze~
+You are in a small passage that looks just like every other one.
+~
+QQ 9 2
+D3
+~
+~
+0 -1 QQ15
+D0
+~
+~
+0 -1 QQ14
+D2
+~
+~
+0 -1 QQ24
+S
+#QQ24
+End of the Mini-Maze~
+You stand at the end of your journey.  There is a big sign here and you had
+better read it!
+~
+QQ 9 2
+D0
+~
+~
+0 -1 QQ16
+D2
+~
+~
+0 -1 QQ31
+E
+sign~
+If you are not level 6 or above, then don't go south!!!!  It is a dangerous
+area, but congrats for getting this far - Sandman
+~
+S
+#QQ26
+Messy Kitchen~
+You stand in the kitchen and eating area of the day care center.  Pots and
+pans are everywhere, while the toddlers continue to create chaos.
+~
+QQ 8 0
+D3
+You see a large room full of noisy brats.
+~
+~
+0 -1 QQ02
+S
+#QQ31
+The End?~
+You have reached the final lair.  It is dominated by a huge five headed
+dragon (actually an overgrown brat with a Halloween mask).
+~
+QQ 9 2
+D0
+~
+~
+0 -1 QQ24
+S
+#0
+
+
+
+#RESETS
+R 0 QQ13 4
+R 0 QQ14 4
+R 0 QQ15 4
+R 0 QQ16 4
+*
+M 0 QQ07 1 QQ24
+M 0 QQ08 1 QQ31
+M 0 QQ00 3 QQ02
+E 1 QQ00 10 16
+M 0 QQ01 2 QQ02
+M 0 QQ02 2 QQ02
+M 0 QQ06 2 QQ02
+G 1 QQ46 20
+G 1 QQ44 20
+E 1 QQ21 20 12
+*
+M 0 QQ00 3 QQ03
+E 1 QQ00 10 16
+*
+M 0 QQ00 3 QQ04
+E 1 QQ00 10 16
+M 0 QQ02 2 QQ04
+M 0 QQ06 2 QQ04
+G 1 QQ46 20
+M 0 QQ05 2 QQ04
+*
+M 0 QQ00 3 QQ05
+E 1 QQ00 10 16
+M 0 QQ02 2 QQ05
+G 1 QQ45 20
+M 0 QQ05 2 QQ05
+E 1 QQ01 20 1
+*
+M 0 QQ00 2 QQ08
+M 0 QQ03 3 QQ08
+E 1 QQ47 10 16
+*
+M 0 QQ00 2 QQ09
+M 0 QQ04 3 QQ09
+M 0 QQ03 3 QQ09
+E 1 QQ47 10 16
+M 0 QQ03 3 QQ09
+E 1 QQ47 10 16
+*
+M 0 QQ00 2 QQ10
+M 0 QQ04 3 QQ10
+M 0 QQ03 3 QQ10
+E 1 QQ47 10 16
+M 0 QQ05 2 QQ10
+*
+M 0 QQ04 3 QQ11
+M 0 QQ03 3 QQ11
+E 1 QQ47 10 16
+M 0 QQ03 3 QQ11
+E 1 QQ47 10 16
+*
+M 0 QQ05 3 QQ06
+M 0 QQ01 3 QQ06
+S
+
+
+
+#SPECIALS
+M  QQ00 spec_thief
+M  QQ01 spec_thief
+M  QQ02 spec_thief
+M  QQ03 spec_thief
+M  QQ04 spec_thief
+M  QQ05 spec_thief
+M  QQ06 spec_cast_cleric
+M  QQ08 spec_thief
+S
+
+
+
+#$
+
+
+
+------------------------------------------------------------------------------
+
+Area Creation Quick Reference Guide for Mortal Realms             Presto 2/9/95
+===============================================================================
+#AREA {?? ??} Creator Area Name~ (creator's name should not exceed 7 letters)
+      
+#NODEBUG          (optional, allows weird door connections)
+#NOTELEPORT       (optional, does not permit teleporting into area)
+#RESTRICT {lo hi} (optional, only players in the range low-high may enter)
+
+#HELPS
+  <level of help> <keywords (all capitals)>~
+  <help text (multiple lines)>
+  ~
+0 $~
+
+#MOBILES
+  #<virtual number of mobile>
+  <mobile keywords>~
+  <mobile short name>~
+  <mobile long name>
+  ~
+  <mobile description (multiple lines)>
+  ~
+  <action flags> <affection flags> <alignment value> S
+  <level> <body part> <attack part> <hit points (?d?+?)> <damage (?d?+?)>
+  <gold> <race, if ACT_RACE set, else 0>
+  <loaded position> <default position> <sex>
+ *   D (Displayable picture)       \  Extra Values (unnecessary)
+ *   > (mob_progs)                 /
+#0
+
+#OBJECTS
+  #<v-number of object>
+  <object keywords>~
+  <object short name>~
+  <object long name>~
+  <object description>
+  ~
+  <item type> <item flags> <item wear locations>
+  <4 values, dependant on item type>
+  <weight> <value> <level>
+*   E (stands for EXTRA DESCRIPTION)      \
+*   <extra keywords>~                      \
+*   <extra description (multiple lines)>    \
+*   ~                                        \
+*   A (stands for APPLIES)                    Extra Values (unnecessary)
+*   <apply type> <apply amount>              /
+*   C (stands for COMBAT USAGES)            /
+*   <attack type>~                         /
+*   <classes that may use object>         /
+*   D (stands for displayable picture)  /
+#0
+
+#ROOMS
+  #<v-number of room>
+  <room name>~
+  <room description (multiple lines)>
+  ~
+  <area number> <room flags> <sector type>
+  D<direction of door>
+  <look description> (what you see when you look that direction)
+  ~
+  <door name>~
+  <door type> <v-num of key that opens door> <v-num of connected room>
+*   E (stands for EXTRA DESCRIPTION)        \
+*   <extra keywords>~                        \Extra Values (unnecessary)
+*   <extra description (multiple lines)>     / 
+*   ~                                       /
+  S (denotes end of room)
+#0
+
+#RESETS
+  M <if-flag> <mob v-num> <max-num> <room v-num>         (load mobile in room)
+  G <if-flag> <object v-num> <max-num>                   (give object to mob)
+  E <if-flag> <object v-num> <max-num> <wear-location>   (equip object on mob)
+  O <if-flag> <object v-num> <max-num> <room v-num>      (load object in room)
+  P <if-flag> <object v-num> <max-num> <container v-num> (put object in object)
+  R <if-flag> <room v-num> <last exit to randomize>      (randomize exits)
+S
+
+#SHOPS
+  <shopkeeper v-num> <5 item_types to buy> <buy %> <sell %> <open> <close>
+0
+
+#$
+===============================================================================
+
+Mobile Values:
+-------------------------------------------------------------------------------
+Action flags:
+ACT_IS_NPC        1 /* Auto set for mobs*/
+ACT_SENTINEL      2 /* Stays in one room*/
+ACT_SCAVENGER     4 /* Picks up objects*/
+ACT_AGGRESSIVE   32 /* Attacks PC's*/
+ACT_STAY_AREA    64 /* Won't leave area*/
+ACT_WIMPY       128 /* Flees when hurt*/
+ACT_PET         256 /* Auto set for pets*/
+ACT_TRAIN       512 /* Can train PC's*/
+ACT_PRACTICE   1024 /* Can practice PC's*/
+ACT_WEAK       2048 /* Cannot carry anything*/
+ACT_SMART      4096 /* Can talk, normal mobs can't*/
+ACT_ONE_FIGHT  8192 /* Disappears after fight*/
+ACT_NO_ORDER  16384 /* Cannot be ordered    */
+ACT_BODY      65536 /* Uses body parts */
+ACT_RACE     131072 /* Allows race to be defined */
+
+Affection Flags:
+AFF_BLIND           1
+AFF_INVISIBLE       2
+AFF_DETECT_EVIL     4
+AFF_DETECT_INVIS    8
+AFF_DETECT_MAGIC   16
+AFF_DETECT_HIDDEN  32
+AFF_SANCTUARY     128
+AFF_FAERIE_FIRE   256
+AFF_INFRARED      512
+AFF_CURSE        1024
+AFF_UNDERSTAND   2048
+AFF_POISON       4096
+AFF_PROTECT      8192
+AFF_SNEAK       32768
+AFF_HIDE        65536
+AFF_SLEEP      131072
+AFF_CHARM      262144
+AFF_FLYING     524288
+AFF_PASS_DOOR 1048576
+AFF_STEALTH   2097152
+AFF_CLEAR     4194304
+AFF_HUNT      8388608
+AFF_TONGUES  16777216
+AFF_ETHEREAL 33554432  /* Makes the mobile absolutely invisible to system */
+
+Alignment value:
+Good:    1000 to   350
+Neutral:  350 to  -350
+Evil:    -350 to -1000
+
+Average Hit Points and Damage based on level:
+Level   Ave HP  Ave Dam
+1       20      2
+2       30      3
+3       40      4
+4       50      5
+5       60      7
+10      150     15
+15      250     20
+20      350     22
+25      475     24
+30      600     27
+35      680     30
+40      790     33
+45      900     37
+50      1300    41
+55      1650    45
+60      2000    50
+65      2800    55
+70      3500    60
+75      4200    66
+80      5000    72
+85      6200    78
+90      7800    85
+95      10000   92
+
+Body and Attack parts:     (Attack parts are used in combat)
+To use these, set ACT_BODY (Body parts may be sliced off in death)
+BODY_HEAD	1
+BODY_MOUTH	2
+BODY_EYE	4
+BODY_TORSO	8
+BODY_HIP	16
+BODY_LEG	32
+BODY_ARM	64
+BODY_WING	128
+BODY_TAIL	256
+BODY_TENTICLE	512
+BODY_HORN	1024
+BODY_CLAW	2048
+BODY_HAND	4096
+BODY_FOOT	8192
+
+Gold Pieces:
+The number of gold pieces the mobile has on him.  May be stolen or collected
+upon the death of the creature.
+
+Race:
+RACE_HUMAN    0
+RACE_HALFLING 1
+RACE_ELF      2
+RACE_DROW     3
+RACE_DWARF    4
+RACE_GNOME    5
+RACE_ORC      6
+RACE_OGRE     7
+
+Mobile position:
+POS_DEAD      0 /* Don't Use */
+POS_MORTAL    1 /* Don't Use */
+POS_INCAP      S_MORTAL    1 /* Don't Use */
+POS_IN
+
+
+
+

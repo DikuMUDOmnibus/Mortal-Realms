@@ -1,0 +1,262 @@
+#AREA Meeting Hall~
+#AUTHORS Presto~
+
+
+
+
+
+#HELPS
+0 MEETING 'MEETING HALL'~
+The meeting hall is a place where realm-wide issues are discussed.  The
+meetings are conducted by Police and Gods, and there are several rules
+that must be observed in order to make the meeting a success.
+
+1) No talking unless you've been given the floor.  After 3 outbursts you
+   will be removed from the meeting.
+2) Once you have the floor, your questions/ideas must be presented in an
+   orderly and timely fassion.
+3) Faliure to relinquish the floor will get you ejected from the meeting.
+
+Voting on the issues discussed at the meeting will most likely be done
+in NOTE TOPIC 5: Game Changes and Ideas.~
+0 $~
+
+
+
+
+#RANGES 0 99 0 99
+#MOBILES
+#18600
+neutrality judge~
+Neutrality~
+Judge Neutrality is here, overseeing the meeting.~
+Judge Neutrality will not hesitate to have you escorted from the meeting
+if you do not conduct yourself according to the rules posted in the help
+file HELP MEETING~
+ACT_SENTINEL|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 0 0 1d1+19999 1d1+199
+0 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>speech_prog ~
+if whichgod($n) != 4
+  if actorhasobjnum(18601)
+    mpmset $n quest 0 3 3
+  else
+    if quest(0, 3, $n) == 0
+      mptransfer $n 9755
+      mpat 9755 mpforce $n look
+      tell $n Outbursts are not tolerated.
+      mpecho $n gets booted for $s outburst.
+    else
+      mpmadd $n quest 0 3 -1
+    endif
+  endif
+endif
+~
+>speech_prog gavel~
+if whichgod($n) == 4
+  mpoload 18603
+  give gavel $n
+endif
+~
+>speech_prog p This meeting is adjourned.~
+if whichgod($n) == 4
+  mpforce all down
+  down 
+  mpforce all north
+  mpgoto 18600
+endif
+~
+|
+#18601
+tavern~
+tavern~
+Tavern~
+Tavern~
+ACT_SENTINEL
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_ETHEREAL
+0 S
+95 0 0 1d1+9999 1d1+99
+0 780605
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>all_greet_prog 100~
+mpquiet on
+cast feast
+mpquiet off
+~
+|
+#0
+
+
+
+
+#OBJECTS
+#18600
+invitation card~
+a meeting hall invitation card~
+An invitation to a meeting lies here.~
+Type 'accept' to attend the meeting.  Be sure to type HELP MEETING.~
+ITEM_TYPE_KEY
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 0 1
+P 1
+TRIG_COMMAND 100 accept
+OPROG_GOD_COMMAND
+mpat 18601 mpmset self quest 0 3 3 & mpgoto 18600 & look~
+P 1
+TRIG_VOID
+OPROG_ECHO
+You've accepted the invitation to the meeting.~
+P 1
+TRIG_VOID
+OPROG_JUNK
+#18601
+floor~
+the floor~
+The floor of the meeting hall lies here.~
+You may say whatever you wish while in possession of the floor.
+When you're done, type 'down' to give up the floor.~
+ITEM_TYPE_KEY
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 0 1
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_AREA ! 18600 2 0
+P 2
+TRIG_VOID
+OPROG_JUNK
+P 3
+TRIG_COMMAND 100 down
+OPROG_GOD_COMMAND
+say I concede the floor of this illustrious court. & down & mpmset self quest 0 3 3 & up~
+P 3
+TRIG_VOID
+OPROG_JUNK
+#18602
+boot~
+the boot~
+~
+~
+ITEM_TYPE_KEY
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 0 1
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_WHICH_GOD ! 4 2 0
+P 2
+TRIG_VOID
+OPROG_GOD_COMMAND
+down & north~
+P 2
+TRIG_VOID
+OPROG_JUNK
+P 3
+TRIG_COMMAND 100 drop
+OPROG_ECHO
+You can't drop the boot.~
+#18603
+gavel~
+the gavel~
+A mighty gavel lies here.~
+With this gavel you can use the commands INVITE, BOOT, ANNOUNCE, and FLOOR.~
+ITEM_TYPE_KEY
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 0 1
+P 1
+TRIG_UNKNOWN 100 invite
+OPROG_GOD_COMMAND
+mpoload 18600 & mpoload 18600 & mpoload 18600 & mpoload 18600 & mpoload 18600~
+P 1
+TRIG_VOID
+OPROG_ECHO
+You create five invitation cards.~
+P 2
+TRIG_UNKNOWN 100 floor
+OPROG_GOD_COMMAND
+mpoload 18601~
+P 2
+TRIG_VOID
+OPROG_ECHO
+You create the floor.~
+P 3
+TRIG_UNKNOWN 100 boot
+OPROG_GOD_COMMAND
+mpoload 18602~
+P 3
+TRIG_VOID
+OPROG_ECHO
+You create the boot.~
+P 4
+TRIG_UNKNOWN 100 announce
+OPROG_GOD_COMMAND
+echo Those wishing to attend a *TOWN MEETING* are to meet at the fountain in Chakkor.~
+#0
+
+
+
+
+#ROOMS
+#18600
+Judge Neutrality's Meeting Hall~
+This is the meeting hall where ideas are presented in an orderly fassion.
+There are no windows to the hall, keeping all disturbances out.  The hall
+is quite large, able to sustain any number of people.  Down you can see
+a refreshment bar.~
+186 ROOM_INDOORS|ROOM_SAFE|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_INSIDE
+DDIR_DOWN
+You see the refreshment bar.~
+~
+0 -1 18601
+S
+#18601
+Judge Neutrality's Refreshment Bar~
+Just stepping into this room is all the refreshment you need.  Your thirst
+and hunger are quenched immediately.  North is Patrokles Avenue.  The meeting
+hall is up.~
+186 ROOM_INDOORS|ROOM_SAFE|ROOM_NO_RECALL|ROOM_NO_SAVE SECT_INSIDE
+DDIR_NORTH
+You see Patrokles Avenue.~
+~
+0 -1 9755
+DDIR_UP
+You see the meeting hall.~
+~
+0 -1 18600
+S
+#0
+
+
+
+
+#RESETS
+M 0 18600   1 18600 ;               Neutrality in Judge Neutrality's Meetin
+M 0 18601   1 18601 ;                   tavern in Judge Neutrality's Refres
+O 0  9749   1 18600 ;                the seats in Judge Neutrality's Meetin
+S
+
+
+
+
+#SHOPS
+0
+
+
+
+
+#SPECIALS
+S
+
+
+
+
+#$

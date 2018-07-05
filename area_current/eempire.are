@@ -1,0 +1,4638 @@
+#AREA Elven Empire~
+#AUTHORS Rina~
+
+
+#HELPS
+-1 EMPIRE 'ELVEN EMPIRE'~
+{120}ELVEN EMPIRE
+------------
+
+The Elven Empire has been ruled wisely for many years by its
+kings.  It has been helped by many loyal nobles doing their
+part to make the Empire run smoothly.  These elves are always
+looking for young elves to join the empire and help them
+further the Empire throughout the realms.
+
+This area was created by
+
+(a) {140}Rina{120}
+
+and coded on February 28, 1999 by:
+
+(b) {150}Jaxom{300}
+
+{a}RINA
+{b}JAXOM
+~
+0 $~
+
+#RANGES 50 75 1 99
+#FLAGS AFLAG_NODEBUG
+#MOBILES
+#29600
+chara~
+Chara~
+Chara looks expectantly at you.~
+Chara is wearing a rose colored sundress with a while cotton apron ties
+around it.  Her hands are callused attesting to the hard work that
+country life brings.  Her countenance, however, leads you to believe
+that her life is rewarding as well.~
+ACT_SMART|ACT_BODY|ACT_RACE|ACT_SENTINEL AFF_TONGUES|AFF_UNDERSTAND 0 S
+95 0 0 10d10+10000 10d10+100
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+>greet_prog 100~
+if quest(0, 5, $n) == 0
+  say Oh how nice, just another elf who wants to join the
+  say empire.  If you don't know the secret CODE to get
+  say the gates opened, don't go asking me.
+endif
+~
+>speech_prog code~
+say Not that I don't want to HELP you, but I won't be the one
+say punished for telling the wrong person the code.
+~
+>speech_prog help~
+if quest(0, 5, $n) == 0
+  say My husband Cole on the other hand might be persuaded to
+  say help.  He's out in the fields harvesting corn.  You can
+  say ENTER the field from here.
+  mpmset $n quest 0 5 1
+endif
+~
+>speech_prog enter~
+if quest(0, 5, $n) == 1
+  say Oh, you'll need a torch for that
+  mpquiet on
+  mpoload 29666
+  cast 'giant strength' $n
+  mpquiet off
+  give torch $n
+endif
+~
+|
+#29601
+boy eempireboy~
+a boy~
+A boy smiles sheepishly at you.~
+He is wearing overalls and a cotton shirt.  Looking at the bulging
+pockets you imagine they're filled with all manner of interesting items
+from frogs to brightly colored rocks.~
+ACT_SMART|ACT_BODY|ACT_RACE|ACT_SENTINEL AFF_TONGUES|AFF_UNDERSTAND 0 S
+95 0 0 10d10+10000 10d10+100
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#29602
+girl eempiregirl~
+a girl~
+A girl tries vainly to look older as she smiles.~
+She looks to be about 13 and at the age that she wants to be a woman yet
+is still a girl.  She is cute in her pigtails, but would prefer to wear
+her hair long and free as young women do.~
+ACT_SMART|ACT_BODY|ACT_RACE|ACT_SENTINEL AFF_TONGUES|AFF_UNDERSTAND 0 S
+95 0 0 10d10+10000 10d10+100
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+#29603
+baby eempirebaby~
+a baby~
+A baby sleeps in a wicker crib.~
+As all babies do, he looks innocent and peaceful snuggled up in a cotton
+blanket fast asleep.~
+ACT_SMART|ACT_BODY|ACT_RACE|ACT_SENTINEL AFF_TONGUES|AFF_UNDERSTAND 0 S
+95 0 0 10d10+10000 10d10+100
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+#29604
+cole man eempirecole~
+Cole~
+Cole is here, working in the field.~
+Cole is a strong looking man.  His face is weathered and taunt from the
+years of working outside but his greeting is cheerful and his handshake
+firm.  He is clad in overalls and a long sleeved shirt.  In this heat,
+you'd think that long-sleeves would be a bother, but they must protect
+his arms from the stalks.~
+ACT_SMART|ACT_BODY|ACT_RACE|ACT_SENTINEL AFF_TONGUES|AFF_UNDERSTAND 0 S
+95 0 0 10d10+10000 10d10+100
+10000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(0, 5, $n) == 1
+  say So what can I do for you?  I'm really rather busy with the
+  say HARVEST and all.
+else
+  if quest(0, 5, $n) == 2
+    if quest(5, 5, $n) == 25
+      if level($n) < 25
+        say You city brats don't know what work is, you haven't helped
+        say enough for me to tell you.
+      else
+        say You've done a good days work.  The code is: 5 2 6 7 6.
+        say You have to press in the numbers on the gate.
+        mpoload 29612
+        give i29612 $n
+        say Good luck to ya.  Go south to exit the field.
+        mpecho Cole leaves north back into the field.
+        mpmset $n quest 0 5 3
+        mptransfer all 29612
+      endif
+    endif
+  endif
+endif
+~
+>speech_prog harvest~
+say Yeah, I have to have these fields harvested for the fall
+say festival at the EMPIRE.
+~
+>speech_prog empire~
+say Ah I see, you're wanting to visit the empire.  You must be
+say here to see me because you don't know the KNOCK and Chara
+say won't tell you.
+~
+>speech_prog knock~
+if quest(0, 5, $n) == 1
+  say Help me harvest for a while.  If you do a good job, I'll
+  say tell you how to get someone to answer the gate, after
+  say that you're on your own though.
+  mpmset $n quest 0 5 2
+else
+  say Knock what?
+endif
+~
+|
+#29605
+corn stalks~
+a Stalk of corn~
+Stalks of corn wave here in the wind.~
+The corn stalks seem to have a life of their own and do not wish to have
+their ears taken.~
+ACT_SMART|ACT_BODY|ACT_RACE|ACT_SENTINEL AFF_TONGUES|AFF_UNDERSTAND 0 S
+25 0 0 1d1+379 1d1+19
+1000 RACE_ELF
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>death_prog 100~
+if quest(5, 5, $n) < 25
+  mpmadd $n quest 5 5 1
+  mpechoat $n You harvest an ear of corn.
+  mpechoaround $n $n harvests an ear of corn.
+endif
+~
+|
+#29606
+disembodied voice~
+a disembodied voice~
+~
+~
+ACT_SMART|ACT_BODY|ACT_RACE|ACT_SENTINEL AFF_ETHEREAL|AFF_TONGUES|AFF_UNDERSTAND 0 S
+1 0 0 1d1+379 1d1+19
+1000 RACE_ELF
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>speech_prog p 5 2 6 7 6~
+if quest(0, 5, $n) > 2
+  mpecho {130}A disembodied voice says, 'You may enter.'
+  mpechoat $n The gate opens and you step into a courtyard.
+  mpechoaround $n $n walks through the gate and it shuts
+  mpechoaround $n behind $m before you can follow.
+  if quest(0, 5, $n) != 11
+    mpat 29614 connect 0 -1
+  endif
+  connect 0 29614
+  mpforce $n north
+  connect 0 -1
+endif
+~
+>speech_prog open~
+say That is incorrect!
+mpechoat $n You are blasted by a wave of force and by the time you open your
+mpechoat $n eyes you are several hundred feet down the road.
+mpechoaround $n $n is flung away from the gate like a rag doll.
+mptransfer $n 29602
+~
+|
+#29607
+hector elf~
+Hector~
+Hector stands here solemnly.~
+Hector seems to be eccentric in that his clothing does not match and he
+has various gadgets hanging from his clothing.  He can't seem to stand
+in one spot for any given length of time.  Most older elves are
+deliberate and slow decision makers, Hector seems to be an exception.~
+ACT_SMART|ACT_BODY|ACT_RACE|ACT_SENTINEL AFF_TONGUES|AFF_UNDERSTAND 0 S
+95 0 0 10d10+10000 10d10+100
+10000 RACE_ELF
+POS_STANDING POS_STANDING SEX_MALE
+>speech_prog yes yeah yep sure ok~
+if quest(24, 4, $n) > 11
+ if quest(29, 3, 1) == 0
+  say Go to the library and read the book on the history of
+  say the elves. Then come back to me.
+  mpmset $n quest 29 3 1
+ else
+  if quest(29, 3, $n) == 2
+    say Have your falcon take you to: Ascarle.
+    say There begins your quest.
+    mpmset $n quest 29 3 3
+  endif
+ endif
+endif
+~
+>all_greet_prog 100~
+if quest(0, 5, $n) < 3
+  say You are not authorized to enter.
+  mptransfer $n 29603
+endif
+if quest(0, 5, $n) < 11
+  connect 0 -1
+else
+  connect 0 29615
+endif
+if quest(24, 4, $n) == 14
+ if quest(29, 3, $n) == 0
+  say Greetings citizen of the empire. Do you wish to quest?
+ else
+  if quest(29, 3, $n) == 1
+    say You must not be interested in the quest, no matter, others
+    say will want to I'm sure.
+   else
+     if quest(29, 3, $n) == 2
+       say I know just where that elven city is located, if you're
+       say interested in trying to find the talisman. I bet the
+       say Advisor would reward you handsomely if you brought it to
+       say him. Do you want to know?
+     else
+       if quest(29, 3, $n) == 3
+         if actorhasobjnum(6200)
+           say Ahh, You bring back the artifact the advisor treasures.
+           say You must take it to him strait away.
+           mpmset $n quest 29 3 4
+         endif
+       endif
+     endif
+   endif
+  endif
+ endif
+endif
+if quest(0, 5, $n) == 3
+  say Hello, youngling. This must be your first trip to the
+  say empire because I know everyone who comes and goes and
+  say you've not been here before.  The fact that you knew the
+  say code is irksome.  Must be that meddlesome human again,
+  say one day he's gonna give the code to the wrong person and
+  say we're gonna have to throw him in the moat.
+  mpecho Hector humphs.
+  say Now, back to you. To gain entrance to the empire you must
+  say prove yourself WORTHY.  Talking to a human is beneath your
+  say station and was not the correct way to gain entrance.
+else
+  if quest(0, 5, $n) == 4
+    say Where are my gifts?  Give them to me.
+  else
+    if quest(0, 5, $n) == 5
+      say Where are my gifts?  Give them to me.
+    endif
+  endif
+endif
+~
+>speech_prog worthy~
+if quest(0, 5, $n) == 3
+  if rand(50)
+    say You can start by bringing me a few gifts for my wife.
+    say I'll need some wild flowers, a teddy bear,and a bar
+    say of dark chocolate.
+    mpmset $n quest 0 5 4
+  else
+    say You can start by bringing me a few gifts for my wife.
+    say I'll want a bearskin cloak, a box of chocolates,
+    say and a bottle of wine.
+    mpmset $n quest 0 5 5
+  endif
+endif
+~
+>give_prog i304~
+mpjunk i304
+if quest(0, 5, $n) == 4
+  say Those will do nicely.
+  mpmset $n quest 10 1 1
+  if quest (10, 3, $n) == 7
+    say Ah a start.  It took you long enough though, to be worthy,
+    say you must know your way in the world. I shall ask a few
+    say questions of you to test your worth.
+    mpmset $n quest 0 5 6
+  else
+    say Where's the rest?
+  endif
+else
+  say You imbecile, I do not find you worthy.  Don't come back
+  say until you have the correct items. Scour the entire world
+  say if you have to, but bring me what I ask.
+endif
+~
+>give_prog i11505~
+mpjunk i11505
+if quest(0, 5, $n) == 4
+  say This will do nicely.
+  mpmset $n quest 11 1 1
+  if quest (10, 3, $n) == 7
+    say Ah a start.  It took you long enough though, to be worthy,
+    say you must know your way in the world. I shall ask a few
+    say questions of you to test your worth.
+    mpmset $n quest 0 5 6
+  else
+    say Where's the rest?
+  endif
+else
+  say You imbecile, I do not find you worthy.  Don't come back
+  say until you have the correct items. Scour the entire world
+  say if you have to, but bring me what I ask.
+endif
+~
+>give_prog i14645~
+mpjunk i14645
+if quest(0, 5, $n) == 4
+  say This will do nicely.
+  mpmset $n quest 12 1 1
+  if quest (10, 3, $n) == 7
+    say Ah a start.  It took you long enough though, to be worthy,
+    say you must know your way in the world. I shall ask a few
+    say questions of you to test your worth.
+    mpmset $n quest 0 5 6
+  else
+    say Where's the rest?
+  endif
+else
+  say You imbecile, I do not find you worthy.  Don't come back
+  say until you have the correct items. Scour the entire world
+  say if you have to, but bring me what I ask.
+endif
+~
+>give_prog i2388~
+mpjunk i2388
+if quest(0, 5, $n) == 5
+  say This will do nicely.
+  mpmset $n quest 13 1 1
+  if quest (13, 3, $n) == 7
+    say Ah a start.  It took you long enough though, to be worthy,
+    say you must know your way in the world. I shall ask a few
+    say questions of you to test your worth.
+    mpmset $n quest 0 5 6
+  else
+    say Where's the rest?
+  endif
+else
+  say You imbecile, I do not find you worthy.  Don't come back
+  say until you have the correct items. Scour the entire world
+  say if you have to, but bring me what I ask.
+endif
+~
+>give_prog i14652~
+mpjunk i14652
+if quest(0, 5, $n) == 5
+  say This will do nicely.
+  mpmset $n quest 14 1 1
+  if quest (13, 3, $n) == 7
+    say Ah a start.  It took you long enough though, to be worthy,
+    say you must know your way in the world. I shall ask a few
+    say questions of you to test your worth.
+    mpmset $n quest 0 5 6
+  else
+    say Where's the rest?
+  endif
+else
+  say You imbecile, I do not find you worthy.  Don't come back
+  say until you have the correct items. Scour the entire world
+  say if you have to, but bring me what I ask.
+endif
+~
+>give_prog i11419~
+mpjunk i11419
+if quest(0, 5, $n) == 5
+  say This will do nicely.
+  mpmset $n quest 15 1 1
+  if quest (13, 3, $n) == 7
+    say Ah a start.  It took you long enough though, to be worthy,
+    say you must know your way in the world. I shall ask a few
+    say questions of you to test your worth.
+    mpmset $n quest 0 5 6
+  else
+    say Where's the rest?
+  endif
+else
+  say You imbecile, I do not find you worthy.  Don't come back
+  say until you have the correct items. Scour the entire world
+  say if you have to, but bring me what I ask.
+endif
+~
+>rand_prog 50~
+if quest(0, 5, $r) == 7
+  if rand(10)
+    say Well? Hurry up.  What's the answer?
+  endif
+else
+ if quest(0, 5, $r) == 9
+  if rand(10)
+    say Well? Hurry up.  What's the answer?
+  endif
+ endif
+endif
+if quest(0, 5, $r) == 6
+  say Ok, here is your first question.
+  mpmset $r quest 0 5 7
+  if rand(30)
+    say What color are the Queen dragons in Pern?
+    mpmset $r quest 16 2 1
+  else
+    if rand(30)
+      say What color are those despicable drows' hair?
+      mpmset $r quest 16 2 2
+    else
+      say What color is Abrum Assante's palace?
+      mpmset $r quest 16 2 3
+    endif
+  endif
+endif
+~
+>speech_prog gold golden~
+if quest(0, 5, $n) == 7
+  if quest(16, 5, $n) == 1
+    say You are correct!
+    say Tell me when you are READY for the next question.
+    mpmset $n quest 0 5 8
+    mpmset $n quest 16 2 0
+  else
+    say That is incorrect!  Were you born yesterday or something?
+  endif
+endif
+~
+>speech_prog white~
+if quest(0, 5, $n) == 7
+  if quest(16, 5, $n) == 2
+    say You are correct!
+    say Tell me when you are READY for the next question.
+    mpmset $n quest 0 5 8
+    mpmset $n quest 16 2 0
+  else
+    say That is incorrect!  Were you born yesterday or something?
+  endif
+endif
+~
+>speech_prog pink~
+if quest(0, 5, $n) == 7
+  if quest(16, 5, $n) == 3
+    say You are correct!
+    say Tell me when you are READY for the next question.
+    mpmset $n quest 0 5 8
+    mpmset $n quest 16 2 0
+  else
+    say That is incorrect!  Were you born yesterday or something?
+  endif
+endif
+~
+>speech_prog ready~
+if quest(0, 5, $n) == 8
+  say Ok, here is your next question.
+  mpmset $n quest 0 5 9
+  if rand(30)
+    say What is the name of that famous armorer in Waterdeep?
+    mpmset $n quest 16 2 1
+  else
+    if rand(30)
+      say What is the name of the mayor of Refuge Tribe?
+      mpmset $n quest 16 2 2
+    else
+      say What's the name of the mage that resides in Valley of the Elves?
+      mpmset $n quest 16 2 3
+    endif
+  endif
+endif
+~
+>speech_prog jonathon johnathon~
+if quest(0, 5, $n) == 9
+  if quest(16, 5, $n) == 1
+    say You are correct!
+    mpmset $n quest 0 5 10
+    mpmset $n quest 16 2 0
+    say Now for your final question.
+    if rand(30)
+      say What is another name for deep gnomes that inhabit the Underdark?
+      mpmset $n quest 16 2 1
+    else
+      if rand(30)
+        say What kind of creature inhabits the temple in Thalos?
+        mpmset $n quest 16 2 2
+      else
+        say What kind of creature is the cook for Sterling Silver?
+        mpmset $n quest 16 2 3
+      endif
+    endif
+  else
+    say That is wrong!  Don't you ever get out?
+  endif
+endif
+~
+>speech_prog hiho~
+if quest(0, 5, $n) == 9
+  if quest(16, 5, $n) == 2
+    say You are correct!
+    mpmset $n quest 0 5 10
+    mpmset $n quest 16 2 0
+    say Now for your final question.
+    if rand(30)
+      say What is another name for deep gnomes that inhabit the Underdark?
+      mpmset $n quest 16 2 1
+    else
+      if rand(30)
+        say What kind of creature inhabits the temple in Thalos?
+        mpmset $n quest 16 2 2
+      else
+        say What kind of creature is the cook for Sterling Silver?
+        mpmset $n quest 16 2 3
+      endif
+    endif
+  else
+    say That is wrong!  Don't you ever get out?
+  endif
+endif
+~
+>speech_prog talemon~
+if quest(0, 5, $n) == 9
+  if quest(16, 5, $n) == 3
+    say You are correct!
+    mpmset $n quest 0 5 10
+    mpmset $n quest 16 2 0
+    say Now for your final question.
+    if rand(30)
+      say What is another name for deep gnomes that inhabit the Underdark?
+      mpmset $n quest 16 2 1
+    else
+      if rand(30)
+        say What kind of creature inhabits the temple in Thalos?
+        mpmset $n quest 16 2 2
+      else
+        say What kind of creature is the cook for Sterling Silver?
+        mpmset $n quest 16 2 3
+      endif
+    endif
+  else
+    say That is wrong!  Don't you ever get out?
+  endif
+endif
+~
+>speech_prog svirfneblin~
+if quest(0, 5, $n) == 10
+  if quest(16, 5, $n) == 1
+    say You are correct!
+    say You may enter, may your travels be filled with adventure.
+    connect 0 29615
+    mpmset $n quest 0 5 11
+    mpmset $n quest 16 2 0
+  else
+    say That is incorrect!  What kind of moron are you?
+  endif
+endif
+~
+>speech_prog beholder~
+if quest(0, 5, $n) == 10
+  if quest(16, 5, $n) == 2
+    say You are correct!
+    say You may enter, may your travels be filled with adventure.
+    connect 0 29615
+    mpmset $n quest 0 5 11
+    mpmset $n quest 16 2 0
+  else
+    say That is incorrect!  What kind of moron are you?
+  endif
+endif
+~
+>speech_prog kobold~
+if quest(0, 5, $n) == 10
+  if quest(16, 5, $n) == 3
+    say You are correct!
+    say You may enter, may your travels be filled with adventure.
+    connect 0 29615
+    mpmset $n quest 0 5 11
+    mpmset $n quest 16 2 0
+  else
+    say That is incorrect!  What kind of moron are you?
+  endif
+endif
+~
+|
+#29608
+fruit vendor~
+a fruit vendor~
+A fruit vendor is trying to get your attention.~
+The fruit vendor is a robust man of gnome origin. He bites into 
+a piece of fruit to show you how good it tastes and juice runs down
+his chin.~
+ACT_SMART|ACT_BODY|ACT_RACE|ACT_SENTINEL AFF_TONGUES|AFF_UNDERSTAND 0 S
+55 0 0 10d10+10000 10d10+100
+10000 RACE_ELF
+POS_STANDING POS_STANDING SEX_FEMALE
+#29609
+vegetable vendor~
+a vegetable vendor~
+A vegetable vendor is here hawking her wares.~
+The vendor wears an apron over an overly large dress that hangs 
+to her ankles. She looks to be a peasant, but the vegetables she 
+offers are exceptional.~
+ACT_SMART|ACT_BODY|ACT_RACE|ACT_SENTINEL AFF_TONGUES|AFF_UNDERSTAND 0 S
+55 0 0 10d10+10000 10d10+100
+10000 RACE_ELF
+POS_STANDING POS_STANDING SEX_MALE
+#29610
+cloth merchant~
+a cloth merchant~
+The cloth merchant appraises you.~
+The cloth merchant seems concerned to have his wares so close to 
+food and drink that could damage them. He looks you up and down
+to judge the worth of his time spent on you when he could sell to 
+others.~
+ACT_SMART|ACT_BODY|ACT_RACE|ACT_SENTINEL AFF_TONGUES|AFF_UNDERSTAND 0 S
+55 0 0 10d10+10000 10d10+100
+10000 RACE_ELF
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+say When you buy my white cloth, I will dye it for you for
+say only a small charge.  Just give me what you wish to dye.
+~
+>give_prog i29609~
+if quest(0, 3, self) == 0
+  mpjunk i29609
+  say I can dye this for 1000 gold.
+  say Do you want: Black, or Green?
+  mpmset self quest 0 3 1
+else
+  say I already have cloth, what color do you want it dyed?
+endif
+~
+>give_prog i29608~
+if quest(0, 3, self) == 0
+  mpjunk i29608
+  say I can dye this for 5000 gold.
+  say Do you want: Black, or Green?
+  mpmset self quest 0 3 2
+else
+  say I already have cloth, what color do you want it dyed?
+endif
+~
+>give_prog i29610~
+if quest(0, 3, self) == 0
+  mpjunk i29610
+  say I can dye this for 10000 gold.
+  say Do you want: Black, or Green?
+  mpmset self quest 0 3 3
+else
+  say I already have cloth, what color do you want it dyed?
+endif
+~
+>speech_prog black~
+if quest(0, 3, self) == 0
+  say What do you want dyed black?
+else
+  if quest(0, 3, self) == 1
+   if goldamt($n) > 999
+    mpecho The merchant slips the cotton into the dye.  A few moments later
+    mpoload 29641
+    give i29641 $n
+    mpmadd $n gold -1000
+    mpmset self quest 0 3 0
+   else
+    say You do not have enough gold!
+   endif
+  else
+    if quest(0, 3, self) == 2
+     if goldamt($n) > 4999
+      mpecho The merchant slips the wool into the dye.  A few moments later
+      mpoload 29640
+      give i29640 $n
+      mpmadd $n gold -5000
+      mpmset self quest 0 3 0
+     else
+      say You do not have enough gold!
+     endif
+    else
+      if quest(0, 3, self) == 3
+       if goldamt($n) > 9999
+        mpecho The merchant slips the silk into the dye.  A few moments later
+        mpoload 29642
+        give i29642 $n
+        mpmadd $n gold -10000
+        mpmset self quest 0 3 0
+       else
+        say You do not have enough gold!
+       endif
+      endif
+    endif
+  endif
+endif
+~
+>speech_prog green~
+if quest(0, 3, self) == 0
+  say What do you want dyed green?
+else
+  if quest(0, 3, self) == 1
+   if goldamt($n) > 999
+    mpecho The merchant slips the cotton into the dye.  A few moments later
+    mpoload 29644
+    give i29644 $n
+    mpmadd $n gold -1000
+    mpmset self quest 0 3 0
+   else
+    say You do not have enough gold!
+   endif
+  else
+    if quest(0, 3, self) == 2
+     if goldamt($n) > 4999
+      mpecho The merchant slips the wool into the dye.  A few moments later
+      mpoload 29643
+      give i29643 $n
+      mpmadd $n gold -5000
+      mpmset self quest 0 3 0
+     else
+      say You do not have enough gold!
+     endif
+    else
+      if quest(0, 3, self) == 3
+       if goldamt($n) > 9999
+        mpecho The merchant slips the silk into the dye.  A few moments later
+        mpoload 29645
+        give i29645 $n
+        mpmadd $n gold -10000
+        mpmset self quest 0 3 0
+       else
+        say You do not have enough gold!
+       endif
+      endif
+    endif
+  endif
+endif
+mpmset self quest 0 3 0
+~
+|
+#29611
+wine vendor~
+a wine vendor~
+The wine merchant joyously offers you a bottle. For sale of course.~
+He is a jovial elf and definitely seems to enjoy his job, since he can
+drink himself into a stupor if he so wishes. Judging by the crowd
+around him, he is a popular elf.~
+ACT_SMART|ACT_BODY|ACT_RACE|ACT_SENTINEL AFF_TONGUES|AFF_UNDERSTAND 0 S
+55 0 0 10d10+10000 10d10+100
+10000 RACE_ELF
+POS_STANDING POS_STANDING SEX_FEMALE
+#29612
+aria woman~
+Aria~
+Aria stands here smiling.~
+Aria is clad in a stunning multicolored dress that is covered by a
+simple white apron. The apron has needles randomly attached in various
+places.  A tape measurer is around her neck and though she seems to like
+her work, she has no problem taking the time to welcome you.~
+ACT_SMART|ACT_BODY|ACT_RACE|ACT_SENTINEL AFF_TONGUES|AFF_UNDERSTAND 0 S
+55 0 0 10d10+10000 10d10+100
+10000 RACE_ELF
+POS_STANDING POS_STANDING SEX_FEMALE
+>greet_prog 100~
+say Why hello there, I haven't seen you around before.
+say Are you NEW to the empire?
+~
+>speech_prog new~
+say That's what I thought.
+mpecho Aria smiles.
+say Well, if you need any clothing made, I'm the girl for you.
+say But I don't sell cloth here, you'll have to buy it from
+say the merchant and have him dye it for you
+say I can make cloaks, minstrel's hats, and hunting jackets.
+~
+>give_prog i29609~
+if quest(0, 4, self) == 0
+  mpjunk i29609
+  say I can make something from this for 1000 gold.
+  say Do you want: A cloak, a hunting jacket or a minstrel's hat?
+  mpmset self quest 0 4 1
+else
+  say I already have cloth, what do you want it made into?
+endif
+~
+>give_prog i29608~
+if quest(0, 4, self) == 0
+  mpjunk i29608
+  say I can make something from this for 5000 gold.
+  say Do you want: A cloak, a hunting jacket or a minstrel's hat?
+  mpmset self quest 0 4 2
+else
+  say I already have cloth, what do you want it made into?
+endif
+~
+>give_prog i29610~
+if quest(0, 4, self) == 0
+  mpjunk i29610
+  say I can make something from this for 10000 gold.
+  say Do you want: A cloak, a hunting jacket or a minstrel's hat?
+  mpmset self quest 0 4 3
+else
+  say I already have cloth, what do you want it made into?
+endif
+~
+>give_prog i29641~
+if quest(0, 4, self) == 0
+  mpjunk i29641
+  say I can make something from this for 1000 gold.
+  say Do you want: A cloak, a hunting jacket or a minstrel's hat?
+  mpmset self quest 0 4 4
+else
+  say I already have cloth, what do you want it made into?
+endif
+~
+>give_prog i29640~
+if quest(0, 4, self) == 0
+  mpjunk i29640
+  say I can make something from this for 5000 gold.
+  say Do you want: A cloak, a hunting jacket or a minstrel's hat?
+  mpmset self quest 0 4 5
+else
+  say I already have cloth, what do you want it made into?
+endif
+~
+>give_prog i29642~
+if quest(0, 4, self) == 0
+  mpjunk i29642
+  say I can make something from this for 10000 gold.
+  say Do you want: A cloak, a hunting jacket or a minstrel's hat?
+  mpmset self quest 0 4 6
+else
+  say I already have cloth, what do you want it made into?
+endif
+~
+>give_prog i29644~
+if quest(0, 4, self) == 0
+  mpjunk i29644
+  say I can make something from this for 1000 gold.
+  say Do you want: A cloak, or a minstrel's hat?
+  mpmset self quest 0 4 7
+else
+  say I already have cloth, a hunting jacket what do you want it made into?
+endif
+~
+>give_prog i29643~
+if quest(0, 4, self) == 0
+  mpjunk i29643
+  say I can make something from this for 5000 gold.
+  say Do you want: A cloak, or a minstrel's hat?
+  mpmset self quest 0 4 8
+else
+  say I already have cloth, a hunting jacket what do you want it made into?
+endif
+~
+>give_prog i29645~
+if quest(0, 4, self) == 0
+  mpjunk i29645
+  say I can make something from this for 10000 gold.
+  say Do you want: A cloak, a hunting jacket or a minstrel's hat?
+  mpmset self quest 0 4 9
+else
+  say I already have cloth, what do you want it made into?
+endif
+~
+>speech_prog cloak~
+if quest(0, 4, self) == 0
+  say You have to give me some cloth first.
+else
+  if quest(0, 4, self) == 1
+   if goldamt($n) > 999
+    mpecho The tailor enters the back room and returns a short while later.
+    mpoload 29616
+    give i29616 $n
+    mpmset self quest 0 4 0
+    mpmadd $n gold -1000
+   else
+    say You do not have enough gold!
+   endif
+  else
+    if quest(0, 4, self) == 2
+     if goldamt($n) > 4999
+      mpecho The tailor enters the back room and returns a short while later.
+      mpoload 29630
+      give i29630 $n
+      mpmset self quest 0 4 0
+      mpmadd $n gold -5000
+     else
+      say You do not have enough gold!
+     endif
+    else
+      if quest(0, 4, self) == 3
+       if goldamt($n) > 9999
+        mpecho The tailor enters the back room and returns a short while later.
+        mpoload 29631
+        give i29631 $n
+        mpmset self quest 0 4 0
+        mpmadd $n gold -10000
+       else
+        say You do not have enough gold!
+       endif
+      else
+        if quest(0, 4, self) == 4
+         if goldamt($n) > 999
+          mpecho The tailor enters the back room and returns a short while later.
+          mpoload 29632
+          give i29632 $n
+          mpmset self quest 0 4 0
+          mpmadd $n gold -1000
+         else
+          say You do not have enough gold!
+         endif
+        else
+          if quest(0, 4, self) == 5
+           if goldamt($n) > 4999
+            mpecho The tailor enters the back room and returns a short while later.
+            mpoload 29633
+            give i29633 $n
+            mpmset self quest 0 4 0
+            mpmadd $n gold -5000
+           else
+            say You do not have enough gold!
+           endif
+          else
+            if quest(0, 4, self) == 6
+             if goldamt($n) > 9999
+              mpecho The tailor enters the back room and returns a short while later.
+              mpoload 29634
+              give i29634 $n
+              mpmset self quest 0 4 0
+              mpmadd $n gold -10000
+             else
+              say You do not have enough gold!
+             endif
+            else
+              if quest(0, 4, self) == 7
+               if goldamt($n) > 999
+                mpecho The tailor enters the back room and returns a short while later.
+                mpoload 29635
+                give i29635 $n
+                mpmset self quest 0 4 0
+                mpmadd $n gold -1000
+               else
+                say You do not have enough gold!
+               endif
+              else
+                if quest(0, 4, self) == 8
+                 if goldamt($n) > 4999
+                  mpecho The tailor enters the back room and returns a short while later.
+                  mpoload 29636
+                  give i29636 $n
+                  mpmset self quest 0 4 0
+                  mpmadd $n gold -5000
+                 else
+                  say You do not have enough gold!
+                 endif
+                else
+                  if quest(0, 4, self) == 9
+                   if goldamt($n) > 9999
+                    mpecho The tailor enters the back room and returns a short while later.
+                    mpoload 29637
+                    give i29637 $n
+                    mpmset self quest 0 4 0
+                    mpmadd $n gold -10000
+                   else
+                    say You do not have enough gold!
+                   endif
+                  endif
+                endif
+              endif
+            endif
+          endif
+        endif
+      endif
+    endif
+  endif
+endif
+~
+>speech_prog minstrel minstrel's hat~
+if quest(0, 4, self) == 0
+  say You have to give me some cloth first.
+else
+  if quest(0, 4, self) == 1
+   if goldamt($n) > 999
+    mpecho The tailor enters the back room and returns a short while later.
+    mpoload 29618
+    give i29618 $n
+    mpmset self quest 0 4 0
+    mpmadd $n gold -1000
+   else
+    say You do not have enough gold!
+   endif
+  else
+    if quest(0, 4, self) == 2
+     if goldamt($n) > 4999
+      mpecho The tailor enters the back room and returns a short while later.
+      mpoload 29646
+      give i29646 $n
+      mpmset self quest 0 4 0
+      mpmadd $n gold -5000
+     else
+      say You do not have enough gold!
+     endif
+    else
+      if quest(0, 4, self) == 3
+       if goldamt($n) > 9999
+        mpecho The tailor enters the back room and returns a short while later.
+        mpoload 29647
+        give i29647 $n
+        mpmset self quest 0 4 0
+        mpmadd $n gold -10000
+       else
+        say You do not have enough gold!
+       endif
+      else
+        if quest(0, 4, self) == 4
+         if goldamt($n) > 999
+          mpecho The tailor enters the back room and returns a short while later.
+          mpoload 29648
+          give i29648 $n
+          mpmset self quest 0 4 0
+          mpmadd $n gold -1000
+         else
+          say You do not have enough gold!
+         endif
+        else
+          if quest(0, 4, self) == 5
+           if goldamt($n) > 4999
+            mpecho The tailor enters the back room and returns a short while later.
+            mpoload 29649
+            give i29649 $n
+            mpmset self quest 0 4 0
+            mpmadd $n gold -5000
+           else
+            say You do not have enough gold!
+           endif
+          else
+            if quest(0, 4, self) == 6
+             if goldamt($n) > 9999
+              mpecho The tailor enters the back room and returns a short while later.
+              mpoload 29650
+              give i29650 $n
+              mpmset self quest 0 4 0
+              mpmadd $n gold -10000
+             else
+              say You do not have enough gold!
+             endif
+            else
+              if quest(0, 4, self) == 7
+               if goldamt($n) > 999
+                mpecho The tailor enters the back room and returns a short while later.
+                mpoload 29651
+                give i29651 $n
+                mpmset self quest 0 4 0
+                mpmadd $n gold -1000
+               else
+                say You do not have enough gold!
+               endif
+              else
+                if quest(0, 4, self) == 8
+                 if goldamt($n) > 4999
+                  mpecho The tailor enters the back room and returns a short while later.
+                  mpoload 29652
+                  give i29652 $n
+                  mpmset self quest 0 4 0
+                  mpmadd $n gold -5000
+                 else
+                  say You do not have enough gold!
+                 endif
+                else
+                  if quest(0, 4, self) == 9
+                   if goldamt($n) > 9999
+                    mpecho The tailor enters the back room and returns a short while later.
+                    mpoload 29653
+                    give i29653 $n
+                    mpmset self quest 0 4 0
+                    mpmadd $n gold -10000
+                   else
+                    say You do not have enough gold!
+                   endif
+                  endif
+                endif
+              endif
+            endif
+          endif
+        endif
+      endif
+    endif
+  endif
+endif
+~
+>speech_prog hunting jacket~
+if quest(0, 4, self) == 0
+  say You have to give me some cloth first.
+else
+  if quest(0, 4, self) == 1
+   if goldamt($n) > 999
+    mpecho The tailor enters the back room and returns a short while later.
+    mpoload 29613
+    give i29613 $n
+    mpmset self quest 0 4 0
+    mpmadd $n gold -1000
+   else
+    say You do not have enough gold!
+   endif
+  else
+    if quest(0, 4, self) == 2
+     if goldamt($n) > 4999
+      mpecho The tailor enters the back room and returns a short while later.
+      mpoload 29614
+      give i29614 $n
+      mpmset self quest 0 4 0
+      mpmadd $n gold -5000
+     else
+      say You do not have enough gold!
+     endif
+    else
+      if quest(0, 4, self) == 3
+       if goldamt($n) > 9999
+        mpecho The tailor enters the back room and returns a short while later.
+        mpoload 29615
+        give i29615 $n
+        mpmset self quest 0 4 0
+        mpmadd $n gold -10000
+       else
+        say You do not have enough gold!
+       endif
+      else
+        if quest(0, 4, self) == 4
+         if goldamt($n) > 999
+          mpecho The tailor enters the back room and returns a short while later.
+          mpoload 29656
+          give i29656 $n
+          mpmset self quest 0 4 0
+          mpmadd $n gold -1000
+         else
+          say You do not have enough gold!
+         endif
+        else
+          if quest(0, 4, self) == 5
+           if goldamt($n) > 4999
+            mpecho The tailor enters the back room and returns a short while later.
+            mpoload 29657
+            give i29657 $n
+            mpmset self quest 0 4 0
+            mpmadd $n gold -5000
+           else
+            say You do not have enough gold!
+           endif
+          else
+            if quest(0, 4, self) == 6
+             if goldamt($n) > 9999
+              mpecho The tailor enters the back room and returns a short while later.
+              mpoload 29658
+              give i29658 $n
+              mpmset self quest 0 4 0
+              mpmadd $n gold -10000
+             else
+              say You do not have enough gold!
+             endif
+            else
+              if quest(0, 4, self) == 7
+               if goldamt($n) > 999
+                mpecho The tailor enters the back room and returns a short while later.
+                mpoload 29659
+                give i29659 $n
+                mpmset self quest 0 4 0
+                mpmadd $n gold -1000
+               else
+                say You do not have enough gold!
+               endif
+              else
+                if quest(0, 4, self) == 8
+                 if goldamt($n) > 4999
+                  mpecho The tailor enters the back room and returns a short while later.
+                  mpoload 29660
+                  give i29660 $n
+                  mpmset self quest 0 4 0
+                  mpmadd $n gold -5000
+                 else
+                  say You do not have enough gold!
+                 endif
+                else
+                  if quest(0, 4, self) == 9
+                   if goldamt($n) > 9999
+                    mpecho The tailor enters the back room and returns a short while later.
+                    mpoload 29661
+                    give i29661 $n
+                    mpmset self quest 0 4 0
+                    mpmadd $n gold -10000
+                   else
+                    say You do not have enough gold!
+                   endif
+                  endif
+                endif
+              endif
+            endif
+          endif
+        endif
+      endif
+    endif
+  endif
+endif
+~
+|
+#29613
+ranarok~
+Ranarok~
+Ranarok sharpens a weapon on a stone.~
+Ranarok is not the friendliest of elves.  Mainly, this is due to his
+preoccupation to his work and the immense details that he requires to
+consider his pieces finished.  Behind his shop is a testing area and he
+has a standing bet that any who can best his son can have the weapon
+that he carries.~
+ACT_SMART|ACT_BODY|ACT_RACE|ACT_SENTINEL AFF_TONGUES|AFF_UNDERSTAND 0 S
+55 0 0 10d10+10000 10d10+100
+10000 RACE_ELF
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+say How can I help you today, or are you here to CHALLENGE my son?
+~
+>speech_prog challenge~
+mpecho Ranarok smirks.
+mpecho Ranarok looks you up and down.
+say Well, you don't look like much of a fighter but if you
+say want to give him a try be my guest. Just say, 'I challenge
+say thee.'  Unless you've had second thoughts that is.
+~
+|
+#29614
+cobey son~
+Cobey~
+Cobey, son of Ranarok, awaits you.~
+Cobey is muscular and strong.  His elven features are unmistakable, but
+he is much broader of shoulder than the normal elf.  He uses only a
+knife, but it looks like it has a wicket curve and is deadly sharp.~
+ACT_SMART|ACT_BODY|ACT_RACE|ACT_SENTINEL AFF_TONGUES|AFF_UNDERSTAND 0 S
+95 0 0 10d10+15000 10d10+150
+10000 RACE_ELF
+POS_STANDING POS_STANDING SEX_MALE
+>speech_prog p I challenge thee.~
+if quest(18, 1, $n) == 0
+  say Very well, but do not blame me for your death.
+  mpkill $n
+endif
+~
+>death_prog 100~
+if quest(18, 1, $n) == 0
+  mpecho Cobey gasps, 'Who could imagine someone so powerful.' Then dies.
+  mpoload 29624
+  mpmset $n quest 18 1 1
+endif
+~
+|
+#29615
+herbalist~
+a herbalist~
+A herbalist sells her magics here.~
+She stands behind a small wooden counter full of bottles and keeps a
+wary eye out for theives.~
+ACT_SMART|ACT_BODY|ACT_RACE|ACT_SENTINEL AFF_TONGUES|AFF_UNDERSTAND 0 S
+55 0 0 10d10+10000 10d10+100
+10000 RACE_ELF
+POS_STANDING POS_STANDING SEX_FEMALE
+#29616
+butler~
+the butler~
+The butler stands here.~
+He stands in one corner waiting for a signal to move.~
+ACT_SMART|ACT_BODY|ACT_RACE|ACT_SENTINEL AFF_TONGUES|AFF_UNDERSTAND 0 S
+55 0 0 10d10+10000 10d10+100
+10000 RACE_ELF
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(24, 4, $n) == 8
+  say Madam Avir will see you now.
+  mptransfer $n 29632
+  mpat $n mpforce $n look
+else
+  say Begone, Madam does not allow riffraff to enter her manor.
+  mpforce $n south
+endif
+~
+|
+#29617
+julia avir juliaavirmob~
+Julia Avir~
+Julia Avir stands here elegantly.~
+Julia is clad in a sky blue gown and has violet eyes and long corn-silk
+blonde hair.  She is one of the most beautiful elf maidens you have ever
+seen, but she is not as demure as she looks.  Her temperment is one of
+modest aggression and she seems to always get what she wants even though
+people leave her thinking they got the upper hand.~
+ACT_SMART|ACT_BODY|ACT_RACE|ACT_SENTINEL AFF_TONGUES|AFF_UNDERSTAND 0 S
+95 0 0 10d10+15000 10d10+150
+10000 RACE_ELF
+POS_STANDING POS_STANDING SEX_FEMALE
+>greet_prog 100~
+if race($n) == 3
+  shout Guards! Help! We're under attack.
+  mpmload 29627
+  mpmload 29627
+  mpmload 29627
+  mpmload 29627
+  mpmload 29627
+  mpforce guard mpkill $n
+endif
+~
+>rand_prog 100~
+if quest(24, 4, $r) == 8
+  mpecho Julia Avir walks elegantly into the room.
+  mpechoat $r Julia smiles at you.
+  say I wanted to thank you properly for helping me 
+  say I have brought a gift for you.  Will you accept it?
+  mpmset $r quest 24 4 9
+endif
+~
+>speech_prog yes yep sure ok yeah~
+if quest(24, 4, $n) == 2
+  say The duke won't give me permission, but I know that the
+  say drow ambassador is corrupt. I have a way to prove it.
+  say I need your help though, for my plan to work.
+  if sex($n) == 1
+    mpecho Julia takes a deep breath, which accentuates her features, and you
+    mpecho momentarily forget to listen to her. 
+    mpecho Julia sees your gaze and laughs.
+  endif
+  say I need you to steal the signet ring that the ambassador
+  say wears. At night, he removes it and places it on the
+  say bedside table in his room. If you are quiet and not
+  say dressed in that loud armor you're wearing now, you can
+  say slip in and steal it for me.
+  say Bring it to me tomorrow, I'll be in the garden with Her
+  say Majesty. You should bring her a gift when you visit.
+  mpecho Julia smiles at you then walks elegantly from the room.
+  mpmset $n quest 24 4 3
+  mpgoto 29632
+else
+  if quest(24, 4, $n) == 9 
+    mpjunk all
+    mpquiet on
+    cast 'giant strength' $n
+    mpquiet off
+    mpoload 29629
+    mposet i29629 quest 0 5 0
+    give i29629 $n
+    say If you call, a falcon will come to you.  The gift of a
+    say familiar is one very few elves enjoy, so do not treat
+    say it lightly.  The falcon is powerful when you are in an
+    say elven land, it can help you to travel more swiftly and
+    say is a good friend to have in battles.
+    mpechoat $n Julia kisses your cheek as she says farewell.
+    mpecho The butler comes to show you out.
+    mpmset $n quest 24 4 10
+    mptransfer $n 29630
+  endif
+endif
+~
+>give_prog i29617~
+mpjunk i29617
+if quest(24, 4, $n) == 7
+and quest(28, 1, $n) == 1
+  mpechoat $n Julia smiles at you and leaves without another word.
+  mpmset $n quest 24 4 8
+  mpgoto 29632
+endif
+~
+|
+#29618
+falcon giant~
+a giant falcon~
+A giant falcon flies toward you.~
+It appears to be a giant falcon, standing before you with its wings folded
+calmly at its sides. It stars at you almost defiantly, waiting for its
+master to command it. Golden brown feathers cover its body from head to
+toe, hiding rippling muscles. On its back you see a harness, that will
+safely transport a single passenger across the realms. Around the beasts
+neck is an amulet with the symbol of the Elven empire etched in silver.~
+ACT_SMART|ACT_BODY|ACT_RACE|ACT_SENTINEL AFF_TONGUES|AFF_UNDERSTAND 0 S
+95 0 0 10d10+10000 10d10+100
+10000 RACE_ELF
+POS_STANDING POS_STANDING SEX_FEMALE
+>rand_prog 100~
+if quest(0,5,self) == 0
+  mpmset self quest 0 5 31
+else
+  if quest(0,5,self) == 1
+    mpecho The falcon shrinks as it dives into the figurine.
+    mpgoto 2
+    mpmset self quest 0 5 0
+    suicide 
+  else
+    mpmadd self quest 0 5 -1
+  endif
+endif
+if rand(10)
+  if rand(50)
+    mpecho The falcon creens softly.
+  else
+    The falcon stretches its wings.
+  endif
+endif
+~
+|
+#29619
+priesteempire chaos~
+a priest of Chaos~
+A priest of Chaos stands amid the swirling mass.~
+The priest is wholly visible yet strangely you cannot discern his
+features.~
+ACT_SMART|ACT_BODY|ACT_RACE|ACT_SENTINEL AFF_TONGUES|AFF_UNDERSTAND 0 S
+95 0 0 10d10+15000 10d10+150
+10000 RACE_ELF
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if whichgod($n) == 1
+  mpechoat $n You don't belong in there
+  mptransfer $n 29635
+else
+  if whichgod($n) == 2
+    say Greetings fellow elven warrior. Rest peacefully
+    say here and partake of the strength of your god.
+    say Your willingness to bring chaos to the realm and
+    say your courage pleases your master greatly.
+  else
+    say If you wish to join our cause, simply say yes
+    say and I will send you to the start of the test. If
+    say not, then be gone, for this shrine is a holy place.
+    mpmset self quest 0 2 1
+  endif
+endif
+~
+>speech_prog yes ok sure yep yeah~
+if whichgod($n) == 0
+  mptransfer $n 9708
+else
+  say Yes what?
+endif
+~
+>speech_prog no nope~
+if whichgod($n) == 0
+  mptransfer $n 29643
+else
+  say No what?
+endif
+~
+>rand_prog 50~
+if whichgod($r) != 2
+  if quest(0, 2, self) == 3
+    say I guess that is a no.
+    mptransfer $r 29643
+  else
+    mpmadd self quest 0 2 1
+  endif
+else
+  mpquiet on
+  if rand(10)
+    cast invigorate $r
+  else
+    if rand(10)
+      cast bless $r
+    else
+      if rand(10)
+        cast 'giant strength' $r
+      else
+        if rand(10)
+          cast sanctuary $r
+        else
+          if rand(10)
+            cast armor $r
+          else
+            if rand(10)
+              cast shield $r
+            else
+              if rand(10)
+                cast heal $r
+              endif
+            endif
+          endif
+        endif
+      endif
+    endif
+  endif
+  mpquiet off
+endif
+~
+|
+#29620
+priesteempire order~
+a priest of Order~
+The priest of Order awaits you.~
+He is simply clad in a robe of the brightest white. His countenance
+looks far richer in happiness than any rich adornments would bring him,
+save for his chain marking his status he wears no other jewelry.~
+ACT_SMART|ACT_BODY|ACT_RACE|ACT_SENTINEL AFF_TONGUES|AFF_UNDERSTAND 0 S
+95 0 0 10d10+15000 10d10+150
+10000 RACE_ELF
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if whichgod($n) == 2
+  mpechoat $n You don't belong in there
+  mptransfer $n 29635
+else
+  if whichgod($n) == 1
+    say Greetings fellow elven warrior. Rest peacefully
+    say here and partake of the strength of your god.
+    say Your willingness to remain faithful and create
+    say order from chaos pleases your master greatly.
+  else
+    say If you wish to join our cause, simply say yes
+    say and I will send you to the start of the test. If
+    say not, then be gone, for this shrine is a holy place.
+    mpmset self quest 0 2 1
+  endif
+endif
+~
+>speech_prog yes ok sure yep yeah~
+if whichgod($n) == 0
+  mptransfer $n 9798
+else
+  say Yes what?
+endif
+~
+>speech_prog no nope~
+if whichgod($n) == 0
+  mptransfer $n 29643
+else
+  say No what?
+endif
+~
+>rand_prog 50~
+if whichgod($r) != 1
+  if quest(0, 2, self) == 3
+    say I guess that is a no.
+    mptransfer $r 29643
+  else
+    mpmadd self quest 0 2 1
+  endif
+else
+  mpquiet on
+  if rand(10)
+    cast invigorate $r
+  else
+    if rand(10)
+      cast bless $r
+    else
+      if rand(10)
+        cast 'giant strength' $r
+      else
+        if rand(10)
+          cast sanctuary $r
+        else
+          if rand(10)
+            cast armor $r
+          else
+            if rand(10)
+              cast shield $r
+            else
+              if rand(10)
+                cast heal $r
+              endif
+            endif
+          endif
+        endif
+      endif
+    endif
+  endif
+  mpquiet off
+endif
+~
+|
+#29621
+teklar~
+Teklar~
+Teklar stands before you in a battle crouch.~
+His hands are calloused and attest to his numerous years training the
+elves of the empire. He looks like he enjoys what he does, but who
+wouldn't like to kick cocky arrogant elves into the dirt and be paid to
+do it?~
+ACT_SMART|ACT_BODY|ACT_RACE|ACT_SENTINEL|ACT_TRAIN AFF_TONGUES|AFF_UNDERSTAND 0 S
+95 0 0 10d10+15000 10d10+150
+10000 RACE_ELF
+POS_STANDING POS_STANDING SEX_MALE
+#29622
+azhure~
+Azhure~
+Azhure awaits your choice of spells to practice.~
+Azhure is clad in a blue robe.  His visage does not betray his age though
+his eyes seem to have a deep wisdom embedded deep within even though they
+look virtually ageless. He does not look like a person to be crossed and
+power seems to radiate from him.~
+ACT_SMART|ACT_BODY|ACT_RACE|ACT_SENTINEL|ACT_PRACTICE AFF_TONGUES|AFF_UNDERSTAND 0 S
+95 0 0 10d10+20000 10d10+150
+10000 RACE_ELF
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if class($n) == 5
+ if pcsinroom(29648) > 2
+  say Monks have always been my favorite of all classes,
+  say so I am a bit partial to them, so I offer you
+  say this challenge, $n. I will create an image of
+  say myself for you to fight, if you and your friends
+  say can successfully destroy it, then I will reward you
+  say handsomely."
+  mpecho Azhure waves his hands and an image in his likeness appears.
+  mpecho Azhure goes to sit in a box high atop the dome to watch the battle unfold. 
+  mpoload 29630
+  mpgoto 29699
+ endif
+endif
+~
+|
+#29623
+servant~
+a servant~
+A servant waits on his majesty's pleasure.~
+He wears a simple black livery with green highlights.~
+ACT_SMART|ACT_BODY|ACT_RACE|ACT_SENTINEL AFF_TONGUES|AFF_UNDERSTAND 0 S
+95 0 0 10d10+20000 10d10+150
+10000 RACE_ELF
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if race($n) == 3
+  shout Guards! Help! We're under attack.
+  mpmload 29627
+  mpmload 29627
+  mpmload 29627
+  mpmload 29627
+  mpmload 29627
+  mpforce guard mpkill $n
+else
+ if quest(24, 4, $n) == 0
+  mpecho A servant enters the room and beckons the noble woman to stay.
+  say Julia Avir, the advisor will see you now.
+  mpecho Julia gracefully stands and walks into the room.
+  mpecho The servant closes the door behind her.
+  mpmset $n quest 24 4 1
+ else
+  if quest(24, 4, $n) == 10
+    say Wait a moment, the Advisor may have time to talk now.
+    mpechoat $n The servant ushers you into the presence of the Advisor.
+    connect 2 29661
+    mpforce $n south
+    connect 2 -1
+  else
+    if quest(24, 4, $n) == 12
+     if quest(23, 1, $n) == 1
+      mpechoat $n The servant ushers you into the presence of the Advisor.
+      connect 2 29661
+      mpforce $n south
+      connect 2 -1
+     endif
+    else
+      say I'm sorry the Advisor is still busy, come back later.
+    endif
+  endif
+ endif
+endif
+if quest(29, 3, $n) == 4
+  if actorhasobjnum(6200)
+    mpechoat $n The servant ushers you into the presence of the Advisor.
+    connect 2 29661
+    mpforce $n south
+    connect 2 -1
+  endif
+endif
+~
+>rand_prog 50~
+if quest(24, 4, $r) == 1
+  mpecho Moments later, Julia storms out of the room, her expression angered.
+  mpecho The servant walks out behind her and closes the door, guarding the
+  mpecho entrance back in.
+  mpmset $r quest 24 4 2
+  mptransfer juliaavirmob
+  mpecho {130}Julia Avir says 'You there, will you help me?'
+else
+  if quest(24, 4, $r) == 3
+    mpecho {130}A page says, "If you're here to see the advisor, you'll have to give
+    mpecho {130}your name to the servant over there and formally request an audience by
+    mpecho {130}saying: I wish an audience with the advisor."
+    mpmset $r quest 24 4 4
+  endif
+endif
+~
+>speech_prog p I wish an audience with the advisor.~
+if quest(24, 4, $n) == 4
+  say I will add you to the list, but I'm afraid today will
+  say not be the best time. Come back tomorrow afternoon
+  say and you may be able to see him then.
+  mpmset $n quest 24 4 5
+endif
+~
+|
+#29624
+princess lebra~
+Princess Lebra~
+Princess Lebra works in her flowers.~
+Princess Lebra is wearing a pink chiffon dress and has a small diamond
+tiara upon her head. Her hair is curled in ringlets and she looks
+innocent and na‹ve.~ 
+ACT_SMART|ACT_BODY|ACT_RACE|ACT_SENTINEL AFF_TONGUES|AFF_UNDERSTAND 0 S
+95 0 0 10d10+10000 10d10+150
+10000 RACE_ELF
+POS_STANDING POS_STANDING SEX_FEMALE
+>greet_prog 100~
+if race($n) == 3
+  shout Guards! Help! We're under attack.
+  mpmload 29627
+  mpmload 29627
+  mpmload 29627
+  mpmload 29627
+  mpmload 29627
+  mpforce guard mpkill $n
+else
+ if quest(24, 4, $n) == 5
+ and quest(28, 1, $n) == 1
+  if quest(22, 1, $n) == 1
+    mptransfer juliaavirmob
+    mpecho {130}Julia Avir says 'Ah, your Highness, $n has come like I said $e'
+    mpecho {130}Julia Avir says 'would, and $e's brought you a present.'
+    mpecho {130}Julia Avir says 'Give her Majesty your gift $n.'
+    mpmset $n quest 24 4 6
+  else
+    mpecho {130}Julia Avir says 'I can't believe you didn't bring an appropriate gift.'
+    mpecho {130}Julia Avir says 'You're so insensitive. Come back when you're better'
+    mpecho {130}Julia Avir says 'prepared to be in the presence of Ladies.'
+    mpecho Julia turns her back on you.
+  endif
+ endif
+endif
+~
+>give_prog i29655~
+mpjunk i29655
+if quest(24, 4, $n) == 6
+and quest(22, 1, $n) == 1
+  mpjunk i29655
+  mpecho {130}Julia Avir says 'How lovely! You absolutely must plant it with the other'
+  mpecho {130}Julia Avir says 'orchids Majesty! It would look so wonderful there.'
+  mpecho The princess goes to plant the orchid.
+  mpechoat $n {130}Julia leans close and whispers, 'Give me the ring now, then later today
+  mpechoat $n {130}come by my house and I'll reward you.' 
+  mpmset $n quest 24 4 7
+  if sex($n) == 1
+    mpecho Julia peers at you though lowered lashes with a mysteriously compelling
+    mpecho expression on her face.
+  endif
+endif
+~
+|
+#29625
+drow guard~
+A drow guard~
+A drow guard stands at attention here.~
+He wears a simple black livery and eyes you with unveiled hatred.~
+ACT_SMART|ACT_BODY|ACT_RACE|ACT_SENTINEL AFF_ETHEREAL|AFF_TONGUES|AFF_UNDERSTAND 0 S
+95 0 0 10d10+10000 10d10+150
+10000 RACE_ELF
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if actorhasobjnum(29632)
+or actorhasobjnum(29633)
+or actorhasobjnum(29634)
+else
+  mpecho You are escorted to the door by a drow guard.
+  mptransfer 29639
+endif
+~
+|
+#29626
+kings advisor~
+the king's advisor~
+The king's advisor sits regally at the head of the chamber.~
+He is clad in royal blue and red. He looks comfortable with his
+position and seems as if the great power that he wields has not
+corrupted him.~
+ACT_SMART|ACT_BODY|ACT_RACE|ACT_SENTINEL AFF_TONGUES|AFF_UNDERSTAND 0 S
+95 0 0 10d10+10000 10d10+150
+10000 RACE_ELF
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 100~
+if quest(24, 4, $n) == 10
+  mpecho The advisor smiles warmly at you to put you at ease.
+  say Greetings fellow elf. You wish to petition to join
+  say the empire?
+else
+  if quest(24, 4, $n) == 12
+    mpecho The advisor looks up from the scroll he was reading.
+    say Ah the youngling elf. Have you found a breach in our walls?
+  endif
+endif
+if quest(29, 3, $n) == 4
+  if actorhasobjnum(6200)
+    mpecho The advisor smiles as he sees what you carry.
+    say I am so glad that you have found that artifact.
+    say Give it to me please.
+  endif
+endif
+~
+>give_prog i6200~
+if quest(29, 3, $n) == 4
+  mpecho The advisor's face shines with rapture as he holds the artifact.
+  say Here, take this with my thanks.
+  mpquiet on
+  cast 'giant strength' $n
+  mpquiet off
+  mpoload 29665
+  give i29665 $n
+  mpecho The servant comes and guides you out to the waiting room.
+  mpforce $n south
+endif
+~
+>speech_prog yes yeah yep sure ok~
+if quest(24, 4, $n) == 10
+  mpquiet on
+  mpforce $n drop i29666
+  mppurge torch
+  mpquiet off
+  say Very well, I know Hector tested your knowledge with
+  say his entrance examination so I won't bore you with
+  say another test of that manner.
+  mpmset $n quest 24 4 11
+else
+  if quest(24, 4, $n) == 12
+    say Where is the location of the damaged wall?
+    mpmset $n quest 24 4 13
+  endif
+endif
+~
+>rand_prog 100~
+if quest(24, 4, $r) == 11
+  say We do however have a problem. There have been reports
+  say of drow in the empire. I know Hector would never let
+  say them past him so there must be a breech in our walls
+  say somewhere.
+  say I would like you to examine the walls and see if you
+  say can find anything amiss. Report back here when you have
+  say found something.
+  mpechoat $r The advisor dismisses you with a wave of his hand and turns his
+  mpechoat $r attention to the elders.
+  mpmset $r quest 24 4 12
+endif
+~
+>speech_prog riding trail~
+if quest(24, 4, $n) == 13
+ if quest(23, 1, $n) == 1
+  say My page will follow you back to the location. He will
+  say then report back to me, I'd like you to explore the
+  say passage that you found while my magicians try to find
+  say a spell to close it. Good luck to you citizen of the
+  say empire.
+  mpoload 29662
+  give i29662 $n
+  mpecho The advisor turns to the scribe seated next to the elders.
+  say Hence forth, let it be known that $n is a citizen
+  say of the Elven Empire and is entitled to all benefits
+  say and conditions which that citizenship entitles $m
+  if sex($n) == 1
+    mpmset $n long Sir $n; citizen of the Elven Empire.
+  else
+    mpmset $n long Lady $n; citizen of the Elven Empire.
+  endif
+  mpmset $n quest 24 4 14
+ endif
+endif
+~
+|
+#29627
+elven guard~
+an elven guard~
+An elven guard stands at attention here.~
+If he didn't want to be seen, it's likely that you wouldn't have noticed
+him. He's always up for a spar if you're interested.~
+ACT_SMART|ACT_BODY|ACT_RACE|ACT_SENTINEL AFF_TONGUES|AFF_UNDERSTAND 0 S
+95 0 0 10d10+20000 10d10+150
+10000 RACE_ELF
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 10~
+mpecho The guard returns to his duties.
+mppurge self
+~
+|
+#29628
+scout master~
+the scout master~
+The scout master blends into the shadows here.~
+If he didn't want to be seen, it's likely that you wouldn't have noticed
+him. He's always up for a spar if you're interested.~
+ACT_SMART|ACT_BODY|ACT_RACE AFF_TONGUES|AFF_UNDERSTAND 0 S
+95 0 0 10d10+20000 10d10+150
+10000 RACE_ELF
+POS_STANDING POS_STANDING SEX_MALE
+>fight_prog 100~
+if quest(24, 4, $r) != 14
+  say You are not worth my sword practice.
+  mpecho The scout master slips away into the shadows.
+  mppurge self
+endif
+~
+|
+#29629
+drow guard~
+A drow guard~
+A drow guard stands at attention here.~
+He wears a simple black livery and eyes you with unveiled hatred.~
+ACT_SMART|ACT_BODY|ACT_RACE|ACT_SENTINEL AFF_ETHEREAL|AFF_TONGUES|AFF_UNDERSTAND 0 S
+95 0 0 10d10+10000 10d10+150
+10000 RACE_ELF
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if quest(29, 3, $n) == 1
+  mpmset $n quest 29 3 2
+endif
+~
+|
+#29630
+azhure~
+Azhure~
+Azhure awaits your choice of spells to practice.~
+He is clad in a blue robe and has a white beard that nearly reaches his
+waist. He does not look like a person to be crossed and power seems to
+radiate from him.~
+ACT_SMART|ACT_BODY|ACT_RACE|ACT_SENTINEL|ACT_PRACTICE AFF_TONGUES|AFF_UNDERSTAND 0 S
+95 0 0 10d10+20000 10d10+150
+10000 RACE_ELF
+POS_STANDING POS_STANDING SEX_MALE
+>death_prog 100~
+if class($n) == 5
+  mpecho Azhure chuckles and appears before you again.
+  say Your fighting skills definitely need some practice,
+  say but as promised, here is the reward I offered.
+  mpoload 29654
+  give i29654 $n
+  mptransfer 29622
+else
+  if class($r) == 5
+    mpecho Azhure chuckles and appears before you again.
+    say Your fighting skills definitely need some practice,
+    say but as promised, here is the reward I offered.
+    mpoload 29654
+    give i29654 $n
+    mptransfer 29622
+  endif
+endif
+mppurge self
+~
+|
+
+#0
+
+#OBJECTS
+#29600
+wooden rocking horse~
+a wooden rocking horse~
+A wooden rocking horse has been left here.~
+It is a bit faded from overuse and the features are barely recognizable.
+It must have had lots of love.~
+ITEM_TYPE_FURNITURE
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+10 10 1
+P 1
+TRIG_UNKNOWN 100 enter
+OPROG_IF OIF_USER_ROOM_NUM = 29604 2 0
+P 2
+TRIG_VOID
+OPROG_GOD_COMMAND
+mpechoaround $ $ enters the field. & goto 29606~
+#29601
+dial numbers~
+a dial of numbers~
+A dial of numbers is here.~
+If you know the code you can PRESS the correct sequence of numbers.~
+ITEM_TYPE_FURNITURE
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+10 10 1
+#29602
+apple deep red shiny~
+An apple~
+A deep red shiny apple lays here.~
+The apple is a deep red and its surface is shiny. It does not
+look marred in any way, only deliciously tasty.~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+20 0 0 0
+1 50 10
+#29603
+pear golden~
+A pear~
+A golden pear lies in the dirt.~
+The pear is a deep gold in color and looks delightful.  Your
+mouth waters in expectation of the first bite.~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+20 0 0 0
+1 80 10
+#29604
+grapes bunch~
+A bunch of grapes~
+A bunch of grapes has been dropped here.~
+The grapes are a rich green and look tart. A sharp image hits
+your mind of a beautifully clad woman feeding them to you.~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+20 0 0 0
+1 100 10
+#29605
+potato brown~
+A potato~
+The potato is brown and still somewhat dirty.~
+Sticking a potato in the coals of a campfire is a welcome treat
+from normal travel rations.  This one is fairly large and would
+be an entire meal of itself.~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+20 0 0 0
+1 50 10
+#29606
+mushrooms~
+Mushrooms~
+Mushrooms have fallen here; this type looks rare.~
+This variety of mushroom is one of the most rarest of finds.
+Besides adding the most wonderful flavor to dishes it is also a
+cure for many types of poison.~
+ITEM_TYPE_PILL
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+40 SPELL_CURE_POISON -1 -1
+1 100 30
+#29607
+carrot orange bright~
+Carrot~
+A bright orange carrot catches your attention.~
+The carrot still has its green stalk attached.  You and others
+of your kin, have always preferred the unique taste of fruits
+and vegetables to that of meat.~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+20 0 0 0
+1 100 10
+#29608
+bolt wool white~
+A bolt of wool~
+A bolt of wool is here.~
+It has been bleached white.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+1 10000 10
+#29609
+bolt cotton white~
+A bolt of cotton~
+A bolt of cotton is here.~
+It has been bleached white.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+1 1000 10
+#29610
+bolt silk white~
+A bolt of silk~
+A bolt of silk is here.~
+It has been bleached white.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+1 100000 10
+#29611
+fey wine burgundy~
+Fey wine~
+A burgundy colored wine in a glass bottle is here.~
+The fey wine is a burgundy color and seems to draw your
+attention to it.  A table full of the richest food and drink slips
+into your mind and you savor the moment.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+1 500000 50
+P 1
+TRIG_TICK 50
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 2 0
+P 2
+TRIG_VOID
+OPROG_GOD_COMMAND mpquiet on & cast feast & cast hallucinate $ & mpquiet off~
+#29612
+door pass~
+a door pass~
+A door pass has been left here.~
+It is a slim piece of paper with some mystical elven symbols on it.
+You make out the following numbers: 5 2 6 7 6~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+10 0 0 0
+1 100 30
+P 1
+TRIG_UNKNOWN 100 press
+OPROG_IF OIF_USER_ROOM_NUM = 29613 2 0
+P 2
+TRIG_VOID
+OPROG_GOD_COMMAND
+mpechoat $ As you press the number pad, a disembodied voice echos in your head, &
+mpechoat $ 'Speak the five number sequence aloud.' &
+mpechoaround $ $ presses the number pad, and jumps slightly then looks around.~
+#29613
+a hunting jacket~
+a hunting jacket~
+A hunting jacket in a rich white is here.~
+{170}The hunting jacket is made of cotton and is a deep white.
+It looks comfortable and fashionable.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT
+10 0 0 0
+1 100 50
+#29614
+a hunting jacket~
+a hunting jacket~
+A hunting jacket in a rich white is here.~
+{170}The hunting jacket is made of wool and is a deep white.
+It looks comfortable and fashionable.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT
+11 0 0 0
+1 100 50
+#29615
+a hunting jacket~
+a hunting jacket~
+A hunting jacket in a rich white is here.~
+{170}The hunting jacket is made of silk and is a deep white.
+It looks comfortable and fashionable.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT
+12 0 0 0
+1 100 50
+#29616
+a cloak~
+a cloak~
+A cloak in a rich white is here.~
+{170}The cloak is made of cotton and is a deep white.
+It looks comfortable and fashionable.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+10 0 0 0
+1 100 50
+#29617
+signet ambassador's ring~
+the ambassador's signet ring~
+A signet ring is here~
+It is a signet ring.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER
+10 0 0 0
+1 100 50
+P 1
+TRIG_UNKNOWN 100 climb
+OPROG_IF OIF_USER_ROOM_NUM = 29653 2 3
+P 2
+TRIG_VOID
+OPROG_GOD_COMMAND mpechoat $ It is a difficult climb but as you get closer to the orchid &
+mpechoat $ it was well worth it &
+mpmset $ quest 22 1 1 & mpoload 29655~
+P 3
+TRIG_VOID
+OPROG_ECHO Climb what?~
+#29618
+minstrel's hat~
+a minstrel's hat~
+A minstrel's in a rich white is here.~
+{170}The minstrel's hat is made of cotton and is a deep white.
+It looks comfortable and fashionable.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+10 0 0 0
+1 500 50
+#29619
+elven longbow~
+an elven longbow~
+The elven longbow seems to vibrate of its own accord.~
+The longbow is made of poplar wood to have durable strength yet be
+yielding enough to draw. Its workmanship is excellent and is the best
+you have seen.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 5 5 1
+3 5000 55
+#29620
+crossbow metal~
+a metal crossbow~
+A crossbow made of metal.~
+The crossbow is made of metal instead of wood. It is strangely light.
+A crosshair for sighting is built into the frame and it is all made from
+one piece of iron.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 0 0 0
+5 5000 50
+#29621
+arrow elven~
+an elven arrow~
+An elven arrow lies here.~
+It is a long shaft made of yew with a steel arrowhead and fletched with the
+feathers of a bird you do not recognise.~
+ITEM_TYPE_AMMO
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+1 0 0 0
+1 50 10
+#29622
+arrow elven flaming~
+an flaming elven arrow~
+A flaming elven arrow lies here.~
+It is a long shaft made of yew with a steel arrowhead and fletched with the
+feathers of a bird you do not recognise.  The head is wrapped in cloth and
+burning.~
+ITEM_TYPE_AMMO
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+1 0 0 0
+1 50 10
+#29623
+blade double edged~
+a double edged blade~
+A double edged blade looks sharp.~
+The blade is sharpened on both sides and comes with a metal
+scabbard since the blade would slice open a leather one.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 0 0 0
+1 50 75
+#29624
+blade enchanted elven~
+an enchanted elven blade~
+An enchanted blade looks sharp.~
+The blade is sharpened on both sides and comes with a metal
+scabbard since the blade would slice open a leather one.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE|ITEM_FLAG_NOREMOVE|ITEM_FLAG_ANTI_EVIL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 5 14 2
+1 50000 63
+P 1
+TRIG_DAMAGE 60
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 2 0
+P 2
+TRIG_VOID
+OPROG_APPLY OAPPLY_HIT 100
+#29625
+potion travel~
+a potion of travel~
+A potion of travel lies here.~
+It is a small glass flask full of viscous fluid.~
+ITEM_TYPE_POTION
+ITEM_FLAG_LEVEL|ITEM_FLAG_MAGIC
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+50 SPELL_HASTE SPELL_FLY SPELL_PASS_DOOR
+1 100000 50
+#29626
+scroll travel~
+a scroll of travel~
+A scroll of travel lies here.~
+It is a small strip of paper with spidery writting on it.~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_LEVEL|ITEM_FLAG_MAGIC
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+50 SPELL_HASTE SPELL_FLY SPELL_PASS_DOOR
+1 100000 50
+#29627
+potion aura~
+an aura potion~
+An aura potion lies here.~
+It is a small glass flask full of viscous fluid.~
+ITEM_TYPE_POTION
+ITEM_FLAG_LEVEL|ITEM_FLAG_MAGIC
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+75 SPELL_SANCTUARY SPELL_SHIELD SPELL_ARMOR
+1 100000 75
+#29628
+scroll aura~
+an aura scroll~
+An aura scroll lies here.~
+It is a small strip of paper with spidery writting on it.~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_LEVEL|ITEM_FLAG_MAGIC
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+75 SPELL_SANCTUARY SPELL_SHIELD SPELL_ARMOR
+1 100000 75
+#29629
+figurine falcon~
+a falcon figurine~
+A figurine of a magnificient falcon is here.~
+It is a small amber statuette of an exotic bird. It is resting on a
+small branch, wings unfurrowed, neck craned back and beak open as it
+stares upwards, ready to leap into life. You can make out a small
+inscription at the base of the figurine.~
+ITEM_TYPE_TREASURE
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+1 1000000 50
+E
+inscription~
+You see some fine elven script, you make out the words 'nommus-noclaf'.~
+P 1
+TRIG_UNKNOWN 100 ecity
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 2 0
+P 2
+TRIG_VOID
+OPROG_IF OIF_USER_AREA = 7800 10 3
+P 3
+TRIG_VOID
+OPROG_IF OIF_USER_AREA = 12100 10 4
+P 4
+TRIG_VOID
+OPROG_IF OIF_USER_AREA = 6200 10 5
+P 5
+TRIG_VOID
+OPROG_IF OIF_USER_AREA = 15100 10 6
+P 6
+TRIG_VOID
+OPROG_IF OIF_USER_AREA = 422 10 7
+P 7
+TRIG_VOID
+OPROG_IF OIF_USER_AREA = 29600 10 9
+P 9
+TRIG_VOID
+OPROG_ECHO You are not close enough to an elven conclave.~
+P 10
+TRIG_VOID
+OPROG_IF OIF_USER_POSITION ! 6 11 0
+P 11
+TRIG_VOID
+OPROG_OBJECT_QUEST_IF 0 5 ! 0 12 13 
+P 12
+TRIG_VOID
+OPROG_ECHO
+Your falcon has not recovered from its last visit yet.~
+P 13
+TRIG_VOID
+OPROG_QUEST_SET 0 5 30
+P 13
+TRIG_VOID
+OPROG_GOD_COMMAND mpechoaround $ A giant falcon decends and carries $ into the sky. &
+mpechoat $ You leap onto the back of your stead and soar into the sky. &
+goto 12150~
+P 15
+TRIG_TICK 100
+OPROG_OBJECT_QUEST_IF 0 5 = 0 0 16
+P 16
+TRIG_VOID
+OPROG_OBJECT_QUEST_IF 0 5 = 1 17 18
+P 17
+TRIG_VOID
+OPROG_ECHO Your falcon has been fully recharged.~
+P 17
+TRIG_VOID
+OPROG_QUEST_ADD 0 5 -1
+P 18
+TRIG_VOID
+OPROG_QUEST_ADD 0 5 -1
+P 20
+TRIG_UNKNOWN 100 nommus-noclaf
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 21 0
+P 21
+TRIG_VOID
+OPROG_IF OIF_USER_POSITION ! 6 22 0
+P 22
+TRIG_VOID
+OPROG_OBJECT_QUEST_IF 0 5 ! 0 23 24 
+P 23
+TRIG_VOID
+OPROG_ECHO
+Your falcon has not recovered from its last visit yet.~
+P 24
+TRIG_VOID
+OPROG_QUEST_SET 0 5 30
+P 24
+TRIG_VOID
+OPROG_GOD_COMMAND
+mpmload 29618 &
+rescale 29618 $ 60 &
+mpechoat $ You summon your falcon to join you. &
+mpforce falcon follow $ &
+mpechoaround $ $ summons a magnificient falcon.~
+P 26
+TRIG_WEAR 100
+OPROG_IF OIF_USER_RACE ! 2 27 0
+P 27
+TRIG_VOID
+OPROG_APPLY OAPPLY_HIT -500
+P 27
+TRIG_VOID
+OPROG_ECHO The figureine jolts you with power.~
+P 27
+TRIG_VOID
+OPROG_JUNK
+P 30
+TRIG_UNKNOWN 100 evalley
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 31 0
+P 31
+TRIG_VOID
+OPROG_IF OIF_USER_AREA = 7800 40 32
+P 32
+TRIG_VOID
+OPROG_IF OIF_USER_AREA = 12100 40 33
+P 33
+TRIG_VOID
+OPROG_IF OIF_USER_AREA = 6200 40 34
+P 34
+TRIG_VOID
+OPROG_IF OIF_USER_AREA = 15100 40 35
+P 35
+TRIG_VOID
+OPROG_IF OIF_USER_AREA = 422 40 36
+P 36
+TRIG_VOID
+OPROG_IF OIF_USER_AREA = 29600 40 39
+P 39
+TRIG_VOID
+OPROG_ECHO You are not close enough to an elven conclave.~
+P 40
+TRIG_VOID
+OPROG_IF OIF_USER_POSITION ! 6 41 0
+P 41
+TRIG_VOID
+OPROG_OBJECT_QUEST_IF 0 5 ! 0 42 43 
+P 42
+TRIG_VOID
+OPROG_ECHO
+Your falcon has not recovered from its last visit yet.~
+P 43
+TRIG_VOID
+OPROG_QUEST_SET 0 5 30
+P 43
+TRIG_VOID
+OPROG_GOD_COMMAND mpechoaround $ A giant falcon decends and carries $ into the sky. &
+mpechoat $ You leap onto the back of your stead and soar into the sky. &
+goto 7804~
+P 51
+TRIG_UNKNOWN 100 ascarle
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 52 0
+P 52
+TRIG_VOID
+OPROG_IF OIF_USER_AREA = 7800 60 53
+P 53
+TRIG_VOID
+OPROG_IF OIF_USER_AREA = 12100 60 54
+P 54
+TRIG_VOID
+OPROG_IF OIF_USER_AREA = 6200 60 55
+P 55
+TRIG_VOID
+OPROG_IF OIF_USER_AREA = 15100 60 56
+P 56
+TRIG_VOID
+OPROG_IF OIF_USER_AREA = 422 60 57
+P 57
+TRIG_VOID
+OPROG_IF OIF_USER_AREA = 29600 60 59
+P 59
+TRIG_VOID
+OPROG_ECHO You are not close enough to an elven conclave.~
+P 50
+TRIG_VOID
+OPROG_IF OIF_USER_POSITION ! 6 51 0
+P 51
+TRIG_VOID
+OPROG_OBJECT_QUEST_IF 0 5 ! 0 52 53 
+P 52
+TRIG_VOID
+OPROG_ECHO
+Your falcon has not recovered from its last visit yet.~
+P 53
+TRIG_VOID
+OPROG_QUEST_SET 0 5 30
+P 53
+TRIG_VOID
+OPROG_GOD_COMMAND mpechoaround $ A giant falcon decends and carries $ into the sky. &
+mpechoat $ You leap onto the back of your stead and soar into the sky. &
+goto 6206~
+P 61
+TRIG_UNKNOWN 100 tethir
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 62 0
+P 62
+TRIG_VOID
+OPROG_IF OIF_USER_AREA = 7800 70 63
+P 63
+TRIG_VOID
+OPROG_IF OIF_USER_AREA = 12100 70 64
+P 64
+TRIG_VOID
+OPROG_IF OIF_USER_AREA = 6200 70 65
+P 65
+TRIG_VOID
+OPROG_IF OIF_USER_AREA = 15100 70 66
+P 66
+TRIG_VOID
+OPROG_IF OIF_USER_AREA = 422 70 67
+P 67
+TRIG_VOID
+OPROG_IF OIF_USER_AREA = 29600 70 69
+P 69
+TRIG_VOID
+OPROG_ECHO You are not close enough to an elven conclave.~
+P 70
+TRIG_VOID
+OPROG_IF OIF_USER_POSITION ! 6 71 0
+P 71
+TRIG_VOID
+OPROG_OBJECT_QUEST_IF 0 5 ! 0 72 73 
+P 72
+TRIG_VOID
+OPROG_ECHO
+Your falcon has not recovered from its last visit yet.~
+P 73
+TRIG_VOID
+OPROG_QUEST_SET 0 5 30
+P 73
+TRIG_VOID
+OPROG_GOD_COMMAND mpechoaround $ A giant falcon decends and carries $ into the sky. &
+mpechoat $ You leap onto the back of your stead and soar into the sky. &
+goto 15129~
+P 81
+TRIG_UNKNOWN 100 ehq
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 82 0
+P 82
+TRIG_VOID
+OPROG_IF OIF_USER_AREA = 7800 90 83
+P 83
+TRIG_VOID
+OPROG_IF OIF_USER_AREA = 12100 90 84
+P 84
+TRIG_VOID
+OPROG_IF OIF_USER_AREA = 6200 90 85
+P 85
+TRIG_VOID
+OPROG_IF OIF_USER_AREA = 15100 90 86
+P 86
+TRIG_VOID
+OPROG_IF OIF_USER_AREA = 422 90 87
+P 87
+TRIG_VOID
+OPROG_IF OIF_USER_AREA = 29600 90 89
+P 89
+TRIG_VOID
+OPROG_ECHO You are not close enough to an elven conclave.~
+P 90
+TRIG_VOID
+OPROG_IF OIF_USER_POSITION ! 6 91 0
+P 91
+TRIG_VOID
+OPROG_OBJECT_QUEST_IF 0 5 ! 0 92 93 
+P 92
+TRIG_VOID
+OPROG_ECHO
+Your falcon has not recovered from its last visit yet.~
+P 93
+TRIG_VOID
+OPROG_QUEST_SET 0 5 30
+P 93
+TRIG_VOID
+OPROG_GOD_COMMAND mpechoaround $ A giant falcon decends and carries $ into the sky. &
+mpechoat $ You leap onto the back of your stead and soar into the sky. &
+goto 420~
+P 101
+TRIG_UNKNOWN 100 chakkor
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 102 0
+P 102
+TRIG_VOID
+OPROG_IF OIF_USER_AREA = 7800 110 103
+P 103
+TRIG_VOID
+OPROG_IF OIF_USER_AREA = 12100 110 104
+P 104
+TRIG_VOID
+OPROG_IF OIF_USER_AREA = 6200 110 105
+P 105
+TRIG_VOID
+OPROG_IF OIF_USER_AREA = 15100 110 106
+P 106
+TRIG_VOID
+OPROG_IF OIF_USER_AREA = 422 110 107
+P 107
+TRIG_VOID
+OPROG_IF OIF_USER_AREA = 29600 110 109
+P 109
+TRIG_VOID
+OPROG_ECHO You are not close enough to an elven conclave.~
+P 110
+TRIG_VOID
+OPROG_IF OIF_USER_POSITION ! 6 111 0
+P 111
+TRIG_VOID
+OPROG_OBJECT_QUEST_IF 0 5 ! 0 112 113 
+P 112
+TRIG_VOID
+OPROG_ECHO
+Your falcon has not recovered from its last visit yet.~
+P 113
+TRIG_VOID
+OPROG_QUEST_SET 0 5 30
+P 113
+TRIG_VOID
+OPROG_GOD_COMMAND mpechoaround $ A giant falcon decends and carries $ into the sky. &
+mpechoat $ You leap onto the back of your stead and soar into the sky. &
+goto 9755~
+P 121
+TRIG_UNKNOWN 100 eempire
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 122 0
+P 122
+TRIG_VOID
+OPROG_IF OIF_USER_AREA = 7800 130 123
+P 123
+TRIG_VOID
+OPROG_IF OIF_USER_AREA = 12100 130 124
+P 124
+TRIG_VOID
+OPROG_IF OIF_USER_AREA = 6200 130 125
+P 125
+TRIG_VOID
+OPROG_IF OIF_USER_AREA = 15100 130 126
+P 126
+TRIG_VOID
+OPROG_IF OIF_USER_AREA = 422 130 127
+P 127
+TRIG_VOID
+OPROG_IF OIF_USER_AREA = 29600 130 129
+P 129
+TRIG_VOID
+OPROG_ECHO You are not close enough to an elven conclave.~
+P 130
+TRIG_VOID
+OPROG_IF OIF_USER_POSITION ! 6 131 0
+P 131
+TRIG_VOID
+OPROG_OBJECT_QUEST_IF 0 5 ! 0 132 133 
+P 132
+TRIG_VOID
+OPROG_ECHO
+Your falcon has not recovered from its last visit yet.~
+P 133
+TRIG_VOID
+OPROG_QUEST_SET 0 5 30
+P 133
+TRIG_VOID
+OPROG_GOD_COMMAND mpechoaround $ A giant falcon decends and carries $ into the sky. &
+mpechoat $ You leap onto the back of your stead and soar into the sky. &
+goto 29616~
+P 135
+TRIG_UNKNOWN 100 enter
+OPROG_IF OIF_USER_ROOM_NUM = 29651 139 136
+P 136
+TRIG_VOID
+OPROG_IF OIF_USER_ROOM_NUM = 29604 137 0
+P 137
+TRIG_VOID
+OPROG_GOD_COMMAND
+mpechoaround $ $ enters the field. & goto 29606~
+P 139
+TRIG_VOID
+OPROG_IF_HAS_OBJECT 29662 141 140
+P 140
+TRIG_VOID
+OPROG_GOD_COMMAND mpechoat $ Shouldn't you tell someone of its existance first? &
+mpmset $ quest 23 1 1~
+P 141
+TRIG_VOID
+OPROG_GOD_COMMAND mpechoaround $ $ enters the tunnel. & goto 5110~
+#29630
+a cloak~
+a cloak~
+A cloak in a rich white is here.~
+{170}The cloak is made of wool and is a deep white.
+It looks comfortable and fashionable.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+11 0 0 0
+1 500 50
+#29631
+a cloak~
+a cloak~
+A cloak in a rich white is here.~
+{170}The cloak is made of silk and is a deep white.
+It looks comfortable and fashionable.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+12 0 0 0
+1 500 50
+#29632
+a cloak~
+a cloak~
+A cloak in a rich black is here.~
+{100}The cloak is made of cotton and is a deep black.
+It looks comfortable and fashionable.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+10 0 0 0
+1 50 50
+A
+APPLY_DAMROLL 3
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_ROOM_NUM = 29640 2 0
+P 2
+TRIG_VOID
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 3 5
+P 3
+TRIG_VOID
+OPROG_OBJECT_QUEST_IF 0 1 = 0 4 0
+P 4
+TRIG_VOID
+OPROG_QUEST_SET 0 1 1
+P 4
+TRIG_VOID
+OPROG_GOD_COMMAND mpechoat $ Spying the signet ring lying on a bedside table, you grab it. &
+mpoload 29617 & mpmset $ quest 28 1 1~
+P 5
+TRIG_VOID
+OPROG_GOD_COMMAND mpechoat $ A drow guard escorts you from the room. &
+goto 29639~
+#29633
+a cloak~
+a cloak~
+A cloak in a rich black is here.~
+{100}The cloak is made of wool and is a deep black.
+It looks comfortable and fashionable.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+10 0 0 0
+1 5000 50
+A
+APPLY_DAMROLL 4
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_ROOM_NUM = 29640 2 0
+P 2
+TRIG_VOID
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 3 5
+P 3
+TRIG_VOID
+OPROG_OBJECT_QUEST_IF 0 1 = 0 4 0
+P 4
+TRIG_VOID
+OPROG_QUEST_SET 0 1 1
+P 4
+TRIG_VOID
+OPROG_GOD_COMMAND mpechoat $ Spying the signet ring lying on a bedside table, you grab it. &
+mpoload 29617 & mpmset $ quest 28 1 1~
+P 5
+TRIG_VOID
+OPROG_GOD_COMMAND mpechoat $ A drow guard escorts you from the room. &
+goto 29639~
+#29634
+a cloak~
+a cloak~
+A cloak in a rich black is here.~
+{100}The cloak is made of silk and is a deep black.
+It looks comfortable and fashionable.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+10 0 0 0
+1 5000 50
+A
+APPLY_DAMROLL 5
+P 1
+TRIG_TICK 100
+OPROG_IF OIF_USER_ROOM_NUM = 29640 2 0
+P 2
+TRIG_VOID
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 3 5
+P 3
+TRIG_VOID
+OPROG_OBJECT_QUEST_IF 0 1 = 0 4 0
+P 4
+TRIG_VOID
+OPROG_QUEST_SET 0 1 1
+P 4
+TRIG_VOID
+OPROG_GOD_COMMAND mpechoat $ Spying the signet ring lying on a bedside table, you grab it. &
+mpoload 29617 & mpmset $ quest 28 1 1~
+P 5
+TRIG_VOID
+OPROG_GOD_COMMAND mpechoat $ A drow guard escorts you from the room. &
+goto 29639~
+#29635
+a cloak~
+a cloak~
+A cloak in a rich green is here.~
+{120}The cloak is made of cotton and is a deep green.
+It looks comfortable and fashionable.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+10 0 0 0
+1 5000 50
+A
+APPLY_MANA 25
+#29636
+a cloak~
+a cloak~
+A cloak in a rich green is here.~
+{120}The cloak is made of wool and is a deep green.
+It looks comfortable and fashionable.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+10 0 0 0
+1 5000 50
+A
+APPLY_MANA 50
+#29637
+a cloak~
+a cloak~
+A cloak in a rich green is here.~
+{120}The cloak is made of silk and is a deep green.
+It looks comfortable and fashionable.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+10 0 0 0
+1 5000 50
+A
+APPLY_MANA 75
+#29638
+shelf~
+a shelf~
+A shelf full of books stands here.~
+There are books about almost everything, but one on the
+history of Elven society catches your eye.~
+ITEM_TYPE_CONTAINER
+ITEM_FLAG_LEVEL
+0
+500 0 0 0
+10 10 50
+#29639
+book~
+a book~
+A book on elven history is here.~
+There are three chapters: History, The Great War and Legend~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 10 1
+E
+history~
+Chapter 1 History
+Modern elf society began after the rift with what we commonly call Drow
+or dark elves occurred.  Before that both races were part of the same
+culture and were known as Sithi.  As a people, the Sithi, were long
+lived, in tune with nature and in touch with their spiritual selves.
+They were the best rangers and magic users of any living creature and
+legend states that though very naive, the Sithi were very powerful
+because of the immense knowledge they shared.  Communication between the
+Sithi was a common thought process in which one could think at a
+specific person or the group as a whole.~
+E
+great war~
+Chapter 2 The Great War
+When Chaos first came to the land and fought his terrible battle with
+Order, several of the Sithi were turned.  They chose the path of
+disharmony, which eventually led to the evolution of two distinct types
+of Sithi which were the terms Elf and Drow.  Elf represented beauty,
+light, order and intelligence.  Drow represented cunning, dexterity,
+chaos and darkness. Over multiple generations, the knowledge of Sithi
+died out and the two types merged into distinct races.~
+E
+legend~
+Chapter 3 Legend
+Most of the knowledge of the Sithi died out centuries ago, but what
+little remains states that the Sithi imbibed objects with vast power and
+after the Great War, many of these objects were destroyed to keep the
+each other from having it.  What may be legend or may be a clue is that
+the city of Ascarle was destroyed by a great tidal wave and still
+sits under the sea.  An object of great power is rumored to be hidden
+there and would be of great value to either race: Drow or Elves.~
+#29640
+bolt wool black~
+A bolt of wool~
+A bolt of wool is here.~
+It has been dyed black.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+1 500 10
+#29641
+bolt cotton black~
+A bolt of cotton~
+A bolt of cotton is here.~
+It has been dyed black.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+1 500 10
+#29642
+bolt silk black~
+A bolt of silk~
+A bolt of silk is here.~
+It has been dyed black.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+1 500 10
+#29643
+bolt wool green~
+A bolt of wool~
+A bolt of wool is here.~
+It has been dyed green.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+1 500 10
+#29644
+bolt cotton green~
+A bolt of cotton~
+A bolt of cotton is here.~
+It has been dyed green.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+1 500 10
+#29645
+bolt silk green~
+A bolt of silk~
+A bolt of silk is here.~
+It has been dyed green.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+1 500 10
+#29646
+minstrel's hat~
+a minstrel's hat~
+A minstrel's in a rich white is here.~
+{170}The minstrel's hat is made of wool and is a deep white.
+It looks comfortable and fashionable.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+11 0 0 0
+1 500 50
+#29647
+minstrel's hat~
+a minstrel's hat~
+A minstrel's in a rich white is here.~
+{170}The minstrel's hat is made of silk and is a deep white.
+It looks comfortable and fashionable.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+12 0 0 0
+1 500 50
+#29648
+minstrel's hat~
+a minstrel's hat~
+A minstrel's in a rich black is here.~
+{100}The minstrel's hat is made of cotton and is a deep black.
+It looks comfortable and fashionable.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+10 0 0 0
+1 500 50
+A
+APPLY_DAMROLL 3
+#29649
+minstrel's hat~
+a minstrel's hat~
+A minstrel's in a rich black is here.~
+{100}The minstrel's hat is made of wool and is a deep black.
+It looks comfortable and fashionable.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+10 0 0 0
+1 500 50
+A
+APPLY_DAMROLL 4
+#29650
+minstrel's hat~
+a minstrel's hat~
+A minstrel's in a rich black is here.~
+{100}The minstrel's hat is made of silk and is a deep black.
+It looks comfortable and fashionable.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+10 0 0 0
+1 500 50
+A
+APPLY_DAMROLL 5
+#29651
+minstrel's hat~
+a minstrel's hat~
+A minstrel's in a rich green is here.~
+{120}The minstrel's hat is made of cotton and is a deep green.
+It looks comfortable and fashionable.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+10 0 0 0
+1 500 50
+A
+APPLY_MANA 25
+#29652
+minstrel's hat~
+a minstrel's hat~
+A minstrel's in a rich green is here.~
+{120}The minstrel's hat is made of wool and is a deep green.
+It looks comfortable and fashionable.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+10 0 0 0
+1 500 50
+A
+APPLY_MANA 50
+#29653
+minstrel's hat~
+a minstrel's hat~
+A minstrel's in a rich green is here.~
+{120}The minstrel's hat is made of silk and is a deep green.
+It looks comfortable and fashionable.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+10 0 0 0
+1 500 50
+A
+APPLY_MANA 75
+#29654
+enchanted fighting staff~
+An enchanted fighting staff~
+An enchanted fighting staff is here.~
+It looks very breakable but is not as delicate as it appears. The wood
+is polished from years of handling. It feels comfortable and light in
+your hands.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 1 6 7
+5 400000 65
+A
+APPLY_AC -15
+P 1
+TRIG_UNKNOWN 100 pabraw
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 2 0
+P 2
+TRIG_VOID
+OPROG_IF OIF_USER_POSITION = POS_FIGHTING 3 0
+P 3
+TRIG_VOID
+OPROG_APPLY OAPPLY_MANA 10
+P 3
+TRIG_VOID
+OPROG_GOD_COMMAND cast harm~
+P 5
+TRIG_UNKNOWN 100 esuac
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 6 0
+P 6
+TRIG_VOID
+OPROG_IF OIF_USER_POSITION = POS_FIGHTING 7 0
+P 7
+TRIG_VOID
+OPROG_APPLY OAPPLY_MANA 5
+P 7
+TRIG_VOID
+OPROG_GOD_COMMAND cast 'cause critical'~
+P 10
+TRIG_DAMAGE 80
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 11 0
+P 11
+TRIG_VOID
+OPROG_APPLY OAPPLY_MANA 50
+P 11
+TRIG_VOID
+OPROG_ECHO Your staff aids in your spell casting.~
+#29655
+orchid~
+an orchid~
+The orchid smells beautifully and reminds you of summer.~
+It is a soft purple in color and the innermost petals are yellow. The
+roots are still attached so it'd be best to plant it as soon as possible
+since it can not get water from the tree anymore.~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+10 0 0 0
+1 500 50
+#29656
+a hunting jacket~
+a hunting jacket~
+A hunting jacket in a rich black is here.~
+{100}The hunting jacket is made of cotton and is a deep black.
+It looks comfortable and fashionable.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT
+10 0 0 0
+1 100 50
+A
+APPLY_DAMROLL 3
+#29657
+a hunting jacket~
+a hunting jacket~
+A hunting jacket in a rich black is here.~
+{100}The hunting jacket is made of wool and is a deep black.
+It looks comfortable and fashionable.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT
+10 0 0 0
+1 100 50
+A
+APPLY_DAMROLL 4
+#29658
+a hunting jacket~
+a hunting jacket~
+A hunting jacket in a rich black is here.~
+{100}The hunting jacket is made of silk and is a deep black.
+It looks comfortable and fashionable.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT
+10 0 0 0
+1 100 50
+A
+APPLY_DAMROLL 5
+#29659
+a hunting jacket~
+a hunting jacket~
+A hunting jacket in a rich green is here.~
+{020}The hunting jacket is made of cotton and is a deep green.
+It looks comfortable and fashionable.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT
+10 0 0 0
+1 100 50
+A
+APPLY_MANA 25
+#29660
+a hunting jacket~
+a hunting jacket~
+A hunting jacket in a rich green is here.~
+{020}The hunting jacket is made of wool and is a deep green.
+It looks comfortable and fashionable.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT
+10 0 0 0
+1 100 50
+A
+APPLY_MANA 50
+#29661
+a hunting jacket~
+a hunting jacket~
+A hunting jacket in a rich green is here.~
+{020}The hunting jacket is made of silk and is a deep green.
+It looks comfortable and fashionable.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT
+10 0 0 0
+1 100 50
+A
+APPLY_MANA 75
+#29662
+elven statue~
+An elven statue~
+An elven statue of exquisite detail stands here.~
+The elven statue is wooden and delicately carved. Looking closely at it 
+leaves you with an astonished feeling; it eerily resembles your likeness 
+perfectly. A magical pack is attached to the back of the figure, it
+allows you place items of value inside.~
+ITEM_TYPE_CONTAINER
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+800 0 0 0
+1 100000 50
+#29663
+oil lamp~
+an oil lamp ~
+An oil lamp burns brightly here.~
+The lamp is full of burning oil and during a fight its likely you could
+splash your opponent with it.~
+ITEM_TYPE_LIGHT
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 100 60
+A
+APPLY_DAMROLL 7
+A
+APPLY_INT 1
+A
+APPLY_AC -5
+#29664
+helmet shadows~
+a helmet of shadows~
+A helmet of shadows blends with its environment.~
+This helmet takes on the color of its environment making it virtually
+undetectable. Too bad the rest of your equipment does not do the same.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+9 0 0 0
+1 100 60
+A
+APPLY_DAMROLL 6
+#29665
+elven sash~
+an elven sash~
+An elven sash is folded up here.~
+This sash is light green with the symbol of the elven empire embroidered
+on each end of it.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT|ITEM_WEAR_WAIST
+8 0 0 0
+1 100 75
+A
+APPLY_DAMROLL 8
+#29666
+oaken torch light~
+an oaken torch~
+An oaken torch has been left on the ground here.~
+The torch seems finely crafted for just a torch. Possession of the torch
+will enable you to ENTER the fields.~
+ITEM_TYPE_FURNITURE
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+10 10 1
+P 1
+TRIG_UNKNOWN 100 enter
+OPROG_IF OIF_USER_ROOM_NUM = 29604 2 0
+P 2
+TRIG_VOID
+OPROG_GOD_COMMAND
+mpechoaround $ $ enters the field. & goto 29606~
+#0
+
+#ROOMS
+#29600
+A well traveled road~
+The wind whipping forcefully through the waving grain, lining the
+roadside gives a musical almost ethereal scream to the air.  The land
+itself seems to radiate power.  Testing the feel of the air with your
+tongue reveals that the power stems from abundant life and your tongue
+is thick with the taste of it.  Your soul hungers for this power so
+strongly that your body aches to cry out.~
+296 ROOM_NO_MOB SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 29601
+DDIR_SOUTH
+~
+~
+0 -1 17138
+S
+#29601
+A well traveled road~
+The fields of grain continue as does your growing feeling that there is
+a fundamental power at work here. The ordered patterns of nature emerge
+alongside the mortal patchwork of farms and tillage that can be seen in
+the distance.  Ahead lies the gate to the empire of the elves.~
+296 ROOM_NO_MOB SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 29602
+DDIR_SOUTH
+~
+~
+0 -1 29600
+S
+#29602
+A well traveled road~
+A small path waves its way east as the road continues north to the gates
+beyond.  Looking east a small farmhouse dots the horizon and faint
+sounds of children at play carry through the musical crescendo of the
+crops.  North the wall around the empire looks threatening as its
+massive size is revealed more fully.~
+296 ROOM_NO_MOB SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 29613
+DDIR_SOUTH
+~
+~
+0 -1 29601
+DDIR_EAST
+~
+~
+0 -1 29603
+S
+#29603
+A small path~
+The path is a well-beaten foot trail through the golden waves of grain
+and corn that reach chest level in height.  You can get a better look at
+the farmhouse now and see several children playing in the grass.  A call
+from a woman's voice sends them scurrying back inside.  You must have
+been spotted.~
+296 ROOM_NO_MOB SECT_FIELD
+DDIR_WEST
+~
+~
+0 -1 29602
+DDIR_EAST
+~
+~
+0 -1 29604
+S
+#29604
+A clearing~
+A woman of human descent walks outside wiping her hands slowly on her
+apron.  Various toys; corncob dolls and a carved wooden horse, lay in
+the grass abandoned when the children were called inside.  The farmhouse
+is quaint but looks habitable.~
+296 ROOM_NO_MOB SECT_FIELD
+DDIR_WEST
+~
+~
+0 -1 29603
+DDIR_EAST
+~
+~
+0 -1 29605
+S
+#29605
+A farmhouse~
+The farmhouse is homey and decorated with flowers and carved wooden
+furniture.  The room is sectioned into a kitchen, living room and cots
+line the far wall for the children.  A separate bedroom is through a
+small hallway across the room from where you stand.~
+296 ROOM_NO_MOB|ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+~
+~
+0 -1 29604
+E
+cots cot~
+It is made of wicker and stuffed with corn shucks.  Rough
+woolen sheets lay atop one of softer cotton.~
+E
+bedroom~
+The door is closed and you should respect the privacy of
+your host and not try to enter.~
+S
+#29606
+Field~
+Rows and rows of corn are in this section of field.  They are orderly
+and spaced evenly but the erratic growth has made traversing the rows
+harder than it would first appear to be.~
+296 ROOM_NO_MOB|ROOM_NO_RIP SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 29606
+DDIR_SOUTH
+~
+~
+0 -1 29607
+DDIR_EAST
+~
+~
+0 -1 29664
+DDIR_WEST
+~
+~
+0 -1 29606
+S
+#29607
+Field~
+Rows and rows of corn are in this section of field.  They are orderly
+and spaced evenly but the erratic growth has made traversing the rows
+harder than it would first appear to be.~
+296 ROOM_NO_MOB|ROOM_NO_RIP SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 29606
+DDIR_SOUTH
+~
+~
+0 -1 29606
+DDIR_EAST
+~
+~
+0 -1 29608
+DDIR_WEST
+~
+~
+0 -1 29606
+S
+#29608
+Field~
+Rows and rows of corn are in this section of field.  They are orderly
+and spaced evenly but the erratic growth has made traversing the rows
+harder than it would first appear to be.~
+296 ROOM_NO_MOB|ROOM_NO_RIP SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 29606
+DDIR_SOUTH
+~
+~
+0 -1 29609
+DDIR_EAST
+~
+~
+0 -1 29606
+DDIR_WEST
+~
+~
+0 -1 29606
+S
+#29609
+Field~
+Rows and rows of corn are in this section of field.  They are orderly
+and spaced evenly but the erratic growth has made traversing the rows
+harder than it would first appear to be.~
+296 ROOM_NO_MOB|ROOM_NO_RIP SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 29606
+DDIR_SOUTH
+~
+~
+0 -1 29606
+DDIR_EAST
+~
+~
+0 -1 29606
+DDIR_WEST
+~
+~
+0 -1 29610
+S
+#29610
+Field~
+Rows and rows of corn are in this section of field.  They are orderly
+and spaced evenly but the erratic growth has made traversing the rows
+harder than it would first appear to be.~
+296 ROOM_NO_MOB|ROOM_NO_RIP SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 29606
+DDIR_SOUTH
+~
+~
+0 -1 29611
+DDIR_EAST
+~
+~
+0 -1 29606
+DDIR_WEST
+~
+~
+0 -1 29606
+S
+#29611
+Field~
+Rows and rows of corn are in this section of field.  They are orderly
+and spaced evenly but the erratic growth has made traversing the rows
+harder than it would first appear to be.~
+296 ROOM_NO_MOB|ROOM_NO_RIP SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 29606
+DDIR_SOUTH
+~
+~
+0 -1 29606
+DDIR_EAST
+~
+~
+0 -1 29606
+DDIR_WEST
+~
+~
+0 -1 29606
+S
+#29612
+Field~
+Rows and rows of corn are in this section of field.  They are orderly
+and spaced evenly but the erratic growth has made traversing the rows
+harder than it would first appear to be.~
+296 ROOM_NO_MOB|ROOM_NO_RIP SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 29606
+DDIR_SOUTH
+~
+~
+0 -1 29602
+DDIR_EAST
+~
+~
+0 -1 29606
+DDIR_WEST
+~
+~
+0 -1 29606
+S
+#29613
+Gate~
+Intricate metalwork patterns adorn the face of the gate.  You feel the
+presence of a strong warding and realize that the shapes molded into the
+gate are the cause.  A dial of numbers is located where a handle should
+be.  No one answers your summons as you knock at the gate and you
+succeed only in hurting your hand.~
+296 ROOM_NO_MOB SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 29602
+S
+#29614
+Inner courtyard~
+You are on a cobblestone bridge across a moat that you did not realize
+existed.  Warriors trying to scale the outer wall would be in for a
+shock.  A second wall stands a short distance ahead.  An older wizened
+elf stands here.  He must have been the one to open the outer gate, but
+he doesn't look nearly strong enough to have done it himself.~
+296 ROOM_NO_MOB|ROOM_NO_RIP SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 29615
+DDIR_SOUTH
+~
+~
+0 -1 29613
+S
+#29615
+Inner wall~
+The inner wall is lined with rocks of assorted colors and the sun's
+reflection off of them is a lively display.  Looking more closely you
+see that it would not be as easy to scale them as you first thought
+because there is a crystalline substance in the cracks and footholds
+that looks sharp and possibly deadly.  The gate swings open with a life
+of its own and you pass through with an eerie feeling that if you were
+not a welcome guest entrance would not be granted so easily.~
+296 ROOM_NO_MOB|ROOM_NO_RIP SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 29614
+DDIR_NORTH
+~
+~
+0 -1 29616
+E
+gate~
+The gate is remarkable only in the fact that it opened of its own accord.~
+E
+rocks rock~
+It looks to be of common origin.  It was probably stacked up when
+the fields were first ploughed then later found to be useful here.~
+S
+#29616
+Courtyard~
+Directly ahead is a fountain made from a combination of rose quartz and
+emeralds.  It looks to be a common meeting place as several elves are
+milling around there. Behind it the keep towers majestically. East is an
+open-air market and to the west lie the more affluent shops and a
+scattering of noble homes.~
+296 ROOM_NO_MOB|ROOM_NO_RIP SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 29615
+DDIR_WEST
+~
+~
+0 -1 29622
+DDIR_EAST
+~
+~
+0 -1 29617
+DDIR_NORTH
+~
+~
+0 -1 29633
+S
+#29617
+Courtyard~
+This is the edge of the courtyard a small distance from the swirling
+crowd of the open-air market.  Brightly colored wares are displayed in
+a robust manner to the elves gathered.  Very few of the merchants seem
+to be of elven descent.  The majority seems to be human or halfling
+lineage.~
+296 ROOM_NO_MOB|ROOM_NO_RIP SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 29616
+DDIR_EAST
+~
+~
+0 -1 29618
+S
+#29618
+Market~
+The hustle and bustle of the crowd is more apparent here as you are
+jarred and jabbed with a quick apologetic smile as the face disappears
+from view.  This section of the market has fruit vendors lining the
+street side.  Further east is vegetable vendors then a short distance
+farther is the fabric makers.~
+296 ROOM_NO_MOB|ROOM_NO_RIP SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 29617
+DDIR_EAST
+~
+~
+0 -1 29619
+S
+#29619
+Market~
+Carts of various vegetables line both sides of the street as merchants
+call out prices and try to catch your eye.  Behind you the fruit vendors
+continue their call and ahead is a swirling tent of various cloths. Past
+that lies the end of the road where the crowd is so thick you cannot
+tell what is being sold there.~
+296 ROOM_NO_MOB|ROOM_NO_RIP SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 29618
+DDIR_EAST
+~
+~
+0 -1 29620
+S
+#29620
+Market~
+A tent has been erected here to protect the beautiful merchandise from
+the weather.  Silk, cotton and wool bolts of fabric are being sold
+here.  Once you've picked the style, the merchant can dip them in
+various vats of color to give you the shade you desire.~
+296 ROOM_NO_MOB|ROOM_NO_RIP SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 29619
+DDIR_EAST
+~
+~
+0 -1 29621
+S
+#29621
+Market~
+Pushing your way through the crowd has brought you to a man selling
+bottles of wine.  He smiles at you mysteriously and asks if you've ever
+had a taste of fey wine before.  You are intrigued and think that the
+fey wine must really be something to have drawn such a crowd of elves.~
+296 ROOM_NO_MOB|ROOM_NO_RIP SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 29620
+S
+#29622
+Courtyard~
+At the western edge of the courtyard a smooth cobblestone road leads to
+several buildings.  The roadway circles around the courtyard and on the
+eastern end, the market vendors block access to the road.  This section
+of the courtyard is quieter and more affluent.  The atmosphere seems
+aloof, but also inviting.~
+296 ROOM_NO_MOB|ROOM_NO_RIP SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 29623
+DDIR_EAST
+~
+~
+0 -1 29616
+S
+#29623
+Main Street~
+Shops are on both sides of this street.  The storefronts are
+meticulously clean and orderly and passersby smile in greeting as they
+stroll past.  North is a tailor shop and south is an armory.  Further
+west more cheerful storefronts greet you.~
+296 ROOM_NO_MOB|ROOM_NO_RIP SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 29627
+DDIR_EAST
+~
+~
+0 -1 29622
+DDIR_NORTH
+~
+~
+0 -1 29624
+DDIR_SOUTH
+~
+~
+0 -1 29625
+S
+#29624
+Tailor shop~
+Clothing in various stages of completion greet your entrance.  A lovely
+elven maid looks up as you enter then bobs her head in greeting.  A
+price sheet is on the counter.~
+296 ROOM_NO_MOB|ROOM_NO_RIP SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 29623
+E
+price list~
+Articles made from Cotton:  1000 gold
+Articles made from Wool  :  5000 gold
+Articles made from Silk  : 10000 gold
+~
+S
+#29625
+Armory~
+Weapons of exquisite craftsmanship line the walls.  Everything from
+daggers to double-bladed swords, crossbows to battle-axes, can be found
+here.  Not all of the work is for sale, but those items that are have
+been listed on the price sheet that is behind the counter.~
+296 ROOM_NO_MOB|ROOM_NO_RIP SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 29623
+DDIR_SOUTH
+~
+~
+0 -1 29626
+S
+#29626
+The testing area~
+The training ground is carpeted with a thick mat of grass.  Several
+chairs sit against the back of the store and it looks as if spectators
+have watched in awe at matches in the past.~
+296 ROOM_NO_MOB|ROOM_NO_RIP SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 29625
+S
+#29627
+Main street~
+The cobblestone road continues east and west.  A strange oddity that you
+have noticed is the sounds of footsteps are muted and does not have the
+usual clatter associated with a cobblestone street.  It must be a
+feature of the coating that makes them smooth. North is a herbalist and
+south is the mortuary.~
+296 ROOM_NO_MOB|ROOM_NO_RIP SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 29630
+DDIR_EAST
+~
+~
+0 -1 29623
+DDIR_NORTH
+~
+~
+0 -1 29628
+DDIR_SOUTH
+~
+~
+0 -1 29629
+S
+#29628
+Herbalist~
+An elderly elf mixes potions here.  The shop itself is neat and tidy,
+but is cluttered.  Every available counter spot has been used.
+Contraptions and testing equipment look well worn with use.  A counter
+holding finished products is ahead and a price list is on the wall
+behind.~
+296 ROOM_NO_MOB|ROOM_NO_RIP SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 29627
+S
+#29629
+Mortuary~
+Five elves clad in white robes sit in a circle chanting.  They reunite
+souls with bodies and are very good at their job.  The mortuary is a
+holy place and the atmosphere is very solemn.  A list of the prices for
+services is on the counter, written in a flowery calligraphy.~
+296 ROOM_NO_MOB|ROOM_NO_RIP|ROOM_MORGUE SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 29627
+S
+#29630
+Main street~
+The houses of nobles are all that remain on this street.  Unless invited
+it is best not to snoop around in this area of the city.  The houses are
+beautiful and you aspire to have one just as grand some day.~
+296 ROOM_NO_MOB|ROOM_NO_RIP SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 29627
+DDIR_NORTH
+~
+door~
+EX_ISDOOR|EX_CLOSED -1 29631
+E
+north n~
+The home of the house of Avir.~
+E
+west w~
+The home of the house of Talyn.~
+E
+south s~
+The home of the house of Laurn.~
+S
+#29631
+Foyer~
+The lavishly decorated house assaults your senses and you are
+overwhelmed.  The butler frowns slightly at your display of emotion and
+shows you to the sitting room to await Julia.  He quietly closes the
+door.~
+296 ROOM_NO_MOB|ROOM_NO_RIP SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 29630
+S
+#29632
+Sitting room~
+It is plushly decorated with pillows of silk and whicker furnishings.
+Incense is burning on a table nearby and a breeze seems to be blowing
+but you cannot fathom where it comes from.  The smell of the incense
+reminds you of your first trip to the ocean and you take comfort in the
+remembered thoughts.~
+296 ROOM_NO_MOB|ROOM_NO_RIP SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 29631
+S
+#29633
+Courtyard~
+The fountain gushes the most flavorful spring water from a tapped
+geyser.  At every third hour the pressures from the geyser builds up,
+and water jets into the air.  During these times, no one is even
+sprinkled with water, it simply flows into the fountain.  It is a
+magnificent site to behold, though it does not rival the craftsmanship
+of the fountain itself.~
+296 ROOM_NO_MOB|ROOM_NO_RIP|ROOM_SAFE|ROOM_ALTAR_N SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 29616
+DDIR_NORTH
+~
+~
+0 -1 29634
+E
+fountain~
+It is made of rose quartz and emeralds swirled into a collage of shapes.~
+S
+#29634
+Manor house~
+The manor house, belonging to the king's advisor and often visited by
+the king himself, is an expert work of architecture.  It shows the world
+that elven craft is the most sought after, exceptional work to be had.
+The entrance is open for any that wishes to enter to do so, but you
+think that it must be a lot harder to see the advisor himself.~
+296 ROOM_NO_MOB|ROOM_NO_RIP SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 29633
+DDIR_NORTH
+~
+~
+0 -1 29635
+S
+#29635
+Entrance~
+Spiral staircases wind their way up several stories.  They are made of
+marble and shine due to a recent polish.  The foyer is large and open
+and paintings of the royal family are displayed.  Pages run eagerly to
+do as they were bid, barely stopping long enough to bob their head in
+greeting to you.~
+296 ROOM_NO_MOB|ROOM_NO_RIP SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 29634
+DDIR_WEST
+~
+~
+0 -1 29638
+DDIR_EAST
+~
+~
+0 -1 29636
+DDIR_UP
+~
+~
+0 -1 29639
+DDIR_NORTH
+~
+~
+0 -1 29643
+S
+#29636
+Dining room~
+The formal dining room, with seating to accommodate over one hundred
+guests, looks like it is used often.  Though polished, the large carved
+wooden tables are slightly worn with use.  The upholstered chairs,
+however, look like they are new.  Cooks are setting up dinnerware which
+proves that there will be a meal fairly soon.~
+296 ROOM_NO_MOB|ROOM_NO_RIP SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 29637
+DDIR_WEST
+~
+~
+0 -1 29635
+S
+#29637
+Kitchen~
+The kitchen is hot and steamy but the smells are delicious and make your
+mouth water.  The cooks do not look happy about your disturbance but
+decide to ignore you rather than say anything.  Food is in various
+stages of preparation, but it looks as if the cooks have it completely
+under control.~
+296 ROOM_NO_MOB|ROOM_NO_RIP SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 29636
+S
+#29638
+Library~
+Volume upon volume of hand written books line the shelves of this
+enormous room.  Wooden desks with chairs and a section of couches are
+long one wall.  A large window and multiple lamps make the room bright
+and cheerful.~
+296 ROOM_NO_MOB|ROOM_NO_RIP SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 29635
+S
+#29639
+Hallway~
+The first floor of the manor house leads to various guest bedrooms.
+There are over fifty, but only three are currently in use.  The others
+have been tightly sealed to keep down on dust and the need to clean
+them. Before a guest arrives, a closed room is opened and aired out in
+plenty of time for the arrival of said guest.~
+296 ROOM_NO_RIP SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 29641
+DDIR_WEST
+~
+~
+0 -1 29642
+DDIR_EAST
+~
+~
+0 -1 29640
+DDIR_UP
+~
+~
+0 -1 29658
+DDIR_DOWN
+~
+~
+0 -1 29635
+S
+#29640
+Bedroom~
+Decorated mainly in tones of blue, this room gives a distinctly
+masculine feel.  The poster bed is the highlight of the room and grabs
+the most attention.  A desk and chair sit in the corner and piles of
+paper are strewn haphazardly upon it.  Judging by the feel of the room,
+this is the drow negotiator room.~
+296 ROOM_NO_MOB|ROOM_NO_RIP SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 29639
+E
+desk~
+There are papers laying everywhere.  One catches your eye.~
+E
+paper papers~
+We are closer now and may not need information from them,
+continue stalling.  S.~
+S
+#29641
+Bedroom~
+Pastels highlight the soft matte colors of this room.  It is definitely
+a feminine tone.  The only female you know who is currently a guest of
+the manor house is the daughter of the King himself.  You realize that
+you would be severely punished if caught here and best leave
+immediately.~
+296 ROOM_NO_MOB|ROOM_NO_RIP SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 29639
+S
+#29642
+Bedroom~
+Rich greens and deep browns remind you of the forest as you enter this
+room.  The bed is low to the ground and looks firm.  It is not as lavish
+as the rest of the house has been.  This one must belong to the head
+scouts master.  You remember hearing whispers of his being in town.~
+296 ROOM_NO_MOB|ROOM_NO_RIP SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 29639
+S
+#29643
+Hall of gods~
+Carved statues of artist's representations fail to do justice to the
+powerful magnetism of lord Chaos and lord Order but stand majestically
+along the walls. The statue of Order is of a man, incredibly tall,
+lounged comfortably on a sofa eating grapes. Lord Chaos is represented
+as a boy child with a swirling mass of the void around his feet. 
+Entrance to the shrine of Chaos is west and Order's lies east. 
+The statue of Chaos seems to move slightly under your gaze.
+Order's statue looks peaceful and incredibly appealing.~
+296 ROOM_NO_RIP SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 29635
+DDIR_WEST
+~
+~
+0 -1 29644
+DDIR_EAST
+~
+~
+0 -1 29645
+DDIR_NORTH
+~
+~
+0 -1 29646
+S
+#29644
+Shrine of Chaos~
+Swirling colors dizzy your senses as you enter the shine. After a few
+minutes you become reoriented and are able to look around. Chaotic does
+seem to be a good term for what you see. A priest of Chaos dressed in a
+black robe stands out against the violent colors of the room.~
+296 ROOM_NO_RIP|ROOM_SAFE|ROOM_ALTAR_C SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 29643
+S
+#29645
+Shine of Order~
+A very asymmetrical approach was taken to adorn this room. Patterns,
+like in nature, are very structured and flow in an orderly array. The
+priest has a humble look to him and greets you warmly.~
+296 ROOM_NO_RIP|ROOM_SAFE|ROOM_ALTAR_O SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 29643
+S
+#29646
+Outer Courtyard~
+Polished rocks of various colors pave the ground and make the walk
+smooth. Ahead are the stables and you can see a riding trail weaving
+its way in the distance. Looking to each side reveals training
+facilities. You remember hearing someone in the crowd mention that the
+advisor likes to have all citizens of the empire prepared for an attack
+and will gladly train them for free.~
+296 ROOM_NO_RIP SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 29643
+DDIR_WEST
+~
+~
+0 -1 29647
+DDIR_EAST
+~
+~
+0 -1 29648
+DDIR_NORTH
+~
+~
+0 -1 29649
+S
+#29647
+Training field~
+Several elves are sparring enthusiastically and are being watched from
+the practiced eye of the master trainer, so it comes as a surprise when
+he walks towards you and ignores the mock battle taking place.~
+296 ROOM_NO_RIP SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 29646
+S
+#29648
+Practice dome~
+Blackened walls and stained tiles show that not all spells tried the
+first time work out perfectly. There is even an elf holding a blanket
+to put out any fires accidentally created while practicing. An older
+wizened elf in a blue robe ushers you to stand in the center of the dome
+and awaits your instructions of what you wish to practice today.~
+296 ROOM_NO_RIP SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 29646
+S
+#29649
+Stables~
+Some of the finest horses you have ever laid eyes upon are housed in the
+stables. You immediately recognize the years of work that has been
+spent breeding the line of horses that you see here. They seem
+oblivious to your scrutiny and in an indifferent manner they ignore
+you. There is an exit north that is the start of the riding trail,
+south will take you back the way you came.~
+296 ROOM_NO_RIP SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 29650
+DDIR_SOUTH
+~
+~
+0 -1 29646
+S
+#29650
+Riding trail~
+The trail is narrow and not more than two horses could walk abreast of
+each other here. The trail weaves in between trees and occasionally
+there is a jump, made of wood, for the horses. A bird chirps happily in
+the distance and squirrels chase one another merrily. The inner wall of
+the empire can been seen through the trees.~
+296 ROOM_NO_RIP SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 29649
+DDIR_WEST
+~
+~
+0 -1 29651
+DDIR_EAST
+~
+~
+0 -1 29655
+E
+wall~
+It looks sturdy and strong.~
+S
+#29651
+Riding trail~
+A jump is in this section of the trail. It is approximately three feet
+tall and looks sturdy. There is room to walk around it at the side of
+the trail. The wall can be clearly seen from where you are standing.~
+296 ROOM_NO_RIP SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 29652
+DDIR_EAST
+~
+~
+0 -1 29650
+E
+wall~
+The wall seems to have caved in a small amount.  There must be
+a tunnel under the wall, but where does it come out?~
+E
+ground~
+The ground is slightly raised around the edge of the wall and remains
+so slightly and heads in the direction of the trees.~
+E
+tree~
+This tree looks normal.~
+E
+2.tree~
+This tree looks normal.~
+E
+4.tree~
+There is something strange about this tree. There is something weird
+at the base of the tree.~
+E
+3.tree~
+This tree looks normal.~
+E
+base~
+You can push your hand through the wood here, it must be some kind
+of magic passage which you could enter.~
+S
+#29652
+Riding trail~
+The trail is narrow and not more than two horses could walk abreast of
+each other here. The trail weaves in between trees and occasionally
+there is a jump, made of wood, for the horses. A bird chirps happily in
+the distance and squirrels chase one another merrily. The inner wall of
+the empire can been seen through the trees.~
+296 ROOM_NO_RIP SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 29653
+DDIR_EAST
+~
+~
+0 -1 29651
+E
+wall~
+It looks sturdy and strong.~
+S
+#29653
+Riding trail~
+This area of the trail seems very peaceful and the smell of wild flowers
+drifts lazily to you. The trees are older in this part and have a high
+canopy. Looking up you see an orchid plant. Maybe if you climbed the
+tree you could fetch it. It would make a pretty gift.~
+296 ROOM_NO_RIP SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 29654
+DDIR_EAST
+~
+~
+0 -1 29652
+E
+tree~
+There are branches low enough to allow you to climb the tree.~
+E
+wall~
+It looks sturdy and strong.~
+S
+#29654
+Riding trail~
+A jump is in this section of the trail. It is approximately three feet
+tall and looks sturdy. There is room to walk around it at the side of
+the trail. The wall can be clearly seen from where you are standing.~
+296 ROOM_NO_RIP SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 29655
+DDIR_EAST
+~
+~
+0 -1 29653
+E
+wall~
+It looks sturdy and strong.~
+S
+#29655
+Riding trail~
+The trail is narrow and not more than two horses could walk abreast of
+each other here. The trail weaves in between trees and occasionally
+there is a jump, made of wood, for the horses. A bird chirps happily in
+the distance and squirrels chase one another merrily. The inner wall of
+the empire can been seen through the trees.~
+296 ROOM_NO_RIP SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 29656
+DDIR_EAST
+~
+~
+0 -1 29654
+E
+wall~
+It looks sturdy and strong.~
+S
+#29656
+Riding trail~
+A jump is in this section of the trail. It is approximately three feet
+tall and looks sturdy. There is room to walk around it at the side of
+the trail. The wall can be clearly seen from where you are standing.~
+296 ROOM_NO_RIP SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 29650
+DDIR_EAST
+~
+~
+0 -1 29655
+E
+wall~
+It looks sturdy and strong.~
+S
+#29657
+Waiting room~
+Stylish couches made of crushed velvet line both sides of the room. A
+noble woman lounges impatiently upon one. Various pages are standing
+around waiting patiently for their chance to see the advisor to give him
+a message from their employer.~
+296 ROOM_NO_RIP SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 29658
+S
+#29658
+Staircase~
+The second floor of the manor house contains the advisor's private chambers
+as well as an audience hall and waiting room.  The view of the rooms below
+shows the elegant craftmanship and exquisite details that went into
+creating this showcase home.~
+296 ROOM_NO_RIP SECT_CITY
+DDIR_UP
+~
+~
+0 -1 29659
+DDIR_SOUTH
+~
+~
+0 -1 29657
+DDIR_DOWN
+~
+~
+0 -1 29639
+S
+#29659
+Top of the staircase~
+Glass doors protect the stairs from the weather yet allow an uninhibited
+view of the garden. The garden looks like a miniature rain forest that
+has been besieged with flowers. Two elven maidens are in the garden
+working with the flowers.~
+296 ROOM_NO_RIP SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 29660
+DDIR_DOWN
+~
+~
+0 -1 29658
+S
+#29660
+The rooftop garden~
+The garden is even lovelier now that you've entered within. The smells
+are exquisite and the colors are bright and pure. The flowers are
+shrouded in a mist that keeps them watered and sunlight shines down upon
+them.~
+296 ROOM_NO_RIP SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 29659
+S
+#29661
+Audience chambers~
+The chambers are large and elegant. A stately group of elven elders are
+assembled to hold court. On the dais at the head of the chambers sits
+the advisor. A feeling of great power is in this room and it makes you
+feel somewhat nervous but also very eager to see what lies in store.~
+296 ROOM_NO_RIP SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 29657
+S
+#29662
+Field~
+Rows and rows of corn are in this section of field.  They are orderly
+and spaced evenly but the erratic growth has made traversing the rows
+harder than it would first appear to be.~
+296 ROOM_NO_MOB|ROOM_NO_RIP SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 29606
+DDIR_SOUTH
+~
+~
+0 -1 29607
+DDIR_EAST
+~
+~
+0 -1 29606
+DDIR_WEST
+~
+~
+0 -1 29606
+S
+#29663
+Field~
+Rows and rows of corn are in this section of field.  They are orderly
+and spaced evenly but the erratic growth has made traversing the rows
+harder than it would first appear to be.~
+296 ROOM_NO_MOB|ROOM_NO_RIP SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 29606
+DDIR_SOUTH
+~
+~
+0 -1 29607
+DDIR_EAST
+~
+~
+0 -1 29662
+DDIR_WEST
+~
+~
+0 -1 29606
+S
+#29664
+Field~
+Rows and rows of corn are in this section of field.  They are orderly
+and spaced evenly but the erratic growth has made traversing the rows
+harder than it would first appear to be.~
+296 ROOM_NO_MOB|ROOM_NO_RIP SECT_FIELD
+DDIR_NORTH
+~
+~
+0 -1 29606
+DDIR_SOUTH
+~
+~
+0 -1 29607
+DDIR_EAST
+~
+~
+0 -1 29663
+DDIR_WEST
+~
+~
+0 -1 29606
+S
+
+#0
+
+#RESETS
+O 0 29600 1 29604 ; rocking horse in clearing
+O 0 29601 1 29613 ; dial at gate
+M 0 29600 1 29604 ; chara in clearing
+M 0 29601 1 29605 ; boy in farmhouse
+M 0 29602 1 29605 ; girl in farmhouse
+M 0 29603 1 29605 ; baby in farmhouse
+M 0 29604 1 29611 ; cole in field
+M 0 29605 40 29606 ; corn in field
+M 0 29605 40 29606 ; corn in field
+M 0 29605 40 29606 ; corn in field
+M 0 29605 40 29606 ; corn in field
+M 0 29605 40 29606 ; corn in field
+M 0 29605 40 29607 ; corn in field
+M 0 29605 40 29607 ; corn in field
+M 0 29605 40 29607 ; corn in field
+M 0 29605 40 29607 ; corn in field
+M 0 29605 40 29607 ; corn in field
+M 0 29605 40 29608 ; corn in field
+M 0 29605 40 29608 ; corn in field
+M 0 29605 40 29608 ; corn in field
+M 0 29605 40 29608 ; corn in field
+M 0 29605 40 29608 ; corn in field
+M 0 29605 40 29609 ; corn in field
+M 0 29605 40 29609 ; corn in field
+M 0 29605 40 29609 ; corn in field
+M 0 29605 40 29609 ; corn in field
+M 0 29605 40 29609 ; corn in field
+M 0 29605 40 29610 ; corn in field
+M 0 29605 40 29610 ; corn in field
+M 0 29605 40 29610 ; corn in field
+M 0 29605 40 29610 ; corn in field
+M 0 29605 40 29610 ; corn in field
+M 0 29606 1 29613 ; voice ethereal at gate
+M 0 29607 1 29614 ; hector in courtyard
+M 0 29608 1 29618 ; fruit vendor in market
+G 1 29602 500 ; apple
+G 1 29603 500 ; pear
+G 1 29604 500 ; grapes
+M 0 29609 1 29619 ; vege vendor in market
+G 1 29605 500 ; potato
+G 1 29606 500 ; mushroom
+G 1 29607 500 ; carrot
+M 0 29610 1 29620 ; cloth merchant in market
+G 1 29608 500 ; wool
+G 1 29609 500 ; cotton
+G 1 29610 500 ; silk
+M 0 29611 1 29621 ; wine vendor in market
+G 1 29611 500 ; fey wine
+M 0 29612 1 29624 ; tailor in tailor shop
+M 0 29613 1 29625 ; ragarok in shop
+G 1 29619 500 ; longbow
+G 1 29620 500 ; crossbow
+G 1 29621 500 ; arrow
+G 1 29622 500 ; flaming arrow
+G 1 29623 500 ; double edged blade
+M 0 29614 1 29626 ; son in training area
+M 0 29615 1 29628 ; herbalist in shop
+G 1 29625 500 ; travel potion
+G 1 29626 500 ; travel scroll
+G 1 29627 500 ; aura potion
+G 1 29628 500 ; aura scroll
+M 0 29616 1 29631 ; butler in foyer
+M 0 29617 1 29632 ; avir in sitting room
+O 0 29638 1 29638 ; shelf in library
+P 1 29639 500 29638 ; book in shelf
+M 0 29619 1 29644 ; priest in chaos shrine
+M 0 29620 1 29645 ; priest in order shrine
+M 0 29621 1 29647 ; trainer in training
+M 0 29622 1 29648 ; practice in practice
+M 0 29623 1 29657 ; servant in waiting
+M 0 29624 1 29660 ; princess in garden
+M 0 29625 1 29640 ; drow guard in bedroom
+M 0 29626 1 29661 ; advisor in audience
+M 0 29628 1 29642 ; scout master in bedroom
+E 1 29663 500 WEAR_LIGHT ; oil lamp on scout
+E 1 29664 500 WEAR_HEAD ; helmet on scout
+M 0 29605 40 29662 ; corn in field
+M 0 29605 40 29662 ; corn in field
+M 0 29605 40 29662 ; corn in field
+M 0 29605 40 29662 ; corn in field
+M 0 29605 40 29662 ; corn in field
+M 0 29605 40 29663 ; corn in field
+M 0 29605 40 29663 ; corn in field
+M 0 29605 40 29663 ; corn in field
+M 0 29605 40 29663 ; corn in field
+M 0 29605 40 29663 ; corn in field
+M 0 29605 40 29664 ; corn in field
+M 0 29605 40 29664 ; corn in field
+M 0 29605 40 29664 ; corn in field
+M 0 29605 40 29664 ; corn in field
+M 0 29605 40 29664 ; corn in field
+M 0 29629 1 29638 ; ethereal in library
+S
+
+#SHOPS
+29608 ITEM_TYPE_FOOD ITEM_TYPE_DRINK_CON ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  50  0 23 ;fruit vendor
+29609 ITEM_TYPE_FOOD ITEM_TYPE_DRINK_CON ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  50  0 23 ;vege vendor
+29610 ITEM_TYPE_ARMOR ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  50  0 23 ;cloth vendor
+29611 ITEM_TYPE_FOOD ITEM_TYPE_DRINK_CON ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  50  0 23 ;wine vendor
+29613 ITEM_TYPE_ARMOR ITEM_TYPE_WEAPON ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  50  0 23 ;ragarok
+29615 ITEM_TYPE_POTION ITEM_TYPE_SCROLL ITEM_TYPE_STAFF ITEM_TYPE_WAND
+     ITEM_TYPE_PILL 100  50  0 23 ; herbalist
+
+0
+
+#$

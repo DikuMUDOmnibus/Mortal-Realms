@@ -1,0 +1,80 @@
+Ex:  You want to create boots that can be used to make movement always
+     increase by 5 for 100 moves in any direction.  After the 100 moves, you
+     want the boots to wear out and disintegrate.  However, if the person 
+     polishes his boots before they move 100 times, then you want the boots
+     to become like new.  You also want the boots to start always decreasing
+     movement by 10 if the person ever removes the boots once they are worn.
+     1) You have one counter (to 100) and one state (have boots been removed?)
+        to assign to your quest bits for the boots.  You will need to use
+        7 bits for your counter (100 < 2^7) and 1 bit for your state.  You
+        could use the following bits:
+
+       30  28  26  24  22  20  18  16  14  12  10 9 8 7 6 5 4 3 2 1 0
+     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+     |X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|             |X|X|X|X|X| |X|X|
+     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+        with you counter starting @ bit 8 and 7 bits long, and your state
+        starting @ bit 2 and 1 bits long.
+     2) Now, you need to set up a set of object programs for the boots to
+        perform to your specifications:
+
+P 1
+TRIG_COMMAND 45 north
+OPROG_COMMAND
+north
+~
+P 1
+TRIG_VOID
+OPROG_IF OIF_QUEST 8 7 < 100 11 21
+P 11
+TRIG_VOID
+OPROG_QUEST_ADD 8 7 1
+P 2
+TRIG_COMMAND 45 south
+OPROG_COMMAND
+south
+~
+P 12
+TRIG_VOID
+OPROG_QUEST_ADD 8 7 1
+P 3
+TRIG_COMMAND 45 east
+OPROG_COMMAND
+east
+~
+P 3
+TRIG_VOID
+OPROG_QUEST_ADD 8 7 1
+P 4
+TRIG_COMMAND 45 west
+OPROG_COMMAND
+west
+~
+P 4
+TRIG_VOID
+OPROG_QUEST_ADD 8 7 1
+P 5
+TRIG_COMMAND 45 up
+OPROG_COMMAND
+up
+~
+P 5
+TRIG_VOID
+OPROG_QUEST_ADD 8 7 1
+P 6
+TRIG_COMMAND 45 down
+OPROG_COMMAND
+down
+~
+P 6
+TRIG_VOID
+OPROG_QUEST_ADD 8 7 1
+P 7
+TRIG_UNKNOWN 100 polish
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 8 0
+~
+P 8
+TRIG_VOID
+OPROG_QUEST_SET 8 7 0
+ 

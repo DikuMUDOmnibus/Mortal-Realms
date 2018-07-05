@@ -1,0 +1,921 @@
+#AREA Limbo~
+#AUTHORS Diku~
+
+
+
+
+#HELPS
+-1 LIMBO~
+LIMBO
+This is Chaos' private studio of fractal confusion and militant entropy.
+The only way in is via immortal intervention.
+~
+-1 AREA_TAG_SAVE~
+
+Limbo will not load with ARMY tag. 
+
+Here it is for safekeeping:
+
+#ARMY 515 2514 424 16322 1908 705 2420 1868
+~
+0 $~
+
+
+
+
+#RANGES 0 99 0 99
+#FLAGS AFLAG_NOTELEPORT
+
+
+#MOBILES
+#1
+Puff~
+Puff~
+Puff the Fractal Dragon is here, contemplating a higher reality.~
+~
+ACT_SMART
+AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+1 0 0 1d1+25 4d6+3
+25 10
+POS_STANDING POS_STANDING SEX_FEMALE
+>rand_prog 1~
+say Have I told you the story about the little hermit?
+cast feast
+~
+>rand_prog 1~
+say The little hermit went to town after 4 years.
+cast feast
+~
+>rand_prog 1~
+say There was once a little hermit that bought a glass of water.
+cast feast
+~
+>rand_prog 3~
+mpecho A small plasma cloud burps out of Puff.
+cast feast
+~
+>rand_prog 2~
+say Are you awake?
+cast feast
+~
+>rand_prog 2~
+pat $r
+cast feast
+~
+|
+#2
+Tsimob ~
+Tsi the cat~
+Tsi the magic cat is hiding here.~
+Tsi looks like an {110}ordinary cat{040} with the exception of pure black eyes.  Tsi is
+wearing a {020}Grand Prix{300} drivers suite. Tsi knows some tricks:
+Restore - to get healed!
+Spells - to get spells!
+Cursed - to get curses removed!
+Dispel - to get spells removed!~
+ACT_SENTINEL|ACT_RACE|ACT_SMART|ACT_BODY
+AFF_TONGUES
+1000 S
+150 BODY_HEAD|BODY_EYE BODY_MOUTH 5d10+15550 4d6+235
+10000 1
+POS_STANDING POS_STANDING SEX_FEMALE
+>fight_prog 100~
+mpquiet on
+peace
+mpquiet off
+say stop it!
+~
+>speech_prog dispel~
+mpquiet on
+cast 'dispel magic' $n
+cast 'dispel magic' $n
+cast 'dispel magic' $n
+cast 'dispel magic' $n
+cast 'dispel magic' $n
+cast 'dispel magic' $n
+cast 'dispel magic' $n
+cast 'dispel magic' $n
+cast 'dispel magic' $n
+mpquiet off
+mpechoaround $n $n is filled with the energy of Tsi!
+mpechoat $n You are filled with th energy of Tsi!
+~
+>speech_prog restore~
+mpquiet on
+cast 'heal' $n
+cast 'heal' $n
+cast 'heal' $n
+cast 'heal' $n
+cast 'heal' $n
+cast 'heal' $n
+cast 'heal' $n
+cast 'heal' $n
+cast 'heal' $n
+cast 'heal' $n
+mpquiet off
+mpechoaround $n $n is filled with the glory of Tsi!
+mpechoat $n You are filled with the glory of Tsi!
+~
+>speech_prog spells~
+mpquiet on
+cast 'armor' $n
+cast 'shield' $n
+cast 'bless' $n
+cast 'giant strength' $n
+cast 'sanctuary' $n
+cast 'breath water' $n
+cast 'feast'
+cast 'mirror image' $n
+cast 'fly' $n
+cast 'haste' $n
+cast 'feast'
+cast 'refresh'
+cast 'enhanced heal' $n
+cast 'enhanced rest' $n
+cast 'enhanced revive' $n
+cast 'righteous fury' $n
+mpquiet off
+mpechoaround $n $n is filled with the power of Tsi!
+mpechoat $n You are filled with the power of Tsi!
+~
+>speech_prog cursed~
+mpquiet on
+cast 'remove curse' $n
+cast 'remove curse' $n
+cast 'remove curse' $n
+cast 'remove curse' $n
+cast 'remove curse' $n
+cast 'remove curse' $n
+cast 'remove curse' $n
+cast 'remove curse' $n
+cast 'remove curse' $n
+cast 'remove curse' $n
+mpquiet off
+mpechoaround $n $n is filled with the wonder of Tsi!
+mpechoat $n You are filled with the wonder of Tsi!
+~
+>act_prog frowns.~
+say why the long face, $n ?
+~
+>kill_prog 100~
+cackle
+say $n is no match for a lil pussy cat!
+tell $n Wuss!
+~
+>speech_prog chakkor~
+if pcsinroom(9755) == 1
+ say one person
+else
+ if pcsinroom(9755) == 2
+  say two people
+  else
+    if pcsinroom(9755) > 2
+      say more than two people
+      else
+       say nobody there
+     endif
+   endif
+endif
+~
+|
+#3
+Junk~
+The Junk Man~
+The Junk Man is here picking up trash.~
+The Junk Man looks very dirty.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY
+AFF_INVISIBLE|AFF_HIDE|AFF_TONGUES
+1000 S
+95 BODY_HEAD|BODY_EYE BODY_MOUTH 5d10+5550 4d6+35
+10000 780605
+POS_STANDING POS_STANDING SEX_FEMALE
+>rand_prog 100~
+mppurge 
+~
+|
+#0
+
+
+
+
+#OBJECTS
+#2
+coin gold~
+a gold coin~
+One miserable gold coin.~
+~
+ITEM_TYPE_MONEY
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+1 0 0 0
+1 0 1
+#3
+coins gold~
+%d gold coins~
+A pile of gold coins.~
+~
+ITEM_TYPE_MONEY
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 0 1
+#10
+corpse %scorpse~
+corpse of %s~
+The corpse of %s is lying here.~
+~
+ITEM_TYPE_CORPSE_NPC
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 1
+10000 0 1
+#11
+corpse %scorpse~
+corpse of %s~
+The corpse of %s is lying here.~
+~
+ITEM_TYPE_CORPSE_PC
+ITEM_FLAG_LEVEL
+0
+0 0 0 1
+100 0 1
+#12
+head~
+head of %s~
+The severed head of %s is lying here.~
+~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+10 0 0 NOT_POISONED
+5 0 47
+#13
+heart~
+heart of %s~
+The torn-out heart of %s is lying here.~
+~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+16 0 0 NOT_POISONED
+2 0 47
+#14
+arm~
+arm of %s~
+The sliced-off arm of %s is lying here.~
+~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+20 0 0 NOT_POISONED
+5 0 47
+#15
+leg~
+leg of %s~
+The sliced-off leg of %s is lying here.~
+~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+20 0 0 NOT_POISONED
+5 0 47
+#16
+turd~
+steaming turd~
+The steaming turds of %s assail your nostrils.~
+~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+0
+5 0 0 1
+1 0 1
+#20
+mushroom magic~
+a Magic Mushroom~
+A delicious magic mushroom is here.~
+~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+5 0 0 NOT_POISONED
+1 10 47
+#21
+ball light~
+a bright ball of light~
+A bright ball of light shimmers in the air.~
+~
+ITEM_TYPE_LIGHT
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 -1 0
+1 0 47
+#22
+spring~
+a magical spring~
+A magical spring flows from the ground here.~
+~
+ITEM_TYPE_FOUNTAIN
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+0
+100000 100000 0 0
+5000 10 1
+#50
+chain white gold firechain~
+a white gold chain~
+A glowing white gold chain floats inches above the ground.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_NODROP|ITEM_FLAG_NOREMOVE|ITEM_FLAG_INVENTORY|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK|ITEM_WEAR_WIELD
+0 0 0 0
+1 200000 10
+E
+inscription writing~
+"A member of the order of Order."~
+E
+chain white gold~
+The chain glows white.  Almost as if it is made of pure light.  There
+is an inscription on it.~
+A
+APPLY_HIT 5
+A
+APPLY_AC -15
+P 1
+TRIG_WEAR 100
+OPROG_GOD_COMMAND
+echo The soul of $ chooses the path of Order!~
+#51
+chain black gold~
+a black gold chain~
+A black gold chain rests heavily upon the ground.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_NODROP|ITEM_FLAG_NOREMOVE|ITEM_FLAG_INVENTORY|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK|ITEM_WEAR_WIELD
+0 0 0 0
+1 200000 10
+E
+inscription writing~
+"A member of the Hoard of Chaos."~
+E
+chain black gold~
+The chain literally absorbs light.~
+A
+APPLY_HIT -5
+A
+APPLY_AC -20
+P 1
+TRIG_WEAR 100
+OPROG_GOD_COMMAND
+echo The soul of $ wanders down the path of Chaos!~
+#52
+chain grey gold~
+a grey gold chain~
+A grey gold chain rests heavily upon the ground.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_NODROP|ITEM_FLAG_NOREMOVE|ITEM_FLAG_INVENTORY|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK|ITEM_WEAR_WIELD
+0 0 0 0
+1 200000 22
+E
+inscription writing~
+"A member of the following of Death."~
+E
+chain grey gold~
+The chain literally absorbs light.~
+A
+APPLY_HIT -2
+A
+APPLY_AC -10
+#55
+platinum chain~
+a platinum chain~
+A platinum chain rests heavily upon the ground.~
+This chain allows the following at level 97:
+MPGOTO, SLAY, SLAUGHTER, GOTO, RSTAT, MSTAT, OSTAT, HOLYLIGHT, MEM, CPU, AREA
+OLIST, MLIST, OWHERE, MWHERE, OFIND, OWHERE, MPSTAT, BAMFIN, BAMFOUT, TRANSFER,
+SLOOKUP, SNOOP, GIVE, GET, NOTE, DISCONNECT, MPROGRAM, LLOG, USERS, TERMLIST,
+OPROGRAM, SHUTOFF, PLOAD, PQUIT, RELEASE, ARREST, IMMTALK, ], SILENCE, INVIS.
+
+As a Police character, you may not be murdered, but may murder anyone.
+You may not be stolen from.  You may take anything from any corpse, 
+regardless if player, or another group's.
+
+You are also required NEVER to assist in the furthering of any players.
+Your job is to patrol the realm looking for anti-social players, that go to
+great lengths to harm others.  Not in a killing sense, but in verbal abuse,
+vulgarities, harrassment, and other political problems that may exist.
+You are judge, jury and executioner in this role.  It is desired that all 
+peaceful attempts be made before any punishment takes place.
+
+DO NOT punish someone more than once per problem, even if it affects several
+people.  But punishment may resume if the guilty continues their evil ways.
+
+You are required to keep a watch on the note system and delete any notes that
+contain anything profane.  Use the NOTE DELETE # command to delete any such
+notes.
+
+Any policeman found not following these guidelines will be punished severly by
+the Gods.  But only with a majority vote in a Town meeting of over 30 witnesses.
+You may retire at any time.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_NODROP|ITEM_FLAG_NOREMOVE|ITEM_FLAG_INVENTORY|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK|ITEM_WEAR_WIELD
+0 0 0 0
+1 200000 10
+P 1
+TRIG_UNKNOWN 100 purge
+OPROG_GOD_ARGUMENT
+purge~
+P 2
+TRIG_UNKNOWN 100 rstat
+OPROG_GOD_ARGUMENT
+rstat~
+P 3
+TRIG_UNKNOWN 100 ostat
+OPROG_GOD_ARGUMENT
+ostat~
+P 4
+TRIG_UNKNOWN 100 mstat
+OPROG_GOD_ARGUMENT
+mstat~
+P 5
+TRIG_UNKNOWN 100 slaughter
+OPROG_GOD_ARGUMENT
+slaughter~
+P 6
+TRIG_UNKNOWN 100 goto
+OPROG_GOD_ARGUMENT
+goto~
+P 7
+TRIG_UNKNOWN 100 holylight
+OPROG_GOD_ARGUMENT
+holylight~
+P 8
+TRIG_UNKNOWN 100 cpu
+OPROG_GOD_ARGUMENT
+cpu~
+P 9
+TRIG_UNKNOWN 100 memory
+OPROG_GOD_ARGUMENT
+memory~
+P 10
+TRIG_UNKNOWN 100 olist
+OPROG_GOD_ARGUMENT
+olist~
+P 11
+TRIG_UNKNOWN 100 mlist
+OPROG_GOD_ARGUMENT
+mlist~
+P 12
+TRIG_COMMAND 100 areas
+OPROG_GOD_ARGUMENT
+areas~
+P 13
+TRIG_UNKNOWN 100 mwhere
+OPROG_GOD_ARGUMENT
+mwhere~
+P 14
+TRIG_UNKNOWN 100 owhere
+OPROG_GOD_ARGUMENT
+owhere~
+P 15
+TRIG_UNKNOWN 100 mfind
+OPROG_GOD_ARGUMENT
+mfind~
+P 16
+TRIG_UNKNOWN 100 ofind
+OPROG_GOD_ARGUMENT
+ofind~
+P 17
+TRIG_UNKNOWN 100 mpstat
+OPROG_GOD_ARGUMENT
+mpstat~
+P 18
+TRIG_UNKNOWN 100 bamfin
+OPROG_GOD_ARGUMENT
+bamfin~
+P 19
+TRIG_UNKNOWN 100 bamfout
+OPROG_GOD_ARGUMENT
+bamfout~
+P 20
+TRIG_UNKNOWN 100 snoop
+OPROG_GOD_ARGUMENT
+snoop~
+P 21
+TRIG_COMMAND 100 get
+OPROG_GOD_ARGUMENT
+get~
+P 22
+TRIG_COMMAND 100 give
+OPROG_GOD_ARGUMENT
+give~
+P 23
+TRIG_UNKNOWN 100 slookup
+OPROG_GOD_ARGUMENT
+slookup~
+P 24
+TRIG_COMMAND 100 note
+OPROG_GOD_ARGUMENT
+note~
+P 25
+TRIG_UNKNOWN 100 disconnect
+OPROG_GOD_ARGUMENT
+disconnect~
+P 26
+TRIG_UNKNOWN 100 timemode
+OPROG_GOD_COMMAND
+timemode~
+P 27
+TRIG_UNKNOWN 100 users
+OPROG_GOD_COMMAND
+users~
+P 28
+TRIG_UNKNOWN 100 termlist
+OPROG_GOD_COMMAND
+termlist~
+P 29
+TRIG_UNKNOWN 100 llog
+OPROG_GOD_ARGUMENT
+llog~
+P 30
+TRIG_UNKNOWN 100 mprogram
+OPROG_GOD_ARGUMENT
+mprogram~
+P 31
+TRIG_UNKNOWN 100 oprogram
+OPROG_GOD_ARGUMENT
+oprogram~
+P 32
+TRIG_UNKNOWN 100 shutoff
+OPROG_GOD_ARGUMENT
+shutoff~
+P 33
+TRIG_UNKNOWN 100 pload
+OPROG_GOD_ARGUMENT
+pload~
+P 34
+TRIG_UNKNOWN 100 pquit
+OPROG_GOD_ARGUMENT
+pquit~
+P 35
+TRIG_UNKNOWN 100 mpgoto
+OPROG_GOD_ARGUMENT
+mpgoto~
+P 36
+TRIG_UNKNOWN 100 arrest
+OPROG_GOD_ARGUMENT
+arrest~
+P 37
+TRIG_UNKNOWN 100 release
+OPROG_GOD_ARGUMENT
+release~
+P 38
+TRIG_UNKNOWN 100 rename
+OPROG_GOD_ARGUMENT
+rename~
+P 39
+TRIG_UNKNOWN 100 slay
+OPROG_GOD_ARGUMENT
+slay~
+P 40
+TRIG_UNKNOWN 100 silence
+OPROG_GOD_ARGUMENT
+silence~
+P 41
+TRIG_UNKNOWN 100 immtalk
+OPROG_GOD_ARGUMENT
+immtalk~
+P 42
+TRIG_UNKNOWN 100 [
+OPROG_GOD_ARGUMENT
+immtalk~
+P 43
+TRIG_UNKNOWN 100 invis
+OPROG_GOD_ARGUMENT
+invis~
+P 44
+TRIG_UNKNOWN 100 transfer
+OPROG_GOD_ARGUMENT
+transfer~
+P 100
+TRIG_WEAR 100
+OPROG_IF OIF_USER_SEX = 2 102 103
+P 102
+TRIG_VOID
+OPROG_GOD_COMMAND
+echo Sheriff $ has become an enforcer of the realm!~
+P 103
+TRIG_VOID
+OPROG_GOD_COMMAND
+echo Sheriff $ has become an enforcer of the realm!~
+#56
+ebony chain~
+an ebony chain~
+An ebony chain rests heavily upon the ground.~
+This chain allows the following at level 99:
+MPGOTO, SLAY, SLAUGHTER, GOTO, RSTAT, MSTAT, OSTAT, HOLYLIGHT, MEM, CPU, AREA
+OLIST, MLIST, OWHERE, MWHERE, OFIND, OWHERE, MPSTAT, BAMFIN, BAMFOUT,
+SLOOKUP, SNOOP, GIVE, GET, NOTE, DISCONNECT, MPROGRAM, LLOG, USERS, TERMLIST,
+OPROGRAM, SHUTOFF, PLOAD, PQUIT, RELEASE, ARREST.
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_NODROP|ITEM_FLAG_NOREMOVE|ITEM_FLAG_INVENTORY|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK|ITEM_WEAR_WIELD
+0 0 0 0
+1 200000 10
+P 1
+TRIG_UNKNOWN 100 purge
+OPROG_GOD_ARGUMENT
+purge~
+P 2
+TRIG_UNKNOWN 100 rstat
+OPROG_GOD_ARGUMENT
+rstat~
+P 3
+TRIG_UNKNOWN 100 ostat
+OPROG_GOD_ARGUMENT
+ostat~
+P 4
+TRIG_UNKNOWN 100 mstat
+OPROG_GOD_ARGUMENT
+mstat~
+P 5
+TRIG_UNKNOWN 100 slaughter
+OPROG_GOD_ARGUMENT
+slaughter~
+P 6
+TRIG_UNKNOWN 100 goto
+OPROG_GOD_ARGUMENT
+goto~
+P 7
+TRIG_UNKNOWN 100 holylight
+OPROG_GOD_ARGUMENT
+holylight~
+P 8
+TRIG_UNKNOWN 100 cpu
+OPROG_GOD_ARGUMENT
+cpu~
+P 9
+TRIG_UNKNOWN 100 memory
+OPROG_GOD_ARGUMENT
+memory~
+P 10
+TRIG_UNKNOWN 100 olist
+OPROG_GOD_ARGUMENT
+olist~
+P 11
+TRIG_UNKNOWN 100 mlist
+OPROG_GOD_ARGUMENT
+mlist~
+P 12
+TRIG_COMMAND 100 areas
+OPROG_GOD_ARGUMENT
+areas~
+P 13
+TRIG_UNKNOWN 100 mwhere
+OPROG_GOD_ARGUMENT
+mwhere~
+P 14
+TRIG_UNKNOWN 100 owhere
+OPROG_GOD_ARGUMENT
+owhere~
+P 15
+TRIG_UNKNOWN 100 mfind
+OPROG_GOD_ARGUMENT
+mfind~
+P 16
+TRIG_UNKNOWN 100 ofind
+OPROG_GOD_ARGUMENT
+ofind~
+P 17
+TRIG_UNKNOWN 100 mpstat
+OPROG_GOD_ARGUMENT
+mpstat~
+P 18
+TRIG_UNKNOWN 100 bamfin
+OPROG_GOD_ARGUMENT
+bamfin~
+P 19
+TRIG_UNKNOWN 100 bamfout
+OPROG_GOD_ARGUMENT
+bamfout~
+P 20
+TRIG_UNKNOWN 100 snoop
+OPROG_GOD_ARGUMENT
+snoop~
+P 21
+TRIG_COMMAND 100 get
+OPROG_GOD_ARGUMENT
+get~
+P 22
+TRIG_COMMAND 100 give
+OPROG_GOD_ARGUMENT
+give~
+P 23
+TRIG_UNKNOWN 100 slookup
+OPROG_GOD_ARGUMENT
+slookup~
+P 24
+TRIG_COMMAND 100 note
+OPROG_GOD_ARGUMENT
+note~
+P 25
+TRIG_UNKNOWN 100 disconnect
+OPROG_GOD_ARGUMENT
+disconnect~
+P 26
+TRIG_UNKNOWN 100 timemode
+OPROG_GOD_COMMAND
+timemode~
+P 27
+TRIG_UNKNOWN 100 users
+OPROG_GOD_COMMAND
+users~
+P 28
+TRIG_UNKNOWN 100 termlist
+OPROG_GOD_COMMAND
+termlist~
+P 29
+TRIG_UNKNOWN 100 llog
+OPROG_GOD_ARGUMENT
+llog~
+P 30
+TRIG_UNKNOWN 100 mprogram
+OPROG_GOD_ARGUMENT
+mprogram~
+P 31
+TRIG_UNKNOWN 100 oprogram
+OPROG_GOD_ARGUMENT
+oprogram~
+P 32
+TRIG_UNKNOWN 100 shutoff
+OPROG_GOD_ARGUMENT
+shutoff~
+P 33
+TRIG_UNKNOWN 100 pload
+OPROG_GOD_ARGUMENT
+pload~
+P 34
+TRIG_UNKNOWN 100 pquit
+OPROG_GOD_ARGUMENT
+pquit~
+P 35
+TRIG_UNKNOWN 100 mpgoto
+OPROG_GOD_ARGUMENT
+mpgoto~
+P 36
+TRIG_UNKNOWN 100 arrest
+OPROG_GOD_ARGUMENT
+arrest~
+P 37
+TRIG_UNKNOWN 100 release
+OPROG_GOD_ARGUMENT
+release~
+P 38
+TRIG_UNKNOWN 100 rename
+OPROG_GOD_ARGUMENT
+rename~
+P 39
+TRIG_UNKNOWN 100 slay
+OPROG_GOD_ARGUMENT
+slay~
+P 100
+TRIG_WEAR 100
+OPROG_IF OIF_USER_SEX = 2 102 103
+P 102
+TRIG_VOID
+OPROG_GOD_COMMAND
+echo Baron $ has become an enforcer of the realm!~
+P 103
+TRIG_VOID
+OPROG_GOD_COMMAND
+echo Baroness $ has become an enforcer of the realm!~
+#60
+bow small~
+a small bow~
+A small bow lies here.~
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+1 2 1 WEAPON_WHIP
+3 600 2
+P 1
+TRIG_WEAR 100
+OPROG_IF OIF_USER_SEX = 0 2 3
+P 2
+TRIG_VOID
+OPROG_GOD_COMMAND
+recho The small bow quivers in delight at being used.&say Nice bow!~
+P 3
+TRIG_VOID
+OPROG_GOD_COMMAND
+recho The small bow makes a whining noise at being used by someone tainted with the stench of sex.~
+#61
+arrow small~
+a small arrow~
+A small arrow lies here.~
+~
+ITEM_TYPE_AMMO
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+1 5 20 2
+1 30 1
+#69
+test~
+a test object of Chaos~
+A small test object lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+1 0 0 0
+1 30 1
+P 1
+TRIG_TICK 100
+OPROG_PLAYER_QUEST_IF 4 4 < 1 2 0
+P 2
+TRIG_VOID
+OPROG_PLAYER_QUEST_IF 0 4 < 5 4 5
+P 4
+TRIG_VOID
+OPROG_GOD_COMMAND
+say Havent upped quest bits enough yet&
+mpat 1 mpmadd $ quest 0 4 1~
+P 5
+TRIG_VOID
+OPROG_GOD_COMMAND
+say Quest bits up to 5 !&
+mpat 1 mpmadd $ quest 4 4 1~
+#0
+
+
+
+
+#ROOMS
+#1
+The Void~
+You are floating in nothing.~
+0
+ROOM_NO_RECALL|ROOM_NO_MOB|ROOM_NO_RIP|ROOM_NO_CASTLE|ROOM_INDOORS|ROOM_PET_SHOP
+SECT_FIELD
+S
+#2
+Limbo~
+You are floating in a formless void, detached from all sensation of physical
+matter, surrounded by swirling glowing light, which fades into the relative
+darkness around you without any trace of edges or shadow.  You realize that
+there is an exit.
+  There is a small sign here.~
+0 ROOM_INDOORS|ROOM_SAFE SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 9755
+S
+#3
+The Junk Room~
+This room is filled with trash.~
+0 ROOM_NO_MOB|ROOM_INDOORS|ROOM_PET_SHOP SECT_CITY
+S
+#4
+The Test Room~
+This room is filled with trash.~
+0 ROOM_NO_MOB|ROOM_INDOORS|ROOM_PET_SHOP|ROOM_PRIVATE SECT_CITY
+S
+#0
+
+
+
+
+#RESETS
+M 0     1   1     2 ;                     Puff in Limbo                    
+M 0     2   1     1 ;              Tsi the cat in The Void                 
+O 0    12 -27648     2 ;               head of %s in Limbo                    
+O 0    13 -27648     2 ;              heart of %s in Limbo                    
+O 0    14 -27648     2 ;                arm of %s in Limbo                    
+O 0    15 -27648     2 ;                leg of %s in Limbo                    
+O 0    20 -27648     2 ;         a Magic Mushroom in Limbo                    
+O 0    21 -27648     2 ;   a bright ball of light in Limbo                    
+S
+
+
+
+
+#SHOPS
+0
+
+
+
+
+#SPECIALS
+S
+
+
+
+
+#$

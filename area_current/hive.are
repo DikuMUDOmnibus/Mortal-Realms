@@ -1,0 +1,1405 @@
+#AREA Hive~
+#AUTHORS Chaos  ~
+
+
+
+
+
+#HELPS
+-1 HIVE~
+This area is filled with large insects and powerful items.
+  The catacombs are one of the most complex of the realm.~
+0 $~
+
+
+
+
+#RANGES 20 30 10 50
+#MOBILES
+#4100
+centipede dragon~
+The centipede dragon~
+The centipede dragon is crawling the walls here.~
+The centipede dragon looks like a 30 foot long dragon with roughly 20 legs.  It
+has steam hissing from its mouth, and is glaring with faceted eyes.~
+ACT_SCAVENGER|ACT_STAY_AREA|ACT_BODY
+AFF_DETECT_INVIS
+-1000 S
+30 BODY_HEAD|BODY_TAIL BODY_MOUTH|BODY_TAIL|BODY_CLAW 20d8+580 5d4+25
+15000 106194
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>fight_prog 30~
+cast 'fireball' $n
+~
+|
+#4101
+bugbear bug bear~
+the bugbear~
+There is a bugbear growling here.~
+The bugbear looks like a cross between an oversized bug, and a grizzly bear.~
+ACT_SCAVENGER|ACT_AGGRESSIVE|ACT_STAY_AREA|ACT_BODY
+0
+-300 S
+16 BODY_HEAD|BODY_TORSO|BODY_LEG BODY_MOUTH|BODY_CLAW 4d6+260 2d5+18
+800 7227
+POS_STANDING POS_STANDING SEX_NEUTRAL
+>rand_prog 30~
+growl 
+~
+|
+#4102
+bugtiger bug tiger~
+the bugtiger~
+There is a bugtiger sleeping here.~
+The bugtiger looks particularly nasty.~
+ACT_SCAVENGER|ACT_AGGRESSIVE|ACT_STAY_AREA|ACT_BODY
+0
+-300 S
+22 BODY_HIP|BODY_ARM BODY_MOUTH|BODY_CLAW 2d6+330 2d7+20
+1300 35625
+POS_SLEEPING POS_SLEEPING SEX_NEUTRAL
+#4103
+giant millipede~
+the giant millipede~
+There is a giant millipede here, crawling around the room.~
+The giant millipede is about 8 feet long.~
+ACT_SCAVENGER|ACT_STAY_AREA|ACT_BODY
+0
+0 S
+15 BODY_HEAD|BODY_TORSO BODY_CLAW 2d5+200 2d5+15
+700 5687
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#4104
+giant centipede~
+the giant centipede~
+A giant centipede brushes against your leg.~
+The giant centipede is about 9 feet long.~
+ACT_SCAVENGER|ACT_AGGRESSIVE|ACT_STAY_AREA|ACT_BODY
+0
+0 S
+14 BODY_HEAD|BODY_TORSO BODY_MOUTH|BODY_CLAW 2d5+240 2d4+15
+500 4515
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#4105
+giant beetle~
+the giant beetle~
+A giant beetle crawls on the walls and ceilings.~
+The giant beetle is about 6 feet long.~
+ACT_SCAVENGER|ACT_STAY_AREA|ACT_BODY
+0
+0 S
+17 BODY_EYE|BODY_HIP BODY_TAIL|BODY_CLAW 3d5+260 2d5+17
+2000 9264
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#4106
+centipede~
+the gigantic centipede~
+A gigantic centipede looks down on you from the ceiling.~
+The gigantic centipede looks to be about 12 feet long.~
+ACT_SCAVENGER|ACT_STAY_AREA|ACT_BODY
+0
+0 S
+18 BODY_HEAD|BODY_LEG BODY_LEG|BODY_TAIL 6d5+290 2d5+17
+5000 11972
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#4107
+spider~
+the enormous spider~
+An enormous spider is here eating on giant bugs.~
+The spider looks similar to a very large tarantula.~
+ACT_SCAVENGER|ACT_AGGRESSIVE|ACT_STAY_AREA|ACT_BODY
+0
+-300 S
+25 BODY_MOUTH|BODY_EYE|BODY_LEG BODY_MOUTH 4d4+450 4d10+10
+15000 70135
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#4108
+large insect~
+the large insect~
+A large insect is crawling around the cavern.~
+The large insect looks to be about 2 feet long.  It has no distict comparison
+to normal insects.~
+ACT_SCAVENGER|ACT_AGGRESSIVE|ACT_STAY_AREA
+0
+0 S
+15 0 0 2d8+220 2d2+15
+100 5687
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#4109
+large beetle~
+the large beetle~
+There is a large beetle here.~
+The large beetle is about 4 feet long and seems to be able to fly.~
+ACT_SCAVENGER|ACT_STAY_AREA|ACT_BODY
+0
+0 S
+18 BODY_HEAD|BODY_TORSO BODY_MOUTH 4d8+230 4d3+18
+150 11972
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#4110
+praying mantis~
+the gigantic praying mantis~
+There is a gigantic praying mantis here, looking for victims.~
+The praying mantis stands well over 13 feet tall.  It is very fast, and very
+hungry.~
+ACT_SCAVENGER|ACT_AGGRESSIVE|ACT_STAY_AREA|ACT_BODY
+0
+0 S
+23 BODY_LEG|BODY_ARM BODY_MOUTH|BODY_TORSO 4d10+340 3d8+20
+5000 47349
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#0
+
+
+
+
+#OBJECTS
+#4100
+chitanus longsword long~
+the chitanus longsword~
+There is a chitanus longsword laying here.~
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 4 4 WEAPON_SLASH
+2 15000 16
+P 1
+TRIG_HIT 20
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 2 0
+P 2
+TRIG_VOID
+OPROG_ECHO
+The sword drinks deeply into it's victim.~
+P 2
+TRIG_VOID
+OPROG_APPLY OAPPLY_HIT 8
+#4101
+black scaled gloves~
+a pair of black scaled gloves~
+There is a pair of black scaled gloves laying here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HANDS
+8 0 0 0
+1 5000 19
+A
+APPLY_HITROLL 2
+A
+APPLY_STR 1
+#4102
+chitanus sleeves~
+a pair of chitanus sleeves~
+There is a pair of chitanus sleeves laying here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ARMS
+10 0 0 0
+2 2500 27
+A
+APPLY_HIT 5
+#4103
+chitanus helmet~
+a chitanus helmet~
+There is a chitanus helmet laying here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+10 0 0 0
+2 2500 27
+A
+APPLY_HIT 5
+#4104
+chitanus leggings~
+a pair of chitanus leggings~
+There is a pair of chitanus leggings here.~
+The leggings seem to make the wearer move more easily.~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_LEGS
+10 0 0 0
+2 2500 27
+A
+APPLY_HIT 5
+P 1
+TRIG_TICK 10
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 2 0
+P 2
+TRIG_VOID
+OPROG_APPLY OAPPLY_MOVE 10
+#4105
+chitanus scale armor~
+chitanus scale armor~
+There is a set of chitanus scale armor here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+10 0 0 0
+2 5000 28
+A
+APPLY_HIT 8
+#4106
+slimy dagger~
+a slimy dagger~
+There is a slimy dagger laying here.~
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 4 3 WEAPON_PIERCE
+1 4000 14
+A
+APPLY_HITROLL 1
+A
+APPLY_DAMROLL 2
+A
+APPLY_DEX 2
+P 1
+TRIG_HIT 20
+OPROG_IF OIF_WEAR_LOC ! WEAR_NONE 2 0
+P 2
+TRIG_VOID
+OPROG_ECHO
+The dagger drinks deeply into it's victim.~
+P 2
+TRIG_VOID
+OPROG_APPLY OAPPLY_HIT 5
+#0
+
+
+
+
+#ROOMS
+#4100
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 4105
+DDIR_UP
+You see daylight.~
+~
+0 -1 6130
+DDIR_DOWN
+~
+~
+0 -1 4125
+S
+#4101
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 4102
+S
+#4102
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 4103
+DDIR_WEST
+~
+~
+0 -1 4101
+S
+#4103
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 4104
+DDIR_SOUTH
+~
+~
+0 -1 4108
+DDIR_WEST
+~
+~
+0 -1 4102
+S
+#4104
+The Large Cavern~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.  This is a very large
+cavern.~
+41 0 SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 4103
+S
+#4105
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4100
+DDIR_EAST
+~
+~
+0 -1 4106
+S
+#4106
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 4107
+DDIR_WEST
+~
+~
+0 -1 4105
+S
+#4107
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 4112
+DDIR_WEST
+~
+~
+0 -1 4106
+S
+#4108
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4103
+DDIR_EAST
+~
+~
+0 -1 4109
+DDIR_SOUTH
+~
+~
+0 -1 4113
+S
+#4109
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 4114
+DDIR_WEST
+~
+~
+0 -1 4108
+S
+#4110
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 4111
+S
+#4111
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 4116
+DDIR_WEST
+~
+~
+0 -1 4110
+DDIR_DOWN
+~
+~
+0 -1 4136
+S
+#4112
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4107
+DDIR_SOUTH
+~
+~
+0 -1 4117
+S
+#4113
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4108
+DDIR_DOWN
+~
+~
+0 -1 4138
+S
+#4114
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4109
+DDIR_SOUTH
+~
+~
+0 -1 4119
+S
+#4115
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 4116
+DDIR_SOUTH
+~
+~
+0 -1 4120
+S
+#4116
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4111
+DDIR_SOUTH
+~
+~
+0 -1 4121
+DDIR_WEST
+~
+~
+0 -1 4115
+S
+#4117
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4112
+DDIR_EAST
+~
+~
+0 -1 4118
+S
+#4118
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 4123
+DDIR_WEST
+~
+~
+0 -1 4117
+S
+#4119
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4114
+DDIR_SOUTH
+~
+~
+0 -1 4124
+S
+#4120
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4115
+DDIR_DOWN
+~
+~
+0 -1 4145
+S
+#4121
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4116
+DDIR_EAST
+~
+~
+0 -1 4122
+S
+#4122
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 4121
+S
+#4123
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4118
+DDIR_EAST
+~
+~
+0 -1 4124
+S
+#4124
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4119
+DDIR_WEST
+~
+~
+0 -1 4123
+S
+#4125
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 4126
+DDIR_UP
+~
+~
+0 -1 4100
+S
+#4126
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 4131
+DDIR_WEST
+~
+~
+0 -1 4125
+S
+#4127
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 4128
+DDIR_SOUTH
+~
+~
+0 -1 4132
+S
+#4128
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 4129
+DDIR_WEST
+~
+~
+0 -1 4127
+S
+#4129
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 4128
+DDIR_DOWN
+~
+~
+0 -1 4154
+S
+#4130
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 4131
+DDIR_SOUTH
+~
+~
+0 -1 4135
+S
+#4131
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4126
+DDIR_WEST
+~
+~
+0 -1 4130
+S
+#4132
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4127
+DDIR_SOUTH
+~
+~
+0 -1 4137
+S
+#4133
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 4134
+S
+#4134
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 4139
+DDIR_WEST
+~
+~
+0 -1 4133
+S
+#4135
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4130
+DDIR_SOUTH
+~
+~
+0 -1 4140
+S
+#4136
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_UP
+~
+~
+0 -1 4111
+DDIR_DOWN
+~
+~
+0 -1 4161
+S
+#4137
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4132
+DDIR_SOUTH
+~
+~
+0 -1 4142
+S
+#4138
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 4143
+DDIR_UP
+~
+~
+0 -1 4113
+S
+#4139
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4134
+DDIR_SOUTH
+~
+~
+0 -1 4144
+DDIR_DOWN
+~
+~
+0 -1 4164
+S
+#4140
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4135
+DDIR_EAST
+~
+~
+0 -1 4141
+S
+#4141
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 4142
+DDIR_WEST
+~
+~
+0 -1 4140
+S
+#4142
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4137
+DDIR_WEST
+~
+~
+0 -1 4141
+S
+#4143
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4138
+DDIR_SOUTH
+~
+~
+0 -1 4148
+S
+#4144
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4139
+DDIR_SOUTH
+~
+~
+0 -1 4149
+S
+#4145
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 4146
+DDIR_UP
+~
+~
+0 -1 4120
+S
+#4146
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 4147
+DDIR_WEST
+~
+~
+0 -1 4145
+S
+#4147
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 4148
+DDIR_WEST
+~
+~
+0 -1 4146
+S
+#4148
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4143
+DDIR_WEST
+~
+~
+0 -1 4147
+S
+#4149
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4144
+S
+#4150
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 4151
+DDIR_SOUTH
+~
+~
+0 -1 4155
+S
+#4151
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 4150
+S
+#4152
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 4153
+DDIR_SOUTH
+~
+~
+0 -1 4157
+S
+#4153
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 4158
+DDIR_WEST
+~
+~
+0 -1 4152
+S
+#4154
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 4159
+DDIR_UP
+~
+~
+0 -1 4129
+S
+#4155
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4150
+DDIR_EAST
+~
+~
+0 -1 4156
+DDIR_SOUTH
+~
+~
+0 -1 4160
+S
+#4156
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 4161
+DDIR_WEST
+~
+~
+0 -1 4155
+S
+#4157
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4152
+DDIR_SOUTH
+~
+~
+0 -1 4162
+S
+#4158
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4153
+DDIR_EAST
+~
+~
+0 -1 4159
+S
+#4159
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4154
+DDIR_WEST
+~
+~
+0 -1 4158
+S
+#4160
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4155
+DDIR_SOUTH
+~
+~
+0 -1 4165
+S
+#4161
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4156
+DDIR_UP
+~
+~
+0 -1 4136
+S
+#4162
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4157
+DDIR_EAST
+~
+~
+0 -1 4163
+S
+#4163
+The Large Cavern~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed. This is a very large cavern.~
+41 0 SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 4162
+S
+#4164
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 4169
+DDIR_UP
+~
+~
+0 -1 4139
+S
+#4165
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4160
+DDIR_SOUTH
+~
+~
+0 -1 4170
+S
+#4166
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 4167
+DDIR_SOUTH
+~
+~
+0 -1 4171
+S
+#4167
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 4172
+DDIR_WEST
+~
+~
+0 -1 4166
+S
+#4168
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 4169
+S
+#4169
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4164
+DDIR_SOUTH
+~
+~
+0 -1 4174
+DDIR_WEST
+~
+~
+0 -1 4168
+S
+#4170
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4165
+DDIR_EAST
+~
+~
+0 -1 4171
+S
+#4171
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4166
+DDIR_WEST
+~
+~
+0 -1 4170
+S
+#4172
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 4167
+DDIR_EAST
+~
+~
+0 -1 4173
+S
+#4173
+The Catacombs~
+You are in a nesting of uniform caverns.  They
+seem to have been constructed.~
+41 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 4174
+DDIR_WEST
+~
+~
+0 -1 4172
+S
+#4174
+The Underground Stream~
+This is an underground stream that runs around a corner.~
+41 ROOM_NO_MOB SECT_WATER_NOSWIM
+DDIR_NORTH
+~
+~
+0 -1 4169
+DDIR_WEST
+~
+~
+0 -1 4173
+S
+#0
+
+
+
+
+#RESETS
+M 0  4100   1  4149 ;     The centipede dragon in The Catacombs            
+E 1  4100  1 ITEM_WEAR_HEAD ;equip the chitanus longsword   
+E 1  4101  1 9 ;equip a pair of black scaled gl
+M 0  4101   5  4103 ;              the bugbear in The Catacombs            
+M 0  4101   5  4137 ;              the bugbear in The Catacombs            
+M 0  4101   5  4155 ;              the bugbear in The Catacombs            
+M 0  4101   5  4116 ;              the bugbear in The Catacombs            
+M 0  4101   5  4114 ;              the bugbear in The Catacombs            
+M 0  4102   1  4171 ;             the bugtiger in The Catacombs            
+E 1  4102  1 10 ;equip a pair of chitanus sleeve
+M 0  4103   7  4126 ;      the giant millipede in The Catacombs            
+M 0  4103   7  4162 ;      the giant millipede in The Catacombs            
+M 0  4103   7  4144 ;      the giant millipede in The Catacombs            
+M 0  4103   7  4112 ;      the giant millipede in The Catacombs            
+M 0  4103   7  4108 ;      the giant millipede in The Catacombs            
+M 0  4103   7  4130 ;      the giant millipede in The Catacombs            
+M 0  4103   7  4128 ;      the giant millipede in The Catacombs            
+M 0  4104   8  4101 ;      the giant centipede in The Catacombs            
+M 0  4104   8  4116 ;      the giant centipede in The Catacombs            
+M 0  4104   8  4132 ;      the giant centipede in The Catacombs            
+M 0  4104   8  4148 ;      the giant centipede in The Catacombs            
+M 0  4104   8  4164 ;      the giant centipede in The Catacombs            
+M 0  4104   8  4172 ;      the giant centipede in The Catacombs            
+M 0  4104   8  4108 ;      the giant centipede in The Catacombs            
+M 0  4104   8  4124 ;      the giant centipede in The Catacombs            
+M 0  4105   1  4137 ;         the giant beetle in The Catacombs            
+E 1  4103  1 6 ;equip a chitanus helmet        
+M 0  4106   1  4162 ;   the gigantic centipede in The Catacombs            
+E 1  4104  1 7 ;equip a pair of chitanus leggin
+M 0  4107   1  4168 ;      the enormous spider in The Catacombs            
+E 1  4105  1 5 ;equip chitanus scale armor     
+M 0  4108  14  4104 ;         the large insect in The Large Cavern         
+M 0  4108  14  4108 ;         the large insect in The Catacombs            
+M 0  4108  14  4112 ;         the large insect in The Catacombs            
+M 0  4108  14  4116 ;         the large insect in The Catacombs            
+M 0  4108  14  4120 ;         the large insect in The Catacombs            
+M 0  4108  14  4124 ;         the large insect in The Catacombs            
+M 0  4108  14  4128 ;         the large insect in The Catacombs            
+M 0  4108  14  4132 ;         the large insect in The Catacombs            
+M 0  4108  14  4136 ;         the large insect in The Catacombs            
+M 0  4108  14  4140 ;         the large insect in The Catacombs            
+M 0  4108  14  4144 ;         the large insect in The Catacombs            
+M 0  4108  14  4148 ;         the large insect in The Catacombs            
+M 0  4108  14  4152 ;         the large insect in The Catacombs            
+M 0  4108  14  4156 ;         the large insect in The Catacombs            
+M 0  4109  12  4102 ;         the large beetle in The Catacombs            
+M 0  4109  12  4106 ;         the large beetle in The Catacombs            
+M 0  4109  12  4110 ;         the large beetle in The Catacombs            
+M 0  4109  12  4114 ;         the large beetle in The Catacombs            
+M 0  4109  12  4118 ;         the large beetle in The Catacombs            
+M 0  4109  12  4122 ;         the large beetle in The Catacombs            
+M 0  4109  12  4126 ;         the large beetle in The Catacombs            
+M 0  4109  12  4130 ;         the large beetle in The Catacombs            
+M 0  4109  12  4134 ;         the large beetle in The Catacombs            
+M 0  4109  12  4138 ;         the large beetle in The Catacombs            
+M 0  4109  12  4142 ;         the large beetle in The Catacombs            
+M 0  4109  12  4146 ;         the large beetle in The Catacombs            
+M 0  4110   1  4139 ;the gigantic praying mant in The Catacombs            
+E 1  4106  1 ITEM_WEAR_HEAD ;equip a slimy dagger           
+S
+
+
+
+
+#SHOPS
+0
+
+
+
+
+#SPECIALS
+S
+
+
+
+
+#$

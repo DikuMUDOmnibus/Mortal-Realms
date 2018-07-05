@@ -1,0 +1,21 @@
+These are the default levels for monsters:
+Level	Ave HP	Ave Dam
+15	250	      20
+20	350	      22
+25	475     	24
+30	600     	27
+35	680     	30
+40	790     	33
+45	900     	37
+50	1300	    41
+55	1650    	45
+60	2000    	50
+65	2800    	55
+70	3500    	60
+75	4200    	66
+80	5000    	72
+85	6200    	78
+90	7800    	85
+95	10000   	92
+
+These numbers are flexible.

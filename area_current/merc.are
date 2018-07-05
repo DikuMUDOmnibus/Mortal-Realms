@@ -1,0 +1,170 @@
+#AREA Residence of the Gods!~
+#AUTHORS Order  ~
+
+
+
+#HELPS
+0 $~
+
+
+
+#RANGES 99 99 0 99
+#MOBILES
+#9900
+homonculous imp~
+the homonculous~
+There is a small homonculous snooping around here.
+~
+The homonculous looks like a six inch tall gargoyle, with little wings and
+fangs.  It appears to be looking for something important.
+~
+32|2048|1 524288 0 S
+3 0 65 5d3+4 2d2+2
+0 0
+8 8 0
+#9901
+demon~
+the demon~
+There is a demon growling here.
+~
+The demon has large fangs protruding from its mouth, and a long row of
+spikes sticking up along its back.
+~
+1|4096|32768 8388608 -1000 S
+1 1 1 1d1+1 1d1+1
+0 0
+8 8 0
+#9902
+shadow beast~
+the shadow beast~
+There is a shadow of a beast moving around here.
+~
+The shadow has the definite form of a creature that looks fairly tough.  It
+moves without anything seeming to cast the shadow.
+~
+1|256|2048|8192|16384 524288|8388608 0 S
+1 1 1 1d1+1 1d1+1
+0 0
+8 8 0
+#9903
+shade shadow~
+the shade~
+There is a shadow of a man here.
+~
+The shadow looks like an armored figure that moves without a man to cast the
+shadow.
+~
+1|256|2048|16384 524288 0 S
+1 1 1 1d1+1 1d1+1
+0 0
+8 8 0
+#9904
+phantasm phantasmal killer shadow~
+the phantasmal killer~
+There is a shimmering shadow here.
+~
+The shadow seems to sneak around and makes wispering noises.
+~
+1|256|2048|8192|16384 524288|8388608 0 S
+1 1 1 1d1+1 1d1+200
+0 0
+8 8 0
+#9905
+illusion~
+the illusion~
+~
+~
+ACT_WIMPY|ACT_PET|ACT_SMART|ACT_UNDEAD|ACT_RACE AFF_FLYING 0 S
+1 1 1 1d1+1 1d1+200
+0 0
+8 8 0
+
+#9906
+fire elemental~
+a fire elemental~
+A pillar of fire spins endlessly.~
+The fire elemental is looking for things to burn!~
+ACT_ELEMENTAL|ACT_PET|ACT_SMART|ACT_UNDEAD|ACT_RACE 0 0 S
+1 1 1 1d1+1 1d1+200
+0 0
+8 8 0
+#9907
+water elemental~
+a water elemental~
+A ripple in the water seems to be man shaped.~
+The water elemental seems to be mouthing unheard words.~
+ACT_ELEMENTAL|ACT_PET|ACT_SMART|ACT_UNDEAD|ACT_RACE 0 0 S
+1 1 1 1d1+1 1d1+200
+0 0
+8 8 0
+#9908
+air elemental humanoid dust~
+an air elemental~
+Motes of dust dance in the shape of large humanoid.~
+As you look closer you see a rippling disturbance in the air. Without
+the dust, you suspect you wouldn't be able to make this elemental out 
+at all.~
+ACT_ELEMENTAL|ACT_PET|ACT_SMART|ACT_UNDEAD|ACT_RACE AFF_FLYING|AFF_INVISIBLE 0 S
+1 1 1 1d1+1 1d1+200
+0 0
+8 8 0
+#9909
+earth elemental~
+an earth elemental~
+A large mound of earth has risen from the ground.~
+The mound is made of up of earth, clay, bits of twig and rocks. It mocks
+the shape of a man.~
+ACT_ELEMENTAL|ACT_PET|ACT_SMART|ACT_UNDEAD|ACT_RACE AFF_PASS_DOOR 0 S
+1 1 1 1d1+1 1d1+200
+0 0
+8 8 0
+#9993
+super mob~
+The Super Mob~
+The Super Mob is here! He looks as busy as hell.~
+The Junk Man looks very dirty.~
+ACT_SENTINEL|ACT_SMART|ACT_BODY
+AFF_INVISIBLE|AFF_HIDE|AFF_TONGUES
+1000 S
+95 BODY_HEAD|BODY_EYE BODY_MOUTH 5d10+5550 4d6+35
+10000 780605
+POS_STANDING POS_STANDING SEX_MALE
+#0
+
+
+
+#OBJECTS
+#9900
+key~
+a key~
+A key has been left here.~
+~
+18 0 1
+0 0 0 0
+1 0 1
+#0
+
+
+
+#ROOMS
+#0
+
+
+
+#RESETS
+M 0     3   1     3 
+S
+
+
+
+#SHOPS
+0
+
+
+
+#SPECIALS
+S
+
+
+
+#$

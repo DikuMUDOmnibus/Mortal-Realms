@@ -1,0 +1,197 @@
+Area Creation Quick Reference Guide for Mortal Realms             Presto 2/9/95
+===============================================================================
+#AREA {?? ??} Creator Area Name~ (creator's name should not exceed 7 letters)
+      
+#NODEBUG          (optional, allows weird door connections)
+#NOTELEPORT       (optional, does not permit teleporting into area)
+#RESTRICT {lo hi} (optional, only players in the range low-high may enter)
+
+#HELPS
+  <level of help> <keywords (all capitals)>~
+  <help text (multiple lines)>
+  ~
+0 $~
+
+#MOBILES
+  #<virtual number of mobile>
+  <mobile keywords>~
+  <mobile short name>~
+  <mobile long name>
+  ~
+  <mobile description (multiple lines)>
+  ~
+  <action flags> <affection flags> <alignment value> S
+  <level> <body part> <attack part> <hit points (?d?+?)> <damage (?d?+?)>
+  <gold> <race, if ACT_RACE set, else 0>
+  <loaded position> <default position> <sex>
+ *   D (Displayable picture)       \  Extra Values (unnecessary)
+ *   > (mob_progs)                 /
+#0
+
+#OBJECTS
+  #<v-number of object>
+  <object keywords>~
+  <object short name>~
+  <object long name>~
+  ~
+  <item type> <item flags> <item wear locations>
+  <4 values, dependant on item type>
+  <weight> <value> <level>
+*   E (stands for EXTRA DESCRIPTION)      \
+*   <extra keywords>~                      \
+*   <extra description (multiple lines)>    \
+*   ~                                        \
+*   A (stands for APPLIES)                    Extra Values (unnecessary)
+*   <apply type> <apply amount>              /
+*   C (stands for COMBAT USAGES)            /
+*   <attack type>~                         /
+*   <classes that may use object>         /
+*   D (stands for displayable picture)  /
+#0
+
+#ROOMS
+  #<v-number of room>
+  <room name>~
+  <room description (multiple lines)>
+  ~
+  <area number> <room flags> <sector type>
+  D<direction of door>
+  <look description> (what you see when you look that direction)
+  ~
+  <door name>~
+  <door type> <v-num of key that opens door> <v-num of connected room>
+*   E (stands for EXTRA DESCRIPTION)        \
+*   <extra keywords>~                        \Extra Values (unnecessary)
+*   <extra description (multiple lines)>     / 
+*   ~                                       /
+  S (denotes end of room)
+#0
+
+#RESETS
+  M <if-flag> <mob v-num> <max-num> <room v-num>         (load mobile in room)
+  G <if-flag> <object v-num> <max-num>                   (give object to mob)
+  E <if-flag> <object v-num> <max-num> <wear-location>   (equip object on mob)
+  O <if-flag> <object v-num> <max-num> <room v-num>      (load object in room)
+  P <if-flag> <object v-num> <max-num> <container v-num> (put object in object)
+  R <if-flag> <room v-num> <last exit to randomize>      (randomize exits)
+S
+
+#SHOPS
+  <shopkeeper v-num> <5 item_types to buy> <buy %> <sell %> <open> <close>
+0
+
+#$
+===============================================================================
+
+Mobile Values:
+-------------------------------------------------------------------------------
+Action flags:
+ACT_IS_NPC        1 /* Auto set for mobs*/
+ACT_SENTINEL      2 /* Stays in one room*/
+ACT_SCAVENGER     4 /* Picks up objects*/
+ACT_AGGRESSIVE   32 /* Attacks PC's*/
+ACT_STAY_AREA    64 /* Won't leave area*/
+ACT_WIMPY       128 /* Flees when hurt*/
+ACT_PET         256 /* Auto set for pets*/
+ACT_TRAIN       512 /* Can train PC's*/
+ACT_PRACTICE   1024 /* Can practice PC's*/
+ACT_WEAK       2048 /* Cannot carry anything*/
+ACT_SMART      4096 /* Can talk, normal mobs can't*/
+ACT_ONE_FIGHT  8192 /* Disappears after fight*/
+ACT_NO_ORDER  16384 /* Cannot be ordered    */
+ACT_BODY      65536 /* Uses body parts */
+ACT_RACE     131072 /* Allows race to be defined */
+
+Affection Flags:
+AFF_BLIND           1
+AFF_INVISIBLE       2
+AFF_DETECT_EVIL     4
+AFF_DETECT_INVIS    8
+AFF_DETECT_MAGIC   16
+AFF_DETECT_HIDDEN  32
+AFF_SANCTUARY     128
+AFF_FAERIE_FIRE   256
+AFF_INFRARED      512
+AFF_CURSE        1024
+AFF_UNDERSTAND   2048
+AFF_POISON       4096
+AFF_PROTECT      8192
+AFF_SNEAK       32768
+AFF_HIDE        65536
+AFF_SLEEP      131072
+AFF_CHARM      262144
+AFF_FLYING     524288
+AFF_PASS_DOOR 1048576
+AFF_STEALTH   2097152
+AFF_CLEAR     4194304
+AFF_HUNT      8388608
+AFF_TONGUES  16777216
+AFF_ETHEREAL 33554432  /* Makes the mobile absolutely invisible to system */
+
+Alignment value:
+Good:    1000 to   350
+Neutral:  350 to  -350
+Evil:    -350 to -1000
+
+Average Hit Points and Damage based on level:
+Level   Ave HP  Ave Dam
+1       20      2
+2       30      3
+3       40      4
+4       50      5
+5       60      7
+10      150     15
+15      250     20
+20      350     22
+25      475     24
+30      600     27
+35      680     30
+40      790     33
+45      900     37
+50      1300    41
+55      1650    45
+60      2000    50
+65      2800    55
+70      3500    60
+75      4200    66
+80      5000    72
+85      6200    78
+90      7800    85
+95      10000   92
+
+Body and Attack parts:     (Attack parts are used in combat)
+To use these, set ACT_BODY (Body parts may be sliced off in death)
+BODY_HEAD	1
+BODY_MOUTH	2
+BODY_EYE	4
+BODY_TORSO	8
+BODY_HIP	16
+BODY_LEG	32
+BODY_ARM	64
+BODY_WING	128
+BODY_TAIL	256
+BODY_TENTICLE	512
+BODY_HORN	1024
+BODY_CLAW	2048
+BODY_HAND	4096
+BODY_FOOT	8192
+
+Gold Pieces:
+The number of gold pieces the mobile has on him.  May be stolen or collected
+upon the death of the creature.
+
+Race:
+RACE_HUMAN    0
+RACE_HALFLING 1
+RACE_ELF      2
+RACE_DROW     3
+RACE_DWARF    4
+RACE_GNOME    5
+RACE_ORC      6
+RACE_OGRE     7
+
+Mobile position:
+POS_DEAD      0 /* Don't Use */
+POS_MORTAL    1 /* Don't Use */
+POS_INCAP      S_MORTAL    1 /* Don't Use */
+POS_IN

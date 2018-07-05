@@ -1,0 +1,62 @@
+#AREA Castles Castles of Players~
+
+#AUTHORS unknown~
+#RANGES
+0 99 20 99
+#FLAGS 0
+
+#TEMPERATURE 20 80 15 5
+
+
+
+
+#HELPS
+0 $~
+
+
+
+
+#MOBILES
+#0
+
+
+
+
+#OBJECTS
+#0
+
+
+
+
+#ROOMS
+#20000
+Castle base room.~
+~
+200 ROOM_NO_MOB|ROOM_SAFE|ROOM_NO_RECALL SECT_INSIDE
+S
+#0
+
+
+
+
+#RESETS
+S
+
+
+
+
+#SHOPS
+0
+
+
+
+
+#SPECIALS
+S
+
+
+
+
+#$
+XXXXXXXXXX
+#Savearea

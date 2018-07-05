@@ -1,0 +1,431 @@
+#PLAYER
+Name         Chaos~
+ShortDescr   A small cat~
+LongDescr    ~
+Description  ~
+Sex          0
+Class        6
+Race         3
+Language     4095
+Speak        4
+Level        99
+Trust        99
+Played       3740525
+KLR_Played   1838345
+Critical     0
+OutCastPlay  0
+Room         1
+HpManaMove   6666 6666 6666 6666 6666 6666
+Actuals   6666 6666 6666
+Gold         90255179
+Account      0
+Exp          666666666
+Explost      0
+Act          1375745718
+AffectedBy   0
+Affected2By   0
+Position     7
+Player2_Bits 4391
+Practice     780
+GivePracNeg  0
+GivePracPos  0
+SavingThrow  0
+EQSaves      0
+Alignment    -542
+Hitroll      0
+EQHitroll    0
+Damroll      0
+EQDamroll    0
+Armor        71
+Wimpy        0
+Deaf         0
+Channel      0
+LastTime     935147386
+Arrested     0
+Jailtime     0
+Jaildate     856469767
+Mailaddress  ~
+Htmladdress  ~
+Password     ~
+Bamfin       arrives from the north.~
+Bamfout      falls through the floor.~
+Title         is where reality ends.~
+Obj_Ver_Num  1
+AttrPerm     25 25 25 15 25
+AttrMod      0 0 0 0 0
+Condition    0 48 48
+Mclass  0 99
+Mclass  1 99
+Mclass  2 99
+Mclass  3 99
+Mclass  4 99
+Mclass  5 99
+Mclass  6 99
+Skill        99 'reserved'
+Skill        99 'acid blast'
+Skill        99 'armor'
+Skill        99 'bless'
+Skill        99 'blindness'
+Skill        99 'burning hands'
+Skill        99 'call lightning'
+Skill        99 'cause critical'
+Skill        99 'cause light'
+Skill        99 'cause serious'
+Skill        99 'change sex'
+Skill        99 'charm person'
+Skill        99 'chill touch'
+Skill        99 'color spray'
+Skill        99 'continual light'
+Skill        99 'control weather'
+Skill        99 'create food'
+Skill        99 'block area'
+Skill        99 'create spring'
+Skill        99 'create water'
+Skill        99 'cure blindness'
+Skill        99 'cure critical'
+Skill        99 'cure light'
+Skill        99 'cure poison'
+Skill        99 'cure serious'
+Skill        99 'curse'
+Skill        99 'detect evil'
+Skill        99 'detect hidden'
+Skill        99 'detect invis'
+Skill        99 'detect magic'
+Skill        99 'detect poison'
+Skill        99 'dispel evil'
+Skill        99 'dispel magic'
+Skill        99 'earthquake'
+Skill        99 'enchant weapon'
+Skill        99 'object invis'
+Skill        99 'energy drain'
+Skill        99 'faerie fire'
+Skill        99 'faerie fog'
+Skill        99 'breath water'
+Skill        99 'mage blast'
+Skill        99 'fireball'
+Skill        99 'flamestrike'
+Skill        99 'fly'
+Skill        99 'gate'
+Skill        99 'giant strength'
+Skill        99 'harm'
+Skill        99 'heal'
+Skill        99 'homonculous'
+Skill        99 'identify'
+Skill        99 'infravision'
+Skill        99 'invis'
+Skill        99 'know alignment'
+Skill        99 'lightning bolt'
+Skill        99 'locate object'
+Skill        99 'magic missile'
+Skill        99 'mass invis'
+Skill        99 'mass'
+Skill        99 'pass door'
+Skill        99 'poison'
+Skill        99 'protection from evil'
+Skill        99 'refresh'
+Skill        99 'remove curse'
+Skill        99 'rift'
+Skill        99 'rip'
+Skill        99 'sanctuary'
+Skill        99 'sanctify'
+Skill        99 'shield'
+Skill        99 'shocking grasp'
+Skill        99 'sleep'
+Skill        99 'stone skin'
+Skill        99 'summon'
+Skill        99 'demon'
+Skill        99 'tongues'
+Skill        99 'understand'
+Skill        99 'beast'
+Skill        99 'shade'
+Skill        99 'phantasm'
+Skill        99 'teleport'
+Skill        99 'ventriloquate'
+Skill        99 'weaken'
+Skill        99 'word of recall'
+Skill        99 'write spell'
+Skill        99 'stability'
+Skill        99 'acid breath'
+Skill        99 'fire breath'
+Skill        99 'frost breath'
+Skill        99 'gas breath'
+Skill        99 'lightning breath'
+Skill        99 'backstab'
+Skill        99 'disarm'
+Skill        99 'dodge'
+Skill        99 'enhanced damage'
+Skill        99 'hide'
+Skill        99 'martial arts'
+Skill        99 'kick'
+Skill        99 'parry'
+Skill        99 'peek'
+Skill        99 'pick lock'
+Skill        99 'rescue'
+Skill        99 'second attack'
+Skill        99 'fourth attack'
+Skill        99 'sneak'
+Skill        99 'climb'
+Skill        99 'steal'
+Skill        99 'third attack'
+Skill        99 'shoot'
+Skill        99 'track'
+Skill        99 'notice'
+Skill        99 'throw'
+Skill        99 'short range'
+Skill        99 'medium range'
+Skill        99 'long range'
+Skill        99 'rearm'
+Skill        99 'shadow'
+Skill        99 'divert'
+Skill        99 'voice'
+Skill        99 'bargain'
+Skill        99 'lock lock'
+Skill        99 'knife'
+Skill        99 'greater hide'
+Skill        99 'greater sneak'
+Skill        99 'makepoison'
+Skill        99 'stealth'
+Skill        99 'disguise'
+Skill        99 'spy'
+Skill        99 'attack'
+Skill        99 'armor usage'
+Skill        99 'distract'
+Skill        99 'greater peek'
+Skill        99 'snatch'
+Skill        99 'greater pick'
+Skill        99 'clear path'
+Skill        99 'hunt'
+Skill        99 'haste'
+Skill        99 'enhanced rest'
+Skill        99 'enhanced heal'
+Skill        99 'enhanced revive'
+Skill        99 'animate dead'
+Skill        99 'banish'
+Skill        99 'enhance object'
+Skill        99 'mage shield'
+Skill        99 'dispel undead'
+Skill        99 'dispel good'
+Skill        99 'remove fear'
+Skill        99 'feast'
+Skill        99 'restore'
+Skill        99 'tremor'
+Skill        99 'energy shift'
+Skill        99 'induction'
+Skill        99 'assassinate'
+Skill        99 'glance'
+Skill        99 'guard'
+Skill        99 'forge'
+Skill        99 'detect forgery'
+Skill        99 'plant'
+Skill        99 'camp'
+Skill        99 'illusion'
+Skill        99 'mirror image'
+Skill        99 'confusion'
+Skill        99 'hallucinate'
+Skill        99 'ethereal travel'
+Skill        99 'astral projection'
+Skill        99 'berserk'
+Skill        99 'critical hit'
+Skill        99 'greater backstab'
+Skill        99 'gouge'
+Skill        99 'circle'
+Skill        99 'trip'
+Skill        99 'anatomy'
+Skill        99 'soothing touch'
+Skill        99 'benediction'
+Skill        99 'righteous fury'
+Skill        99 'farheal'
+Skill        99 'unholy word'
+Skill        99 'holy word'
+Skill        99 'invigorate'
+Skill        99 'greater stealth'
+Skill        99 'quick draw'
+Skill        99 'flash powder'
+Skill        99 'muffle'
+Skill        99 'pass without trace'
+Skill        99 'improved invis'
+Skill        99 'truesight'
+Skill        99 'recharge'
+Skill        99 'transport'
+Skill        99 'anti-magic shell'
+Skill        99 'possess'
+Skill        99 'hallucinatory terrain'
+Skill        99 'nightmare'
+Skill        99 'smoke'
+Skill        99 'slow'
+Skill        99 'brew potion'
+Skill        99 'elemental'
+Skill        99 'fireshield'
+Skill        99 'unbarring ways'
+Skill        99 'vampiric touch'
+Skill        99 'bash'
+Skill        99 'doorbash'
+Skill        99 'greater hunt'
+Skill        99 'greater track'
+Skill        99 'dual wield'
+Skill        99 'protection from good'
+Skill        99 'general purpose'
+Skill        99 'high explosive'
+Skill        99 'slot -1'
+Speed   3
+Notes   296
+Vt100     2
+Reincarnation     66
+Reincarn_allow     0
+Previous_Hours    0
+Tactical     1006
+TactIndex    Xs~
+Compass     8
+LastConnect     8814
+CreationRoom 0
+CreationZone 0
+P__vnum      166
+Vt100type   1127
+Portbaud   20000
+Portsize   10000
+Prompt_layout  $hH $vV $mM~
+Spam   1024
+Clock    0
+Hook     0
+Recall   9709
+DeathRoom   9709
+Whichgod   2
+Ansi   1
+Army   0
+Last_Real_Room   9755
+Rank   9
+Block_list    ~
+Auto_Command  acid blast~
+Auto_Flags  2
+History 0 4
+History 1 2
+History 2 0
+History 3 0
+History 4 0
+History 5 0
+History 6 0
+LastNote        934133063
+Topic 0 933105136
+Topic 1 934133063
+Topic 2 927841155
+Topic 3 931438858
+Topic 4 927643269
+Topic 5 931273572
+Color  0 36
+Color  1 37
+Color  2 33
+Color  3 34
+Color  4 31
+Color  5 32
+Color  6 37
+Color  7 35
+Color  8 34
+Color  9 33
+Color  10 32
+Color  11 35
+Color  12 37
+Color  13 32
+Color  14 33
+Color  15 36
+Color  16 33
+Colorb 0 40
+Colorb 1 41
+Colorb 2 44
+Colorb 3 40
+Colorb 4 40
+Colorb 5 40
+Colorb 6 40
+Colorb 7 40
+Colorb 8 40
+Colorb 9 40
+Colorb 10 40
+Colorb 11 40
+Colorb 12 44
+Colorb 13 44
+Colorb 14 44
+Colorb 15 44
+Colorb 16 45
+Mswitched 0
+KillNum 0
+PK_ATTACKS 30
+0 0 NULL~
+0 0 NULL~
+0 0 NULL~
+0 0 NULL~
+0 0 NULL~
+0 0 NULL~
+0 0 NULL~
+0 0 NULL~
+0 0 NULL~
+0 0 NULL~
+0 0 NULL~
+0 0 NULL~
+0 0 NULL~
+0 0 NULL~
+0 0 NULL~
+0 0 NULL~
+0 0 NULL~
+0 0 NULL~
+0 0 NULL~
+0 0 NULL~
+0 0 NULL~
+0 0 NULL~
+0 0 NULL~
+0 0 NULL~
+0 0 NULL~
+0 0 NULL~
+0 0 NULL~
+0 0 NULL~
+931392675 107 Order~
+931392626 107 Order~
+End
+
+#OBJECT
+Quick2 
+0
+16
+chaos~
+The Sword of Chaos~
+NULL~
+NULL~
+9744
+16384
+8193
+5
+1
+1
+0
+100
+0
+0 1 6 11
+0
+Cond 83
+Indexrefa 959458193
+Indexrefb 495777035
+End
+
+#OBJECT
+Quick2 
+0
+5
+armor~
+The Armor of Chaos~
+NULL~
+NULL~
+3353
+16384
+9
+9
+5
+11
+0
+0
+0
+5 0 0 0
+0
+Cond 70
+Indexrefa 67739887
+Indexrefb 167243227
+End
+
+#END Chaos

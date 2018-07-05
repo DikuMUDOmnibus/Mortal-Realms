@@ -1,0 +1,193 @@
+-1 CENTRALCONTINENTNW~
+Map of the Central Continent of Mortal Realms (Northwest Quadrant)
+
+{040}        %%%%%%%            %%%%%%%%%                        {070}| {020}CC-Chapel Cata.{300}
+{040}     %%%%     %%%%%%      %%       %%%%%%%%%         %%%%%%%{070}| {020}DC-Drow City{300}
+{040}    %%             %%%%%%%%                %%  %%%  %%    ^ {070}| {020}DN-Dangerous{300}
+{040}  %%%                                       %%%% %%%%  ^ ^  {070}| {020}   Neighborhood{300}
+{040} %%                                                 ^   ^   {070}| {020}GM-Gilikak's{300}
+{040} %                            {030}|---{050}GM               ^        {070}| {020}GV-Graveyard{300}
+{040}%%          {030}|--{050}MC             |                  ^   ^ ^ ^  {070}| {020}MC-Machine Dreams{300}
+{040}%           {030}|                 |               {050}DQ{030}---{050}DC       {070}| {020}MD-Miden'nir{300}
+{040}%        {050}DN{030}-{020}KY{030}---------|      |                   ^|    ^{050}MZ {070}| {020}KY-Kytar{300}
+{040}%     {050}ZC{030}-|  |   |      |------+-------------|   ^  | ^   |  {070}| {020}WL-Wonderland{300}
+{040}%%          {050}GV  {030}|             |             |---------------{070}| {020}ZC-Zane's Crypt{300}
+{040} %          {030}|   |             |                ^|  ^  ^     {070}| {020}MZ-Monastery of{300}
+{040} %%         {050}CC  {030}|         |---|                 | ^         {070}| {020}   Zaar{300}
+{040}  %%            {030}|     {050}WL{030}--|                 ^^  {050}MD   ^      {070}| {020}DQ-Drow HQ{300}
+{040}   %            {030}|                              ^   ^        {070}|{300}
+{070}------------------------------------------------------------|{300}
+   (-) Back
+{-}REALMMAP~
+-1 CENTRALCONTINENTSW~
+Map of the Central Continent of Mortal Realms (Southwest Quadrant)
+
+{070}------------------------------------------------------------| {020}AV-Avernus{300}
+{040}   %            {030}|         {050}PP              ^   ^   ^         {070}| {020}CE-City o/Entropy{300}
+{040}   %%    {030}|------|         |                  ^  ^           {070}| {020}DT-Dragon Tower{300}
+{040}    %%{050}FA{030}---{020}MK   {030}|-------------------------|          {050}DT     {070}| {020}FA-Forest o/Arden{300}
+{040}     %%%%             {030}|     {050}MR{030}            |^^  ^ ^   |      {070}| {020}GT-Gateway{300}
+{040}        %%%        {050}TD{030}-|  {050}KS   {040}%%%%%      ^{030}|-------|  |------{070}| {020}MK-Mount Kolvir{300}
+{040}          %%%%%       {050}SW{030}-| {040}%%%%%% %%%%%     ^   ^ {030}|  |      {070}| {020}MR-Marsh{300}
+{040}              %%%%   %%%%%%%          %%%%%   {050}WV{030}-----|      {070}| {020}PM-Pompeii{300}
+{040}                 %%%%%                    %%%% ^     {030}|      {070}| {020}PP-Polvo's Palace{300}
+{040}                              %%%%           %%%     {030}|      {070}| {020}RI-Raptor Island{300}
+{040}                             %%  %%%%%         %%  {030}|---{050}CE   {070}| {020}SW-Swampland{300}
+{040}                            %% {050}RI{040}    %%%        %  {030}|        {070}| {020}TD-Troll's Den{300}
+{040}                           %%     {020}PM{040}   %        %%{050}MR{030}-|   %%%{070}| {020}VN-Vulcano{300}
+{040}                           % {050} VN{040}      %%         %%% {050}GT %%  {070}| {020}WV-Wyvern's{300}
+{040}                           %% %%%%   %%            %%{050}AV{040}%%   {070}| {020}KS-City of {300}
+{040}                            %%%  %%%%%              %%%%    {070}|    {020}Kisangani{300}
+                                                            {070}| {020}MR-Mictlan Region{300}
+   (-) Back
+{-}REALMMAP~
+-1 CENTRALCONTINENTNE~
+Map of the Central Continent of Mortal Realms (Northeast Quadrant)
+
+{070}|{040}                                            %%%%%            {020}DV-Deeve{300}
+{070}|{040}%%%%                                      %%%   %%%%%%%      {020}EV-Elven Valley{300}
+{070}|{040}   %%%%%%%%%    %%%%%%    %%%%%%%       %%%           %%     {020}FN-Fire Newts{300}
+{070}|     {020}OF    {040}%%%%%%    %%  %%     %%%%%%%%%     {050}PD  SD   {040}%%%   {020}GD-Great Eastern{300}
+{070}|     {030}|                {040}%%%%                    {030}|   |      {040}%%  {020}   Desert{300}
+{070}|     {030}|    {050}EQ                                  {050}GD{030}--|       {040}%% {020}HT-High Tower{300}
+{070}|     {030}|     |      {050}PN                          {030}|            {040}% {020}OF-City of Ofcol{300}
+{070}|     {030}|    {050}EV      {030}|        {150}??                 {030}|            {040}% {020}PD-Pyramid{300}
+{070}|     {030}|    |       |                           |           {040}%% {020}PN-Plains of the{300}
+{070}|     {030}|--------|   |             |----------------{050}HT      {040}%%  {020}   North{300}
+{070}|{030}-----|        |---|             |                       {040}%%   {020}SD-Sun Dome{300}
+{070}|                  {030}|-----|    |--|    {050}DV                {040}%    {020}EQ-Elf HQ{300}
+{070}|                        {030}|    |       |--{050}FN              {040}%    {020}??-City of{300}
+{070}|                        {030}|----+-------|                 {040}%%    {020}      Eternity /{300}
+{070}|                             {030}|                         {040}%     {020}   Magic Zone{300}
+{070}|------------------------------------------------------------{300}
+   (-) Back
+{-}REALMMAP~
+-1 CENTRALCONTINENTSE~
+Map of the Central Continent of Mortal Realms (Southeast Quadrant)
+
+|------------------------------------------------------------ AR-Arachnos
+|                          HQ |                         %     AW-Alch. Workshop
+|    EC                 AR  | |  TF                    %%     CK-Chakkor
+|    |                  |--HD-CK-|                    %%      DC-Dw Catacombs
+|    |       DC     |---|  |  |                 |-----%       DD-Dw Daycare
+|-------|    DK     |   |  GF |---|        |----|     %%%     DK-Dw Kingdom
+|       |    |  |---|   HB        |--------|            %%    EC-Elem. Canyon
+|       |----+--|   |             |      |               %%   GF-Graywd Forest
+|         |  |      |             |-|    GV-AW            %   GV-Gnome Village
+|         KJ DD     HV         TH-| |                     %%  HB-Honest Bob's
+|                                   |--|                   %  HD-Haon Dor
+|                                   |  |--DQ             %%%  HV-Hive
+|%%%       %%%%                     |  RT              %%%    KJ-Kgdm o/Juargan
+|  %%   %%%%  %%%%%%%    %%%%%%%    |          %%%%%%%%%      RT-Refuge Tribe
+|   %%%%%           %%%%%%     %%%%%%     %%%%%%              TF-Tangwd Forest
+|                                   %%%%%%%                   TH-Thalos
+|                                                             HQ-Human HQ
+|                                                             DQ-Dwarf HQ
+   (-) Back
+{-}REALMMAP~
+-1 NORTHERNCONTINENT~
+Map of the Northern Continent of Mortal Realms
+
+    %%%%%%%                       %%%%%%%                        DA-Dark Empire
+  %%% TI  %%%%        %%%%%%%   %%%     %%%%%%                   GE-Gnome Emp.
+  %          %%   %%%%%     %% %%            %%%%%     %%%%%%    IM-Isle of
+  %%  %%%     %  %%          %%%                 %%%%%%%    %%%     Mist
+   %%%% %%%  %%  %                                            %% LN-Land of Not
+          %%%%   %%                                            % MC-Mist City
+     %%%          %%              ??                           % MM-Menos' Maze
+    %% %%          %%%%                                      %%% RK-Red Knights
+   %%   %             %%%                         %%%%      %%   TD-Temple of
+   % IM %               %%       TD             %%%  %%%   %%       Demise
+   %   %% %%%% %%%%      %----DA |    RK      %%%      %%%%%     TI-Troll
+   %    %%%  %%%  %%     %%    |----|-|     %%%                     Island
+   %%      MC      %      %%%%    | |     %%%                    GQ-Gnome HQ
+    %%  MM %%%%  %%%         %%% LN |-GE     %%                  ??-City of
+     %%%%%%%  %%%%             %%   | (GQ)   %%                     Eternity / 
+                                %%%%OC%%%%%%%                       Magic Zone
+   (-) Back                        %%%%
+{-}REALMMAP~
+-1 EASTERNCONTINENT~
+Map of the Eastern Continent of Mortal Realms
+
+{040}                                 %%%%%%
+{040}                             %%%%%    %%%             HG-Holy Grove
+{040}                            %%    -PY  %%%%%          MC-Medusa's Castle
+{040}                           %%   OL        %%%%        MF-Mushroom Forest
+{040}                        %%%%    |   NP--AB   %%       MI-Midgaard
+{040}                   %%%%%%    |--|       |   %%        MO-Mob Factory
+{040}                 %%%         |          AT  %%%%%     OL-Olympus
+{040}                %%    SH     |   YG-OT    \     %%    OT-Old Thalos
+{040}             %%%% HL---|-|   |      |      MF    %%%  SH-Shire
+{040}            %%           |------MI--HG-----|--OQ   %% YG-Yggdrassil
+{040}            %------------|      |                   % HL-Halfling HQ
+{040}            %%     |        ??  |                 %%% OQ-Orc HQ
+{040}             %%    |--|         |             %%%%%   AT-Atlantis
+{040}              %%%%%   |-MO      |--MC       %%%       AB-Abyssal Depths
+{040}                  %%%                    %%%%         NP-Neptune's Garden
+{040}                    %%%%    %%%       %%%%            PY-Piscyra
+{040}                       %%%%%% %%%    %%               ??-City of Eternity /
+{040}
+                                %%%%%%                   Magic Zone
+{-}REALMMAP~
+-1 SOUTHERNCONTINENT~
+Map of the Southern Continent of Mortal Realms
+
+                                  %%%%%%                  AC-Antarctica
+                  %%%%%%%%      %%%    %%%%               BO-Bosher's House
+              %%%%%      %%%%%%%%         %%%%%           FM-Frost Mountain
+        %%%%%%%              |                %%          MT-Mahn-Tor
+    %%%%%             ??     |                 %%%%       OQ-Ogre HQ
+   %%                        |                    %%%     ??-City of Eternity /
+   %                      |--|   OQ--MT             %%%      MAgic Zone
+   %%             BO------|  |       |--FM            %%%
+    %%%%                     |-------|                  %
+       %%%                  AC                       %%%%
+         %%%%                                  %%%%%%%
+            %%             %%%%               %%
+             %%%%       %%%%  %%%         %%%%%
+                %%%   %%%       %%%%%   %%%
+                  %% %%             %%%%%
+                   %%%
+   (-) Back
+{-}REALMMAP~
+-1 WESTERNCONTINENT~
+Map of the Western Continent of Mortal Realms
+
+                    %%%%%%     %%%%         BL-Barrowlands
+                   %%    %%%%%%%  %%        BP-Bomanz' Pathway
+                %%%%               %%%      CL-Calimarra
+            %%%%%       BL-BP        %%%    EC-Elven City
+        %%%%%           |              %%   MC-Monastery (Chaos)
+       %%       PF------|               %%  MO-Monastery (Order)
+        %%%%%           |-MO     EC      %  PF-Plain of Fear
+            %%%         |         |      %% PP-Phoenix Peak
+              %    PP---------------------% ??-City of Eternity /
+            %%%       |      |           %%    Magic Zone
+          %%%    |----| ??   |         %%%
+       %%%%      |           CL    %%%%%
+      %%      MC-|               %%%
+       %%                  %%%%%%
+        %%%%%          %%%%%
+            %%%%%%%%%%%%
+  (-) Back
+{-}REALMMAP~
+-1 OTHERCONTINENT~
+Map of the Valdemar Region of Mortal Realms
+
+                  %%%%%       EE-Easter Eternal
+                %%%   %%      LC-Lost Citadel
+              %%%      %%     SL-City of Spam and Lag
+            %%%         %%%   VM-Valdemar
+           %%    EE-LC    %%        
+           %     |         %
+           %     |         %%
+           %%    |          %
+            %------|        %
+           %% |    |       %%
+          %%  VM   |      %%
+          %        SL    %%
+          %%            %%
+           %%%      %%%%%
+             %%%%%%%%
+   (-) Back
+{-}REALMMAP~

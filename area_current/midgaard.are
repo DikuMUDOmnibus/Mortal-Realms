@@ -1,0 +1,4296 @@
+#AREA Midgaard~
+#AUTHORS MrMud~
+
+
+
+
+#HELPS
+0 $~
+
+
+
+
+#RANGES 0 99 0 99
+#FLAGS AFLAG_NODEBUG
+#MOBILES
+#3000
+wizard~
+the wizard~
+A wizard walks around behind the counter, talking to himself.~
+The wizard looks old and senile, and yet he looks like a very powerful
+wizard. He is equipped with fine clothing, and is wearing many fine
+rings and bracelets.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE|ACT_NO_ORDER|ACT_SMART
+AFF_UNDERSTAND|AFF_TONGUES
+900 S
+93 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 1d1+18908 3d10+60
+100000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if ispc($n)
+  say Is there something I can help you?
+  break
+endif
+~
+>rand_prog 5~
+emote starts mixing two bottles of potions and.....
+mpecho BOOM!
+sigh
+This is not going to work.
+~
+|
+#3001
+baker~
+the baker~
+The baker looks at you calmly, wiping flour from his face with one hand.~
+A fat, nice looking baker. But you can see that he has many scars on his
+body.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE|ACT_NO_ORDER|ACT_SMART
+AFF_UNDERSTAND|AFF_TONGUES
+900 S
+93 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 1d1+19988 2d8+90
+12000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>speech_prog p vote me~
+if quest(11,1,$n) == 0
+  if quest (4,1,$n) == 0
+    if quest (0,4,$n) == 2
+      grumble
+      say I thought you are a customer. So you want me to vote you eh.
+      say I can do that.
+      grin
+      say But you will have to show me that you are qualified for
+      say the position.
+      say Answer this question and you pass.
+      say First question, What is the second smallest integer that
+      say gives a balance of one when divided by 6 and a balance
+      say of two when divided by 5?
+      mpmset $n quest 11 1 1
+      mpmset $n quest 8 3 7
+      break
+    endif
+  endif
+endif
+~
+>speech_prog 127~
+if ispc($n)
+  if quest (8,3,$n) == 7
+    say Good. I like people who can count. You have my vote.
+    mpmset $n quest 4 1 1
+    mpmset $n quest 8 4 0
+    break
+  endif
+endif
+~
+|
+#3002
+grocer~
+the grocer~
+A grocer stands at the counter, with a slightly impatient look on his face.~
+A tall grocer, who moves two 200 pounds bag of flour around on his shoulders.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE|ACT_NO_ORDER|ACT_SMART
+AFF_UNDERSTAND|AFF_TONGUES
+900 S
+93 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 1d1+21267 1d8+90
+12000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#3003
+weaponsmith~
+the weaponsmith~
+A weaponsmith.~
+A young weaponsmith, who still has lots to learn.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE|ACT_NO_ORDER|ACT_SMART
+AFF_UNDERSTAND|AFF_TONGUES
+900 S
+93 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 1d1+20234 1d8+90
+100000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#3004
+armourer armorer~
+the armourer~
+An armourer stands here.~
+An old but very strong armourer, he has made more armours in his
+lifetime than you have ever seen.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE|ACT_NO_ORDER|ACT_SMART
+AFF_UNDERSTAND|AFF_TONGUES
+900 S
+93 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 1d1+19012 1d8+90
+150000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#3005
+thief~
+the thief~
+A thief, all dressed in black.~
+Well COUNT your money!~
+ACT_SCAVENGER|ACT_WIMPY|ACT_BODY|ACT_RACE|ACT_NO_ORDER|ACT_SMART
+AFF_SNEAK|AFF_HIDE|AFF_UNDERSTAND|AFF_TONGUES
+100 S
+8 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 8d8+80 1d5+5
+100 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#3006
+captain~
+the captain~
+A retired captain stands here, selling boats.~
+This captain has killed more sharks than you have eaten peas.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE|ACT_NO_ORDER|ACT_SMART
+AFF_UNDERSTAND|AFF_TONGUES
+900 S
+93 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 1d1+17633 1d8+90
+12000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#3007
+sailor~
+the sailor~
+A sailor stands here, waiting to train you.~
+He looks like a strong, fit sailor.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE|ACT_NO_ORDER|ACT_SMART
+AFF_UNDERSTAND|AFF_TONGUES
+900 S
+15 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 3d23+330 8d4+13
+2000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#3008
+boy~
+the pet shop boy~
+A pet shop boy is here, humming gently.~
+He is young and close-cropped and looks quite happy.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE|ACT_NO_ORDER|ACT_SMART
+AFF_UNDERSTAND|AFF_TONGUES
+900 S
+93 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 1d1+18821 1d4+90
+12000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#3009
+jeweller~
+the jeweller~
+The jeweller is standing behind the desk.~
+He is fat and has a content although watchful look on his face.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE|ACT_NO_ORDER|ACT_SMART
+AFF_UNDERSTAND|AFF_TONGUES
+900 S
+93 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 1d1+18689 2d9+90
+300000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#3010
+leather worker~
+the leather worker~
+The leather worker is sitting by the table, sewing a leather cap.~
+He looks as an honest, hard-working artisan who only just earns enough to
+keep himself going.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE|ACT_NO_ORDER|ACT_SMART
+AFF_UNDERSTAND|AFF_TONGUES
+900 S
+93 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 1d1+19589 1d8+90
+100000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#3011
+Judge Jareth~
+Judge Jareth~
+Judge Jareth is here.~
+A masked man with muscles bulging all over his body.  You can tell by
+the look in his eyes that he enjoys seeing you cower in his presence.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_BODY|ACT_RACE|ACT_NO_ORDER|ACT_SMART
+AFF_DETECT_INVIS|AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+120 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 1d1+24999 1d10+249
+5000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>speech_prog register~
+if ispc($n)
+  if quest (0,4,$n) == 1
+    say Very well than $n. You are now regiatered.
+    say The rules of the election is simple. Ask the citizens of
+    say this fine city to vote you, and everytime they agree, you
+    say get a vote. When you think that you have enough votes.
+    say come to me and say CLEAR. To check the numbers of vote you
+    say have, come here and say VOTES.
+    mpmset $n quest 0 4 2
+    break
+  endif
+endif
+~
+>speech_prog votes~
+if quest(0,4,$n) == 2
+   if quest(4,1,$n) == 1
+      mpmadd $i quest 12 4 1
+   endif
+   if quest(5,1,$n) == 1
+      mpmadd $i quest 12 4 1
+   endif
+   if quest(6,1,$n) == 1
+      mpmadd $i quest 12 4 1
+   endif
+   if quest(7,1,$n) == 1
+      mpmadd $i quest 12 4 1
+   endif
+   if quest(12,4,$i) == 0
+      say You have no votes.
+   endif
+   if quest(12,4,$i) == 1
+      say You have one vote.
+   endif
+   if quest(12,4,$i) == 2
+      say You have two votes.
+   endif
+   if quest(12,4,$i) == 3
+      say You have three votes.
+   endif
+   if quest(12,4,$i) == 4
+      say You have four votes.
+      say If you wish to clear it, say CLEAR.
+   endif
+   mpmset $i quest 12 4 0
+endif
+~
+>speech_prog clear~
+if ispc($n)
+  if quest(0,4,$n) == 2
+    if quest(4,1,$n) == 1
+       mpmadd $i quest 12 4 1
+    endif
+    if quest(5,1,$n) == 1    
+       mpmadd $i quest 12 4 1
+    endif
+    if quest(6,1,$n) == 1    
+       mpmadd $i quest 12 4 1
+    endif
+    if quest(7,1,$n) == 1    
+       mpmadd $i quest 12 4 1
+    endif
+    if quest (12,4,$i) == 0
+      say All right. Let's see. You have NO votes and conclusion is
+      say you lose.
+      mpmset $n quest 0 4 8
+      break
+    endif
+    if quest (12,4,$i) == 1
+      say All right. Let's see. You have ONE vote and conclusion is
+      say you lose.
+      mpmset $i quest 12 4 0
+      mpmset $n quest 0 4 8
+      break
+    endif
+    if quest (12,4,$i) == 2
+      say All right. Let's see. You have TWO votes and conclusion is
+      say you lose.
+      mpmset $i quest 12 4 0
+      mpmset $n quest 0 4 8
+      break
+    endif
+    if quest (12,4,$i) == 3
+      say You have THREE votes. Most Impressive.
+      say However your competitor has four votes.
+      say Thus you lose. Anyways, since you are the
+      say one with the second most votes, please 
+      say accept this token of gratitute.
+      mpoload 3373
+      give i3373 $n
+      say Good luck on your future journeys.
+      mpmset $n quest 0 4 8
+      mpmset $i quest 12 4 0
+      break
+    endif
+    if quest (12,4,$i) == 4
+      say All right. Let's see. You have FOUR votes. Impressive.
+      say Very Impressive. Let's see, your competitor has
+      say three votes....one short of you. Congratula....
+      mpmload 3143
+      mpforce mayor say WAIT!
+      mpecho Everyone in the room fell silent.
+      mpmset $i quest 12 4 0
+      mpmset $i quest 0 5 22
+      mpmset $n quest 0 4 8
+      break
+    endif
+  endif
+endif
+~
+>rand_prog 45~
+if quest (0,5,$i) > 0
+  if quest (0,5,$i) == 22
+    mpforce mayor say He CHEATED.
+  endif
+  if quest (0,5,$i) == 21
+    ponder
+    say Daniel'goh, what proof do you have that he cheated?
+    say Please present the evidence if you have any.
+  endif
+  if quest (0,5,$i) == 20
+    mpforce mayor say I have evidence. Here he is.
+    mpforce mayor shout Come foward Salyn!
+    mpmload 3046
+    mpecho Salyn slowly walks into the square with his head down like a turtle.
+  endif
+  if quest (0,5,$i) == 19
+    say Salyn, answer me truthfully, did he cheat?
+  endif
+  if quest (0,5,$i) == 18
+    mpforce salyn nod
+    mpforce salyn say He threatened to..to...to kill Sunny if I did not vote him.
+  endif
+  if quest (0,5,$i) == 17
+    mpforce mayor smile
+    say Alright. You broke the rules, you are now disqualified.
+  endif
+  if quest (0,5,$i) == 16
+    mpforce mayor say I told you everything would be fine. 
+    mpforce salyn say Thank you M'lord.
+    mpforce salyn hug mayor
+    mpforce mayor emote kicks Salyn off from him.
+    mpforce mayor say The hell are you doing!
+    mpforce mayor say Never touch me you filthy scum. Now Get lost.
+  endif
+  if quest (0,5,$i) == 15
+    mpforce salyn say You..You...You....
+    mpforce salyn say After all I have done for you, this is what I get in
+    mpforce salyn say return?
+  endif
+  if quest (0,5,$i) == 14
+    mpforce mayor say You're just a street rat. A pawn. Don't expect much from
+    mpforce mayor say life.
+    mpforce salyn say Take this you jerk!
+    mpforce salyn kill mayor
+    mpforce mayor Shout Help! This treacherous scum is trying to kill me!!
+  endif
+  if quest (0,5,$i) == 11
+    peace
+    emote picks Salyn up and throws him on the ground HARD!.
+    say How dare you attack the person who is going to be the
+    say Lord of Midgaard before my very eyes!
+    snarl
+  endif
+  if quest(0,5,$i) == 10
+    mpforce salyn say So! What can you do! The most you
+    mpforce salyn say can do is to end my misery!
+    mpforce salyn spit mayor
+  endif
+  if quest (0,5,$i) == 9
+    mpforce mayor say What are you waiting for? Do your job Judge.
+    say Yes M'lord.
+    say Any last words before I execute you Salyn?
+  endif
+  if quest (0,5,$i) == 8
+    mpforce salyn say Daniel'goh, even in death I shall not
+    mpforce salyn say forget this day!
+    mpforce mayor ponder
+  endif
+  if quest (0,5,$i) == 7
+    mpforce salyn say You, Jareth are a very stupid man!
+    mpforce salyn say It will not be long before you suffer my fate!
+  endif
+  if quest (0,5,$i) == 6
+    mpforce salyn muhaha
+    mpforce salyn say Even if I must die, I will die by my own hands!
+    mpforce salyn emote bangs his head on the ground *HARD*!
+    mpforce salyn suicide
+  endif
+  if quest (0,5,$i) == 5
+    ponder
+    mpforce mayor muhaha
+    mpforce mayor say What a piece of human junk.
+  endif
+  if quest(0,5,$i) == 4
+    bow mayor
+    say M'Lord, you have won the election. Now you will have
+    say to goto Chakkor and see Lord Lettkard.
+  endif
+  if quest(0,5,$i) == 3
+    mpforce mayor muhaha
+    mpforce mayor say Indeed. Indeed.
+    mpforce mayor emote leaves the temple laughing diabolically.
+    mppurge mayor
+  endif
+  if quest(0,5,$i) == 2
+    shrug
+    say I have a really bad feeling about today.
+    say you are free to leave my young friend...
+  endif
+  if quest(0,5,$i) == 1
+    sigh
+    emote stares at the window and mumbles 'What would become of Midgaard..'
+  endif
+  if quest (0,5,$i) > 0
+    mpmadd $i quest 0 5 -1
+  endif
+endif
+~
+|
+#3012
+healer~
+the healer~
+A healer is here.~
+Although retired from adventuring, the healer still lends a hand.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_BODY|ACT_RACE|ACT_NO_ORDER|ACT_SMART
+AFF_DETECT_INVIS|AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+90 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 1d1+19436 2d4+90
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#3020
+guildmaster master~
+the guildmaster~
+Your guildmaster is standing here.~
+Even though your guildmaster looks old and tired, you can clearly see the
+vast amount of knowledge she possesses. She is wearing fine magic clothing,
+and you notice that she is surrounded by a blue shimmering aura.~
+ACT_SENTINEL|ACT_PRACTICE|ACT_BODY|ACT_RACE|ACT_NO_ORDER|ACT_SMART
+AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+94 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 1d1+18804 3d8+90
+8794 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+#3021
+guildmaster master~
+the guildmaster~
+Your guildmaster is standing here.~
+You are in no doubt that this guildmaster is truly close to your god; he has
+a peaceful, loving look. You notice that he is surrounded by a white aura.~
+ACT_SENTINEL|ACT_PRACTICE|ACT_BODY|ACT_RACE|ACT_NO_ORDER|ACT_SMART
+AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+94 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 1d1+18603 3d8+90
+8794 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#3022
+guildmaster master~
+the guildmaster~
+Your guildmaster is standing here.~
+You realize that whenever your guildmaster moves, you fail to notice it:
+the way of the true thief.  She is dressed in poor clothing, having
+the appearance of a beggar.~
+ACT_SENTINEL|ACT_PRACTICE|ACT_BODY|ACT_RACE|ACT_NO_ORDER|ACT_SMART
+AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+94 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 1d1+18516 3d8+90
+8794 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+#3023
+guildmaster master~
+the guildmaster~
+Your guildmaster is standing here.~
+This is your master.  Big and strong with bulging muscles.  Several scars
+across his body prove that he was using arms before you were born.  He
+has a calm look on his face.~
+ACT_SENTINEL|ACT_PRACTICE|ACT_BODY|ACT_RACE|ACT_NO_ORDER|ACT_SMART
+AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+94 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 1d1+19725 3d8+90
+8794 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#3024
+sorcerer~
+the sorcerer~
+A sorcerer is guarding the entrance.~
+He is an experienced mage who has specialized in the field of Combat Magic.
+He is here to guard the Mage's Guild and his superior knowledge of offensive
+as well as defensive spells make him a deadly opponent.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE|ACT_NO_ORDER|ACT_SMART
+AFF_INVISIBLE|AFF_UNDERSTAND|AFF_TONGUES
+800 S
+93 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 6d10+7900 3d8+62
+2000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#3025
+templar~
+the knight templar~
+A knight templar is guarding the entrance.~
+He is a specially trained warrior belonging to the military order of the Faith.
+His duty is to protect the faithful from persecution and infidel attacks and
+his religious devotion combined with his superior skill makes him a deadly
+opponent.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE|ACT_NO_ORDER|ACT_SMART
+AFF_UNDERSTAND|AFF_TONGUES
+800 S
+93 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 6d10+7900 3d8+62
+2000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#3026
+assassin~
+the assassin~
+An assassin is guarding the entrance.~
+He is a thief who has specialized in killing others as effectively as possible,
+using all sorts of weapons.  His superior knowledge of how and where to use
+them combined with his extraordinary stealth makes him a deadly opponent.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE|ACT_NO_ORDER|ACT_SMART
+AFF_HIDE|AFF_UNDERSTAND|AFF_TONGUES
+800 S
+93 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 6d10+7900 3d8+62
+2000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#3027
+knight~
+the knight~
+A knight is guarding the entrance.~
+He is an expert warrior who has attained knighthood through countless
+chivalrous deeds.  His duty is to protect the Guild of Swordsmen and his
+extreme skill combined with his experience in warfare makes him a deadly
+opponent.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE|ACT_NO_ORDER|ACT_SMART
+AFF_UNDERSTAND|AFF_TONGUES
+800 S
+93 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 6d10+7900 3d8+62
+2000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#3040
+bartender~
+the bartender~
+A bartender watches you calmly, while he skillfully mixes a drink.~
+A tired looking Bartender who hates trouble in his bar.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE|ACT_NO_ORDER|ACT_SMART
+AFF_UNDERSTAND|AFF_TONGUES
+900 S
+93 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 1d1+19506 1d8+90
+2000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if level($n) < 21
+  if quest (0,4,$n) == 0
+   say Hail stranger.
+   mpechoat $n The Bartender hands you a drink.
+   say Ever since Lord Lettkard of Chakkor decides to fund
+   say the reconstruction of Midgaard City, I have seen so
+   say many new faces.
+   break
+  endif
+endif
+~
+>speech_prog why reason~
+if level($n) < 21
+  if quest (0,4,$n) == 0 
+    say You mean you do not know! Where have you been kid!?
+    say Since the death of Lord Etsa'ml seven years ago, this
+    say city had been under the authority of Lord Lettkard.
+    say However, Lord Lettkard is a busy man, and the reconstruction
+    say of Midgaard is a huge project, thus an election for a new
+    say Lord of Midgaard City is currently held, and everyone is 
+    say allowed to participate. All you need to do is go to 
+    say Judge Jareth and register.
+    mpmset $n quest 0 4 1
+    smile $n
+    break
+  endif
+endif
+~
+|
+#3041
+waiter~
+the waiter~
+A waiter is going around from one place to another.~
+A tired looking waiter.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE|ACT_NO_ORDER|ACT_SMART
+AFF_UNDERSTAND|AFF_TONGUES
+900 S
+23 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 6d10+390 1d8+18
+2000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#3042
+waiter~
+the waiter~
+A man who in his young days was a famous sorcerer but now leads a quiet,
+peaceful life as a waiter.~
+Just a waiter.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE|ACT_NO_ORDER|ACT_SMART
+AFF_UNDERSTAND|AFF_TONGUES
+600 S
+23 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 6d10+390 1d8+18
+2000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#3043
+waiter~
+the waiter~
+A waiter who seems to have reached contact with God.~
+A young and vibrant waiter.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE|ACT_NO_ORDER|ACT_SMART
+AFF_UNDERSTAND|AFF_TONGUES
+600 S
+23 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 6d10+390 1d8+18
+2000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#3044
+waiter~
+the waiter~
+A waiter who knows where all his customers keep their money.~
+An old and weak waiter, but sharp.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE|ACT_NO_ORDER|ACT_SMART
+AFF_UNDERSTAND|AFF_TONGUES
+600 S
+23 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 6d10+390 1d8+18
+2000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#3045
+waiter~
+the waiter~
+A waiter who easily could kill you, and still carry quite a few firebreathers.~
+This waiter emmits an powerful battle area.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE|ACT_NO_ORDER|ACT_SMART
+AFF_UNDERSTAND|AFF_TONGUES
+600 S
+23 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 6d10+390 1d8+18
+2000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#3046
+Filthy Salyn~
+Salyn~
+Filthy is standing here all dirty and smelly.~
+Salyn looks real, ehm, dirty. He smells like he's just left a pig sty.
+You can see from his expression that he's having some personal problems
+and need some help.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE|ACT_NO_ORDER|ACT_SMART
+AFF_UNDERSTAND|AFF_TONGUES
+-1000 S
+40 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 5d30+2000 1d50+10
+2000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if quest(11,1,$n) == 0
+  if quest(7,1,$n) == 0
+    if quest(0,4,$n) == 2
+      beg $n
+      say Please help me. Please. I really need your help. Pleeeeeassse.
+      sniff
+      cry $n
+      mpecho You feel a strong stench coming from him.
+      mpforce $n puke
+      say Oh I'm sorry. Forgive my condition. But I really need your help.
+      say Will you help me? I know that you are trying to be the new 
+      say master of this city. Help me and I will vote you.
+      mpmset $n quest 11 1 1
+      mpmset $n quest 8 3 1
+      break
+    endif
+  endif
+endif
+~
+>speech_prog ok deal cool yes~
+if ispc($n)
+  if quest (8,3,$n) == 1
+    say Great. I need you to help me buy a wedding ring from the jeweller.
+    say I'm poor as you see and can't afford to but it to propose to my
+    say girlfriend Sunflower.
+    sniff
+    say Will you help me?
+    mpmset $n quest 8 3 2
+    break
+  endif
+endif
+~
+>speech_prog yes~
+if ispc($n)
+  if quest (8,3,$n) == 2
+    bounce
+    say Oh thank you my friend. I will wait for your good news.
+    grin
+    mpmset $n quest 8 3 3
+    break
+  endif
+endif
+~
+>give_prog i3371~
+if ispc($n)
+  if quest (17,1,$n) == 0
+    if quest (8,3,$n) ==  3
+      gasp
+      say I don't know what to say. You have done so much for
+      say a filth like me. I'm really grateful for you. My
+      say my what am I doing. I should be going to Sunny now
+      say and propose to her. This is the happiest day I had
+      say in my life. By the way, you got my vote.
+      wink $n
+      mpecho You feel sick standing so close to him.
+      mpforce $n puke
+      mpmset $n quest 8 4 0
+      mpmset $n quest 7 1 1
+      break
+    endif
+  endif
+endif
+~
+|   
+#3050
+dealer~
+Aod the Dealer~
+Aod the Dealer stands in the shadows here.~
+Aod looks just like the dealer hoodlum you see on T.V.  He's wearing a
+concert shirt and Levi 501's.  His hair is pulled back into a pony tail.
+A beard and moustache complete the look.  Aod has brought some drugs
+with him from Generic Mud.~
+ACT_SCAVENGER|ACT_STAY_AREA|ACT_BODY|ACT_RACE|ACT_NO_ORDER|ACT_SMART
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+15 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 1d1+584 2d10+20
+500 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>speech_prog p vote me~
+if quest(0,4,$n) == 2
+  if quest (11,1,$n) == 0
+    if quest (6,1,$n) == 0
+      say So you want to be the master of this city eh?
+      say Let me see. Would you buy one of my products from
+      say me?
+      mpmset $n quest 11 1 1
+      mpmset $n quest 8 3 4
+      break
+    endif
+  endif
+endif
+~
+>speech_prog yes~
+if quest(0,4,$n) == 2
+  if quest (8,3,$n) == 4
+    say Cool....I have nothig else to sell now...
+    say The only thing I have left to sell is this
+    say rock. Would you buy it?
+    mpmset $n quest 8 3 5
+    break
+  endif
+  if quest (6,1,$n) == 0
+    if quest (8,3,$n) == 5
+      mpmadd $n gold -50000
+      emote gives you a worthless rock. 
+      cackle
+      emote leaves quickly and soon was out of sight.
+      mpmadd $n quest 6 1 1
+      mpmset $n quest 8 4 0
+      mppurge $i
+      break
+    endif
+  endif
+endif
+~
+|
+#3060
+cityguard guard~
+the cityguard~
+A cityguard stands here.~
+A big, strong, helpful, trustworthy guard.~
+ACT_SCAVENGER|ACT_STAY_AREA|ACT_BODY|ACT_RACE|ACT_NO_ORDER|ACT_SMART
+AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+15 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 15d15+150 1d4+19
+500 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#3061
+janitor~
+the janitor~
+A janitor is walking around, cleaning up.~
+Another janitor hired by the city.~
+ACT_STAY_AREA|ACT_BODY|ACT_RACE|ACT_NO_ORDER|ACT_SMART
+AFF_UNDERSTAND|AFF_TONGUES
+900 S
+1 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 2d6+10 1d5+0
+19 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+>speech_prog p vote me~
+if quest(11,1,$n) == 0
+  if quest (5,1,$n) == 0
+    if quest (0,4,$n) == 2 
+      emote takes a close look at you.
+      say So, you want my vote to become the new mayor.
+      ponder
+      say Ok, I'm hungry now. Go buy me a pie. Here's the
+      say money and remember to give me the change.
+      emote gives you three hundred and seventy six pieces of gold.
+      mpmset $n quest 8 3 6
+      mpmset $n quest 11 1 1
+      break
+    endif
+  endif
+endif
+~
+>give_prog i3009~
+if quest(5,1,$n) == 0
+  if quest (8,3,$n) == 6
+      smile $n
+      say You are indeed kind. Very well than, you have my vote.
+      mpmadd $n quest 5 1 1
+      mpmset $n quest 8 4 0
+      break
+    endif
+  endif
+endif 
+~
+|
+#3062
+fido dog~
+the beastly fido~
+Beastly Fido is here.~
+Fido is a small dog that has a foul smell and pieces of rotted meat hanging
+around his teeth.~
+ACT_AGGRESSIVE|ACT_WIMPY|ACT_BODY|ACT_RACE|ACT_NO_ORDER|ACT_SMART
+AFF_UNDERSTAND|AFF_TONGUES
+-200 S
+1 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 1d6+4 1d4+0
+1 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#3063
+vagabond~
+the vagabond~
+A vagabond is here, looking for victims.~
+He looks pretty mean. You hope you never came into this room.~
+ACT_SCAVENGER|ACT_BODY|ACT_RACE|ACT_NO_ORDER|ACT_SMART
+AFF_UNDERSTAND|AFF_TONGUES
+-400 S
+5 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 2d6+60 1d8+5
+47 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#3064
+drunk~
+the drunk~
+A singing, happy drunk.~
+A drunk who seems to be too happy, and to carry too much money.~
+ACT_STAY_AREA|ACT_BODY|ACT_RACE|ACT_NO_ORDER|ACT_SMART
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+2 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 2d6+22 1d6+0
+85 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#3065
+beggar~
+the beggar~
+A beggar is here, asking for a few coins.~
+The beggar looks like she is fed up with life. Ten thousand is a good 
+number.~ 
+ACT_SENTINEL|ACT_BODY|ACT_RACE|ACT_NO_ORDER|ACT_SMART
+AFF_UNDERSTAND|AFF_TONGUES
+400 S
+1 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 2d6+10 1d5+0
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+>greet_prog 99~
+if ispc($n)
+  beg $n
+  say Spare some gold?
+endif
+~
+>bribe_prog 1000~
+say Oh my GOD!  Thank you! Thank you!
+french $n
+~
+>bribe_prog 100~
+say Wow!  Thank you! Thank you!
+~
+>fight_prog 20~
+say Help!  Please somebody help me!
+if rand(50)
+  say Ouch!
+  break
+else
+  say I'm bleeding.
+  break
+endif
+~
+>death_prog 50~
+if rand(50)
+  mpechoaround $i $I says 'Now I go to a better place.'
+  break
+else
+  mpechoaround $i $I says 'Forgive me God for I have sinned...'
+  break
+endif
+~
+>rand_prog 10~
+get all corpse
+~
+>range_prog 0~
+if shotfrom($i) == 3
+  throw dagger w $n
+endif
+~
+|
+#3066
+cat~
+an alley cat~
+An alley cat hisses at you.~
+The alley cat is half starved and more than a little feral.~
+ACT_AGGRESSIVE|ACT_WIMPY|ACT_BODY|ACT_RACE|ACT_NO_ORDER|ACT_SMART
+AFF_UNDERSTAND|AFF_TONGUES
+-200 S
+1 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 1d6+4 1d4+0
+1 RACE_HALFLING
+POS_STANDING POS_STANDING SEX_MALE
+#3067
+cityguard guard~
+the cityguard~
+A cityguard is here, guarding the gate.~
+A big, strong, helpful, trustworthy guard.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_BODY|ACT_RACE|ACT_NO_ORDER|ACT_SMART
+AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+15 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 15d15+150 1d4+19
+500 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#3068
+cityguard guard~
+the cityguard~
+A cityguard is here, guarding the gate.~
+A big, strong, helpful, trustworthy guard.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_BODY|ACT_RACE|ACT_NO_ORDER|ACT_SMART
+AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+15 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 15d15+150 1d4+19
+500 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#3069
+cityguard guard~
+the cityguard~
+A cityguard is here, guarding the mayor.~
+A big, strong, helpful, trustworthy guard.~
+ACT_SENTINEL|ACT_STAY_AREA|ACT_BODY|ACT_RACE|ACT_NO_ORDER|ACT_SMART
+AFF_INVISIBLE|AFF_HIDE|AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+20 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 20d20+200 1d4+19
+500 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#3090
+kitten~
+the kitten~
+A small loyal kitten is here.~
+The kitten looks like a cute, little, fierce fighter.~
+ACT_SENTINEL|ACT_SCAVENGER|ACT_BODY|ACT_RACE|ACT_NO_ORDER|ACT_SMART
+AFF_UNDERSTAND|AFF_TONGUES
+400 S
+1 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 1d6+11 1d4+0
+0 RACE_HALFLING
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#3091
+puppy~
+the puppy~
+A small loyal puppy is here.~
+The puppy looks like a cute, little, fierce fighter.~
+ACT_SENTINEL|ACT_SCAVENGER|ACT_BODY|ACT_RACE|ACT_NO_ORDER|ACT_SMART
+AFF_UNDERSTAND|AFF_TONGUES
+400 S
+3 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 1d6+11 1d4+0
+0 RACE_HALFLING
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#3092
+beagle~
+the beagle~
+A small, quick, loyal beagle is here.~
+The beagle looks like a fierce fighter.~
+ACT_SENTINEL|ACT_SCAVENGER|ACT_BODY|ACT_RACE|ACT_NO_ORDER|ACT_SMART
+AFF_UNDERSTAND|AFF_TONGUES
+400 S
+5 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 1d12+72 1d6+5
+0 RACE_HALFLING
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#3093
+rottweiler~
+the rottweiler~
+A large, loyal rottweiler is here.~
+The rottweiler looks like a strong, fierce fighter.~
+ACT_SENTINEL|ACT_SCAVENGER|ACT_BODY|ACT_RACE|ACT_NO_ORDER|ACT_SMART
+AFF_UNDERSTAND|AFF_TONGUES
+400 S
+7 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 1d12+75 1d5+9
+0 RACE_HALFLING
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#3094
+wolf~
+the wolf~
+A large, trained wolf is here.~
+The wolf looks like a strong, fearless fighter.~
+ACT_SENTINEL|ACT_SCAVENGER|ACT_BODY|ACT_RACE|ACT_NO_ORDER|ACT_SMART
+AFF_UNDERSTAND|AFF_TONGUES
+0 S
+9 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 1d12+47 1d8+6
+0 RACE_HALFLING
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#3100
+maid~
+the maid~
+The maid is waiting for your order.~
+She is very beautiful with golden hair, and deep blue eyes. A good reason
+for coming here more often.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE|ACT_NO_ORDER|ACT_SMART
+AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+23 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 6d10+390 1d8+42
+2000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+#3120
+sexton~
+the sexton~
+A sexton is sitting here, drinking hot tea.~
+The sexton looks like he is relaxing after another grave-digging job.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE|ACT_NO_ORDER|ACT_SMART
+AFF_UNDERSTAND|AFF_TONGUES
+800 S
+3 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 2d6+35 1d7+0
+13 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#3121
+swan~
+the swan~
+A swan is swimming around in the pond.~
+The white swan is very elegant.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE|ACT_NO_ORDER|ACT_SMART
+AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+1 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 2d6+10 1d5+0
+0 RACE_HALFLING
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#3122
+duckling~
+the duckling~
+A duckling is swimming around in the pond.~
+The duckling is adorable, it looks most of all like a tiny furball.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE|ACT_NO_ORDER|ACT_SMART
+AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+1 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 1d1+6 1d1+2
+0 RACE_HALFLING
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#3123
+sparrow~
+the sparrow~
+A sparrow is flapping around on the ground.~
+The sparrow looks like it is enjoying life.~
+ACT_STAY_AREA|ACT_WIMPY|ACT_BODY|ACT_RACE|ACT_NO_ORDER
+AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+1 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 2d6+0 1d1+3
+0 RACE_HALFLING
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#3124
+duck~
+the duck~
+A duck is here, quacking happily.~
+The duck is quite fat.  It looks like it is enjoying life.~
+ACT_STAY_AREA|ACT_BODY|ACT_RACE|ACT_NO_ORDER|ACT_SMART
+AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+1 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 2d6+5 1d4+0
+0 RACE_HALFLING
+POS_STANDING POS_STANDING SEX_NEUTRAL
+#3140
+captain~
+the captain~
+The captain of the guard is looking very upset.~
+A big, strong, angry captain.~
+ACT_SENTINEL|ACT_SCAVENGER|ACT_AGGRESSIVE|ACT_BODY|ACT_RACE|ACT_NO_ORDER
+AFF_DETECT_INVIS|AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+17 0 0 1d12+260 2d9+9
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#3141
+cityguard guard~
+the cityguard~
+A cityguard stands here, looking very upset.~
+A big, strong, angry guard.~
+ACT_SENTINEL|ACT_SCAVENGER|ACT_AGGRESSIVE|ACT_BODY|ACT_RACE|ACT_NO_ORDER
+AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+15 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 15d15+150 2d4+18
+0 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#3142
+secretary~
+the secretary~
+A secretary is sitting at the desk.~
+She looks very busy.
+The Secretary says 'Sorry, but the Mayor is extremely busy today'.
+The Secretary says 'Please sit down and have a seat in the meantime'.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE|ACT_NO_ORDER|ACT_SMART
+AFF_UNDERSTAND|AFF_TONGUES
+900 S
+12 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 1d12+148 2d7+9
+100 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+>rand_prog 5~
+say The mayor looks so charming. Can't believe he's 43 years old.
+giggle
+~
+|
+#3143
+mayor daniel~
+Daniel'goh~
+Daniel'goh is here.  He shakes your hand.~
+He is a sloopy, middle-aged, over weight man with thin, grey hair.~
+ACT_SENTINEL|ACT_BODY|ACT_RACE|ACT_NO_ORDER|ACT_SMART
+AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+900 S
+43 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 6d10+1500 1d8+22
+1000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+#3144
+crier~
+the town crier~
+The town crier is here, weeping quietly.~
+He is very good at his job - completely dissolved in tears.~
+ACT_WIMPY|ACT_BODY|ACT_RACE|ACT_NO_ORDER|ACT_SMART
+AFF_UNDERSTAND|AFF_TONGUES
+900 S
+1 BODY_ARM|BODY_HAND BODY_ARM|BODY_HAND 2d6+10 1d5+0
+21 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_MALE
+
+#0
+
+
+
+
+#OBJECTS
+#3000
+barrel beer~
+a barrel of beer~
+A beer barrel has been left here.~
+~
+ITEM_TYPE_DRINK_CON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+50 50 LIQ_BEER NOT_POISONED
+65 300 1
+#3001
+bottle beer~
+a bottle of beer~
+A beer bottle has been left here.~
+~
+ITEM_TYPE_DRINK_CON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+8 8 LIQ_BEER NOT_POISONED
+10 20 1
+#3002
+bottle ale~
+a bottle of ale~
+A dark bottle of ale has been left here.~
+~
+ITEM_TYPE_DRINK_CON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+8 8 LIQ_ALE NOT_POISONED
+10 10 1
+#3003
+bottle firebreather~
+a bottle of firebreather~
+A firebreather has been left here.~
+~
+ITEM_TYPE_DRINK_CON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+8 8 LIQ_FIREBRT NOT_POISONED
+10 50 1
+#3004
+bottle local~
+a bottle of local specialty~
+A dark bottle has been left here.~
+~
+ITEM_TYPE_DRINK_CON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+8 8 LIQ_LOCALSPC NOT_POISONED
+10 20 1
+#3005
+LAWGIVER weapon~
+a great weapon call 'LawGiver'~
+A funny looking weapon.~
+This is a Lawgiver used by people called Judges. It has many ammo type.~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_ANTI_EVIL|ITEM_FLAG_ANTI_NEUTRAL|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 1 1 WEAPON_STAB
+1 300000 95
+E
+ammo~
+The following types of ammo are available on the lawgiver;
+Full-auto
+Armor-piercing
+Dual-fire
+Grenade~
+#3009
+potpie pot pie~
+a big pot pie~
+A big pot pie has been left here.~
+~
+ITEM_TYPE_FOOD
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+40 0 0 NOT_POISONED
+5 112 1
+#3010
+pit~
+the donation pit~
+A pit for sacrifices is in front of the altar.~
+~
+ITEM_TYPE_CONTAINER
+ITEM_FLAG_LEVEL
+0
+10000 0 0 0
+0 0 722
+E
+pit~
+This is where you put money and items to help Doz expand this shrine and
+convert more people to the belief of Eru our creator.~
+#3020
+dagger~
+a dagger~
+A dagger with a long thin blade is here.~
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 2 4 WEAPON_PIERCE
+1 190 4
+#3021
+sword small~
+a small sword~
+A small sword lies here.~
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 2 5 WEAPON_STAB
+3 281 2
+#3022
+sword long~
+a long sword~
+A long sword has been left here.~
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 2 6 WEAPON_SLICE
+8 2500 13
+#3030
+torch~
+a torch~
+A large torch.~
+~
+ITEM_TYPE_LIGHT
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 24 0
+1 16 1
+#3031
+lantern~
+a hooded brass lantern~
+A hooded brass lantern has been left here.~
+~
+ITEM_TYPE_LIGHT
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 100 0
+4 60 1
+E
+lantern~
+It is a large and robust but somewhat battered oil lantern made from brass,
+equipped with a handle to make it handy and a hood to protect its flame.
+Some letters have been scratched on its bottom.~
+E
+letters~
+They say, "Use 'hold lantern' to activate."~
+#3032
+bag~
+a bag~
+A small bag.~
+~
+ITEM_TYPE_CONTAINER
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+50 0 0 0
+2 20 1
+#3033
+box~
+a box~
+A small box.~
+~
+ITEM_TYPE_CONTAINER
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+10 0 0 0
+5 50 1
+#3040
+scroll identify~
+a scroll of identify~
+A scroll has carelessly been left here.~
+~
+ITEM_TYPE_SCROLL
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+12 SPELL_IDENTIFY SPELL_NONE SPELL_NONE
+1 2000 7
+E
+scroll identify~
+The scroll has a magic formula drawn upon it:
+     ???
+    ?   ?
+       ?
+      ?
+      ?
+      *~
+#3041
+potion yellow~
+a yellow potion of see invisible~
+A small yellow potion has carelessly been left here.~
+~
+ITEM_TYPE_POTION
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+12 SPELL_DETECT_INVIS SPELL_NONE SPELL_NONE
+1 400 13
+E
+potion yellow~
+The potion has a small label 'Detect The Invisible'.~
+#3042
+potion understand understanding~
+a potion of understanding~
+A potion of understanding been left here.~
+~
+ITEM_TYPE_POTION
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+5 SPELL_UNDERSTAND SPELL_NONE SPELL_NONE
+1 200 5
+#3043
+potion tongues~
+a potion of tongues~
+A potion of speak in tongues has been left here.~
+~
+ITEM_TYPE_POTION
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+5 SPELL_TONGUES SPELL_NONE SPELL_NONE
+1 300 5
+#3045
+jacket scale mail~
+a scale mail jacket~
+A scale mail jacket is lying on the ground.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+4 0 0 0
+40 1000 6
+#3046
+bronze breast plate~
+a bronze breast plate~
+A bronze breast plate is lying on the ground.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+6 0 0 0
+80 7000 11
+#3050
+raft~
+a raft~
+A raft has been left here.~
+~
+ITEM_TYPE_BOAT
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+75 400 1
+E
+raft~
+The raft looks very primitive.~
+#3051
+canoe~
+a canoe~
+A canoe has been left here.~
+~
+ITEM_TYPE_BOAT
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+32 1000 1
+E
+canoe~
+The canoe is fairly light.~
+#3060
+jerkin~
+a leather jerkin~
+A leather jerkin is lying on the ground.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+2 0 0 0
+5 100 2
+#3061
+cap~
+a leather cap~
+A leather cap is lying on the ground.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+2 0 0 0
+1 50 2
+#3062
+pants~
+a pair of leather pants~
+A pair of leather pants is lying on the ground.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_LEGS
+2 0 0 0
+5 50 2
+#3063
+boots~
+a pair of leather boots~
+A pair of leather boots lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FEET
+2 0 0 0
+3 50 2
+#3064
+gloves~
+a pair of leather gloves~
+A pair of leather gloves is lying on the ground.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HANDS
+2 0 0 0
+1 50 2
+#3065
+sleeves~
+a pair of leather sleeves~
+A pair of leather sleeves is lying on the ground.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ARMS
+2 0 0 0
+3 50 2
+#3066
+jerkin~
+a studded leather jerkin~
+A studded leather jerkin is lying on the ground.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+3 0 0 0
+10 200 2
+#3067
+cap~
+a hard leather cap~
+A hard leather cap is lying on the ground.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+3 0 0 0
+2 100 2
+#3068
+pants~
+a pair of studded leather pants~
+A pair of studded leather pants is lying on the ground.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_LEGS
+3 0 0 0
+8 100 2
+#3069
+boots~
+a pair of hard leather boots~
+A pair of hard leather boots lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FEET
+3 0 0 0
+4 100 2
+#3070
+gloves~
+a pair of hard leather gloves~
+A pair of hard leather gloves is lying on the ground.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HANDS
+3 0 0 0
+1 100 2
+#3071
+sleeves~
+a pair of studded leather sleeves~
+A pair of studded leather sleeves is lying on the ground.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ARMS
+3 0 0 0
+4 100 2
+#3072
+jerkin scale mail~
+a scale mail jerkin~
+A scale mail jerkin is lying on the ground.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+4 0 0 0
+20 500 2
+#3073
+coif scale mail~
+a scale mail coif~
+A scale mail coif is lying on the ground.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+4 0 0 0
+4 250 2
+#3074
+skirt scale mail~
+a long scale mail skirt~
+A long scale mail skirt is lying on the ground.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_LEGS
+4 0 0 0
+20 250 2
+#3075
+boots reinforced~
+a pair of reinforced boots~
+A pair of reinforced boots lies here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FEET
+4 0 0 0
+6 250 2
+#3076
+gloves reinforced~
+a pair of reinforced gloves~
+A pair of reinforced gloves is lying on the ground.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HANDS
+4 0 0 0
+2 250 2
+#3077
+sleeves scale mail~
+a pair of scale mail sleeves~
+A pair of scale mail sleeves is lying on the ground.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ARMS
+4 0 0 0
+8 250 2
+#3097
+shield small metal~
+a small metal shield~
+A small metal shield is lying on the ground.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_SHIELD
+4 0 0 0
+3 500 2
+#3100
+tea cup~
+a cup of tea~
+A cup has been set here.~
+~
+ITEM_TYPE_DRINK_CON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+2 2 LIQ_TEA NOT_POISONED
+3 5 1
+E
+cup~
+It is a small simple cup.~
+#3101
+coffee cup~
+a cup of coffee~
+A cup has been set here.~
+~
+ITEM_TYPE_DRINK_CON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+2 2 LIQ_COFFE NOT_POISONED
+3 7 1
+E
+cup~
+It is a small simple cup.~
+#3102
+water cup~
+a cup of water~
+A cup has been set here.~
+~
+ITEM_TYPE_DRINK_CON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+2 2 LIQ_WATER NOT_POISONED
+3 2 1
+E
+cup~
+It is a large simple cup.~
+#3105
+bracer bronze~
+a bronze bracer~
+A bronze bracer is lying on the ground.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WRIST
+6 0 0 0
+8 2500 11
+#3106
+bracer iron~
+an iron bracer~
+An iron bracer is lying on the ground.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WRIST
+7 0 0 0
+8 5000 14
+#3120
+key iron~
+a key~
+An iron key has been left here.~
+~
+ITEM_TYPE_KEY
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 0 11
+E
+key iron~
+The iron key is not special.~
+#3121
+key rusty~
+a key~
+A rusty key has been left here.~
+~
+ITEM_TYPE_KEY
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 0 2
+E
+key rusty~
+The key is a fairly large rusty key.  You notice some fresh dirt on it.~
+#3122
+key wooden~
+a key~
+A wooden key has been left here.~
+~
+ITEM_TYPE_KEY
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 0 12
+E
+key wooden~
+The wooden key is not special.~
+#3123
+key brass~
+a key~
+A brass key has been left here.~
+~
+ITEM_TYPE_KEY
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 0 7
+E
+key brass~
+The brass key is small and looks like it fits a very complicated lock.~
+#3124
+sword long~
+a long sword~
+A long sword has been left here.~
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 3 8 WEAPON_SLASH
+8 600 32
+E
+sword long~
+This is the ceremonial sword of the Mayor of Chakkor.~
+#3129
+hand cuffs~
+a pair of hand cuffs~
+A pair of hand cuffs has been left here.~
+~
+ITEM_TYPE_TRASH
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HOLD
+0 0 0 0
+4 200 1
+#3130
+desk drawer~
+the desk~
+A desk is set against the western wall.~
+The desk looks very sparse, there is a drawer in the left side.~
+ITEM_TYPE_CONTAINER
+ITEM_FLAG_LEVEL
+0
+34 15 3122 0
+100 0 7
+E
+drawer~
+You notice a keyhole in the drawer.~
+#3131
+safe~
+the safe~
+A safe is placed in a dark corner of the room.~
+The safe has a keyhole.~
+ITEM_TYPE_CONTAINER
+ITEM_FLAG_LEVEL
+0
+34 15 3123 0
+100 0 7
+E
+safe~
+The safe is very heavy.~
+#3132
+gold coins~
+the gold~
+A lot of gold is here.~
+Looks like at least 10,000 coins.~
+ITEM_TYPE_MONEY
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+52385 0 0 0
+0 52385 7
+#3133
+city key~
+the City Key~
+The very big City Key is lying here.~
+It is probably the biggest key you have seen in your life.  It is made from
+polished gold and has various patterns on it along with the Chakkor Coat of
+Arms.~
+ITEM_TYPE_KEY
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+10 10000 32
+#3134
+bench~
+the Bench~
+A white-painted wooden bench is standing here.~
+~
+ITEM_TYPE_FURNITURE
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+100 600 3
+E
+bench~
+It is a quite heavy but very comfortable bench.  It is placed with its front
+towards the river so you can sit and watch the river and the houses on the
+other side.~
+#3135
+fountain water~
+a fountain~
+A small white fountain gushes forth here.~
+~
+ITEM_TYPE_FOUNTAIN
+ITEM_FLAG_LEVEL
+0
+50 50 0 0
+500 3000 11
+E
+fountain~
+It is very nice.  Made from fine white marble.~
+#3136
+coins gold~
+a small pile of gold coins~
+A small pile of gold coins lies here.~
+~
+ITEM_TYPE_MONEY
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+20 0 0 0
+0 0 1
+#3137
+key steel~
+a steel key~
+A large steel key has been left here.~
+~
+ITEM_TYPE_KEY
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 0 0
+1 0 12
+E
+key steel~
+A key of this size must fit a very strong lock.~
+#3138
+skin water buffalo~
+a buffalo water skin~
+A bloated dead buffalo is on the floor.~
+~
+ITEM_TYPE_DRINK_CON
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+100 100 LIQ_WATER NOT_POISONED
+5 30 1
+#3139
+letter resignation~
+the receptionist's letter of resignation~
+The receptionist's letter of resignation is taped to the wall.~
+~
+ITEM_TYPE_FURNITURE
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+999 0 4
+E
+letter resignation~
+The letter is written in a bold and feminine Carolinian hand.
+
+    To whom it may concern,
+
+        Merc Industries has installed a new no-rent save and quit
+        system.  Apparently one can now save and quit at any time
+        from anywhere inside a town or out.  My services here are
+        no longer required.
+
+    Diana the Receptionist~
+#3140
+notice liquidation bank~
+the bank's notice of liquidation~
+The bank's notice of liquidation is taped to the wall.~
+~
+ITEM_TYPE_FURNITURE
+ITEM_FLAG_LEVEL
+0
+0 0 0 0
+999 0 4
+E
+notice liquidation bank~
+The letter is written in a reserved and dignified Spencer hand.
+
+    To whom it may concern,
+
+        Merc Industries has charmed your money.  Apparently one's
+        gold will remain close, even beyond death. We are closing
+        down our offices and ATM machines.  Our services here are
+        no longer required.~
+#3350
+sword~
+a standard issue sword~
+You see a standard issue sword here.~
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 3 4 WEAPON_SLASH
+5 0 11
+E
+sword~
+You see a sword of great craftsmanship.  Imprinted on the side is:
+Merc Industries~
+A
+APPLY_HITROLL 2
+A
+APPLY_DAMROLL 2
+#3351
+dagger~
+a standard issue dagger~
+You see a standard issue dagger here.~
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 4 4 WEAPON_PIERCE
+5 0 19
+E
+dagger~
+You see a dagger of great craftsmanship.  Imprinted on the side is:
+Merc Industries~
+A
+APPLY_HITROLL 2
+A
+APPLY_DAMROLL 1
+#3352
+mace~
+a standard issue mace~
+You see a standard issue mace here.~
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 4 4 WEAPON_POUND
+5 0 22
+E
+mace~
+You see a mace of great craftsmanship.  Imprinted on the side is:
+Merc Industries~
+A
+APPLY_HITROLL 2
+A
+APPLY_DAMROLL 2
+#3353
+vest~
+a standard issue vest~
+You see a standard issue vest here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_BODY
+5 0 0 0
+5 0 11
+E
+vest~
+You see a vest of great craftsmanship.  Stamped on the side is:
+Merc Industries~
+#3354
+shield~
+a standard issue shield~
+You see a standard issue shield here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_SHIELD
+5 0 0 0
+5 0 11
+E
+shield~
+You see a shield of great craftsmanship.  Imprinted on the side is:
+Merc Industries~
+#3355
+cloak~
+a standard issue cloak~
+You see a standard issue cloak here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+5 0 0 0
+5 0 11
+E
+cloak~
+You see a cloak of great craftsmanship.  Imprinted on the side is:
+Merc Industries~
+#3356
+helmet~
+a standard issue helmet~
+You see a standard issue helmet here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+5 0 0 0
+5 0 11
+E
+helmet~
+You see a helmet of great craftsmanship.  Imprinted on the side is:
+Merc Industries~
+#3357
+leggings~
+a pair of standard issue leggings~
+You see a pair of standard issue leggings here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_LEGS
+5 0 0 0
+5 0 11
+E
+leggings~
+You see leggings of great craftsmanship.  Imprinted on the side is:
+Merc Industries~
+#3358
+boots~
+a pair of standard issue boots~
+You see a pair of standard issue boots here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FEET
+5 0 0 0
+5 0 11
+E
+boots~
+You see boots of great craftsmanship.  Imprinted on the side is:
+Merc Industries~
+#3359
+gloves~
+a pair of standard issue gloves~
+You see a pair of standard issue gloves here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HANDS
+5 0 0 0
+5 0 11
+E
+gloves~
+You see gloves of great craftsmanship.  Imprinted on the side is:
+Merc Industries~
+#3360
+sleeves~
+a pair of standard issue sleeves~
+You see a pair of standard issue sleeves here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ARMS
+5 0 0 0
+5 0 11
+E
+sleeves~
+You see sleeves of great craftsmanship.  Imprinted on the side is:
+Merc Industries~
+#3361
+cape~
+a standard issue cape~
+You see a standard issue cape here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_ABOUT
+5 0 0 0
+5 0 11
+E
+cape~
+You see a cape of great craftsmanship.  Imprinted on the side is:
+Merc Industries~
+#3362
+belt~
+a standard issue belt~
+You see a standard issue belt here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WAIST
+5 0 0 0
+5 0 11
+E
+belt~
+You see a belt of great craftsmanship.  Imprinted on the side is:
+Merc Industries~
+#3363
+bracer~
+a standard issue bracer~
+You see a standard issue bracer here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WRIST
+5 0 0 0
+5 0 11
+E
+bracer~
+You see a bracer of great craftsmanship.  Imprinted on the side is:
+Merc Industries~
+#3364
+ring signet~
+a city guard signet ring~
+You see a ring with a strange symbol on the floor.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER
+6 0 0 0
+1 0 11
+A
+APPLY_SAVING_SPELL -2
+#3365
+banner~
+a war banner~
+A war banner is on the floor here.~
+~
+ITEM_TYPE_LIGHT
+ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+0 0 2 0
+1 0 11
+E
+banner~
+This is the official Merc war banner to see you through the darkest realm!~
+A
+APPLY_SAVING_SPELL -2
+A
+APPLY_AC -2
+#3371
+ring diamond wedding~
+a diamond wedding ring~
+A diamond wedding ring has been left here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_BLESS|ITEM_FLAG_LEVEL|ITEM_FLAG_NOREMOVE|ITEM_FLAG_INVENTORY
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER
+1 0 0 0
+1 900000 2
+E
+ring diamond wedding~
+A slender gold band set with a marquise-cut four carat blue-white solitaire.
+Inscribed on the inside of the band is: 'Your loving husband'.~
+#3372
+band gold wedding~
+a gold wedding band~
+A gold wedding band has been left here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_BLESS|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_FINGER
+1 0 0 0
+1 100000 2
+E
+band gold wedding~
+A wide, plain circle of gold inscribed: 'Your loving wife'.~
+#3373
+Badge~
+a badge~
+A badge has been left here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_BLESS|ITEM_FLAG_LEVEL|ITEM_FLAG_NOREMOVE|ITEM_FLAG_AUTO_ENGRAVE
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+3 0 0 0
+1 300000 2
+A
+APPLY_WIS 1
+A
+APPLY_CON 1
+A
+APPLY_INT 1
+#0
+
+
+
+
+#ROOMS
+#3000
+~
+~
+30 0 0
+S
+#3001
+The Temple Of Midgaard~
+You are in the southern end of the temple hall in the Temple of Midgaard.
+The temple has been constructed from giant marble blocks, eternal in
+appearance, and most of the walls are covered by ancient wall paintings
+picturing Gods, Giants and peasants.
+   Large steps lead down through the grand temple gate, descending the huge
+mound upon which the temple is built and ends on the temple square below.~
+30 ROOM_NO_MOB|ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+At the northern end of the temple hall is a statue and a huge altar.~
+~
+0 -1 3054
+DDIR_SOUTH
+You see the temple square.~
+~
+0 -1 3005
+S
+#3002
+Cleric's Inner Sanctum~
+This is the inner sanctum.  A picture of the mighty Thor, is hanging on
+the wall, just above the altar which is set against the western wall.  A well
+in the middle of the floor leads down into darkness.  Vile smells waft from
+the depths.~
+30 ROOM_NO_MOB|ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+You see your favorite place, the bar of divination.~
+~
+0 -1 3003
+S
+#3003
+Cleric's Bar~
+The bar is one of the finest in the land, lucky it is members only.  Fine
+furniture is set all around the room.  A small sign is hanging on the wall.~
+30 ROOM_NO_MOB|ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+You see the entrance.~
+~
+0 -1 3004
+DDIR_WEST
+You see the inner sanctum.~
+~
+0 -1 3002
+E
+sign~
+The sign reads:
+Free instructions provided by the waiter:
+
+   Buy  - Buy something (drinkable) from the waiter.
+   List - The waiter will show you all the different drinks and
+          specialties, and tell the price of each.~
+S
+#3004
+Entrance to Cleric's Guild~
+The entrance hall is a small modest room, reflecting the true nature of
+the Clerics.  The exit leads east to the temple square.  A small entrance to
+the bar is in the northern wall.~
+30 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+You see the bar, richly decorated with really stylish furniture.~
+~
+0 -1 3003
+DDIR_EAST
+You see the Temple Square.~
+~
+0 -1 3005
+S
+#3005
+The Temple Square~
+You are standing on the temple square.  Huge marble steps lead up to the
+temple gate.  The entrance to the Clerics Guild is to the west, and the old
+Grunting Boar Inn, is to the east.  Just south of here you see the market
+square, the center of Midgaard.~
+30 0 SECT_CITY
+DDIR_NORTH
+You see the temple.~
+~
+0 -1 3001
+DDIR_EAST
+You see the good old Grunting Boar Inn.~
+~
+0 -1 3006
+DDIR_SOUTH
+You see the Market Square.~
+~
+0 -1 3014
+DDIR_WEST
+You see the entrance to the Clerics Guild.~
+~
+0 -1 3004
+DDIR_UP
+You see the air.~
+~
+0 -1 3057
+S
+#3006
+Entrance to the Grunting Boar Inn~
+You are standing in the entrance hall of the Grunting Boar Inn.  The hall
+has been wisely decorated with simple but functional furniture.  A small
+staircase leads up to the defunct reception room and the bar is to the east.~
+30 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+Surprise! You see the bar.~
+~
+0 -1 3007
+DDIR_WEST
+You see the temple square.~
+~
+0 -1 3005
+DDIR_UP
+You see the defunct reception room.~
+~
+0 -1 3008
+S
+#3007
+The Grunting Boar~
+You are standing in the bar.  The bar is set against the northern wall, old
+archaic writing, carvings and symbols cover its top.  A fireplace is built into
+the western wall, and through the southeastern windows you can see the temple
+square.  This place makes you feel like home.
+A small sign with big letters is fastened to the bar.~
+30 ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+You see the exit to the entrance hall.~
+~
+0 -1 3006
+E
+writing carving carvings symbols symbol~
+Although it is very hard to understand, you think it looks a lot like beer,
+poems about beer, and small beer-mugs.~
+E
+sign~
+The sign reads:
+Free instructions provided by the Grunting Boar Inn.
+
+   Buy  - Buy something (drinkable) from the bartender.
+   List - The bartender will show you all the different drinks and
+          specialties, and tell the price of each.~
+S
+#3008
+The Defunct Reception~
+You are standing in a dusty, defunct reception.  The staircase leads
+down to the entrance hall.~
+30 ROOM_INDOORS SECT_INSIDE
+DDIR_DOWN
+You see the entrance hall.~
+~
+0 -1 3006
+S
+#3009
+The Bakery~
+You are standing inside the small bakery.  A sweet scent of Danish and
+fine bread fills the room.  The bread and Danish are arranged in fine order
+on the shelves, and seem to be of the finest quality.
+A small sign is on the counter.~
+30 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+You see the main street.~
+~
+0 -1 3013
+E
+sign~
+Free instructions provided by the store:
+
+   Buy  - Will buy you some bread or pastry.
+   List - The baker will kindly tell you the price and sort of the bread in
+          his bakery.~
+E
+danish pastry~
+You see that this is truly delicious pastry.  Must be made by a Dane from
+Denmark (which surely is not the capital of Sweden!).  Former ruler of
+Scandinavia, England, Northern Germany, Northern France, Russia, Greenland,
+Iceland, Estonia etc. etc.
+   The sight of those large, wholesome chokoladeboller makes your mouth water
+and your soul sing.~
+S
+#3010
+The General Store~
+You are inside the general store.  All sorts of items are stacked on shelves
+behind the counter, safely out of your reach.
+A small note hangs on the wall.~
+30 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+You see the main street.~
+~
+0 -1 3015
+E
+note~
+The note reads:
+
+  List  - Show which various items are in the store.
+  Buy   - Buy an item.
+  Value - The shopkeeper will (free of charge) tell how much he will
+          pay for your item.
+  Sell  - Sell an item.~
+S
+#3011
+The Weapon Shop~
+You are inside the weapon shop.  There is a small note on the counter.~
+30 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+You see the main street.~
+~
+0 -1 3016
+E
+note~
+The note reads:
+
+  List  - Show which various items are in the store.
+  Buy   - Buy an item.
+  Value - The shopkeeper will (free of charge) tell how much he will
+          pay for your item.
+  Sell  - Sell an item.~
+S
+#3012
+Main Street~
+You are at the end of the main street of Midgaard.  South of here is the
+entrance to the Guild of Magic Users.  The street continues east towards the
+market square.  The magic shop is to the north and to the west is the city
+gate.~
+30 0 SECT_CITY
+DDIR_NORTH
+You see the magic shop.~
+~
+0 -1 3033
+DDIR_EAST
+You see the main street.~
+~
+0 -1 3013
+DDIR_SOUTH
+You see the entrance to the Guild of Magic Users.~
+~
+0 -1 3017
+DDIR_WEST
+You see the city gate.~
+~
+0 -1 3040
+S
+#3013
+Main Street~
+You are on the main street passing through the City of Midgaard.  South of
+here is the entrance to the Armoury, and the bakery is to the north.  East of
+here is the market square.~
+30 0 SECT_CITY
+DDIR_NORTH
+You see the bakery.~
+~
+0 -1 3009
+DDIR_EAST
+You see the market square.~
+~
+0 -1 3014
+DDIR_SOUTH
+You see the armoury.~
+~
+0 -1 3020
+DDIR_WEST
+You see the main street.~
+~
+0 -1 3012
+S
+#3014
+Market Square~
+You are standing on the market square, the famous Square of Midgaard.
+A large, peculiar looking statue is standing in the middle of the square.
+Roads lead in every direction, north to the temple square, south to the
+common square, east and westbound is the main street.~
+30 0 SECT_CITY
+DDIR_NORTH
+You see the temple square.~
+~
+0 -1 3005
+DDIR_EAST
+You see the main street.~
+~
+0 -1 3015
+DDIR_SOUTH
+You see the common square.~
+~
+0 -1 3025
+DDIR_WEST
+You see the main street.~
+~
+0 -1 3013
+E
+statue~
+What you see is the Midgaard Worm, stretching around the Palace of Midgaard.~
+S
+#3015
+The Main Street~
+You are on Main Street crossing through town.  To the north is the general
+store, and the main street continues east.  To the west you see and hear the
+market place and to the south is the Jeweller's Shop.~
+30 0 SECT_CITY
+DDIR_NORTH
+You see the general store.~
+~
+0 -1 3010
+DDIR_EAST
+You see Main Street.~
+~
+0 -1 3016
+DDIR_SOUTH
+You see the Jeweller's Shop.~
+~
+0 -1 3034
+DDIR_WEST
+You see the market square.~
+~
+0 -1 3014
+S
+#3016
+The Main Street~
+The main street, to the north is the weapon shop and to the south is the
+Guild of Swordsmen.  To the east you leave town and to the west the street
+leads to the market square.~
+30 0 SECT_CITY
+DDIR_NORTH
+You see the weapon shop.~
+~
+0 -1 3011
+DDIR_EAST
+You see the city gate.~
+~
+0 -1 3041
+DDIR_SOUTH
+You see the swordsmen's guild.~
+~
+0 -1 3021
+DDIR_WEST
+You see the main street leading to the market square.~
+~
+0 -1 3015
+S
+#3017
+Entrance to Mage's Guild~
+The entrance hall is a small, poor lighted room.~
+30 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+You see the main street.~
+~
+0 -1 3012
+DDIR_SOUTH
+You see your favorite place, the Mage's Bar.~
+~
+0 -1 3018
+S
+#3018
+Mage's Bar~
+The bar is one of the wierdest in the land.  Mystical images float around
+the air.  Illusions of fine furniture appear all around the room.~
+30 ROOM_NO_MOB|ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+You see the lobby.~
+~
+0 -1 3017
+DDIR_EAST
+You see the laboratory.~
+~
+0 -1 3019
+S
+#3019
+Mage's Laboratory~
+This is the Magical Experiments Laboratory.  Dark smoke-stained stones
+arch over numerous huge oaken tables, most of these cluttered with strange-
+looking pipes and flasks.  The floor is covered with half-erased pentagrams
+and even weirder symbols, and a blackboard in a dark corner has only been
+partially cleaned, some painful-looking letters faintly visible.  A well in
+the middle of the floor leads down into darkness.  Vile smells waft from the
+depths.~
+30 ROOM_NO_MOB|ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+You see the bar.~
+~
+0 -1 3018
+S
+#3020
+The Armoury~
+The armoury with all kinds of armours on the walls and in the window.  You
+see helmets, shields and chain mails.  To the north is the main street.
+On the wall is a small note.~
+30 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+You see the main street.~
+~
+0 -1 3013
+E
+note~
+You can use these commands for trading:
+
+  value <item>     To get the price of an item in your possession.
+  sell <item>      To sell something.
+  buy <item>       To buy something (provided that the shop has it in store).
+  list             Gives you a listing of the shop's inventory.
+
+        WE DON'T GIVE CREDIT; WE DON'T EXPECT TO RECEIVE CREDIT!
+                             NO HAGGLING~
+S
+#3021
+Entrance Hall to the Guild of Swordsmen~
+The entrance hall to the Guild of Swordsmen.  A place where one has to be
+careful not to say something wrong (or right).  To the east is the bar and to
+the north is the main street.~
+30 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+You see the main street.~
+~
+0 -1 3016
+DDIR_EAST
+You see the swordsmen's bar, many noises comes from there.~
+~
+0 -1 3022
+S
+#3022
+The Bar of Swordsmen~
+The bar of swordsmen, once upon a time beautifully furnished.  But now the
+furniture is all around you in small pieces.  To the south is the yard, and
+to the west is the entrance hall.~
+30 ROOM_NO_MOB|ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+You see the practice yard.~
+~
+0 -1 3023
+DDIR_WEST
+You see the entrance hall to the thieves guild.~
+~
+0 -1 3021
+S
+#3023
+The Tournament and Practice Yard~
+The practice yard of the fighters.  To the north is the bar.  A well leads
+down into darkness.~
+30 ROOM_NO_MOB|ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+You see the bar.~
+~
+0 -1 3022
+S
+#3024
+Eastern End of Poor Alley~
+You are at the poor alley.  South of here is the Grubby Inn and to the
+east you see common square.  The alley continues further west.~
+30 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 16024
+DDIR_EAST
+You see the common square.~
+~
+0 -1 3025
+DDIR_SOUTH
+You see the Inn.~
+~
+0 -1 3048
+DDIR_WEST
+You see the poor alley.~
+~
+0 -1 3044
+S
+#3025
+The Common Square~
+The common square, people pass you, talking to each other.  To the west is
+the poor alley and to the east is the dark alley.  To the north, this square
+is connected to the market square.  From the south you notice a nasty smell.~
+30 0 SECT_CITY
+DDIR_NORTH
+You see the market square.~
+~
+0 -1 3014
+DDIR_EAST
+You see the dark alley.~
+~
+0 -1 3026
+DDIR_SOUTH
+You see the city dump.~
+~
+0 -1 3030
+DDIR_WEST
+You see the poor alley.~
+~
+0 -1 3024
+S
+#3026
+The Dark Alley~
+The dark alley, to the west is the common square and to the south is the
+Guild of Thieves.  The alley continues east.~
+30 0 SECT_CITY
+DDIR_EAST
+The alley continues east.~
+~
+0 -1 3045
+DDIR_SOUTH
+You see the entrance to the thieves guild.~
+~
+0 -1 3027
+DDIR_WEST
+You see the common square.~
+~
+0 -1 3025
+E
+guild~
+It is the thieves guild, don't enter if you care about your health or money.~
+S
+#3027
+Entrance Hall to the Guild of Thieves~
+The entrance hall to the thieves' and assassins' guild.  A place where you
+can lose both your life and your money, if you are not careful.  To the north
+is the dark alley and to the east is the thieves' bar.~
+30 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+You see the alley.~
+~
+0 -1 3026
+DDIR_EAST
+You see the thieves bar, where everything disappears.~
+~
+0 -1 3028
+S
+#3028
+The Thieves Bar~
+The bar of the thieves.  Once upon a time this place was beautifully
+furnished, but now it seems almost empty.  To the south is the yard, and to
+the west is the entrance hall.
+   (Maybe the furniture has been stolen?!)~
+30 ROOM_NO_MOB|ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+You see the secret yard.~
+~
+0 -1 3029
+DDIR_WEST
+You see the entrance hall to the thieves guild.~
+~
+0 -1 3027
+E
+furniture~
+As you look at the furniture, the chair you sit on disappears.~
+S
+#3029
+The Secret Yard~
+The secret practice yard of thieves and assassins.  To the north is the
+bar.  A well leads down into darkness.~
+30 ROOM_NO_MOB|ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+You see the bar.~
+~
+0 -1 3028
+S
+#3030
+The Dump~
+The dump, where the people from the city drop their garbage.  Through the
+garbage you can see a large junction of pipes, looks like the entrance to the
+sewer system.  To the north you can see the common square.~
+30 ROOM_NO_MOB SECT_FIELD
+DDIR_NORTH
+You see the common square.~
+~
+0 -1 3025
+DDIR_SOUTH
+~
+~
+0 -1 17503
+S
+#3031
+The Pet Shop~
+The Pet Shop is a small crowded store, full of cages and animals of
+various sorts and sizes.  There is a sign on the wall.~
+30 ROOM_INDOORS|ROOM_PET_SHOP SECT_INSIDE
+DDIR_SOUTH
+You see the Alley.~
+~
+0 -1 3045
+E
+sign~
+The sign reads:
+
+  Use 'List' to see the available pets.
+  Use 'Buy <pet name>' to buy yourself a pet and name it.
+
+  You can use 'order <pet> <instructions>' to order your pets around.
+  If you abuse your pet, it will no longer regard you as its master.
+  If you have several pets you may use 'order all <instructions>'
+
+  Regards,
+            The Shopkeeper~
+S
+#3032
+Pet Shop Store~
+This is the small dark room in which the Pet Shop Boy keeps his pets.
+It is vital that this room be immediately after the pet shop.~
+30 ROOM_NO_MOB|ROOM_INDOORS SECT_INSIDE
+S
+#3033
+The Magic Shop~
+You are in a small room that smells of rare chemicals and spices.
+Dividing the room in two is a large desk, and on the wall behind it are
+numerous shelves crammed with jars, bottles, books and scrolls of all
+sorts and sizes.~
+30 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+You see the main street.~
+~
+0 -1 3012
+E
+scrolls~
+Each scroll is stored in a leather tube that protects it from moist.~
+E
+books~
+Most of them appear to be very old and dusty.~
+E
+jars bottles~
+Some of them are transparent enabling you to see that some contain colored
+powders while others contain body parts of various animals.~
+S
+#3034
+The Jeweller's Shop~
+You are in a small, beautifully furnished room.  The warm light emanating
+from the small oil lamps on the walls is reflected in the hard, polished
+surface of the big mahogany desk that stands in the centre of the room.
+A small sign with golden letters stands on the desk.~
+30 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+You see Main Street.~
+~
+0 -1 3015
+E
+sign~
+The golden letters say :-
+
+    Use 'list' to see what is in store,
+        'buy <item>' to buy an item,
+        'sell <item>' to sell an item and
+        'value <item>' to make the jeweller evaluate an item.~
+E
+desk~
+Your face is reflected in its surface.~
+E
+oil lamps~
+They are made from polished gold and looks as if they are securely fastened
+to the smooth stone walls.~
+S
+#3035
+The Leather Shop~
+An acrid smell fills this large room.  Along the walls are numerous
+shelves containing all sorts of animal hide and in the crackling fireplace
+hangs a big iron pot with boiling water.  In the middle of the room is a
+large oak table.
+A wooden sign is hanging above the fireplace.~
+30 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+You see the alley.~
+~
+0 -1 3044
+E
+sign~
+The wooden sign says :-
+
+    Use 'list' to see what is in store,
+        'buy <item>' to buy an item,
+        'sell <item>' to sell an item and
+        'value <item>' to make the leather worker evaluate an item.~
+E
+pot~
+Several large pieces of leather hide are boiling in the iron pot.~
+E
+table~
+It is made from solid oak but appears to be very used.  Its surface is
+covered in marks and scratches.  A large burning candle stands directly on
+the table surface, tallow flowing down its sides.~
+E
+fireplace~
+It is a rather large fireplace made from heavy granite rocks.~
+S
+#3040
+Inside the West Gate of Midgaard~
+You are by two small towers that have been built into the city wall and
+connected with a footbridge across the heavy wooden gate.  Main Street leads
+east and Wall Road leads south from here.~
+30 0 SECT_CITY
+DDIR_EAST
+You see Main Street.~
+~
+0 -1 3012
+DDIR_SOUTH
+You see the road running along the inner side of the city wall.  You notice
+that it is called Wall Road.~
+~
+0 -1 3042
+DDIR_WEST
+The city gate is to the west.~
+gate~
+EX_ISDOOR 3133 3052
+E
+wall~
+It is built from large grey rocks that have been fastened to each other with
+some kind of mortar.  It is far too high to climb.~
+E
+tower towers~
+Both of the towers are built from large grey rocks that have been fastened to
+each other with some kind of mortar, just like the city wall.~
+E
+gate~
+It is a set of very big double doors made from hard wood.  They have been
+reinforced with large iron bands to make them even more sturdy.  One of the
+doors is equipped with a very big lock.~
+E
+bridge footbridge~
+It is too high up to reach but it looks as if one easily could walk across it
+from one tower to the other.~
+S
+#3041
+Inside the East Gate of Midgaard~
+You are by two small towers that have been built into the city wall and
+connected with a footbridge across the heavy wooden gate.  Main Street leads
+west from here.~
+30 0 SECT_CITY
+DDIR_EAST
+You see the city gate.~
+gate~
+EX_ISDOOR 3133 3053
+DDIR_WEST
+You see Main Street.~
+~
+0 -1 3016
+E
+wall~
+It is built from large grey rocks that have been fastened to each other with
+some kind of mortar.  It is far too high to climb.~
+E
+tower towers~
+Both of the towers are built from large grey rocks that have been fastened to
+each other with some kind of mortar, just like the city wall.~
+E
+gate~
+It is a set of very big double doors made from hard wood.  They have been
+reinforced with large iron bands to make them even more sturdy.  One of the
+doors is equipped with a very big lock.~
+E
+bridge footbridge~
+It is too high up to reach but it looks as if one easily could walk across it
+from one tower to the other.~
+S
+#3042
+Wall Road~
+You are walking next to the western city wall.  The road continues further
+south and the city gate is just north of here.~
+30 0 SECT_CITY
+DDIR_NORTH
+You see the city gate.~
+~
+0 -1 3040
+DDIR_SOUTH
+The road continues further south.~
+~
+0 -1 3043
+E
+wall~
+It is built from large grey rocks that have been fastened to each other with
+some kind of mortar.  It is far too high to climb.~
+S
+#3043
+Wall Road~
+You are walking next to the western city wall.  Wall Road continues further
+north and south.  A small, poor alley leads east.
+Some letters have been written on the wall here.~
+30 0 SECT_CITY
+DDIR_NORTH
+The road continues further north.~
+~
+0 -1 3042
+DDIR_EAST
+The alley leads east.~
+~
+0 -1 3044
+DDIR_SOUTH
+The road continues further south.~
+~
+0 -1 3047
+E
+wall~
+It is built from large grey rocks that have been fastened to each other with
+some kind of mortar.  It is far too high to climb.~
+E
+letters~
+It says 'Who watches the watchmen?'~
+S
+#3044
+Poor Alley~
+You are in narrow and dirty alley leading east and west.  The leather shop
+is to the north.~
+30 0 SECT_CITY
+DDIR_NORTH
+The leather shop is to the north.~
+~
+0 -1 3035
+DDIR_EAST
+The alley leads east.~
+~
+0 -1 3024
+DDIR_WEST
+The alley leads west.~
+~
+0 -1 3043
+S
+#3045
+Alley at Levee~
+You are standing in the alley which continues east and west.  South of
+here you see the levee.  North is the Pet Shop.~
+30 0 SECT_CITY
+DDIR_NORTH
+You see, hear, and smell the pet shop.~
+~
+0 0 3031
+DDIR_EAST
+The alley leads east.~
+~
+0 -1 3046
+DDIR_SOUTH
+You see the levee.~
+~
+0 -1 3049
+DDIR_WEST
+The alley leads west.~
+~
+0 -1 3026
+S
+#3046
+Eastern end of Alley~
+You are standing at the eastern end of the alley.  An old three-story
+warehouse is directly south of here.~
+30 0 SECT_CITY
+DDIR_SOUTH
+You see the warehouse.~
+~
+0 -1 3050
+DDIR_WEST
+You see the alley.~
+~
+0 -1 3045
+S
+#3047
+Wall Road~
+You are standing on the road next to the western city wall which
+continues north.  South of here is a bridge across the river.~
+30 0 SECT_CITY
+DDIR_NORTH
+You see the road.~
+~
+0 -1 3043
+DDIR_SOUTH
+You see the bridge.~
+~
+0 -1 3051
+E
+wall~
+It is built from large grey rocks that have been fastened to each other with
+some kind of mortar.  It is far too high to climb.~
+S
+#3048
+Grubby Inn~
+You are inside the old Grubby Inn.  This place has not been cleaned for
+several decades, vile smells make you dizzy.~
+30 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+You see the alley.~
+~
+0 -1 3024
+S
+#3049
+Levee~
+You are at the levee.  South of here you see the river gently flowing west.
+The river bank is very low making it possible to enter the river.~
+30 0 SECT_CITY
+DDIR_NORTH
+You see the Alley.~
+~
+0 -1 3045
+DDIR_SOUTH
+You see the river flowing west.~
+~
+0 -1 3203
+S
+#3050
+Abandoned Warehouse~
+You are inside the only room in the old warehouse.  The place is very dusty
+and appears to have been unused for many years.  The skylight spills
+violet-tinged light.~
+30 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+You see the alley.~
+~
+0 -1 3046
+S
+#3051
+On the Bridge~
+You are standing on the stone bridge crosses the river.  The bridge is
+built out from the western city wall and the river flows west through an
+opening in the wall ten feet below the bridge.~
+30 0 SECT_CITY
+DDIR_NORTH
+You see the road.~
+~
+0 -1 3047
+DDIR_SOUTH
+You see the Concourse.~
+~
+0 -1 3100
+E
+wall~
+It is built from large grey rocks that have been fastened to each other with
+some kind of mortar.  It is far too high to climb.~
+E
+opening~
+You cannot really see it from here as it is somewhere beneath your feet.~
+E
+bridge~
+It is built from large grey rocks that have been fastened to each other with
+some kind of mortar, just like the wall.~
+S
+#3052
+Outside the West Gate of Midgaard~
+You are by two small towers that have been built into the city wall and
+connected with a footbridge across the heavy wooden gate.  To the west you
+can see the edge of a big forest. A small dusty trail leads north along the
+wall.~
+30 0 SECT_CITY
+DDIR_EAST
+The city gate is to the east.~
+gate~
+EX_ISDOOR 3133 3040
+DDIR_WEST
+~
+~
+0 -1 17497
+E
+wall~
+It is built from large grey rocks that have been fastened to each other with
+some kind of mortar.  It is far too high to climb.~
+E
+tower towers~
+Both of the towers are built from large grey rocks that have been fastened to
+each other with some kind of mortar, just like the city wall.~
+E
+gate~
+It is a set of very big double doors made from hard wood.  They have been
+reinforced with large iron bands to make them even more sturdy.  One of the
+doors is equipped with a very big lock.~
+E
+bridge footbridge~
+It is too high up to reach but it looks as if one easily could walk across it
+from one tower to the other.~
+S
+#3053
+Outside the East Gate of Midgaard~
+You are by two small towers that have been built into the city wall and
+connected with a footbridge across the heavy wooden gate.  To the east the
+plains stretch out in the distance. To the north a small dusty trail follow
+the city wall.~
+30 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 8904
+DDIR_WEST
+You see the city gate.~
+gate~
+EX_ISDOOR 3133 3041
+E
+wall~
+It is built from large grey rocks that have been fastened to each other with
+some kind of mortar.  It is far too high to climb.~
+E
+tower towers~
+Both of the towers are built from large grey rocks that have been fastened to
+each other with some kind of mortar, just like the city wall.~
+E
+gate~
+It is a set of very big double doors made from hard wood.  They have been
+reinforced with large iron bands to make them even more sturdy.  One of the
+doors is equipped with a very big lock.~
+E
+bridge footbridge~
+It is too high up to reach but it looks as if one easily could walk across it
+from one tower to the other.~
+S
+#3054
+By the Temple Altar~
+You are by the temple altar in the northern end of the Temple of Midgaard.
+A huge altar made from white polished marble is standing in front of you and
+behind it is a ten foot tall sitting statue of Odin, the King of the Gods.~
+30 ROOM_NO_MOB|ROOM_INDOORS|ROOM_SAFE SECT_INSIDE
+DDIR_SOUTH
+You see the southern end of the temple.~
+~
+0 -1 3001
+E
+statue odin king god~
+The statue represents the one-eyed Odin sitting on a his throne.  He has
+long, grey hair and beard and a strict look on his face.  On top of the
+throne, just above his shoulders, his two ravens Hugin and Munin are sitting
+and at his feet are his wolves Gere and Freke.~
+E
+altar~
+Even though the altar is more than ten feet long it appears to be made from a
+single block of white virgin marble.~
+S
+#3057
+In the air...~
+WOW you can fly!  You are floating in the air above Temple Square of Midgaard.~
+30 ROOM_NO_MOB SECT_AIR
+DDIR_UP
+More of the same.~
+~
+0 0 1017
+DDIR_DOWN
+Back down on the earth where you should be!~
+~
+0 0 3005
+S
+#3100
+Northwest end of Concourse~
+You are at the concourse, the city wall is just west.  A small promenade
+goes east, and the bridge is just north of here.  The concourse continues
+south along the city wall.~
+30 0 SECT_CITY
+DDIR_NORTH
+You see the Bridge.~
+~
+0 -1 3051
+DDIR_EAST
+You see the promenade.~
+~
+0 -1 3101
+DDIR_SOUTH
+The promenade continues far south.~
+~
+0 -1 3127
+S
+#3101
+Promenade~
+The river gently flows west just north of here.  The promenade continues
+further east and to the west you see the city wall.  Park Road leads south
+from here.~
+30 0 SECT_CITY
+DDIR_EAST
+The promenade.~
+~
+0 -1 3102
+DDIR_SOUTH
+Park Road leads south.~
+~
+0 -1 3131
+DDIR_WEST
+You see the Concourse.~
+~
+0 -1 3100
+S
+#3102
+Promenade~
+The river gently flows west just north of here.  The promenade continues
+both east and west.  South of here you see the entrance to the park, and a
+small building seems to be just west of the entrance.~
+30 0 SECT_CITY
+DDIR_EAST
+You see the promenade.~
+~
+0 -1 3103
+DDIR_SOUTH
+You see the park entrance.~
+~
+0 -1 3105
+DDIR_WEST
+You see the promenade.~
+~
+0 -1 3101
+S
+#3103
+Promenade~
+The river gently flows west just north of here.  The promenade continues
+both east and west.  A small path leads south.  Looking across the river you
+see the levee.~
+30 0 SECT_CITY
+DDIR_EAST
+You see the Concourse.~
+~
+0 -1 3104
+DDIR_SOUTH
+The small path leads south.~
+~
+0 -1 3132
+DDIR_WEST
+You see the promenade.~
+~
+0 -1 3102
+S
+#3104
+Northeast end of Concourse~
+You are at the Concourse.  The city wall is just east and a small
+promenade goes west.  Looking across the river you see a building that
+resembles a warehouse.  The Concourse continues south along the city wall.~
+30 0 SECT_CITY
+DDIR_SOUTH
+The Concourse continues south.~
+~
+0 -1 3130
+DDIR_WEST
+You see the promenade.~
+~
+0 -1 3103
+E
+wall~
+It is built from large grey rocks that have been fastened to each other with
+some kind of mortar.  It is far too high to climb.~
+S
+#3105
+Park Entrance~
+You are standing just inside the small park of Midgaard.  To the north is
+the promenade and a small path leads south into the park.  To your east is
+the famous Park Cafe.~
+30 ROOM_NO_MOB SECT_CITY
+DDIR_NORTH
+You see the promenade.~
+~
+0 -1 3102
+DDIR_EAST
+You see Park Cafe.~
+~
+0 -1 3106
+DDIR_SOUTH
+You see the park.~
+~
+0 -1 3108
+S
+#3106
+Park Cafe~
+You are inside Park Cafe, a very well lighted, cosy place. The cafe
+is built from large logs. Through the windows in the northern wall you
+see the river, and through the southern window you see many vigorous
+colorful plants.~
+30 ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+You see the park entrance.~
+~
+0 -1 3105
+S
+#3107
+Small path through the park~
+You are walking along a small path through the park.  The path continues
+south and east.~
+30 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 3108
+DDIR_SOUTH
+~
+~
+0 -1 3113
+S
+#3108
+Small path in the park~
+You are standing on a small path inside the park.  The park entrance is
+just north of here, and Park Cafe is just east of the entrance.  The path
+leads further east and west.~
+30 0 SECT_CITY
+DDIR_NORTH
+You see the northern park entrance.~
+~
+0 -1 3105
+DDIR_EAST
+~
+~
+0 -1 3109
+DDIR_WEST
+~
+~
+0 -1 3107
+S
+#3109
+Small path in the park~
+You are on a small path running through the park.  It continues west and
+south and just north of here you see the southern wall of Park Cafe.~
+30 0 SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 3115
+DDIR_WEST
+~
+~
+0 -1 3108
+S
+#3110
+Cityguard Head Quarters~
+You are inside a tidy office.  A big desk made from dark wood is standing
+in the centre of the room.~
+30 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+You see Park Road.~
+door~
+EX_ISDOOR -1 3111
+DDIR_WEST
+You see a sign saying 'KEEP OUT'.~
+door~
+EX_ISDOOR|EX_CLOSED|EX_LOCKED 3120 3142
+S
+#3111
+Park Road~
+The road continues north and south.  A building is just west of here, you
+notice a sign on the door.  The park entrance is to the east.~
+30 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 3131
+DDIR_EAST
+You see the park entrance.~
+~
+0 -1 3112
+DDIR_SOUTH
+~
+~
+0 -1 3118
+DDIR_WEST
+You see the cityguard head quarters.~
+door~
+EX_ISDOOR -1 3110
+E
+building door sign~
+The sign on the door says:-
+
+                 Cityguard Head Quarters~
+S
+#3112
+Western Park Entrance~
+You are standing at the western end of the park.  A small path leads east
+into the park and going west through the entrance you will reach Park Road.~
+30 ROOM_NO_MOB SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 3113
+DDIR_WEST
+~
+~
+0 -1 3111
+S
+#3113
+A path in the park~
+You are in the park.  The paths lead north and west.  Westwards is the
+park entrance and to the east you see a small pond.~
+30 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 3107
+DDIR_EAST
+You see the pond.~
+~
+0 -1 3114
+DDIR_WEST
+You see the western park entrance.~
+~
+0 -1 3112
+S
+#3114
+The Pond~
+You are swimming around in the pond, feeling rather stupid.  You can get
+back on the path from the eastern and western end of the pond.~
+30 0 SECT_WATER_SWIM
+DDIR_EAST
+~
+~
+0 -1 3115
+DDIR_WEST
+~
+~
+0 -1 3113
+S
+#3115
+A path in the park~
+You are in the park.  The paths lead north and east.  Eastwards is the
+park entrance and to the west you see a small pond.~
+30 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 3109
+DDIR_EAST
+~
+~
+0 -1 3116
+DDIR_WEST
+~
+~
+0 -1 3114
+S
+#3116
+Eastern Park Entrance~
+You are standing at the eastern end of the park.  A small path leads west
+into the park.  Going east through the entrance you will reach Emerald
+Avenue.~
+30 ROOM_NO_MOB SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 3117
+DDIR_WEST
+~
+~
+0 -1 3115
+S
+#3117
+Emerald Avenue~
+You are at Emerald Avenue which continues north and south.  To the west is
+the park entrance and to the east is the not very big Town Hall of Midgaard.~
+30 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 3132
+DDIR_EAST
+~
+~
+0 -1 3137
+DDIR_SOUTH
+~
+~
+0 -1 3119
+DDIR_WEST
+~
+~
+0 -1 3116
+S
+#3118
+Park Road~
+You are on Park Road which leads north and south.~
+30 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 3111
+DDIR_SOUTH
+~
+~
+0 -1 3135
+S
+#3119
+Emerald Avenue~
+You are standing at a bend on Emerald Avenue.  The road leads north and west.~
+30 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 3117
+DDIR_WEST
+~
+~
+0 -1 3133
+S
+#3120
+Road Crossing~
+You are in the middle of the road cross.  Roads lead in all directions.
+A huge black iron chain as thick as a tree trunk is fastened into the ground
+at the centre of the road cross.  Its other end leads directly upwards towards
+the sky.
+A road sign is here.~
+30 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 3133
+DDIR_EAST
+~
+~
+0 -1 3136
+DDIR_SOUTH
+~
+~
+0 -1 3134
+DDIR_WEST
+~
+~
+0 -1 3135
+DDIR_UP
+The chain disappears in the clouds.~
+~
+0 -1 7914
+E
+chain~
+The the chain reaches the clouds high above you.  It must take some really
+powerful magic to hold such a chain in place.~
+E
+sign~
+The sign points in all directions:
+
+   North - Emerald Avenue.
+   East  - Park Road.
+   South - Emerald Avenue.
+   West  - Park Road.
+
+Someone has added the following with red paint:
+
+   Up    - Redferne's Flying Citadel.~
+S
+#3121
+Emerald Avenue~
+You are standing at a bend on Emerald Avenue.  The road leads south and
+east.~
+30 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 3134
+DDIR_SOUTH
+~
+~
+0 -1 3125
+S
+#3122
+Park Road~
+You are on Park Road which leads south and north.  Elm Street is east of
+here.~
+30 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 3136
+DDIR_EAST
+~
+~
+0 -1 3123
+DDIR_SOUTH
+~
+~
+0 -1 3126
+S
+#3123
+Elm Street~
+You are on Elm street.  Park Road is to the west and Elm Street continues
+in eastward direction.~
+30 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 3124
+DDIR_WEST
+~
+~
+0 -1 3122
+S
+#3124
+End of Elm Street~
+You are at the end of Elm Street.  An old elm tree grows here.~
+30 0 SECT_CITY
+DDIR_WEST
+~
+~
+0 -1 3123
+E
+elm tree~
+The fresh young leaves of the elm tree wave gently in the wind.~
+S
+#3125
+Emerald Avenue~
+You are on Emerald Avenue which continues north.
+The Concourse is south of here.~
+30 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 3121
+DDIR_SOUTH
+~
+~
+0 -1 3128
+S
+#3126
+Park Road~
+You are on Park Road which continues north.  The Concourse is south of here.~
+30 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 3122
+DDIR_SOUTH
+~
+~
+0 -1 3129
+S
+#3127
+On the Concourse~
+You are at the southwest corner of the city wall.  The Concourse leads
+both north and east.~
+30 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 3100
+DDIR_EAST
+~
+~
+0 -1 3128
+S
+#3128
+On the Concourse~
+The Concourse continues both east and west.  Emerald Avenue is north of
+here.~
+30 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 3125
+DDIR_EAST
+~
+~
+0 -1 3129
+DDIR_WEST
+~
+~
+0 -1 3127
+S
+#3129
+On the Concourse~
+The Concourse continues both east and west.  Park Road is north of here.~
+30 ROOM_DARK SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 3126
+DDIR_EAST
+~
+~
+0 -1 3130
+DDIR_WEST
+~
+~
+0 -1 3128
+S
+#3130
+On the Concourse~
+You are at the southeast corner of the city wall.  The Concourse leads
+both north and west.~
+30 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 3104
+DDIR_WEST
+~
+~
+0 -1 3129
+S
+#3131
+Park Road~
+You are at Park Road which continues north and south.~
+30 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 3101
+DDIR_SOUTH
+~
+~
+0 -1 3111
+S
+#3132
+Emerald Avenue~
+You are standing on the north end of Emerald Avenue.  To the north is the
+promenade and to the east is the small street Penny Lane.~
+30 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 3103
+DDIR_EAST
+~
+~
+0 -1 3139
+DDIR_SOUTH
+~
+~
+0 -1 3117
+S
+#3133
+Emerald Avenue~
+You are standing at a bend on Emerald Avenue.  To the east the road goes on
+and to the south is the Road Crossing.~
+30 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 3119
+DDIR_SOUTH
+~
+~
+0 -1 3120
+S
+#3134
+Emerald Avenue~
+You are standing at a bend on Emerald Avenue.  To the west the road goes on
+and to the north is the Road Crossing.~
+30 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 3120
+DDIR_WEST
+~
+~
+0 -1 3121
+S
+#3135
+Park Road~
+You are at a bend on Park Road.  To the north the road goes on and to the
+east is the Road Crossing.  To the south, the ancient cliffs rise from deep
+under the ground, forming a wall.~
+30 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 3118
+DDIR_EAST
+~
+~
+0 -1 3120
+S
+#3136
+Park Road~
+You are at a bend on Park Road.  To the south the road goes on and to the
+west is the Road Crossing.~
+30 0 SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 3122
+DDIR_WEST
+~
+~
+0 -1 3120
+S
+#3137
+The Waiting Room~
+You are standing in the waiting room at the town hall.  Wooden chairs stand
+along the walls and a long desk is placed in the middle of the room.~
+30 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+It looks like some kind of office.~
+~
+0 -1 3138
+DDIR_WEST
+The exit west leads to Emerald Avenue.~
+~
+0 -1 3117
+S
+#3138
+The Mayor's Office~
+You are in the not very big office of the Mayor of Midgaard.  A large and
+polished but completely empty desk is standing in front of an armchair that
+looks so comfortable that it most of all resembles a bed with the head end
+raised slightly.~
+30 ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+The waiting room is to the west.~
+~
+0 -1 3137
+E
+chair armchair~
+This chair is really a masterpiece.  A chair where one can sit as comfortably
+as in a bed.  All lecture halls should be equipped with these things.~
+S
+#3139
+Penny Lane~
+You are on Penny Lane.  Emerald Avenue is to the west and Penny Lane
+continues in eastward direction.~
+30 0 SECT_CITY
+DDIR_EAST
+~
+~
+0 -1 3140
+DDIR_WEST
+~
+~
+0 -1 3132
+S
+#3140
+Penny Lane~
+You are on Penny Lane.  The narrow road continues north and west.~
+30 0 SECT_CITY
+DDIR_NORTH
+~
+~
+0 -1 3141
+DDIR_WEST
+~
+~
+0 -1 3139
+S
+#3141
+End of Penny Lane~
+You are at the end of Penny Lane.  The only exit appears to be south.~
+30 0 SECT_CITY
+DDIR_SOUTH
+~
+~
+0 -1 3140
+S
+#3142
+Captain's Office~
+You are in the Office of the Captain of the Guard.  The Midgaard Coat of
+Arms is hanging on the north wall and a heavy steel door is to the south.~
+30 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+You see the Cityguard Head Quarters.~
+door~
+EX_ISDOOR|EX_CLOSED|EX_LOCKED 3120 3110
+DDIR_SOUTH
+You see the heavy steel door.~
+door~
+EX_ISDOOR|EX_CLOSED|EX_LOCKED 3137 3143
+E
+arms~
+Although a bit dusty the Coat of Arms is an excellent piece of work.~
+S
+#3143
+The Jail~
+You are in a dark and humid jail.  The dark stone walls are hard and cold
+to the touch.  A heavy steel door is to the north.~
+30 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+You see the heavy steel door.~
+door~
+EX_ISDOOR|EX_CLOSED|EX_LOCKED 3137 3142
+E
+wall walls~
+The walls are marked with lots of scratches.  Some of them spell sentences
+like "JAIL IS BETTER THAN SQL" and "INGRES STRIKES AGAIN".~
+S
+#3200
+Under the Bridge~
+The arch under the bridge is covered by seaweed for one foot above the
+surface of the river.  The water gently flows through an opening in the lower
+part of the city wall.~
+30 0 SECT_WATER_NOSWIM
+DDIR_EAST
+~
+~
+0 -1 3201
+E
+wall~
+It is built from large grey rocks that have been fastened to each other with
+some kind of mortar.  Looks pretty solid.~
+S
+#3201
+On the River~
+North of here you see the miserable buildings of the poor alley.  The
+river flows west towards the bridge.  The riverbanks are too steep to climb.~
+30 0 SECT_WATER_NOSWIM
+DDIR_EAST
+~
+~
+0 -1 3202
+DDIR_WEST
+~
+~
+0 -1 3200
+S
+#3202
+On the River~
+North of here you see the dump.  The river flows from east to west.  The
+riverbanks are too steep to climb.~
+30 0 SECT_WATER_NOSWIM
+DDIR_EAST
+~
+~
+0 -1 3203
+DDIR_WEST
+~
+~
+0 -1 3201
+S
+#3203
+On the River~
+The levee is directly north of here.  The river flows in an east west
+direction.~
+30 ROOM_NO_MOB SECT_WATER_NOSWIM
+DDIR_NORTH
+~
+~
+0 -1 3049
+DDIR_EAST
+~
+~
+0 -1 3204
+DDIR_WEST
+~
+~
+0 -1 3202
+S
+#3204
+On the River~
+You see the warehouse on the northern riverbank.  East of here you see the
+city wall.  The river flows west towards the levee.~
+30 0 SECT_WATER_NOSWIM
+DDIR_EAST
+~
+~
+0 -1 3205
+DDIR_WEST
+~
+~
+0 -1 3203
+S
+#3205
+On the River~
+The river enters from a hole in the eastern city wall.  The hole has been
+blocked by several vertically positioned iron bars set into the wall.~
+30 0 SECT_WATER_NOSWIM
+DDIR_WEST
+~
+~
+0 -1 3204
+S
+#0
+
+
+
+
+#RESETS
+M 0  3011   1  3001 ;          the executioner in The Temple Of Midgaard   
+E 1  3005  999 WEAR_WIELD    ;equip an executioner's axe     
+O 0  3010   1  3054 ;         the donation pit in By the Temple Altar      
+M 0  3000   1  3033 ;               the wizard in The Magic Shop           
+G 1  3040 5000       ;     a scroll of identify
+G 1  3041 5000       ;a yellow potion of see in
+G 1  3042 2000       ;a potion of understanding
+G 1  3043 3000       ;      a potion of tongues
+M 0  3003   1  3011 ;          the weaponsmith in The Weapon Shop          
+G 1  3020 1000       ;                 a dagger
+G 1  3021 1000       ;            a small sword
+G 1  3022 1000       ;             a long sword
+E 1  3022 100 ITEM_WEAR_HEAD ;equip a long sword             
+M 0  3004   1  3020 ;             the armourer in The Armoury              
+G 1  3072 100       ;      a scale mail jerkin
+G 1  3073 100       ;        a scale mail coif
+G 1  3074 100       ;  a long scale mail skirt
+G 1  3075 100       ;a pair of reinforced boot
+G 1  3076 100       ;a pair of reinforced glov
+G 1  3077 100       ;a pair of scale mail slee
+G 1  3097 100       ;     a small metal shield
+E 1  3022 100 ITEM_WEAR_HEAD ;equip a long sword             
+M 0  3002   1  3010 ;               the grocer in The General Store        
+G 1  3030 900       ;                  a torch
+G 1  3031 900       ;   a hooded brass lantern
+G 1  3138 999       ;     a buffalo water skin
+E 1  3022 900 ITEM_WEAR_HEAD ;equip a long sword             
+M 0  3001   1  3009 ;                the baker in The Bakery               
+G 1  3009 100       ;            a big pot pie
+E 1  3022 100 ITEM_WEAR_HEAD ;equip a long sword             
+M 0  3008   1  3031 ;         the pet shop boy in The Pet Shop             
+M 0  3009   1  3034 ;             the jeweller in The Jeweller's Shop      
+G 1  3371 100       ;   a diamond wedding ring
+G 1  3372 100       ;      a gold wedding band
+M 0  3010   1  3035 ;       the leather worker in The Leather Shop         
+G 1  3066 100       ; a studded leather jerkin
+G 1  3067 100       ;       a hard leather cap
+G 1  3068 100       ;a pair of studded leather
+G 1  3069 100       ;a pair of hard leather bo
+G 1  3070 100       ;a pair of hard leather gl
+G 1  3071 100       ;a pair of studded leather
+M 0  3006   1  3049 ;              the captain in Levee                    
+G 1  3050  20       ;                   a raft
+G 1  3051  10       ;                  a canoe
+M 0  3007   1  3050 ;               the sailor in Abandoned Warehouse      
+M 0  3040   1  3007 ;            the bartender in The Grunting Boar        
+G 1  3000 100       ;         a barrel of beer
+G 1  3001 100       ;         a bottle of beer
+E 1  3022 100 ITEM_WEAR_HEAD ;equip a long sword             
+M 0  3043   1  3003 ;               the waiter in Cleric's Bar             
+G 1  3002 100       ;          a bottle of ale
+G 1  3004 100       ;a bottle of local special
+E 1  3022 100 ITEM_WEAR_HEAD ;equip a long sword             
+M 0  3042   1  3018 ;               the waiter in Mage's Bar               
+G 1  3002 100       ;          a bottle of ale
+G 1  3003 100       ; a bottle of firebreather
+E 1  3022 100 ITEM_WEAR_HEAD ;equip a long sword             
+M 0  3045   1  3022 ;               the waiter in The Bar of Swordsmen     
+G 1  3002 100       ;          a bottle of ale
+G 1  3003 100       ; a bottle of firebreather
+G 1  3004 100       ;a bottle of local special
+E 1  3022 100 ITEM_WEAR_HEAD ;equip a long sword             
+M 0  3044   1  3028 ;               the waiter in The Thieves Bar          
+G 1  3003 100       ; a bottle of firebreather
+G 1  3004 100       ;a bottle of local special
+E 1  3022 100 ITEM_WEAR_HEAD ;equip a long sword             
+M 0  3046   1  3048 ;                   Filthy in Grubby Inn               
+G 1  3003 100       ; a bottle of firebreather
+G 1  3004 100       ;a bottle of local special
+E 1  3022 100 ITEM_WEAR_HEAD ;equip a long sword             
+M 0  3020   1  3019 ;          the guildmaster in Mage's Laboratory        
+M 0  3021   1  3002 ;          the guildmaster in Cleric's Inner Sanctum   
+M 0  3022   1  3029 ;          the guildmaster in The Secret Yard          
+M 0  3023   1  3023 ;          the guildmaster in The Tournament and Practi
+M 0  3024   1  3017 ;             the sorcerer in Entrance to Mage's Guild 
+E 1  3022 100 ITEM_WEAR_HEAD ;equip a long sword             
+M 0  3025   1  3004 ;       the knight templar in Entrance to Cleric's Guil
+E 1  3022 100 ITEM_WEAR_HEAD ;equip a long sword             
+M 0  3026   1  3027 ;             the assassin in Entrance Hall to the Guil
+E 1  3022 100 ITEM_WEAR_HEAD ;equip a long sword             
+M 0  3027   1  3021 ;               the knight in Entrance Hall to the Guil
+E 1  3022 100 ITEM_WEAR_HEAD ;equip a long sword             
+M 0  3060  12  3004 ;            the cityguard in Entrance to Cleric's Guil
+E 1  3365 99 0 ;equip a war banner             
+E 1  3364 99 ITEM_WEAR_TAKE ;equip a city guard signet ring 
+E 1  3350 199 ITEM_WEAR_HEAD ;equip a standard issue sword   
+E 1  3353 99 5 ;equip a standard issue vest    
+E 1  3355 199 ITEM_WEAR_NECK ;equip a standard issue cloak   
+M 0  3060  12  3014 ;            the cityguard in Market Square            
+E 1  3365 99 0 ;equip a war banner             
+E 1  3364 99 ITEM_WEAR_TAKE ;equip a city guard signet ring 
+E 1  3350 199 ITEM_WEAR_HEAD ;equip a standard issue sword   
+E 1  3353 99 5 ;equip a standard issue vest    
+E 1  3356 99 6 ;equip a standard issue helmet  
+M 0  3060  10  3017 ;            the cityguard in Entrance to Mage's Guild 
+E 1  3365 99 0 ;equip a war banner             
+E 1  3364 99 ITEM_WEAR_TAKE ;equip a city guard signet ring 
+E 1  3350 199 ITEM_WEAR_HEAD ;equip a standard issue sword   
+E 1  3353 99 5 ;equip a standard issue vest    
+E 1  3357 99 7 ;equip a pair of standard issue 
+M 0  3060  10  3021 ;            the cityguard in Entrance Hall to the Guil
+E 1  3365 99 0 ;equip a war banner             
+E 1  3364 99 ITEM_WEAR_TAKE ;equip a city guard signet ring 
+E 1  3350 199 ITEM_WEAR_HEAD ;equip a standard issue sword   
+E 1  3353 99 5 ;equip a standard issue vest    
+E 1  3358 99 ITEM_WEAR_BODY ;equip a pair of standard issue 
+M 0  3060  12  3027 ;            the cityguard in Entrance Hall to the Guil
+E 1  3365 99 0 ;equip a war banner             
+E 1  3364 99 ITEM_WEAR_TAKE ;equip a city guard signet ring 
+E 1  3350 199 ITEM_WEAR_HEAD ;equip a standard issue sword   
+E 1  3353 99 5 ;equip a standard issue vest    
+E 1  3359 99 9 ;equip a pair of standard issue 
+M 0  3067   2  3041 ;            the cityguard in Inside the East Gate of M
+E 1  3365 99 0 ;equip a war banner             
+E 1  3364 99 ITEM_WEAR_TAKE ;equip a city guard signet ring 
+E 1  3350 199 ITEM_WEAR_HEAD ;equip a standard issue sword   
+E 1  3353 99 5 ;equip a standard issue vest    
+E 1  3360 99 10 ;equip a pair of standard issue 
+M 0  3067   2  3041 ;            the cityguard in Inside the East Gate of M
+E 1  3365 99 0 ;equip a war banner             
+E 1  3364 99 ITEM_WEAR_TAKE ;equip a city guard signet ring 
+E 1  3350 199 ITEM_WEAR_HEAD ;equip a standard issue sword   
+E 1  3353 99 5 ;equip a standard issue vest    
+E 1  3354 99 11 ;equip a standard issue shield  
+M 0  3068   2  3040 ;            the cityguard in Inside the West Gate of M
+E 1  3365 99 0 ;equip a war banner             
+E 1  3364 99 ITEM_WEAR_TAKE ;equip a city guard signet ring 
+E 1  3350 199 ITEM_WEAR_HEAD ;equip a standard issue sword   
+E 1  3353 99 5 ;equip a standard issue vest    
+E 1  3361 99 12 ;equip a standard issue cape    
+M 0  3068   2  3040 ;            the cityguard in Inside the West Gate of M
+E 1  3365 99 0 ;equip a war banner             
+E 1  3364 99 ITEM_WEAR_TAKE ;equip a city guard signet ring 
+E 1  3350 199 ITEM_WEAR_HEAD ;equip a standard issue sword   
+E 1  3353 99 5 ;equip a standard issue vest    
+E 1  3362 99 13 ;equip a standard issue belt    
+M 0  3063   5  3026 ;             the vagabond in The Dark Alley           
+E 1  3021 100 ITEM_WEAR_HEAD ;equip a small sword            
+M 0  3064   3  3007 ;                the drunk in The Grunting Boar        
+M 0  3065   2  3044 ;               the beggar in Poor Alley               
+M 0  3062  15  3024 ;         the beastly fido in Eastern End of Poor Alley
+M 0  3062  15  3025 ;         the beastly fido in The Common Square        
+M 0  3062  15  3016 ;         the beastly fido in The Main Street          
+M 0  3062  15  3012 ;         the beastly fido in Main Street              
+M 0  3066   1  3026 ;             an alley cat in The Dark Alley           
+M 0  3061   5  3006 ;              the janitor in Entrance to the Grunting 
+M 0  3090   1  3032 ;               the kitten in Pet Shop Store           
+M 0  3091   1  3032 ;                the puppy in Pet Shop Store           
+M 0  3092   1  3032 ;               the beagle in Pet Shop Store           
+M 0  3093   1  3032 ;           the rottweiler in Pet Shop Store           
+M 0  3094   1  3032 ;                 the wolf in Pet Shop Store           
+M 0  3005   5  3027 ;                the thief in Entrance Hall to the Guil
+E 1  3020 99 ITEM_WEAR_HEAD ;equip a dagger                 
+M 0  3005   5  3128 ;                the thief in On the Concourse         
+E 1  3020 99 ITEM_WEAR_HEAD ;equip a dagger                 
+O 0  3135  10  3005 ;               a fountain in The Temple Square        
+O 0  3139  15  3008 ;the receptionist's letter in The Defunct Reception  O 0  3140  15  3008 ;the bank's notice of liqu in The Defunct Reception    
+D 0  3110 DIR_WEST DOOR_CLOSED_LOCKED ;door in Cityguard Head Quarters  
+D 0  3142 DIR_EAST DOOR_CLOSED_LOCKED ;door in Captain's Office         
+D 0  3142 DIR_SOUTH DOOR_CLOSED_LOCKED ;door in Captain's Office         
+D 0  3143 DIR_NORTH DOOR_CLOSED_LOCKED ;door in The Jail                 
+O 0  3134   3  3101 ;                the Bench in Promenade                
+O 0  3134   3  3102 ;                the Bench in Promenade                
+O 0  3134   3  3103 ;                the Bench in Promenade                
+M 0  3100   1  3106 ;                 the maid in Park Cafe                
+G 1  3100 500       ;             a cup of tea
+G 1  3101 500       ;          a cup of coffee
+G 1  3102 500       ;           a cup of water
+M 0  3120   1  3106 ;               the sexton in Park Cafe                
+G 1  3121   2       ;                    a key
+M 0  3121   1  3114 ;                 the swan in The Pond                 
+M 0  3122   1  3114 ;             the duckling in The Pond                 
+M 0  3123   1  3109 ;              the sparrow in Small path in the park   
+M 0  3124   2  3113 ;                 the duck in A path in the park       
+M 0  3124   2  3115 ;                 the duck in A path in the park       
+M 0  3140   1  3142 ;              the captain in Captain's Office         
+G 1  3122   2       ;                    a key
+G 1  3137   2       ;              a steel key
+M 0  3141   4  3142 ;            the cityguard in Captain's Office         
+M 0  3141   4  3142 ;            the cityguard in Captain's Office         
+M 0  3141   4  3142 ;            the cityguard in Captain's Office         
+M 0  3141   4  3142 ;            the cityguard in Captain's Office         
+O 0  3130   1  3142 ;                 the desk in Captain's Office         
+P 1  3123   1  3130 ;                    a key in the desk                 
+O 0  3131   1  3142 ;                 the safe in Captain's Office         
+P 1  3132   1  3131 ;                 the gold in the safe                 
+M 0  3060  20  3111 ;            the cityguard in Park Road                
+E 1  3365 99 0 ;equip a war banner           
+E 1  3364 99 ITEM_WEAR_TAKE ;equip a city guard signet ring 
+E 1  3350 199 ITEM_WEAR_HEAD ;equip a standard issue sword   
+E 1  3353 99 5 ;equip a standard issue vest    
+G 1  3120   8       ;                    a key
+M 0  3060  20  3111 ;            the cityguard in Park Road                
+E 1  3365 99 0 ;equip a war banner             
+E 1  3364 99 ITEM_WEAR_TAKE ;equip a city guard signet ring 
+E 1  3350 199 ITEM_WEAR_HEAD ;equip a standard issue sword   
+E 1  3353 99 5 ;equip a standard issue vest    
+E 1  3363 199 15 ;equip a standard issue bracer  
+M 0  3060  20  3111 ;            the cityguard in Park Road                
+E 1  3365 99 0 ;equip a war banner             
+E 1  3364 99 ITEM_WEAR_TAKE ;equip a city guard signet ring 
+E 1  3350 199 ITEM_WEAR_HEAD ;equip a standard issue sword   
+E 1  3353 99 5 ;equip a standard issue vest    
+M 0  3060  20  3111 ;            the cityguard in Park Road                
+E 1  3365 99 0 ;equip a war banner             
+E 1  3364 99 ITEM_WEAR_TAKE ;equip a city guard signet ring 
+E 1  3350 199 ITEM_WEAR_HEAD ;equip a standard issue sword   
+E 1  3353 99 5 ;equip a standard issue vest    
+M 0  3142   1  3137 ;            the secretary in The Waiting Room         
+M 0  3069   4  3138 ;            the cityguard in The Mayor's Office       
+E 1  3365 99 0 ;equip a war banner             
+E 1  3364 99 ITEM_WEAR_TAKE ;equip a city guard signet ring 
+E 1  3350 199 ITEM_WEAR_HEAD ;equip a standard issue sword   
+M 0  3069   4  3138 ;            the cityguard in The Mayor's Office       
+E 1  3365 99 0 ;equip a war banner             
+E 1  3364 99 ITEM_WEAR_TAKE ;equip a city guard signet ring 
+E 1  3350 199 ITEM_WEAR_HEAD ;equip a standard issue sword   
+M 0  3069   4  3138 ;            the cityguard in The Mayor's Office       
+E 1  3365 99 0 ;equip a war banner             
+E 1  3364 99 ITEM_WEAR_TAKE ;equip a city guard signet ring 
+E 1  3350 199 ITEM_WEAR_HEAD ;equip a standard issue sword   
+M 0  3069   4  3138 ;            the cityguard in The Mayor's Office       
+E 1  3365 99 0 ;equip a war banner             
+E 1  3364 99 ITEM_WEAR_TAKE ;equip a city guard signet ring 
+E 1  3350 199 ITEM_WEAR_HEAD ;equip a standard issue sword   
+M 0  3144   1  3120 ;           the town crier in Road Crossing            
+O 0  3135   1  3141 ;               a fountain in End of Penny Lane        
+O 0  3136   1  3141 ;a small pile of gold coin in End of Penny Lane        
+M 0  3012   1  3054 ;               the healer in By the Temple Altar      
+M 0  3050   1  3014 ; dealer
+S
+
+
+
+
+#SHOPS
+3000 ITEM_TYPE_SCROLL ITEM_TYPE_WAND ITEM_TYPE_STAFF ITEM_TYPE_POTION
+     ITEM_TYPE_NOTHING 105  15  0 23 ;the wizard
+3001 ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 110  50  0 23 ;the baker
+3002 ITEM_TYPE_LIGHT ITEM_TYPE_TREASURE ITEM_TYPE_TRASH ITEM_TYPE_CONTAINER
+     ITEM_TYPE_FOOD 150  40  0 23 ;the grocer
+3003 ITEM_TYPE_WEAPON 6 7 ITEM_TYPE_AMMO
+     ITEM_TYPE_NOTHING 130  40  0 23 ;the weaponsmith
+3004 ITEM_TYPE_ARMOR ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  50  0 23 ;the armourer
+3006 ITEM_TYPE_BOAT ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 120  50  6 22 ;the captain
+3008 ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  50  0 23 ;the pet shop boy
+3009 ITEM_TYPE_TREASURE ITEM_TYPE_MONEY ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 150  50  9 17 ;the jeweller
+3010 ITEM_TYPE_ARMOR ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 110  50  8 21 ;the leather worker
+3040 ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 110  50  0 23 ;the bartender
+3042 ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 100  50  0 23 ;the waiter
+3043 ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 110  50  0 23 ;the waiter
+3044 ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 170  50  0 23 ;the waiter
+3045 ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 150  50  0 23 ;the waiter
+3100 ITEM_TYPE_DRINK_CON ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING ITEM_TYPE_NOTHING
+     ITEM_TYPE_NOTHING 110  50  6 23 ;the maid
+0
+
+
+
+
+#SPECIALS
+M 3000 spec_cast_mage
+M 3005 spec_thief
+M 3012 spec_cast_adept
+M 3020 spec_cast_mage
+M 3021 spec_cast_cleric
+M 3022 spec_thief
+M 3024 spec_cast_mage
+M 3042 spec_cast_mage
+M 3043 spec_cast_cleric
+M 3044 spec_thief
+M 3050 spec_cast_undead
+M 3060 spec_guard
+M 3061 spec_janitor
+M 3062 spec_fido
+M 3066 spec_fido
+M 3067 spec_guard
+M 3068 spec_guard
+M 3069 spec_guard
+M 3100 spec_cast_cleric
+M 3120 spec_cast_cleric
+S
+
+
+
+
+#$
+

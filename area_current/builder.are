@@ -1,0 +1,1124 @@
+#AREA Builder's Chamber~
+#AUTHORS MrMud~
+ 
+
+#RANGES 0 99 0 99
+#FLAGS AFLAG_NODEBUG
+#MOBILES
+#100
+heram~
+The Heram~
+A heram of the builders is lying here.~
+Waist long silky hair helps cover her half naked body. Although her long
+hair could cover her beautiful body, it fails to cover her almost unreal
+beauty. Before you stands the defination of beauty and perfection. Amen!~
+ACT_NO_ORDER|ACT_STAY_AREA|ACT_SMART|ACT_SENTINEL|ACT_BODY|ACT_RACE
+AFF_INFRARED|AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_UNDERSTAND|AFF_TONGUES
+1000 S
+60 BODY_TORSO BODY_HAND|BODY_LEG|BODY_ARM 8d100+3000 1d60+10
+100000 RACE_HUMAN
+POS_STANDING POS_STANDING SEX_FEMALE
+>rand_prog 20~
+say oooh, baby give me some of that lovin!
+emote shudders with pleasure.
+~
+>speech_prog p pleasure me~
+emote slowly removes all of her clothes.
+mpechoat $n Using her body rather than her hands your clothes are rubbed off.
+mpquiet on
+c 'heal' $n
+c 'heal' $n
+mpquiet off
+mpechoat $n You feel better.
+emote looks at you innocently and says 'How?'
+~
+>speech_prog violently~
+emote scratches at your chest while bucking quickly on your lap.
+emote screams can be heard down the block as blood oozes from your own wounds.
+emote shudders violently beating down on your face and chest.
+mpquiet on
+c 'heal' $n
+c 'heal' $n
+mpquiet off
+mpechoat $n You feel your blood pressure rising and a wonderful warmth spreading.
+say More?
+~
+>speech_prog yes~
+grin
+emote continues her gyrations.
+mpquiet on
+c 'heal' $n
+c 'heal' $n
+mpquiet off
+mpechoat $n You feel really good.
+~
+|
+#101
+freak guard~
+A Steriod Freak~
+A Steriod Freak stands here looking for intruders.~
+A man with so many muscles you wonder how they all still remain stuck to
+his skeleton.  He is wearing a uniform for some reason or another he
+decided to rip to shreds.~
+ACT_SENTINEL|ACT_BODY|ACT_SMART|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES|AFF_HUNT
+0 S
+100 BODY_HEAD BODY_HEAD 50d50+20000 1d1+1000
+1000 RACE_OGRE
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+if actorhasobjnum(100)
+  emote stands at attention.
+  say Ready for orders sir!
+else
+  if actorhasobjnum(101)
+    emote stands at attention.
+    say Ready for orders sir!
+  else
+    if actorhasobjnum(102)
+      emote stands at attention.
+      say Ready for orders sir!
+    else
+      if actorhasobjnum(103)
+        emote stands at attention.
+        say Ready for orders sir!
+      else
+        if actorhasobjnum(104)
+          emote stands at attention.
+          say Ready for orders sir!
+        else
+          if actorhasobjnum(105)
+            emote stands at attention.
+            say Ready for orders sir!
+          else
+            if actorhasobjnum(106)
+              emote stands at attention.
+              say Ready for orders sir!
+            else
+              shout INTRUDER!  INTRUDER! ATTACK! ATTACK! BONZAI!!!
+              mpkill $n
+            endif
+          endif
+        endif
+      endif
+    endif
+  endif
+endif
+~
+>rand_prog 5~
+get leg
+eat leg
+say I'm going to PUMP you UP!
+flex
+~
+>social_prog sniff~
+say You sniveling wimp!
+if quest(4,2,$n)==1
+  say I took your legs, you want me to take your hands too!
+endif
+if quest(4,2,$n)==0
+  mpmset $n quest 4 2 1
+  emote casually rips off both of $n legs.
+  mpecho $n hits the ground hard.
+  mpforce $n rest
+  mpforce $n bleed
+  mpoload 108
+  mpoload 108
+  drop leg
+  drop leg
+endif
+~
+>social_prog beg~
+scream
+say YOU WIMP!!!
+if quest(4,2,$n)==1
+  mpmset $n quest 4 2 2
+  mpecho Reaches over to $n, winks and rips both arms off.
+  mpoload 109
+  mpoload 109
+  drop arm
+  drop arm
+  mpforce $n bleed
+  mpforce $n emote flops around with no arms or legs screaming wildly.
+endif
+~
+>social_prog moan~
+if quest(4,2,$n)==2
+  say That is it!
+  say DIEEEEEEEEEE!!!!
+  mpkill $n
+endif
+~
+|
+#102
+fred~
+Fred~
+Fred the Enslaved Bartender works hard serving drinks here.~
+Fred is a boring looking eunuch that was pulled out of an area because of his
+boring appearance.  He now serves his creators by mixing their favorite
+drinks.~
+ACT_SENTINEL|ACT_BODY|ACT_SMART|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+100 BODY_HEAD BODY_HEAD 50d50+20000 1d1+1000
+1000 RACE_GNOME
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 100~
+tell $n Want a drink?
+~
+>speech_prog yes~
+say What kind?  Just ask to see our MENU.
+~
+>speech_prog menu~
+say You have the wide selection of:
+say Jack Daniels
+say Vodka
+say Beer
+say Moonshine
+say Sex on the Beach
+~
+>speech_prog p jack daniels~
+mpoload 110
+give i110 $n
+~
+>speech_prog vodka~
+mpoload 111
+give i111 $n
+~
+>speech_prog beer~
+mpoload 112
+give i112 $n
+~
+>speech_prog moonshine~
+mpoload 113
+give i113 $n
+~
+>speech_prog p sex on the beach~
+mpoload 114
+give i114 $n
+~
+|
+#103
+stripper female~
+A Female Stripper~
+A Female Stripper seductively slides completely naked along the stage.~
+This woman has one very apparent feature, she is completely naked.  Her dancing
+is wiggling this and that here and there as well as showing off nice tuffs of
+hair and an assortment of other goodies.~
+ACT_SENTINEL|ACT_BODY|ACT_SMART|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 BODY_HEAD BODY_HEAD 50d50+20000 1d1+300
+1000 RACE_GNOME
+POS_STANDING POS_STANDING SEX_FEMALE
+>rand_prog 10~
+emote spreads her legs widely in front of your face!
+~
+>rand_prog 5~
+emote comes over and sits in your lap.
+emote forces your head down to her chest while gyrating wildly in your lap.
+~
+>speech_prog p lap dance with the female~
+emote licks her lips and smiles.
+mpforce $n follow female
+south
+mpforce $n follow self
+mpmset $n quest 0 1 1
+say You want it fast, or you want it slow honey?
+~
+>speech_prog fast~
+if quest(0,1,$n)==1
+  emote spreads her naked thighs and sits tightly in your lap.
+  mpquiet on
+  c 'heal' $n
+  mpquiet off
+  emote begins gyrating up and down, up and down.
+  mpquiet on
+  c 'heal' $n
+  c 'heal' $n
+  c 'heal' $n
+  mpquiet off
+  mpechoat $n You finish.
+  emote climbs off and plants a wet kiss on your lips.
+  mpmset $n quest 0 1 0
+  north
+else
+endif
+~
+>speech_prog slow~
+if quest(0,1,$n)==1
+  say I don't do it slow!
+  n
+else
+  spit
+  n
+endif
+~
+|
+#104
+male stripper~
+A Male Stripper~
+A Memale Stripper seductively dances completely naked along the stage.~
+This man has very well defined features.  An innocent GQ look with a short
+haircut and wildly displaying his package.~
+ACT_SENTINEL|ACT_BODY|ACT_SMART|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 BODY_HEAD BODY_HEAD 50d50+20000 1d1+300
+1000 RACE_GNOME
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 10~
+emote wags his manhood wildly in front of your face!
+~
+>rand_prog 5~
+emote comes over and sits in your lap.
+~
+>speech_prog p lap dance with the male~
+emote licks his lips and smiles.
+mpforce $n follow male
+south
+mpforce $n follow self
+mpmset $n quest 0 1 1
+say You want it fast, or you want it slow?
+~
+>speech_prog fast~
+if quest(0,1,$n)==1
+  emote sits you down on his lap.
+  mpquiet on
+  c 'heal' $n
+  mpquiet off
+  emote begins gyrating up and down, up and down.
+  mpquiet on
+  c 'heal' $n
+  c 'heal' $n
+  c 'heal' $n
+  mpquiet off
+  mpechoat $n You finish.
+  emote pushes you off and plants a wet kiss on your lips.
+  mpmset $n quest 0 1 0
+  north
+else
+endif
+~
+>speech_prog slow~
+if quest(0,1,$n)==1
+  say I don't do it slow!
+  n
+else
+  spit
+  n
+endif
+~
+|
+#105
+secretary~
+Hammer's Secretary~
+Hammer's Secretary sits here madly writing something.~
+She's a rather homely looking woman without any characteristics worth
+mentioning.~
+ACT_SENTINEL|ACT_BODY|ACT_SMART|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 BODY_HEAD BODY_HEAD 50d50+20000 1d1+100
+1000 RACE_GNOME
+POS_STANDING POS_STANDING SEX_FEMALE
+>all_greet_prog 100~
+say I will inform the holy god Hammer of your presence in his shrine.
+tell hammer $n has decided to pay tribute to you.
+if quest(6,1,$n)==0
+  mpmset hammer quest 6 1 1
+endif
+~
+>speech_prog p finish him~
+if quest(6,1,$n)==1
+  say Sorry about this, but Hammer just gave me orders to kill you.
+  mpmset $i quest 1 1 1
+endif
+~
+>fight_prog 20~
+tell hammer I'm under attack by $n!
+if quest(1,1,$i)==1
+  mpecho Hoards of Steroid Freak's arrive to aid the secretary.
+  mpmload 101
+  mpforce freak mpkill $n
+  mpmload 101
+  mpforce freak mpkill $n
+  mpmset $i quest 1 1 0
+endif
+~
+|
+#106
+doctor~
+The Head Abortion Doctor~
+The Head Abortion Doctor busy doing what he does best.~
+This man is dressed in a mostly white jacket.  Mostly white because much of
+it is splattered with blood and chunks of fetal matter.  In his pocket there
+is an array of bloody scapels.~
+ACT_SENTINEL|ACT_BODY|ACT_SMART|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_SANCTUARY|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 BODY_HEAD BODY_HEAD 50d50+20000 1d1+100
+1000 RACE_GNOME
+POS_STANDING POS_STANDING SEX_MALE
+>all_greet_prog 50~
+say Stand back, I've got work to do.
+~
+>social_prog beg~
+laugh
+say Sorry, Hammer's orders!
+if quest(0,4,$i)==0
+   mpmset self quest 0 4 1
+endif
+~
+>rand_prog 10~
+if quest(0,4,$i)==1
+  emote reaches into his pocket and pulls out a very dirty scapel.
+  emote goes between the lady's legs and begins the abortion.
+  grin lady
+  mpmset $i quest 0 4 2
+endif
+~
+>rand_prog 20~
+if quest(0,4,$i)==2
+  emote pulls out a nasty little, very dead fetus.
+  emote looks at it briefly and throws it into the fetus pile.
+  say Next!
+  mpmset $i quest 0 4 3
+  break
+endif
+if quest(0,4,$i)==3
+  mpmset self quest 0 4 0
+  mpecho Two guards come into the room.
+  mpecho One of the guards pulls out a long sword and lops the lady's head off.
+  slay lady
+  emote waits for his next patient.
+endif
+~
+|
+#107
+lady~
+A Lady~
+A lady is firmly strapped into a harness with her legs spread here.~
+This lady is in a hospital gown with her legs, torso, and head strapped into
+a steel bench that allows entry enough for a person to walk in between her
+legs.~
+ACT_SENTINEL|ACT_BODY|ACT_SMART|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+95 BODY_HEAD BODY_HEAD 5d50+20000 1d1+300
+1000 RACE_GNOME
+POS_STANDING POS_STANDING SEX_MALE
+>greet_prog 10~
+say Help me...
+~
+>social_prog grin~
+if quest(0,4,$n)<2
+    scream
+endif
+~
+>rand_prog 27~
+say Please!  Please no!  Don't take my baby!
+beg doctor
+~
+|
+#108
+wimp scrawny~
+A Wimp~
+A scrawny little wimp is sniveling here.~
+This little guy has absolutely no muscle.  Simply skin and bones with a bunch
+of fat stuffed in between.  His skin is pale and his eyes are bloodshot you
+have a feeling just about anything could scare the sucker right now.~
+ACT_SENTINEL|ACT_BODY|ACT_SMART|ACT_RACE
+AFF_DETECT_INVIS|AFF_DETECT_HIDDEN|AFF_INFRARED|AFF_UNDERSTAND|AFF_TONGUES
+0 S
+25 BODY_HEAD BODY_HEAD 5d5+2000 1d30+10
+1000 RACE_GNOME
+POS_STANDING POS_STANDING SEX_MALE
+>rand_prog 5~
+say Please, let me go!
+~
+>rand_prog 20~
+if quest(4,2,$i)==0
+  sniff freak
+  break
+endif
+if quest(4,2,$i)==1
+  say My legs!  Oh please don't give me any more pain....PLEASE!!
+  sniff freak
+  beg freak
+  break
+endif
+  if quest(4,2,$i)==2
+    emote slithers over to one of his arms.
+    emote tries to pick his arm up in his mouth.
+    bleed
+    moan freak
+  endif
+~
+>death_prog 100~
+  mpmset self quest 4 2 0
+~
+|
+#0
+
+#OBJECTS
+#100
+Ultimate Crown Creation~
+The Ultimate Crown of Creation~
+A gloden crown is floating here, humming with energy!!~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_INVENTORY|ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HEAD
+1 0 0 0
+1 0 2
+P 1
+TRIG_UNKNOWN 100 whitemage
+OPROG_OBJECT_QUEST_IF 0 1 = 0 2 90
+P 2
+TRIG_VOID
+OPROG_QUEST_SET 0 1 1
+P 2
+TRIG_VOID
+OPROG_GOD_COMMAND
+mpecho $ utters some words and a pair of ivory gauntlets appears! &
+mpoload 101
+~
+P 3
+TRIG_UNKNOWN 100 silvermage 
+OPROG_OBJECT_QUEST_IF 1 1 = 0 4 91
+P 4
+TRIG_VOID
+OPROG_QUEST_SET 1 1 1
+P 4
+TRIG_VOID
+OPROG_GOD_COMMAND
+mpecho $ utters some words and a pair of silvery gauntlets appears! &       
+mpoload 102
+~
+P 5
+TRIG_UNKNOWN 100 ebonymage 
+OPROG_OBJECT_QUEST_IF 2 1 = 0 6 92
+P 6
+TRIG_VOID
+OPROG_QUEST_SET 2 1 1
+P 6
+TRIG_VOID
+OPROG_GOD_COMMAND
+mpecho $ utters some words and a pair of ebony gauntlets appears! &       
+mpoload 103
+~
+P 7
+TRIG_UNKNOWN 100 cancelwhite
+OPROG_QUEST_SET 0 1 0
+P 8
+TRIG_UNKNOWN 100 cancelsilver
+OPROG_QUEST_SET 1 1 0
+P 9
+TRIG_UNKNOWN 100 cancelebony
+OPROG_QUEST_SET 2 1 0
+P 10
+TRIG_UNKNOWN 100 chamber
+OPROG_IF OIF_USER_POSITION = POS_STANDING 11 89
+P 11
+TRIG_VOID
+OPROG_GOD_COMMAND
+say Energize! &
+emote fades into nothingness &
+mpgoto 100 &
+emote has arrived in transporter room 7!
+~
+P 89
+TRIG_VOID
+OPROG_ECHO
+You must be standing to go back to the chamber.~
+P 90
+TRIG_VOID
+OPROG_ECHO
+You have already selected the White Wizard!
+If you changed your mind or feel that it was a mistake,
+type 'CancelWhite' to allow you to create new ivory gauntlets.~
+P 91
+TRIG_VOID
+OPROG_ECHO
+You have already selected the Silver Wizard!               
+If you changed your mind or feel that it was a mistake,       
+type 'CancelSilver' to allow you to create new silvery gauntlets.~
+P 92
+TRIG_VOID
+OPROG_ECHO
+You have already selected the Dark Wizard!               
+If you changed your mind or feel that it was a mistake,       
+type 'CancelEbony' to allow you to create new ebony gauntlets.~
+#101
+ivory gauntlets creation~
+A Pair of Ivory Gauntlets of Creation~
+A pair of ivory gauntlets is floating here, glowing brightly!~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_INVENTORY|ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HANDS
+1 0 0 0
+1 0 2
+P 1
+TRIG_UNKNOWN 100 chamber   
+OPROG_IF OIF_USER_POSITION = POS_STANDING 2 3
+P 2  
+TRIG_VOID
+OPROG_GOD_COMMAND
+say Energize! &
+emote fades into nothingness &
+mpgoto 100 &
+emote has arrived in transporter room 7!
+~
+P 3
+TRIG_VOID
+OPROG_ECHO
+You must be standing to go back to the chamber.~
+P 4
+TRIG_UNKNOWN 100 follower
+OPROG_OBJECT_QUEST_IF 0 4 < 3 5 6
+P 5
+TRIG_VOID
+OPROG_QUEST_ADD 0 4 1
+P 5
+TRIG_VOID
+OPROG_GOD_COMMAND
+emote has created an ivory band! &
+mpoload 104 ~
+P 6
+TRIG_VOID
+OPROG_ECHO
+You already have three followers!~
+#102
+silvery gauntlets creation~
+A Pair of Silvery Gauntlets of Creation~
+A pair of silvery gauntlets is floating here, humming strongly!~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_INVENTORY|ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HANDS
+1 0 0 0
+1 0 2
+P 1 
+TRIG_UNKNOWN 100 chamber
+OPROG_IF OIF_USER_POSITION = POS_STANDING 2 3
+P 2 
+TRIG_VOID
+OPROG_GOD_COMMAND
+say Energize! &
+emote fades into nothingness &
+mpgoto 100 &
+emote has arrived in transporter room 7!
+~
+P 3
+TRIG_VOID
+OPROG_ECHO
+You must be standing to go back to the chamber.~
+P 4
+TRIG_UNKNOWN 100 follower
+OPROG_OBJECT_QUEST_IF 0 4 < 3 5 6
+P 5
+TRIG_VOID   
+OPROG_QUEST_ADD 0 4 1
+P 5
+TRIG_VOID
+OPROG_GOD_COMMAND
+emote has created a silvery band! &
+mpoload 105 ~
+P 6
+TRIG_VOID
+OPROG_ECHO
+You already have three followers!~
+#103
+ebony gauntlets creation~
+A Pair of Ebony Gauntlets of Creation~
+A pair of Ebony gauntlets is floating here, surrounded by a dark aura!~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_INVENTORY|ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_HANDS
+1 0 0 0
+1 0 2
+P 1 
+TRIG_UNKNOWN 100 chamber
+OPROG_IF OIF_USER_POSITION = POS_STANDING 2 3
+P 2 
+TRIG_VOID
+OPROG_GOD_COMMAND
+say Energize! &
+emote fades into nothingness &
+mpgoto 100 &
+emote has arrived in transporter room 7!
+~
+P 3
+TRIG_VOID
+OPROG_ECHO
+You must be standing to go back to the chamber.~
+P 4
+TRIG_UNKNOWN 100 follower
+OPROG_OBJECT_QUEST_IF 0 4 < 3 5 6
+P 5
+TRIG_VOID   
+OPROG_QUEST_ADD 0 4 1
+P 5
+TRIG_VOID
+OPROG_GOD_COMMAND
+emote has created an ebony band! &
+mpoload 106 ~
+P 6
+TRIG_VOID
+OPROG_ECHO
+You already have three followers!~
+#104
+ivory band creation~
+An Ivory Band of Creation~
+An ivory band is floating here.~
+~
+ITEM_TYPE_ARMOR
+ITEM_FLAG_INVENTORY|ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK
+1 0 0 0
+1 0 2 
+P 1
+TRIG_UNKNOWN 100 chamber
+OPROG_IF OIF_USER_POSITION = POS_STANDING 2 3
+P 2
+TRIG_VOID
+OPROG_GOD_COMMAND
+say Energize! &
+emote fades into nothingness &
+mpgoto 100 &
+emote has arrived in transporter room 7!
+~
+P 3
+TRIG_VOID
+OPROG_ECHO
+You must be standing to go back to the chamber.~
+#105
+silver band creation~
+A Silvery Band of Creation~
+A silvery band is floating here.~
+~ 
+ITEM_TYPE_ARMOR
+ITEM_FLAG_INVENTORY|ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK 
+1 0 0 0
+1 0 2
+P 1
+TRIG_UNKNOWN 100 chamber
+OPROG_IF OIF_USER_POSITION = POS_STANDING 2 3
+P 2
+TRIG_VOID
+OPROG_GOD_COMMAND
+say Energize! &
+emote fades into nothingness &
+mpgoto 100 &
+emote has arrived in transporter room 7!
+~ 
+P 3
+TRIG_VOID
+OPROG_ECHO
+You must be standing to go back to the chamber.~
+#106
+ebony band creation~
+An Ebony of Creation~
+An ebony band is floating here.~
+~ 
+ITEM_TYPE_ARMOR
+ITEM_FLAG_INVENTORY|ITEM_FLAG_GLOW|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_NECK 
+1 0 0 0
+1 0 2
+P 1
+TRIG_UNKNOWN 100 chamber
+OPROG_IF OIF_USER_POSITION = POS_STANDING 2 3
+P 2
+TRIG_VOID
+OPROG_GOD_COMMAND
+say Energize! &
+emote fades into nothingness &
+mpgoto 100 &
+emote has arrived in transporter room 7!
+~ 
+P 3
+TRIG_VOID
+OPROG_ECHO
+You must be standing to go back to the chamber.~
+#107
+tool box builder~
+Builder's Tool Box~
+a tool box is here.~
+A small label on the top of the tool box says:
+ OLOAD - Load items format load <object vnum>
+ MPMSET    - set all sorts of things on mobs, including quest bits
+ MLOAD
+ PURGE
+ JUNK
+ MPMADD
+ OSET    
+~
+ITEM_TYPE_WEAPON
+ITEM_FLAG_INVENTORY|ITEM_FLAG_MAGIC|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE|ITEM_WEAR_WIELD
+0 1 1 WEAPON_WHIP
+5 0 1  
+P 1
+TRIG_UNKNOWN 100 oload
+OPROG_GOD_ARGUMENT
+oload ~
+P 2
+TRIG_UNKNOWN 100 mpmset
+OPROG_GOD_ARGUMENT
+mpmset ~
+P 3
+TRIG_UNKNOWN 100 mload
+OPROG_GOD_ARGUMENT
+mload ~
+P 4
+TRIG_UNKNOWN 100 purge
+OPROG_GOD_ARGUMENT
+purge ~
+P 5
+TRIG_UNKNOWN 100 junk
+OPROG_GOD_ARGUMENT
+junk ~
+P 6
+TRIG_UNKNOWN 100 mpmadd
+OPROG_GOD_ARGUMENT
+mpmadd ~
+P 7
+TRIG_UNKNOWN 100 oset
+OPROG_GOD_ARGUMENT
+oset ~
+#108
+leg~
+A bloody leg~
+A bloody leg that looks as if it was ripped right off lies here.~
+A bloody leg that looks as if it was ripped right off it's owner.~
+ITEM_TYPE_FOOD
+ITEM_FLAG_GLOW|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+1 0 0 0
+1 5 2
+#109
+arm~
+A bloody arm~
+A bloody arm that looks as if it was ripped right off lies here.~
+A bloody arm that looks as if it was ripped right off it's owner.~
+ITEM_TYPE_FOOD
+ITEM_FLAG_GLOW|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+1 0 0 0
+1 5 2
+#110
+jack daniels~
+A shot of Jack Daniels~
+A shot glass full of Jack Daniels is sitting lonely on the floor.~
+A shot glass full of brown liquid, otherwise known as Jack Daniels.~
+ITEM_TYPE_DRINK_CON
+ITEM_FLAG_GLOW|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+1 1 5 0
+1 5 2
+#111
+vodka~
+A shot of Vodka~
+A shot glass full of Vodka is sitting lonely on the floor.~
+A shot glass full of clear liquid, otherwise known as Vodka.~
+ITEM_TYPE_DRINK_CON
+ITEM_FLAG_GLOW|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+1 1 5 0
+1 5 2
+#112
+beer~
+A mug of beer~
+A mug full of foamy beer is sitting lonely on the floor.~
+A mug full of brown liquid, otherwise known as beer.~
+ITEM_TYPE_DRINK_CON
+ITEM_FLAG_GLOW|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+1 1 1 0
+1 5 2
+#113
+moonshine~
+A thimble full of Moonshine~
+A thimble full of Moonshine is sitting lonely on the floor.~
+A shot glass full of a clear liquid, otherwise known as Moonshine.~
+ITEM_TYPE_DRINK_CON
+ITEM_FLAG_GLOW|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+1 1 7 0
+1 5 2
+#114
+sex beach~
+A glass of Sex on the Beach~
+A glass full of Sex on the Beach is sitting lonely on the floor.~
+A shot glass full of a intersting looking liquid, otherwise known as
+Sex on the Beach.~
+ITEM_TYPE_DRINK_CON
+ITEM_FLAG_GLOW|ITEM_FLAG_LEVEL
+ITEM_WEAR_TAKE
+1 1 5 0
+1 5 2
+#0
+
+#ROOMS
+#100
+The Heart of Darkness~
+You have landed in Joseph Conrads worst nightmare.  The land of the area
+builders.  Cursed they are to forever partake in unholy deviant acts of
+earthly pleasures.  This is there hell from which they spawn their insidious
+plans.  BEWARE: those who can create the world can destroy the universe.
+There is a sign here.~
+1 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+A Glorious Area of Pure Light.~
+~
+0 -1 101
+DDIR_SOUTH
+A Glorious Area of Pure Light.~
+~
+0 -1 102
+DDIR_WEST
+A Glorious Area of Pure Light.~
+~
+0 -1 103
+DDIR_EAST
+A Glorious Area of Pure Light.~
+~
+0 -1 104
+DDIR_DOWN
+The Pleasure Center.~
+~
+0 -1 105
+E
+sign~
+The sign reads:
+
+I AM THE WAY INTO THE CITY OF WOE.
+I AM THE WAY TO A FORSAKEN PEOPLE.
+I AM THE WAY INTO ETERNAL SORROW.
+
+SACRED JUSTICE MOVED MY ARCHITECT.
+I WAS RAISED HERE BY DIVINE OMNIPOTENCE,
+PRIMORDIAL LOVE AND ULTIMATE INTELLECT.
+
+ONLY THOSE ELEMENTS TIME CANNOT WEAR
+WERE MADE BEFORE ME, AND BEYOND TIME I STAND.
+ABANDON ALL HOPE YE WHO ENTER HERE.
+
+        Love,
+Fizzo, Rukawa, Chaste, Hammer
+~
+S
+#101
+Make your own room, I dunno what you want :P~
+~
+1 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+The Heart of Darkness.~
+~
+0 -1 100
+S
+#102
+Make your own room, I dunno what you want :P~
+~
+1 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+The Heart of Darkness.~
+~
+0 -1 100
+S
+#103
+A Glorious Area of Light~
+All about you light shines brightly as if a sun was lit in the middle of
+the room.  You bask in the holy warmth of it.  You feel a slight chill as
+you peak to the west and see the light being sucked into a dark void.  A
+whisper echoes throughout the room, 'H a m m e r'~
+1 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+The Heart of Darkness.~
+~
+0 -1 100
+DDIR_WEST
+A Twisted Mass of Darkness.~
+~
+0 -1 120
+S
+#104
+Make your own room, I dunno what you want :P~
+~
+1 ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+The Heart of Darkness.~
+~
+0 -1 100
+S
+#105
+The Pleasure Center~
+You hear loud pleasure filled moans creeping in from every which way.  The
+room is neat and tidy and elaborately decorated with gold wall paper and
+platinum tiles on the floor.~
+1 ROOM_INDOORS SECT_INSIDE
+DDIR_UP
+The Heart of Darkness.~
+~
+0 -1 100
+DDIR_SOUTH
+The Bar.~
+~
+0 -1 106
+S
+#106
+The Builder's Bar~
+You are instantly sickened by the intense obstinence of the decorations here.
+The walls are made of solid diamonds with a few gold designs painted
+beautifully on the walls.  The bar itself is made of bright emerald with
+a solid platinum platform.  The stools have silk covering and you'd assume
+down feathers for cushioning.  They look more plush than any pillow you have
+ever before seen, much less a stool cushion.~
+1 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+The Pleasure Center.~
+~
+0 -1 105
+DDIR_WEST
+The Builder's Harem.~
+~
+0 -1 107
+DDIR_EAST
+The Builder's Strip Club.~
+~
+0 -1 108
+S
+#107
+The Builder's Harem~
+Before you lies a mass of writhing flesh.  Hundreds of beautiful robust men
+and woman partaking in the evil acts of sexual exploration.  What you can see
+of the ground is just pillows and an enourmous sheet.  This entire room appears
+just to be a gigantic bed.  It feels as if the walls themselves are pulling
+at your clothes, trying to rip them off as invisible hands begin to massage
+the nether regions of your body.~
+1 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+The Builder's Bar.~
+~
+0 -1 106
+S
+#108
+The Builder's Strip Club~
+This room has hundreds of runways filled with scantily clad and naked people
+shaking there body this way and that in a sensual tease.  On the runways there
+are a variety of different objects, poles, long hard fallic looking things,
+as well as a whole S&M setup.  To the south there is a sheer curtain from
+which the music of moans escapes and you can make out silouttes bouncing
+up and down.~
+1 ROOM_INDOORS SECT_INSIDE
+DDIR_WEST
+The Builder's Bar.~
+~
+0 -1 106
+DDIR_SOUTH
+A Room for Lap Dancing.~
+~
+0 -1 109
+S
+#109
+A Room for Lap Dancing~
+Let me give you the definition of a lap dance.
+Lap Dance: Dry sex
+This is what is going on in the room.~
+1 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+The Builder's Strip Club.~
+~
+0 -1 108
+S
+#120
+Twisted Mass of Darkness~
+The universe has entered this room and turned it's soul inside out.  You are
+astounded as you see your feet floating merrily past your head without the
+slightest sensation of pain.  There is no gravity here making you float but
+at the same time you feel as if your insides were being crushed from the
+inside out.  To the north south, and east lie your only chances for salvation.~
+1 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+A Glorious Area of Light.~
+~
+0 -1 103
+DDIR_NORTH
+The Room of Mandatory Abortions.~
+~
+0 -1 121
+DDIR_SOUTH
+Hammer's Secretarys' Office.~
+~
+0 -1 122
+S
+#121
+The Room of Mandatory Abortions~
+This room is a very starch simply barren place.  The walls are made of cold
+cement as is the floor.  Blood stains streaked on the walls are the only form
+of decoration besides the pile of mush-like aborted fetus's lying in a huge
+puddle on the floor.~
+1 ROOM_INDOORS SECT_INSIDE
+DDIR_SOUTH
+A Twisted Mass of Darkness.~
+~
+0 -1 120
+S
+#122
+Hammer's Secretarys' Office~
+You stand in a normal office looking room.  A file cabinet, desk, chair, phone,
+fax machine, calendar, coffee maker, blah blah blah.  There is a room to the
+east.~
+1 ROOM_INDOORS SECT_INSIDE
+DDIR_NORTH
+A Twisted Mass of Darkness.~
+~
+0 -1 120
+DDIR_WEST
+Hammer's Thinking Chamber.~
+~
+0 -1 123
+S
+#123
+Hammer's Thinking Chamber~
+Shhhh!!!  The greatest of the four area builders is thinking here.  An array
+of gags, chains, and knives hang from the ceiling prepared to silence
+any unwanted noise, or noise makers.~
+1 ROOM_INDOORS SECT_INSIDE
+DDIR_EAST
+Hammer's Secretarys' Office.~
+~
+0 -1 122
+S
+#0
+
+#RESETS
+M 0 100 1 107 ;       Harem in the harem
+M 0 101 1 100 ;       Guard in entry room
+G 1 108 2      ;       bloody leg
+G 1 109 2      ;       bloody arm
+M 0 101 1 101 ;       Guard in glowing room
+M 0 101 1 102 ;       Guard in glowing room
+M 0 101 1 103 ;       Guard in glowing room
+M 0 101 1 104 ;       Guard in glowing room
+M 0 101 1 105 ;       Guard in glowing room
+M 0 102 1 106 ;       Fred in bar
+G 1 110 5      ;       jack for fred
+G 1 111 5      ;       vodka for fred
+G 1 112 5      ;       beer for fred
+G 1 113 5      ;       moonshine for fred feel free to add more drinks!!!
+M 0 103 2 108 ;       Female stripper
+M 0 104 1 108 ;       Male stripper
+M 0 105 1 122 ;       Hammer's secretary
+M 0 106 1 121 ;       Hammer's abortion doctor
+M 0 107 1 121 ;       Hammer's abortion victim
+M 0 108 1 100 ;       A wimp for the steroid freak's pleasure to rip apart
+S
+#$
+
+
